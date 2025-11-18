@@ -1,3 +1,6 @@
 .idea/*.*
 .idea/*/*.*
+FrontEnd/src/image
+FrontEnd/src/image-podcast
+FrontEnd/src/fonts
 node_modules
