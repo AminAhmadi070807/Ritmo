@@ -9,6 +9,8 @@ const helmet = require('helmet');
 const errorHandler = require('./middlewares/error.middleware')
 const notFoundHandler = require('./middlewares/notFound.middleware')
 
+const authRouter = require('./modules/v1/auth/auth.route.js')
+
 const app = express();
 
 app.use(helmet());
@@ -18,6 +20,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, '..', 'public')));
 app.set('view engine', 'ejs');
 app.set('views', path.resolve(__dirname, '..', '..', 'FrontEnd', "views"))
+
+app.use('/auth', authRouter)
 
 app.get('/', (req, res) => res.render('music/index.ejs'))
 
