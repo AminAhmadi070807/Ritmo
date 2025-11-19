@@ -6,11 +6,7 @@ const mysql = require('../../../database/MySql/db')
 const options = {}
 
 module.exports = mysql.define("User", {
-    name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    family: {
+    fullName: {
         type: DataTypes.STRING,
         allowNull: false,
     },
