@@ -1,0 +1,16 @@
+"use strict";
+
+const configs = require("../../config/config.env");
+
+const mongoose = require("mongoose");
+
+;(async () => {
+    try {
+        await mongoose.connect(configs.database.mongodbUri)
+        console.log({ status: 200, database: "MongoDB", message: "Connected to database successfully."})
+    }
+    catch (error) {
+        await mongoose.disconnect()
+        console.log({ status: 500, database: "MongoDB", error: error.message || "OoOps Unknown server error" })
+    }
+})()
