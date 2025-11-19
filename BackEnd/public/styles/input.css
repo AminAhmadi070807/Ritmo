@@ -458,14 +458,14 @@
   }
 
   .active {
-    @apply bg-white text-Primary-500 text-base md:text-lg font-Pelak_Medium;
+    @apply bg-white text-gray-800 text-base md:text-lg font-Pelak_Bold;
   }
   .no-active {
     @apply bg-transparent text-lg font-Pelak_Medium text-white;
   }
 
   .code-input {
-    @apply size-12 text-center text-2xl border  rounded-lg focus:outline-none;
+    @apply h-12 w-full text-center text-2xl border rounded-lg focus:outline-none;
   }
 
   .form-btn {

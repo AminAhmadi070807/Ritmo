@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="overflow-hidden">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="icon" href="/logo/icon.png">
+    <link rel="stylesheet" href="/styles/tailwind.css" />
+    <title>verify otp code ritmo</title>
+</head>
+<body class="register-body bg-background w-screen h-screen overflow-hidden">
+
+<%- include('./partials/svg.ejs') %>
+
+<div class="relative flex items-center justify-center h-screen select-none">
+    <div class="relative flex">
+        <div id="back" class="absolute flex-center cursor-pointer items-center justify-center left-[-5rem] top-[-1rem] size-8 border rounded-sm">
+            <svg class="size-5"><use href="#arrow-left-mini"></use></svg>
+        </div>
+    </div>
+
+    <div class="form-cotainer absolute transform mx-auto w-[370px] sm:w-[504px] h-auto bg-menu rounded-[40px] overflow-hidden">
+        <div class="flex flex-col items-center text-white z-50 py-5 sm:p-10">
+            <div dir="ltr" class="flex flex-col mt-15 select-none w-full justify-center">
+                <div class="flex items-center gap-x-4 justify-center">
+                    <label  class="w-full">
+                        <input id="code-input" type="text" class="code-input border-Neutral-700" maxlength="5"/>
+                    </label>
+                </div>
+
+                <div class="flex justify-between w-full mt-4">
+                    <a href="#" class="flex items-center gap-x-2 font-Pelak_Regular text-xs text-Neutral-500">
+                        <span id="counter-number" class="text-Neutral-100"> 120 </span>
+                        دریافت دوباره
+                    </a>
+                    <a href="#" class="font-Pelak_Regular text-xs text-Neutral-100">کد رو دریافت نکردید؟</a>
+                </div>
+
+                <button type="submit" id="register-btn" class="flex items-center justify-center bg-Neutral-800 mt-8 cursor-not-allowed w-full h-12 rounded-lg" disabled>تایید</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/scripts/register.js"></script>
+</body>
+</html>

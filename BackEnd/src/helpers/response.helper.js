@@ -1,8 +1,9 @@
 "use strict"
 
-module.exports = async (res, status, message, data) => {
+module.exports = async (req, res, status, message, route) => {
     try {
-        return res.status(status).json({ status, message, data });
+        req.flash(status > 199 && status < 300 ? "success": "error", message)
+        return res.redirect(route)
     }
     catch(error) {
         return res.status(500).json({ status: 500, message: "OoOps unknown server error" });

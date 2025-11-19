@@ -21,9 +21,7 @@ module.exports = mysql.define("User", {
     username: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-            is: /^\w+$/
-        }
+        unique: true,
     },
     password: {
         type: DataTypes.STRING,
@@ -37,6 +35,7 @@ module.exports = mysql.define("User", {
     bio: {
         type: DataTypes.TEXT('tiny'),
         allowNull: false,
+        defaultValue: '',
         validate: {
             len: [0, 100]
         }
