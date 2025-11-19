@@ -4,12 +4,13 @@ const configs = require('../../config/config.env')
 
 const { Sequelize } = require('sequelize')
 
-const sequelize = new Sequelize(configs.database.mysqlUri, { dialect: 'mysql' })
+const sequelize = new Sequelize(configs.database.mysqlUri, { dialect: 'mysql', password: "", username: "root" })
 
 ;(async () => {
     try {
+        await sequelize.sync({ alter: true, logging: false })
         await sequelize.authenticate()
-        console.log({ status: 200, database: "MySql", message: "Connected to MySql successfully.." })
+        console.log("Connected to mysql successfully")
     }
     catch (error) {
         await sequelize.close()
