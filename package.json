@@ -31,7 +31,7 @@
   "license": "MIT",
   "author": "Amin Ahmadi",
   "type": "commonjs",
-  "main": "server.js",
+  "main": "./BackEnd/src/server.js",
   "scripts": {
     "dev": "dotenv -e BackEnd/src/.env nodemon BackEnd/src/server.js",
     "build": "npx @tailwindcss/cli -i ./BackEnd/public/styles/input.css -o ./BackEnd/public/styles/tailwind.css --watch"
@@ -58,6 +58,7 @@
     "nodemailer": "^7.0.10",
     "passport": "^0.7.0",
     "sequelize": "^6.37.7",
+    "slugify": "^1.6.6",
     "swagger-ui-express": "^5.0.1",
     "tailwindcss": "^4.1.17"
   }

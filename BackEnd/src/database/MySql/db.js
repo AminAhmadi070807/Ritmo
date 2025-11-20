@@ -1,16 +1,15 @@
 "use strict"
 
-const configs = require('../../config/config.env')
-
 const { Sequelize } = require('sequelize')
 
-const sequelize = new Sequelize(configs.database.mysqlUri, { dialect: 'mysql', password: "", username: "root" })
+
+const sequelize = new Sequelize('ritmo', 'root', '', { dialect: 'mysql' })
 
 ;(async () => {
     try {
         await sequelize.sync({ alter: false, logging: false })
         await sequelize.authenticate()
-        console.log("Connected to mysql successfully")
+        // console.log("Connected to mysql successfully")
     }
     catch (error) {
         await sequelize.close()

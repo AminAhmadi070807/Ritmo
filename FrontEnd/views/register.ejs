@@ -14,59 +14,57 @@
 
     <div class="relative flex items-center justify-center h-screen select-none">
         <div class="form-cotainer absolute transform mx-auto w-[370px] sm:w-[504px] h-auto bg-menu rounded-[40px] overflow-hidden">
-        <div class="flex flex-col items-center text-white z-50 py-5 sm:p-10">
-          <div class="relative flex">
-            <div class="flex flex-col items-center justify-center w-[281px]">
-              <svg class="w-25 h-[70px] hidden lg:block"><use href="#logo"></use></svg>
-              <h3 class="font-Pelak_Bold text-xl mt-5" id="form-title">به ریتمو خوش آمدید</h3>
-            </div>
-          </div>
-
-          <div id="form-container" class="size-full">
-            <form id="form" action="/auth/register" method="post" class="mt-10 md:mt-15 select-none w-full">
-              <div id="buttons" class="flex items-center justify-between w-[350px] sm:w-full *:w-[175px] *:sm:w-full mx-auto text-center *:h-12 rounded-lg border border-white overflow-hidden">
-                <a href="/auth/login" class="no-active flex items-center justify-center transition-colors duration-100 cursor-pointer" id="login">ورود</a>
-                <a href="/auth/register" class="active flex items-center justify-center transition-colors duration-100 cursor-pointer" id="register">ثبت نام</a>
-              </div>
-              <!-- email -->
-              <div id="email-container" class="relative mt-8 border border-Neutral-300 text-Neutral-100 rounded-lg mx-auto w-[350px] sm:w-full bg-transparent focus:bg-transparent">
-                <label for="email-input" class="absolute right-5 -top-[25%] h-5 text-Neutral-300 bg-menu rounded-2xl px-3 text-sm">ایمیل</label>
-                <div class="flex items-center flex-row-reverse">
-                  <input type="email" id="email-input" class="font-Pelak_Regular text-sm w-[90%] h-12 me-auto outline-0 border-0 focus:bg-transparent" placeholder="info@gmail.com"/>
-                  <svg class="size-[18px] mx-auto text-Neutral-300"><use href="#mail"></use></svg>
-                </div>
-              </div>
-              <!-- fullName -->
-              <div id="password-container" class="relative mt-8 border border-Neutral-300 text-Neutral-100 rounded-lg mx-auto w-[350px] sm:w-full">
-                <label for="fullName-input" class="absolute right-5 -top-[25%] h-5 text-Neutral-300 bg-menu px-3 text-sm">نام و نام خانوادگی</label>
-                <div class="flex items-center">
-                  <input type="text" id="fullName-input" class="font-Pelak_Regular text-sm w-[90%] h-12 me-auto outline-0 border-0 px-3.5" placeholder="امین احمدی"/>
+            <div class="flex flex-col items-center text-white z-50 py-5 sm:p-10">
+              <div class="relative flex">
+                <div class="flex flex-col items-center justify-center w-[281px]">
+                  <svg class="w-25 h-[70px] hidden lg:block"><use href="#logo"></use></svg>
+                  <h3 class="font-Pelak_Bold text-xl mt-5" id="form-title">به ریتمو خوش آمدید</h3>
                 </div>
               </div>
 
-              <!-- buttons -->
-              <button id="form-btn" type="submit" class="form-btn">ورود</button>
-            </form>
+              <div id="form-container" class="size-full">
+                <form id="form" action="/auth/register" method="post" class="mt-10 md:mt-15 select-none w-full">
+                  <div id="buttons" class="flex items-center justify-between w-[350px] sm:w-full *:w-[175px] *:sm:w-full mx-auto text-center *:h-12 rounded-lg border border-white overflow-hidden">
+                    <a href="/auth/login" class="no-active flex items-center justify-center transition-colors duration-100 cursor-pointer" id="login">ورود</a>
+                    <a href="/auth/register" class="active flex items-center justify-center transition-colors duration-100 cursor-pointer" id="register">ثبت نام</a>
+                  </div>
+                  <!-- email -->
+                  <div id="email-container" class="relative mt-8 border border-Neutral-300 text-Neutral-100 rounded-lg mx-auto w-[350px] sm:w-full bg-transparent focus:bg-transparent">
+                    <label for="email-input" class="absolute right-5 -top-[25%] h-5 text-Neutral-300 bg-menu rounded-2xl px-3 text-sm">ایمیل</label>
+                    <div class="flex items-center flex-row-reverse">
+                      <input type="email" name="email" id="email-input" class="font-Pelak_Regular text-sm w-[90%] h-12 me-auto outline-0 border-0 focus:bg-transparent" placeholder="info@gmail.com"/>
+                      <svg class="size-[18px] mx-auto text-Neutral-300"><use href="#mail"></use></svg>
+                    </div>
+                  </div>
+                  <!-- fullName -->
+                  <div id="password-container" class="relative mt-8 border border-Neutral-300 text-Neutral-100 rounded-lg mx-auto w-[350px] sm:w-full">
+                    <label for="fullName-input" class="absolute right-5 -top-[25%] h-5 text-Neutral-300 bg-menu px-3 text-sm">نام و نام خانوادگی</label>
+                    <div class="flex items-center">
+                      <input type="text" id="fullName-input" name="fullName" class="font-Pelak_Regular text-sm w-[90%] h-12 me-auto outline-0 border-0 px-3.5" placeholder="امین احمدی"/>
+                    </div>
+                  </div>
 
-            <div id="navbar" class="relative h-px w-full bg-white mt-[33px]">
-              <span class="absolute right-[37%] -top-3.5 h-5 text-Neutral-300 bg-menu px-3">ورود از طریق</span>
-            </div>
+                  <!-- buttons -->
+                  <button id="form-btn" type="submit" class="form-btn">ورود</button>
+                </form>
 
-            <div id="login-via-icons" class="flex items-center justify-center gap-x-4 mt-7 *:cursor-pointer">
-              <svg class="size-8"><use href="#google"></use></svg>
-              <svg class="size-8"><use href="#apple"></use></svg>
-              <svg class="size-8"><use href="#facebook"></use></svg>
+                <div id="navbar" class="relative h-px w-full bg-white mt-[33px]">
+                  <span class="absolute right-[37%] -top-3.5 h-5 text-Neutral-300 bg-menu px-3">ورود از طریق</span>
+                </div>
+
+                <div id="login-via-icons" class="flex items-center justify-center gap-x-4 mt-7 *:cursor-pointer">
+                  <svg class="size-8"><use href="#google"></use></svg>
+                  <svg class="size-8"><use href="#apple"></use></svg>
+                  <svg class="size-8"><use href="#facebook"></use></svg>
+                </div>
+              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
 
   <% if (messages.error) { %>
-      <div class="fixed w-80 text-white px-5 py-3 h-40 rounded-2xl border-t-4 bg-gray-900 border-Error-200 z-50 top-10 left-10">
-          <h2 class="font-FA_Pelak_Medium">وضعیت : خطا</h2>
-          <h2 class="font-FA_Pelak_Medium mt-3">کد : 400</h2>
-          <p class="text-gray-300 font-FA_Pelak_Regular text-sm mt-5">پیام : به خاطر این دلیل شما نمیتوانید ثبت نام کنید</p>
+      <div class="fixed w-80 text-white px-5 py-3 h-auto rounded-2xl border-t-4 bg-gray-900 border-Error-200 z-50 top-10 left-10">
+          <p class="text-gray-300 font-FA_Pelak_Regular text-sm mt-5"><%= messages.error %></p>
       </div>
   <% } %>
   </body>

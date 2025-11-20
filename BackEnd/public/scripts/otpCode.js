@@ -1,5 +1,7 @@
 "use strict"
 
+const $ = document
+
 const codeInputElem = $.getElementById("code-input");
 const registerBtnCodeInput = $.getElementById("register-btn");
 
@@ -16,5 +18,4 @@ registerBtnCodeInput.addEventListener("click", () => {
         $.cookie = `isRegister=true;expires=${now.toUTCString()};path=/`;
     }
     location.href = "landing-page.html";
-    clearInputs();
 });
