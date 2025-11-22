@@ -52,10 +52,6 @@ const token = async (res, user_id) => {
     }
 }
 
-module.exports.viewRegister = (req, res ) => res.render('auth.ejs')
-
-module.exports.viewOtpCode = async (req, res, ) => res.render('otp_code.ejs')
-
 module.exports.send = async (req, res, next) => {
     try {
         const { email, password } = req.body;

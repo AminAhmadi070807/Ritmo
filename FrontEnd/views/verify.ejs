@@ -19,24 +19,27 @@
                 <div class="flex flex-col items-center justify-center w-[281px]">
                     <svg class="w-25 h-[70px] hidden lg:block"><use href="#logo"></use></svg>
                     <h3 class="font-Pelak_Bold text-xl mt-5" id="form-title">به ریتمو خوش آمدید</h3>
+                    <p class="font-FA_Pelak_Regular text-sm text-gray-500 mt-5" id="form-title">لطفا کد تاید را وارد کنید</p>
                 </div>
             </div>
 
             <div class="flex w-full flex-col items-center text-white z-50 pb-5 sm:px-10">
-                <form method="post" action="/auth/verify" dir="ltr" class="flex flex-col mt-15 select-none w-full justify-center">
+                <form dir="ltr" class="flex flex-col mt-15 select-none w-full justify-center">
                     <div class="flex items-center gap-x-4 justify-center">
                         <label  class="w-full">
-                            <input id="code-input" name="code" type="text" class="code-input border-Neutral-700" maxlength="6"/>
+                            <input id="code-input" type="text" class="code-input border-Neutral-700" maxlength="6"/>
                         </label>
                     </div>
 
-                    <button type="submit" id="register-btn" class="flex items-center justify-center bg-Neutral-800 mt-8 cursor-not-allowed w-full h-12 rounded-lg" disabled>تایید</button>
+                    <button type="button" id="verify-btn" class="flex items-center justify-center bg-Neutral-800 mt-8 cursor-not-allowed w-full h-12 rounded-lg" disabled>تایید</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
-<script src="/scripts/otpCode.js"></script>
+<div id="status-modal" class="hidden items-center gap-x-5 fixed w-80 text-white px-5 py-3 h-auto rounded-2xl border-t-4 bg-gray-900 z-50 top-10 left-10"></div>
+
+<script type="module" src="/scripts/auth/verify.js"></script>
 </body>
 </html>

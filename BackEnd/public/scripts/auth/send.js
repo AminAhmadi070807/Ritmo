@@ -1,6 +1,6 @@
 "use strict"
 
-import modal from '/scripts/modules/modal.js'
+import { modal } from '/scripts/modules/modal.js'
 
 const passwordInput = document.querySelector('input#password-input')
 const emailInput = document.querySelector('input#email-input')
@@ -11,23 +11,25 @@ const authentication = async () => {
         const password = passwordInput.value;
         const email = emailInput.value;
 
-        const response = await fetch('/auth/', {
-            method: 'post',
+        const response = await fetch('/api/v1/auth/send', {
+            method: "post",
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                email,
-                password,
-            })
+            body: JSON.stringify({ password, email })
         })
         const result = await response.json()
 
-        console.log(result, response)
-
-        switch (result.status) {
+        switch (response.status) {
+            case 500:
             case 409:
+            case 403:
+            case 400:
                 modal("error", result.message)
+                break
+            case 200:
+                modal("success", result.message)
+                location.href = result.data.href
                 break
             default:
                 modal("error", result.message)
@@ -35,7 +37,7 @@ const authentication = async () => {
         }
     }
     catch (error) {
-        console.error(error)
+        modal("error", error.message)
     }
 }
 

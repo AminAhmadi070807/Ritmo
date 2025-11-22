@@ -16,7 +16,7 @@ function modal (status, message) {
         modalDev.classList.add('border-Error-200')
         modalDev.classList.remove('border-Success-200')
         modalDev.innerHTML = `
-            <h2 dir="ltr" class="text-gray-300 font-FA_Pelak_Regular text-base w-[80%]"></h2>
+            <h2 dir="ltr" class="text-gray-300 font-FA_Pelak_Regular text-base w-[80%]">${message}</h2>
             <svg class="size-10 text-Error-200"><use href="#error"></use></svg>
         `
     }
@@ -27,4 +27,4 @@ function modal (status, message) {
     }, 2000)
 }
 
-export default modal
+export { modal }

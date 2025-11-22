@@ -8,6 +8,8 @@
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     --color-gray-300: oklch(87.2% 0.01 258.338);
+    --color-gray-500: oklch(55.1% 0.027 264.364);
+    --color-gray-600: oklch(44.6% 0.03 256.802);
     --color-gray-800: oklch(27.8% 0.033 256.848);
     --color-gray-900: oklch(21% 0.034 264.665);
     --color-neutral-500: oklch(55.6% 0 0);
@@ -1102,6 +1104,12 @@
   }
   .text-gray-300 {
     color: var(--color-gray-300);
+  }
+  .text-gray-500 {
+    color: var(--color-gray-500);
+  }
+  .text-gray-600 {
+    color: var(--color-gray-600);
   }
   .text-neutral-500 {
     color: var(--color-neutral-500);

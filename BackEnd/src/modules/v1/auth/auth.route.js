@@ -6,11 +6,9 @@ const router = express.Router()
 const controller = require('./auth.controller.js')
 const validator = require('../../../middlewares/validate.middleware')
 
-router.route('/verify/:id').get(validator.authVerifyValidation, controller.viewOtpCode).post(controller.verify)
+router.post('/verify/:id', controller.verify)
 
-router.route('/')
-    .get(controller.viewRegister)
-    .post(validator.authRegisterValidation, controller.send)
+router.route('/send').post(validator.authRegisterValidation, controller.send)
 
 router.get('/refresh', controller.refresh)
 
