@@ -52,7 +52,7 @@ const token = async (res, user_id) => {
     }
 }
 
-module.exports.viewRegister = (req, res ) => res.render('register.ejs')
+module.exports.viewRegister = (req, res ) => res.render('auth.ejs')
 
 module.exports.viewOtpCode = async (req, res, ) => res.render('otp_code.ejs')
 

@@ -8,7 +8,7 @@ const validator = require('../../../middlewares/validate.middleware')
 
 router.route('/verify/:id').get(validator.authVerifyValidation, controller.viewOtpCode).post(controller.verify)
 
-router.route('/register')
+router.route('/')
     .get(controller.viewRegister)
     .post(validator.authRegisterValidation, controller.send)
 

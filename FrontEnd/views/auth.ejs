@@ -23,16 +23,12 @@
               </div>
 
               <div id="form-container" class="size-full">
-                <form id="form" action="/auth/register" method="post" class="mt-10 md:mt-15 select-none w-full">
-                  <div id="buttons" class="flex items-center justify-between w-[350px] sm:w-full *:w-[175px] *:sm:w-full mx-auto text-center *:h-12 rounded-lg border border-white overflow-hidden">
-                    <a href="/auth/login" class="no-active flex items-center justify-center transition-colors duration-100 cursor-pointer" id="login">ورود</a>
-                    <a href="/auth/register" class="active flex items-center justify-center transition-colors duration-100 cursor-pointer" id="register">ثبت نام</a>
-                  </div>
+                <form id="form" class="mt-10 md:mt-15 select-none w-full">
                   <!-- email -->
                   <div id="email-container" class="relative mt-8 border border-Neutral-300 text-Neutral-100 rounded-lg mx-auto w-[350px] sm:w-full bg-transparent focus:bg-transparent">
                     <label for="email-input" class="absolute right-5 -top-[25%] h-5 text-Neutral-300 bg-menu rounded-2xl px-3 text-sm">ایمیل</label>
                     <div class="flex items-center flex-row-reverse">
-                      <input type="email" name="email" dir="ltr" id="email-input" class="font-Pelak_Regular text-sm w-[90%] h-12 me-auto outline-0 border-0 px-3.5 focus:bg-transparent" placeholder="info@gmail.com"/>
+                      <input type="email" dir="ltr" id="email-input" class="font-Pelak_Regular text-sm w-[90%] h-12 me-auto outline-0 border-0 px-3.5 focus:bg-transparent" placeholder="info@gmail.com"/>
                       <svg class="size-[18px] mx-auto text-Neutral-300"><use href="#mail"></use></svg>
                     </div>
                   </div>
@@ -40,13 +36,13 @@
                   <div class="relative mt-8 border border-Neutral-300 text-Neutral-100 rounded-lg mx-auto w-[350px] sm:w-full">
                     <label for="password-input" class="absolute right-5 -top-[25%] h-5 text-Neutral-300 bg-menu px-3 text-sm">رمز عبور</label>
                     <div class="flex items-center flex-row-reverse">
-                        <input type="text" id="password-input" dir="ltr" name="password" class="font-Pelak_Regular text-sm w-[90%] h-12 me-auto outline-0 border-0 px-3.5" placeholder="@Ritmo1404"/>
+                        <input type="text" id="password-input" dir="ltr" class="font-Pelak_Regular text-sm w-[90%] h-12 me-auto outline-0 border-0 px-3.5" placeholder="@Ritmo1404"/>
                         <svg class="size-[18px] mx-auto text-Neutral-300"><use href="#key"></use></svg>
                     </div>
                   </div>
 
                   <!-- buttons -->
-                  <button id="form-btn" type="submit" class="form-btn">ورود</button>
+                  <button id="submit-btn" type="button" class="form-btn">ورود</button>
                 </form>
 
                 <div id="navbar" class="relative h-px w-full bg-white mt-[33px]">
@@ -63,10 +59,8 @@
         </div>
     </div>
 
-  <% if (messages.error) { %>
-      <div class="fixed w-80 text-white px-5 py-3 h-auto rounded-2xl border-t-4 bg-gray-900 border-Error-200 z-50 top-10 left-10">
-          <p class="text-gray-300 font-FA_Pelak_Regular text-sm mt-5"><%= messages.error %></p>
-      </div>
-  <% } %>
+  <div id="status-modal" class="hidden items-center gap-x-5 fixed w-80 text-white px-5 py-3 h-auto rounded-2xl border-t-4 bg-gray-900 z-50 top-10 left-10"></div>
+
+  <script type="module" src="/scripts/auth/send.js"></script>
   </body>
 </html>

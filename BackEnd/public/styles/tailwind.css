@@ -25,7 +25,6 @@
     --text-xl--line-height: calc(1.75 / 1.25);
     --text-2xl: 1.5rem;
     --text-2xl--line-height: calc(2 / 1.5);
-    --radius-sm: 0.25rem;
     --radius-lg: 0.5rem;
     --radius-xl: 0.75rem;
     --radius-2xl: 1rem;
@@ -39,12 +38,12 @@
     --color-Neutral-100: #e6e8ed;
     --color-Neutral-200: #c7cbd8;
     --color-Neutral-300: #9da3b4;
-    --color-Neutral-500: #55596d;
     --color-Neutral-600: #4d5465;
     --color-Neutral-700: #393e4b;
     --color-Neutral-800: #282b34;
     --color-Neutral-900: #14161a;
     --color-Error-200: #ff3632;
+    --color-Success-200: #3d9941;
     --color-background: #0d0d0e;
     --color-background-footer: #101010;
     --color-transparent-2: #23262f;
@@ -590,6 +589,9 @@
   .w-\[64x\] {
     width: 64x;
   }
+  .w-\[80\%\] {
+    width: 80%;
+  }
   .w-\[90\%\] {
     width: 90%;
   }
@@ -710,9 +712,6 @@
   }
   .flex-col {
     flex-direction: column;
-  }
-  .flex-col-reverse {
-    flex-direction: column-reverse;
   }
   .flex-row-reverse {
     flex-direction: row-reverse;
@@ -856,8 +855,8 @@
   .border-Neutral-700 {
     border-color: var(--color-Neutral-700);
   }
-  .border-white {
-    border-color: var(--color-white);
+  .border-Success-200 {
+    border-color: var(--color-Success-200);
   }
   .border-t-Neutral-600 {
     border-top-color: var(--color-Neutral-600);
@@ -1083,6 +1082,9 @@
   .text-\[10px\] {
     font-size: 10px;
   }
+  .text-Error-200 {
+    color: var(--color-Error-200);
+  }
   .text-Neutral-100 {
     color: var(--color-Neutral-100);
   }
@@ -1091,6 +1093,9 @@
   }
   .text-Neutral-300 {
     color: var(--color-Neutral-300);
+  }
+  .text-Success-200 {
+    color: var(--color-Success-200);
   }
   .text-\[\#FCFCFD\] {
     color: #FCFCFD;
@@ -1135,10 +1140,6 @@
   .delay-75 {
     transition-delay: 75ms;
   }
-  .duration-100 {
-    --tw-duration: 100ms;
-    transition-duration: 100ms;
-  }
   .duration-300 {
     --tw-duration: 300ms;
     transition-duration: 300ms;
@@ -1163,11 +1164,6 @@
   .\*\:w-28 {
     :is(& > *) {
       width: calc(var(--spacing) * 28);
-    }
-  }
-  .\*\:w-\[175px\] {
-    :is(& > *) {
-      width: 175px;
     }
   }
   .\*\:cursor-pointer {
@@ -1251,13 +1247,6 @@
     @media (width >= 40rem) {
       font-size: var(--text-sm);
       line-height: var(--tw-leading, var(--text-sm--line-height));
-    }
-  }
-  .\*\:sm\:w-full {
-    :is(& > *) {
-      @media (width >= 40rem) {
-        width: 100%;
-      }
     }
   }
   .md\:mt-15 {
