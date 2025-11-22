@@ -7,6 +7,9 @@ const redis = require('../../../database/Redis/db')
 const sendEmail = require('../../../config/config.email')
 const crypto = require('crypto')
 const tokenGenerator = require('../../../helpers/token.helper')
+const jwt = require('jsonwebtoken')
+const configs = require('../../../config/config.env')
+const bcrypt = require('bcrypt')
 
 const setRedisData = async (email, password) => {
     try {
@@ -160,5 +163,36 @@ module.exports.verify = async (req, res, next) => {
     }
     catch (error) {
         next(error);
+    }
+}
+
+module.exports.refresh = async (req, res, next) => {
+    try {
+        const { 'refresh-token': refreshToken } = req.cookies
+
+        if (!refreshToken) return res.redirect('/auth/login')
+
+        const userToken = await jwt.verify(refreshToken, configs.auth.refreshSecretKey)
+
+        const user = await refreshTokenModel.findOne({ user: userToken._id }).sort({ _id: -1 }).lean()
+
+        if (!user) return res.redirect('/auth/login')
+
+        const isExistToken = await bcrypt.compare(refreshToken, user.token)
+
+        if (!isExistToken) {
+            req.flash('error', "Refresh token is not acceptable")
+            return res.redirect('/auth/login')
+        }
+
+        const { status, message } = await token(res, userToken._id)
+
+        if (status !== 200) {
+            req.flash('error', message);
+            return res.redirect('/auth/login')
+        }
+    }
+    catch (error) {
+        next(error)
     }
 }
