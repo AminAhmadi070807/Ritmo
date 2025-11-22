@@ -170,27 +170,27 @@ module.exports.refresh = async (req, res, next) => {
     try {
         const { 'refresh-token': refreshToken } = req.cookies
 
-        if (!refreshToken) return res.redirect('/auth/login')
+        if (!refreshToken) return response(res, 401, "User not authorized")
 
-        const userToken = await jwt.verify(refreshToken, configs.auth.refreshSecretKey)
+        const userToken = await jwt.verify(refreshToken, configs.auth.refreshTokenSecretKey)
 
         const user = await refreshTokenModel.findOne({ user: userToken._id }).sort({ _id: -1 }).lean()
 
-        if (!user) return res.redirect('/auth/login')
+        if (!user) return response(res, 401, "user not authorized")
+
+        const isBanned = await banModel.findOne({ phone: user.phone }).lean()
+
+        if (isBanned) return response(res, 403, "user already banned.")
 
         const isExistToken = await bcrypt.compare(refreshToken, user.token)
 
-        if (!isExistToken) {
-            req.flash('error', "Refresh token is not acceptable")
-            return res.redirect('/auth/login')
-        }
+        if (!isExistToken) return response(res, 409, "Refresh token is not acceptable")
 
         const { status, message } = await token(res, userToken._id)
 
-        if (status !== 200) {
-            req.flash('error', message);
-            return res.redirect('/auth/login')
-        }
+        if (status !== 200) return response(res, status, message)
+
+        return response(res, 200, "new token generated successfully.")
     }
     catch (error) {
         next(error)

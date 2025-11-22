@@ -5,6 +5,7 @@ const refreshTokenModel = require("../../modules/v1/token/token.model")
 const userModel = require('../../modules/v1/users/user.model')
 const configs = require('../../config/config.env')
 const bcrypt = require('bcrypt')
+const response = require('../../helpers/response.helper')
 
 module.exports = async (req, res, next) => {
     try {
@@ -12,21 +13,22 @@ module.exports = async (req, res, next) => {
 
         if (!accessToken || !refreshToken) return res.redirect('/auth/login')
 
-        const verifyToken = await jwt.verify(accessToken, configs.auth.accessSecretKey)
+        const verifyToken = await jwt.verify(accessToken, configs.auth.accessToken)
 
         const user = await userModel.findOne({ _id: verifyToken._id }).lean()
 
-        if (!user) return res.redirect('/auth/login')
+        if (!user) return response(res, 401, "Please log in first. the token has expires.")
 
         const isExistToken = await refreshTokenModel.findOne({ user: user._id }).lean()
 
-        if (!isExistToken) return res.redirect('/auth/login')
+        if (!isExistToken) return response(res, 401, "Please log in first. the token has expired.")
 
         const isExpiredToken = await bcrypt.compare(refreshToken, isExistToken.token)
 
-        if (!isExpiredToken) return res.redirect('/auth/login')
+        if (!isExpiredToken) return response(res, 401, "Please log in first. the token has expired.")
 
         req.user = user
+
         next()
     }
     catch (error) {
