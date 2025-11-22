@@ -10,6 +10,7 @@ const tokenGenerator = require('../../../helpers/token.helper')
 const jwt = require('jsonwebtoken')
 const configs = require('../../../config/config.env')
 const bcrypt = require('bcrypt')
+const response = require('../../../helpers/response.helper')
 
 const setRedisData = async (email, password) => {
     try {
@@ -53,23 +54,7 @@ const token = async (res, user_id) => {
 
 module.exports.viewRegister = (req, res ) => res.render('register.ejs')
 
-module.exports.viewOtpCode = async (req, res, ) => {
-    try {
-        const { id } = req.params
-
-        const data = await redis.get(id)
-
-        if (!data) {
-            req.flash('error', "Please try again.")
-            return res.redirect('/auth/register')
-        }
-
-        res.render('otp_code.ejs')
-    }
-    catch (error) {
-        res.redirect('/')
-    }
-}
+module.exports.viewOtpCode = async (req, res, ) => res.render('otp_code.ejs')
 
 module.exports.send = async (req, res, next) => {
     try {
@@ -80,39 +65,26 @@ module.exports.send = async (req, res, next) => {
             raw: true,
         })
 
-        if (isExistEmail) {
-            req.flash('error', 'email already exists')
-            return res.redirect('/auth/register')
-        }
+        if (isExistEmail) return response(res, 409, "user with email already exists.")
 
         const isExistBan = await banModel.findOne({
             where: { email },
             raw: true,
         })
 
-        if (isExistBan) {
-            req.flash('error', 'this email has been banned')
-            return res.redirect('/auth/register')
-        }
+        if (isExistBan) return response(res, 403, "user with email has already been banned")
 
         const resultSetRedisData = await setRedisData(email, password)
 
-        if (resultSetRedisData.status !== 200) {
-            req.flash("error", "There was a problem, please try again.")
-            return res.redirect('/auth/register')
-        }
+        if (resultSetRedisData.status !== 200) return response(res, 500, "There was a problem, please try again.")
 
         const sendEmailResult = await sendEmail(email, resultSetRedisData.data.random)
 
-        if (sendEmailResult.status !== 200) {
-            req.flash('error', sendEmailResult.message)
-            return res.redirect('/auth/register')
-        }
+        if (sendEmailResult.status !== 200) return response(res, sendEmailResult.status, sendEmailResult.message)
 
-        return res.redirect(`/auth/verify/${resultSetRedisData.data.randomId}`)
+        return response(res, 200, "send OTP code to email successfully.", { href: `/auth/verify/${resultSetRedisData.data.randomId}` })
     }
     catch(error) {
-        console.log(error)
         next(error);
     }
 }
@@ -124,22 +96,16 @@ module.exports.verify = async (req, res, next) => {
 
         const data = await redis.get(id)
 
-        if (!data) {
-            req.flash('error', "Please try again.")
-            return res.redirect('/auth/login')
-        }
+        if (!data) return response(res, 403, "id is not correct. please try again.")
 
         const result = await data.split('-:-')
 
         const redisData = {}
-        for (const key in result) {
-            redisData[result[key].split(':')[0]] = result[key].split(':')[1]
-        }
+        for (const key in result) redisData[result[key].split(':')[0]] = result[key].split(':')[1]
 
         if (redisData.otp !== code) {
             await redis.del(id)
-            req.flash('error', "code in not correct. please try again.")
-            return res.redirect('/auth/login')
+            return response(res, 401, "Code is not valid.")
         }
 
         const user = await userModel.create({
@@ -154,12 +120,9 @@ module.exports.verify = async (req, res, next) => {
 
         const tokenResult = await token(res, userDataValue.uuid)
 
-        if (tokenResult.status !== 200) {
-            req.flash('error', "There was a problem. please try again.")
-            return res.redirect('/auth/login')
-        }
+        if (tokenResult.status !== 200) return response(res, tokenResult.status, "There was a problem. please try again.")
 
-        return res.redirect('/')
+        return response(res, 200, "you have successfully registered.")
     }
     catch (error) {
         next(error);
@@ -172,15 +135,11 @@ module.exports.refresh = async (req, res, next) => {
 
         if (!refreshToken) return response(res, 401, "User not authorized")
 
-        const userToken = await jwt.verify(refreshToken, configs.auth.refreshTokenSecretKey)
+        const userToken = await jwt.verify(refreshToken, configs.auth.refreshSecretKey)
 
         const user = await refreshTokenModel.findOne({ user: userToken._id }).sort({ _id: -1 }).lean()
 
         if (!user) return response(res, 401, "user not authorized")
-
-        const isBanned = await banModel.findOne({ phone: user.phone }).lean()
-
-        if (isBanned) return response(res, 403, "user already banned.")
 
         const isExistToken = await bcrypt.compare(refreshToken, user.token)
 

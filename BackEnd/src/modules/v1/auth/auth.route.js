@@ -12,4 +12,6 @@ router.route('/register')
     .get(controller.viewRegister)
     .post(validator.authRegisterValidation, controller.send)
 
+router.get('/refresh', controller.refresh)
+
 module.exports = router

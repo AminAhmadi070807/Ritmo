@@ -11,9 +11,9 @@ module.exports = async (req, res, next) => {
     try {
         const { 'access-token': accessToken, 'refresh-token': refreshToken } = await req.cookies
 
-        if (!accessToken || !refreshToken) return res.redirect('/auth/login')
+        if (!accessToken || !refreshToken) return response(res, 401, "access token has expired", {redirect: "/api/v1/auth/refresh"})
 
-        const verifyToken = await jwt.verify(accessToken, configs.auth.accessToken)
+        const verifyToken = await jwt.verify(accessToken, configs.auth.accessSecretKey)
 
         const user = await userModel.findOne({ _id: verifyToken._id }).lean()
 
