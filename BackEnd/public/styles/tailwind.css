@@ -8,10 +8,8 @@
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     --color-gray-300: oklch(87.2% 0.01 258.338);
-    --color-gray-600: oklch(44.6% 0.03 256.802);
     --color-gray-800: oklch(27.8% 0.033 256.848);
     --color-gray-900: oklch(21% 0.034 264.665);
-    --color-gray-950: oklch(13% 0.028 261.692);
     --color-neutral-500: oklch(55.6% 0 0);
     --color-white: #fff;
     --spacing: 0.25rem;
@@ -46,10 +44,7 @@
     --color-Neutral-700: #393e4b;
     --color-Neutral-800: #282b34;
     --color-Neutral-900: #14161a;
-    --color-Error-100: #f69a98;
     --color-Error-200: #ff3632;
-    --color-Error-300: #b21310;
-    --color-Success-200: #3d9941;
     --color-background: #0d0d0e;
     --color-background-footer: #101010;
     --color-transparent-2: #23262f;
@@ -70,7 +65,6 @@
     --font-Pelak_Medium: "Pelak_Medium";
     --font-Pelak_Bold: "Pelak_Bold";
     --font-FA_Pelak_Regular: "FA_Pelak_Regular";
-    --font-FA_Pelak_Medium: "FA_Pelak_Medium";
     --font-FA_Pelak_Bold: "FA_Pelak_Bold";
   }
 }
@@ -259,9 +253,6 @@
   .top-20 {
     top: calc(var(--spacing) * 20);
   }
-  .top-\[-1rem\] {
-    top: -1rem;
-  }
   .right-0 {
     right: calc(var(--spacing) * 0);
   }
@@ -289,9 +280,6 @@
   .left-25 {
     left: var(--spacing-25);
   }
-  .left-\[-5rem\] {
-    left: -5rem;
-  }
   .-z-50 {
     z-index: calc(50 * -1);
   }
@@ -300,9 +288,6 @@
   }
   .z-50 {
     z-index: 50;
-  }
-  .z-100 {
-    z-index: 100;
   }
   .container {
     width: 100%;
@@ -726,6 +711,9 @@
   .flex-col {
     flex-direction: column;
   }
+  .flex-col-reverse {
+    flex-direction: column-reverse;
+  }
   .flex-row-reverse {
     flex-direction: row-reverse;
   }
@@ -815,9 +803,6 @@
   }
   .rounded-lg {
     border-radius: var(--radius-lg);
-  }
-  .rounded-sm {
-    border-radius: var(--radius-sm);
   }
   .rounded-xl {
     border-radius: var(--radius-xl);
@@ -1107,9 +1092,6 @@
   .text-Neutral-300 {
     color: var(--color-Neutral-300);
   }
-  .text-Neutral-500 {
-    color: var(--color-Neutral-500);
-  }
   .text-\[\#FCFCFD\] {
     color: #FCFCFD;
   }
@@ -1257,11 +1239,6 @@
   .sm\:px-10 {
     @media (width >= 40rem) {
       padding-inline: calc(var(--spacing) * 10);
-    }
-  }
-  .sm\:py-10 {
-    @media (width >= 40rem) {
-      padding-block: calc(var(--spacing) * 10);
     }
   }
   .sm\:text-base {

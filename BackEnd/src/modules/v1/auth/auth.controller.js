@@ -1,32 +1,76 @@
 "use strict"
 
+const refreshTokenModel = require('../token/token.model')
 const userModel = require('../users/user.model')
 const banModel = require('../ban/ban.model')
 const redis = require('../../../database/Redis/db')
 const sendEmail = require('../../../config/config.email')
 const crypto = require('crypto')
-const slugify = require('slugify')
+const tokenGenerator = require('../../../helpers/token.helper')
 
-const setRedisData = async (email, fullName) => {
+const setRedisData = async (email, password) => {
     try {
         const random = crypto.randomInt(100000, 1000000)
         const randomId = crypto.randomUUID()
-        fullName = slugify(fullName, { replacement: '-', trim: true, lower: true })
-        await redis.set(randomId, `email:${email}-fullName:${fullName}-otp${random}`, 'EX', 180)
-        return { status: 200, data: { email, fullName, random, randomId } }
+        await redis.set(randomId, `email:${email}-:-password:${password}-:-otp:${random}`, 'EX', 120)
+        return { status: 200, data: { email, password, random, randomId } }
     }
     catch (error) {
         return { status: 500, data: { error: error.message || "OoOps unknown server error"} }
     }
 }
 
+const token = async (res, user_id) => {
+    try {
+        const { accessToken, refreshToken, status, hashRefreshToken } = await tokenGenerator(user_id)
+
+        if (status !== 200) return { status, message: "Problem in generate token" }
+
+        const isExistToken = await refreshTokenModel.findOneAndUpdate({ user: user_id }, {
+            token: hashRefreshToken,
+            user: user_id
+        }).lean()
+
+        if (!isExistToken) {
+            await refreshTokenModel.create({
+                token: hashRefreshToken,
+                user: user_id,
+            })
+        }
+
+        res.cookie('access-token', accessToken, { httpOnly: true, secure: true, maxAge: 15 * 60 * 1000 });
+        res.cookie('refresh-token', refreshToken, { httpOnly: true, secure: true, maxAge: 30 * 24 * 60 * 60 * 1000 });
+
+        return { status: 200 }
+    }
+    catch (error) {
+        return { status: 500 , message: "OoOps Unknown server error" }
+    }
+}
+
 module.exports.viewRegister = (req, res ) => res.render('register.ejs')
 
-module.exports.viewOtpCode = (req, res) => res.render('otp_code.ejs')
+module.exports.viewOtpCode = async (req, res, ) => {
+    try {
+        const { id } = req.params
+
+        const data = await redis.get(id)
+
+        if (!data) {
+            req.flash('error', "Please try again.")
+            return res.redirect('/auth/register')
+        }
+
+        res.render('otp_code.ejs')
+    }
+    catch (error) {
+        res.redirect('/')
+    }
+}
 
 module.exports.send = async (req, res, next) => {
     try {
-        const { email, fullName } = req.body;
+        const { email, password } = req.body;
 
         const isExistEmail = await userModel.findOne({
             where: { email },
@@ -48,7 +92,7 @@ module.exports.send = async (req, res, next) => {
             return res.redirect('/auth/register')
         }
 
-        const resultSetRedisData = await setRedisData(email, fullName)
+        const resultSetRedisData = await setRedisData(email, password)
 
         if (resultSetRedisData.status !== 200) {
             req.flash("error", "There was a problem, please try again.")
@@ -62,9 +106,59 @@ module.exports.send = async (req, res, next) => {
             return res.redirect('/auth/register')
         }
 
-        return res.redirect(`/auth/otp-code/${resultSetRedisData.data.randomId}`)
+        return res.redirect(`/auth/verify/${resultSetRedisData.data.randomId}`)
     }
     catch(error) {
+        console.log(error)
+        next(error);
+    }
+}
+
+module.exports.verify = async (req, res, next) => {
+    try {
+        const { id } = req.params
+        const { code } = req.body
+
+        const data = await redis.get(id)
+
+        if (!data) {
+            req.flash('error', "Please try again.")
+            return res.redirect('/auth/login')
+        }
+
+        const result = await data.split('-:-')
+
+        const redisData = {}
+        for (const key in result) {
+            redisData[result[key].split(':')[0]] = result[key].split(':')[1]
+        }
+
+        if (redisData.otp !== code) {
+            await redis.del(id)
+            req.flash('error', "code in not correct. please try again.")
+            return res.redirect('/auth/login')
+        }
+
+        const user = await userModel.create({
+            ...redisData,
+            otp: undefined,
+            uuid: `${Date.now()}${crypto.randomUUID()}`,
+            fullName: redisData.email.split('@')[1],
+            username: redisData.email.split('@')[1]
+        })
+
+        const userDataValue = await user.dataValues
+
+        const tokenResult = await token(res, userDataValue.uuid)
+
+        if (tokenResult.status !== 200) {
+            req.flash('error', "There was a problem. please try again.")
+            return res.redirect('/auth/login')
+        }
+
+        return res.redirect('/')
+    }
+    catch (error) {
         next(error);
     }
 }

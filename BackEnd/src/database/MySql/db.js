@@ -3,7 +3,7 @@
 const { Sequelize } = require('sequelize')
 
 
-const sequelize = new Sequelize('ritmo', 'root', '', { dialect: 'mysql' })
+const sequelize = new Sequelize('ritmo', 'root', '', { dialect: 'mysql', logging: false })
 
 ;(async () => {
     try {

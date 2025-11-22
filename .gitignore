@@ -3,4 +3,5 @@
 FrontEnd/src/image
 FrontEnd/src/image-podcast
 FrontEnd/src/fonts
+BackEnd/public/styles/tailwind.css
 node_modules

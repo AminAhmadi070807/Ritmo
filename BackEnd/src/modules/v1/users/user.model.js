@@ -6,6 +6,15 @@ const mysql = require('../../../database/MySql/db')
 const options = {}
 
 module.exports = mysql.define("User", {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
+    uuid: {
+        type: DataTypes.STRING,
+        allowNull: true,
+    },
     fullName: {
         type: DataTypes.STRING,
         allowNull: false,
