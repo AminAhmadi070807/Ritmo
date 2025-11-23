@@ -13,6 +13,7 @@ const headers = require('./middlewares/header.middleware')
 const route = require('./router/route')
 const authRouter = require('./modules/v1/auth/auth.route.js')
 const usersRouter = require('./modules/v1/users/user.route')
+const musicCategoriesRouter = require('./modules/v1/musics/categories/category.route')
 
 const app = express();
 
@@ -27,10 +28,11 @@ app.set('views', path.resolve(__dirname, '..', '..', 'FrontEnd', "views"))
 
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/users', usersRouter)
+app.use('/api/v1/music/categories', musicCategoriesRouter)
 
 app.use(route)
 
-// app.use(notFoundHandler)
-// app.use(errorHandler)
+app.use(notFoundHandler)
+app.use(errorHandler)
 
 module.exports = app
