@@ -56,13 +56,6 @@ module.exports.send = async (req, res, next) => {
     try {
         const { email, password } = req.body;
 
-        const isExistEmail = await userModel.findOne({
-            where: { email },
-            raw: true,
-        })
-
-        if (isExistEmail) return response(res, 409, "user with email already exists.")
-
         const isExistBan = await banModel.findOne({
             where: { email },
             raw: true,
@@ -104,17 +97,22 @@ module.exports.verify = async (req, res, next) => {
             return response(res, 401, "Code is not valid.")
         }
 
-        const user = await userModel.create({
+        const isExistEmail = await userModel.findOne({
+            where: { email: redisData.email },
+            raw: true,
+        })
+
+        let user
+        if (isExistEmail) user = isExistEmail;
+        else user = await userModel.create({
             ...redisData,
             otp: undefined,
             uuid: `${Date.now()}${crypto.randomUUID()}`,
-            fullName: redisData.email.split('@')[1],
-            username: redisData.email.split('@')[1]
-        })
+            fullName: redisData.email.split('@')[0],
+            username: redisData.email.split('@')[0]
+        }, { raw: true })
 
-        const userDataValue = await user.dataValues
-
-        const tokenResult = await token(res, userDataValue.uuid)
+        const tokenResult = await token(res, user.uuid)
 
         if (tokenResult.status !== 200) return response(res, tokenResult.status, "There was a problem. please try again.")
 

@@ -13,13 +13,21 @@ module.exports = async (req, res, next) => {
 
         if (!accessToken || !refreshToken) return response(res, 401, "access token has expired", {redirect: "/api/v1/auth/refresh"})
 
-        const verifyToken = await jwt.verify(accessToken, configs.auth.accessSecretKey)
+        let verifyToken
+        try {
+            verifyToken = await jwt.verify(accessToken, configs.auth.accessSecretKey)
+        }
+        catch (error) {
+            if (error.name === "TokenExpiredError") return response(res, 401, "access token expired", { redirect: "/api/v1/auth/refresh" });
 
-        const user = await userModel.findOne({ _id: verifyToken._id }).lean()
+            return response(res, 401, "Invalid access token");
+        }
+
+        const user = await userModel.findOne({ where: { uuid: verifyToken._id }, raw: true })
 
         if (!user) return response(res, 401, "Please log in first. the token has expires.")
 
-        const isExistToken = await refreshTokenModel.findOne({ user: user._id }).lean()
+        const isExistToken = await refreshTokenModel.findOne({ user: user.uuid }).lean()
 
         if (!isExistToken) return response(res, 401, "Please log in first. the token has expired.")
 

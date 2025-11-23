@@ -12,6 +12,7 @@ const notFoundHandler = require('./middlewares/notFound.middleware')
 const headers = require('./middlewares/header.middleware')
 const route = require('./router/route')
 const authRouter = require('./modules/v1/auth/auth.route.js')
+const usersRouter = require('./modules/v1/users/user.route')
 
 const app = express();
 
@@ -25,10 +26,11 @@ app.set('view engine', 'ejs');
 app.set('views', path.resolve(__dirname, '..', '..', 'FrontEnd', "views"))
 
 app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/users', usersRouter)
 
 app.use(route)
 
-app.use(notFoundHandler)
-app.use(errorHandler)
+// app.use(notFoundHandler)
+// app.use(errorHandler)
 
 module.exports = app
