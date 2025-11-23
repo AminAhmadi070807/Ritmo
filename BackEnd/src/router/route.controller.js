@@ -2,7 +2,9 @@
 
 const path = require('path');
 
-module.exports.home = (req, res) => res.render('music/index.ejs')
+module.exports.music = (req, res) => res.render('music/index.ejs')
+
+module.exports.podcast = (req, res) => res.render('podcast/index.ejs')
 
 module.exports.notFound = (req, res) => res.render('404.ejs')
 

@@ -1,0 +1,302 @@
+<header>
+    <!-- navbar mobil -->
+    <div class="fixed right-0 left-0 top-0 mx-auto flex lg:hidden items-center justify-between h-17 py-5 bg-menu px-5 z-50">
+        <!-- menu -->
+        <div id="menu-btn">
+            <svg class="size-5 sm:size-10"><use href="#bars-3"></use></svg>
+        </div>
+        <!-- input -->
+        <div class="flex items-center gap-x-1 bg-Neutral-900 py-1 rounded-lg px-1 w-full max-w-80  min-w-40 h-auto mx-3">
+            <svg class="size-5"><use href="#search"></use></svg>
+            <input type="search" class="text-[10px] outline-none w-full" placeholder="جستجو براساس آهنگ‌، پادکست، آلبوم، هنرمند و پادکستر‌"/>
+        </div>
+        <!-- icons -->
+        <div class="flex items-center gap-x-2 w-auto justify-end *:cursor-pointer">
+            <div class="flex items-center justify-center size-8 rounded-full" style="background: linear-gradient(-140deg, #4353ff, #ed265d)">
+                <svg class="size-5"><use href="#diamond"></use></svg>
+            </div>
+            <div class="flex items-center justify-center size-8 rounded-full bg-Neutral-900" >
+                <svg class="size-5"><use href="#bell-alert"></use></svg>
+            </div>
+            <div id="login_link_container" class="flex items-center justify-center size-8 rounded-full bg-transparent-2/60">
+                <a href="/auth/send" ><svg class="size-5"><use href="#lock-closed"></use></svg></a>
+            </div>
+            <div id="profile_container" class="group relative hidden items-center justify-center size-8 rounded-full bg-transparent-2/60">
+                <a href="#"><img src="/image-podcast/user-profile.png" class="size-full object-cover" alt=""/></a>
+                <div id="user-profile-dropdown" class="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300 delay-75 absolute top-18 left-0 w-[200px] h-auto rounded-2xl border-t-4 border-t-Secondary-500 bg-Neutral-900 px-2">
+                    <ul class="text-[#FCFCFD]">
+                        <!-- add class profile-button-active remove class profile-button-no-active -->
+                        <li class="py-2.5 profile-button-no-active"><a href="/settings/profile" class="ps-6">پروفایل</a></li>
+                        <li class="py-2.5 profile-button-no-active"><a href="/settings" class="ps-6 ">تنظیمات</a></li>
+                        <li class="py-2.5 profile-button-no-active"><a href="/settings/profile" class="ps-6 ">اکانت پریمویم</a></li>
+                        <div class="border-t-2 border-t-Neutral-800 my-2"></div>
+                        <li class="pt-2.5 pb-4 profile-button-no-active"><a href="/api/v1/users/logout" class="ps-6">خروج از اکانت</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- right navbar mobil -->
+    <div id="right-navbar-mobile" class="lg:hidden flex flex-col fixed top-0 right-0 z-50 transform translate-x-64 transition duration-300 w-64 bg-menu overflow-y-scroll h-screen pt-3 pb-5">
+        <!-- header -->
+        <div class="flex items-center justify-between border-b border-b-Neutral-200/35 pb-3 mx-5" >
+            <img src="/image/svg/logo-type.svg" class="me-auto" alt="logo" />
+            <svg id="x-btn-menu" class="size-5 cursor-pointer">
+                <use href="#x-mark"></use>
+            </svg>
+        </div>
+        <!-- music & podcast Icon -->
+        <div class="mt-7 border-b-2 border-b-Neutral-600/35 pb-5">
+            <a href="/">
+                <div class="flex items-center gap-x-3 no-active-list-music h-12">
+                    <svg class="no-active-icon-in-music ms-6">
+                        <use href="#music-02"></use>
+                    </svg>
+                    <span class="font-Pelak_Regular text-sm">موزیک</span>
+                </div>
+            </a>
+            <a href="/podcast">
+                <div class="flex items-center gap-x-3 h-12 active-list-podcast mt-2">
+                    <svg class="active-icon-in-podcast size-7 ms-6"><use href="#microphone"></use></svg>
+                    <span class="font-Pelak_Medium text-sm">پادکست</span>
+                </div>
+            </a>
+        </div>
+        <!-- main -->
+        <div class="mt-5 pe-5">
+            <ul id="music-list-mobile" class="flex gap-y-2 flex-col">
+                <li>
+                    <a id="Home_navbar_link" href="/podcast" class="flex items-center gap-x-3 py-4" >
+                        <svg class="active-icon-in-podcast ms-6">
+                            <use href="#home"></use>
+                        </svg>
+                        <span class="navbar-list-active">خانه</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a id="category_navbar_link" href="../../Podcast/Categories/Categories.html" class="flex items-center gap-x-3 py-4">
+                        <svg class="no-active-icon-in-podcast ms-6">
+                            <use href="#grid-02"></use>
+                        </svg>
+                        <span class="navbar-list-no-active">دسته‌بندی</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a id="channel_navbar_link" href="../../Podcast/Channel/ChannelPage.html" class="py-4 flex items-center gap-x-3">
+                        <svg class="no-active-icon-in-podcast ms-6">
+                            <use href="#microphone"></use>
+                        </svg>
+                        <span class="navbar-list-no-active">پادکسترها</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a id="video_cast_navbar_link" href="../../Podcast/videoCast/videoCast.html" class="py-4 flex items-center gap-x-3">
+                        <svg class="no-active-icon-in-podcast size-5 ms-6">
+                            <use href="#clapperboard"></use>
+                        </svg>
+                        <span class="navbar-list-no-active">ویدیو کست</span>
+                    </a>
+                </li>
+
+                <ul id="music-sublist" class="flex-col gap-y-2">
+                    <li>
+                        <a id="LastHearings_navbar_link" href="../../Podcast/LastHearings/LastHearings.html" class="py-4 flex items-center gap-x-3">
+                            <svg class="no-active-icon-in-podcast ms-6">
+                                <use href="#headphone"></use>
+                            </svg>
+                            <span class="navbar-list-no-active">آخرین شنیده‌ها</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a id="LikedEpisodes_navbar_link" href="../../Podcast/LikedEpisodes/LikedEpisodes.html" class="flex items-center gap-x-3 py-4">
+                            <svg class="no-active-icon-in-podcast ms-6"><use href="#heart"></use></svg>
+                            <span class="navbar-list-no-active">مورد علاقه‌ها</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a id="Suggestions_navbar_link" href="../../Podcast/Suggestions/Suggestions.html" class="py-4 flex items-center gap-x-3">
+                            <svg class="no-active-icon-in-podcast ms-6"><use href="#vynil"></use></svg>
+                            <span class="navbar-list-no-active">پیشنهادها</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a id="Downloads_navbar_link" href="../../Podcast/Downloads/Downloads.html" class="py-4 flex items-center gap-x-3">
+                            <svg class="size-5 ms-6">
+                                <use href="#download-01"></use>
+                            </svg>
+                            <span class="navbar-list-no-active">دانلودشده‌ها</span>
+                        </a>
+                    </li>
+                </ul>
+            </ul>
+        </div>
+        <!-- footer -->
+        <div class="flex items-center justify-evenly px-10 gap-x-5 mt-auto">
+            <a href="#"><svg class="size-5"><use href="#facebook"></use></svg></a>
+            <a href="#"><svg class="size-5"><use href="#X"></use></svg></a>
+            <a href="#"><svg class="size-5"><use href="#tiktok"></use></svg></a>
+            <a href="#"><svg class="size-5"><use href="#instagram"></use></svg></a>
+        </div>
+    </div>
+    <!-- navbar desktop -->
+    <div class="hidden lg:flex">
+        <!-- right navbar -->
+        <div id="right-navbar" class="fixed flex flex-col w-22 min-w-22 h-screen bg-menu py-4 z-50 pe-3">
+            <div class="flex items-center justify-between">
+                <img id="right-navbar-image" src="/image/Logo.png" class="w-[64x] min-w-[64px] h-11 mx-auto mt-2.5" alt="logo" />
+            </div>
+            <div id="arrow-right-navbar" class="absolute top-0 bottom-0 -left-6 flex items-center justify-center my-auto h-14 w-10 bg-menu -z-50 rounded-l-full cursor-pointer" >
+                <svg class="size-3 transform rotate-180 ms-3 transition-all duration-500"><use href="#chevron-right"></use></svg>
+            </div>
+
+            <div id="podcast-list-mobile-desktop" class="flex flex-col gap-y-2 mt-7 border-t-2 border-t-Neutral-600/35 pt-5 overflow-y-auto w-full h-screen">
+                <div>
+                    <a id="Home_navbar_link" href="/podcast" class="flex items-center gap-x-3 py-4 active-list-podcast-small-size">
+                        <svg class="active-icon-in-podcast ms-6"><use href="#home"></use></svg>
+                        <span id="right-navbar-text" class="hidden navbar-list-active">خانه</span>
+                    </a>
+                </div>
+
+                <div>
+                    <a id="category_navbar_link" href="../../Podcast/Categories/Categories.html" class="flex items-center gap-x-3 py-4">
+                        <svg class="no-active-icon-in-podcast ms-6">
+                            <use href="#grid-02"></use>
+                        </svg>
+                        <span id="right-navbar-text" class="hidden navbar-list-no-active">دسته‌بندی</span>
+                    </a>
+                </div>
+
+                <div>
+                    <a id="channel_navbar_link" href="../../Podcast/Channel/ChannelPage.html" class="py-4 flex items-center gap-x-3">
+                        <svg class="no-active-icon-in-podcast ms-6">
+                            <use href="#microphone"></use>
+                        </svg>
+                        <span id="right-navbar-text" class="hidden navbar-list-no-active">پادکسترها</span >
+                    </a>
+                </div>
+
+                <div>
+                    <a id="video_cast_navbar_link" href="../../Podcast/videoCast/videoCast.html" class="py-4 flex items-center gap-x-3">
+                        <svg class="no-active-icon-in-podcast ms-6">
+                            <use href="#clapperboard"></use>
+                        </svg>
+                        <span id="right-navbar-text"class="hidden navbar-list-no-active">ویدیو کست</span>
+                    </a>
+                </div>
+
+                <div id="music-sublist-desktop"class="flex-col gap-y-2 mt-5 border-t-2 border-t-Neutral-600/35 pt-5">
+                    <div>
+                        <a id="LastHearings_navbar_link" href="../../Podcast/LastHearings/LastHearings.html" class="py-4 flex items-center gap-x-3">
+                            <svg class="no-active-icon-in-podcast ms-6">
+                                <use href="#headphone"></use>
+                            </svg>
+                            <span id="right-navbar-text" class="hidden navbar-list-active">آخرین شنیده‌ها</span>
+                        </a>
+                    </div>
+
+                    <div>
+                        <a id="LikedEpisodes_navbar_link" href="../../Podcast/LikedEpisodes/LikedEpisodes.html" class="flex items-center gap-x-3 py-4">
+                            <svg class="no-active-icon-in-podcast ms-6">
+                                <use href="#heart"></use>
+                            </svg>
+                            <span id="right-navbar-text"class="hidden navbar-list-no-active">مورد علاقه‌ها</span>
+                        </a>
+                    </div>
+
+                    <div>
+                        <a id="Suggestions_navbar_link" href="../../Podcast/Suggestions/suggestions.html" class="py-4 flex items-center gap-x-3">
+                            <svg class="no-active-icon-in-podcast ms-6">
+                                <use href="#vynil"></use>
+                            </svg>
+                            <span id="right-navbar-text"class="hidden navbar-list-no-active">پیشنهادها</span>
+                        </a>
+                    </div>
+
+                    <div>
+                        <a id="Downloads_navbar_link" href="../../Podcast/Downloads/Downloads.html" class="py-4 flex items-center gap-x-3">
+                            <svg class="no-active-icon-in-podcast ms-6">
+                                <use href="#download-01"></use>
+                            </svg>
+                            <span id="right-navbar-text"class="hidden navbar-list-no-active">دانلودشده‌ها</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- footer -->
+                <div id="social-icon" class="hidden items-center justify-evenly px-10 gap-x-5 mt-auto">
+                    <a href="#"><svg class="size-5"><use href="#facebook"></use></svg></a>
+                    <a href="#"><svg class="size-5"><use href="#X"></use></svg></a>
+                    <a href="#"><svg class="size-5"><use href="#tiktok"></use></svg></a>
+                    <a href="#"><svg class="size-5"><use href="#instagram"></use></svg></a>
+                </div>
+            </div>
+        </div>
+        <!-- navbar -->
+        <nav class="fixed ps-22 flex justify-between items-center w-full h-25 bg-menu px-8 mx-auto z-40 max-w-[1688px]">
+            <!-- buttons -->
+            <div class="flex gap-x-6 items-center justify-center *:h-12 *:w-28">
+                <a href="/" role="button" class="flex items-center justify-center font-Pelak_Medium rounded-lg transition-colors outline-none"> موزیک </a>
+                <a href="/podcast" role="button" class="flex items-center justify-center bg-Secondary-500 font-Pelak_Medium rounded-lg transition-colors outline-none">پادکست</a>
+            </div>
+            <!-- input -->
+            <div class="flex gap-x-2 items-center w-75 xl:w-[527px] bg-Neutral-900 h-12 px-2 rounded-lg">
+                <svg class="size-5"><use href="#search"></use></svg>
+                <label>
+                    <input type="search" class="w-full outline-none border-none text-xs xl:text-sm font-Pelak_Medium" placeholder="جستجو براساس آهنگ‌، پادکست، آلبوم، هنرمند و پادکستر‌"/>
+                </label>
+            </div>
+            <!-- icons -->
+            <div class="flex items-center gap-x-6 w-[320px] justify-end *:cursor-pointer">
+
+                <div class="flex items-center justify-center size-12 rounded-full" style="background: linear-gradient(-140deg, #4353ff, #ed265d)"><svg class="size-8"><use href="#diamond"></use></svg></div>
+
+                <div class="group relative flex items-center justify-center size-12 rounded-full bg-Neutral-900">
+                    <svg class="size-8"><use href="#bell-alert"></use></svg>
+                    <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300 delay-75 absolute top-20 left-0 w-[368px] h-auto py-4 rounded-2xl border-t-4 border-t-Secondary-500 bg-Neutral-900 px-2">
+                        <ul class="text-[#FCFCFD]">
+                            <li class="py-4 border-b-2 border-b-Neutral-800">
+                                <a class="flex items-center gap-x-4 ps-2">
+                                    <div><img class="size-10 object-cover" src="/image-podcast/user-profile.png" alt=""></div>
+                                    <div>
+                                        <h3 class="text-xs font-FA_Pelak_Bold">به روزرسانی جدید</h3>
+                                        <p class="font-FA_Pelak_Regular text-xs text-Neutral-300 mt-2">نسخه جدید اپلیکیشن با امکانات جذاب منتشر شد!</p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="profile_container_desktop" class="flex group relative items-center justify-center size-12 rounded-full bg-transparent-2/60">
+                    <a href="#"><img src="/image-podcast/user-profile.png" class="size-full object-cover rounded-full" alt=""/></a>
+                    <a href="/auth/send" class="hidden"><svg class="size-8"><use href="#lock-closed"></use></svg></a>
+                    <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300 delay-75 absolute top-20 left-0 w-[304px] h-auto rounded-2xl border-t-4 border-t-Secondary-500 bg-Neutral-900 px-2">
+                        <ul class="text-[#FCFCFD]">
+                            <!-- add class profile-button-active remove class profile-button-no-active -->
+                            <li class="py-2.5 profile-button-no-active">
+                                <a href="../../settings/User Profile/User Profile.html" class="ps-6">پروفایل</a>
+                            </li>
+                            <li class="py-2.5 profile-button-no-active">
+                                <a href="#" class="ps-6 ">تنظیمات</a>
+                            </li>
+                            <li class="py-2.5 profile-button-no-active">
+                                <a href="../../settings/My Account/My Account.html" class="ps-6 ">اکانت پریمویم</a>
+                            </li>
+                            <div class="border-t-2 border-t-Neutral-800 my-2"></div>
+                            <li class="pt-2.5 pb-4 profile-button-no-active">
+                                <a class="ps-6">خروج از اکانت</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+    </div>
+</header>

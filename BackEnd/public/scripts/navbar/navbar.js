@@ -7,15 +7,17 @@ const userRightNavbarText = document.querySelectorAll("#right-navbar-text");
 const rightNavbarImage = document.getElementById("right-navbar-image");
 const socialIcon = document.getElementById("social-icon");
 
+
 ;(async () => {
     try {
         const response = await fetch('/api/v1/users/Me')
+        const data = await response.json()
 
         switch (response.status) {
             case 401:
                 const refresh = await fetch('/api/v1/auth/refresh')
                 if (refresh.status === 200) profileContainer.innerHTML = `
-                        <a href="/setting/profile"><img src="/image-podcast/user-profile.png" class="size-full object-cover rounded-full" alt=""/></a>
+                        <a href="/setting/profile"><img src="${data.data.profile}" class="size-full object-cover rounded-full" alt=""/></a>
                         <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300 delay-75 absolute top-20 left-0 w-[304px] h-auto rounded-2xl border-t-4 border-t-Primary-500 bg-Neutral-900 px-2">
                             <ul class="text-[#FCFCFD]">
                                 <!-- add class profile-button-active remove class profile-button-no-active -->
@@ -39,7 +41,7 @@ const socialIcon = document.getElementById("social-icon");
                 break;
             case 200:
                 profileContainer.innerHTML = `
-                        <a href="/setting/profile"><img src="/image-podcast/user-profile.png" class="size-full object-cover rounded-full" alt=""/></a>
+                        <a href="/setting/profile"><img src="${data.data.profile}" class="size-full object-cover rounded-full" alt=""/></a>
                         <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300 delay-75 absolute top-20 left-0 w-[304px] h-auto rounded-2xl border-t-4 border-t-Primary-500 bg-Neutral-900 px-2">
                             <ul class="text-[#FCFCFD]">
                                 <!-- add class profile-button-active remove class profile-button-no-active -->
@@ -59,6 +61,10 @@ const socialIcon = document.getElementById("social-icon");
                             </ul>
                         </div>
                     `
+                break;
+            default:
+                profileContainer.innerHTML = `<a href="/auth/send"><svg class="size-8"><use href="#lock-closed"></use></svg></a>`
+                break
         }
     }
     catch (error) {
