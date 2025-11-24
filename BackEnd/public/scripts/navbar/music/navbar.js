@@ -3,9 +3,9 @@
 const profileContainer = document.getElementById("profile_container_desktop")
 const rightNavbar = document.getElementById("right-navbar");
 const rightNavbarBtn = document.getElementById("arrow-right-navbar");
-const userRightNavbarText = document.querySelectorAll("#right-navbar-text");
 const rightNavbarImage = document.getElementById("right-navbar-image");
 const socialIcon = document.getElementById("social-icon");
+const categoryIconList = document.getElementById('category-list')
 
 
 ;(async () => {
@@ -74,8 +74,31 @@ const socialIcon = document.getElementById("social-icon");
     }
 })()
 
+;(async () => {
+    try {
+        const response = await fetch('/api/v1/music/categories/')
+        const data = await response.json()
+        const path = location.pathname
+
+
+        data.data.categories.forEach((category) => {
+            categoryIconList.insertAdjacentHTML('beforeend', `
+                <div>
+                    <a href="/${category.href}" class="flex items-center gap-x-3 py-4 ${path === category.href ? "active-list-music-small-size" : "no-active-list-music-small-size"}">
+                        <svg class="${path === category.href ? "active-icon-in-music" : "no-active-icon-in-music"} ms-6"><use href="#${category.icon}"></use></svg>
+                        <span id="right-navbar-text" class="hidden ${path === category.href ? "navbar-list-active" : "navbar-list-no-active"}">${category.title}</span>
+                    </a>
+                </div>
+            `)
+        })
+    }
+    catch (error) {
+        console.log(error)
+    }
+})()
 
 rightNavbarBtn.addEventListener("click", function () {
+    const userRightNavbarText = document.querySelectorAll("#right-navbar-text");
     rightNavbar.classList.toggle("w-60");
     rightNavbar.classList.toggle("w-22");
     rightNavbarBtn.querySelector("svg").classList.toggle("rotate-180");
@@ -83,7 +106,8 @@ rightNavbarBtn.addEventListener("click", function () {
     if (rightNavbarImage.getAttribute("src") === "../../../image/svg/logo-type.svg") {
         rightNavbarImage.setAttribute("src", "../../../image/Logo.png");
         rightNavbarImage.className = "w-[64x] h-11 mx-auto mt-2.5";
-    } else {
+    }
+    else {
         rightNavbarImage.setAttribute(
             "src",
             "../../../image/svg/logo-type.svg"
