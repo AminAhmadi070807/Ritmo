@@ -33,3 +33,14 @@ module.exports.create = async (req, res, next) => {
         next(error)
     }
 }
+
+module.exports.getAll = async (req, res, next) => {
+    try {
+        const categories = await categoryModel.findAll({ raw: true })
+
+        return response(res, 200, null, { categories })
+    }
+    catch (error) {
+        next(error)
+    }
+}
