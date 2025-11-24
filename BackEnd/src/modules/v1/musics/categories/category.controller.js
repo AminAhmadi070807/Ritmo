@@ -2,28 +2,32 @@
 
 const categoryModel = require('./category.model')
 const response = require('../../../../helpers/response.helper')
-
-const formatFile = [
-    "image/svg",
-    "image/svg+xml",
-    "image/svg+xml-compressed",
-]
+const crypto = require('crypto')
+const writeFileIcon = require('../../../../utils/icon.file')
 
 module.exports.create = async (req, res, next) => {
     try {
-        const { title, href } = req.body
+        let { title, href, icon } = req.body
 
         const numberOfCategories = await categoryModel.count({raw: true})
 
         if (+numberOfCategories === 10) return response(res, 200, "The maximum number of categories should be 10.")
 
-        if (!req.file) return response(res, 400, "icon is required")
+        const randomId = crypto.randomBytes(8).toString('hex');
 
-        if (!formatFile.includes(req.file.mimetype)) return response(res, 422, "only valid format must be (svg, svg+xml, svg+xml-compressed)")
+        icon = icon.replace(/^<svg/, `<symbol id="${randomId}"`).replace(/<\/svg>$/, '</symbol>');
 
-        const filename = req.file.filename
+        const result = writeFileIcon(icon)
 
-        console.log(filename)
+        if (result.status !== 200) return response(res, result.status, result.message)
+
+        await categoryModel.create({
+            title,
+            href,
+            icon: randomId,
+        })
+
+        return response(res, 201, "Created category successfully")
     }
     catch (error) {
         next(error)

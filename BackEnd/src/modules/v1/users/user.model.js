@@ -53,5 +53,5 @@ module.exports = mysql.define("User", {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: false
-    }
+    },
 }, options)
