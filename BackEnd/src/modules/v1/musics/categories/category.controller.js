@@ -17,7 +17,7 @@ module.exports.create = async (req, res, next) => {
 
         icon = icon.replace(/^<svg/, `<symbol id="${randomId}"`).replace(/<\/svg>$/, '</symbol>');
 
-        const result = writeFileIcon(icon)
+        const result = writeFileIcon.create(icon)
 
         if (result.status !== 200) return response(res, result.status, result.message)
 
@@ -39,6 +39,34 @@ module.exports.getAll = async (req, res, next) => {
         const categories = await categoryModel.findAll({ raw: true })
 
         return response(res, 200, null, { categories })
+    }
+    catch (error) {
+        next(error)
+    }
+}
+
+module.exports.remove = async (req, res, next) => {
+    try {
+        const { id } = req.params
+
+        if (isNaN(id)) return response(res, 400, "The id is not a number")
+
+        const category = await categoryModel.findOne({
+            where: {
+                id: id
+            },
+            raw: true,
+        })
+
+        if (!category) return response(res, 404, "The category does not exist")
+
+        const result = writeFileIcon.delete(category.icon)
+
+        if (result.status !== 200) return response(res, result.status, result.message)
+
+        await categoryModel.destroy({where: {id: id}})
+
+        return response(res, 200, 'deleted category successfully.', { category })
     }
     catch (error) {
         next(error)

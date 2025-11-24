@@ -13,4 +13,6 @@ router.route('/')
     .post(authGuard, roleGuard("ADMIN"), validator.categoryValidator, controller.create)
     .get(controller.getAll)
 
+router.route('/:id').delete(authGuard, roleGuard("ADMIN"), controller.remove)
+
 module.exports = router
