@@ -32,6 +32,13 @@ const schema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
+    },
+    tags: {
+        type: [{
+            type: String,
+            required: true,
+            trim: true,
+        }]
     }
 }, { timestamps: true });
 
