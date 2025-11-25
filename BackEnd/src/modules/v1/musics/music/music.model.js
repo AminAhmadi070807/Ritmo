@@ -13,7 +13,7 @@ const schema = new mongoose.Schema({
         required: true,
         trim: true,
     },
-    channel: {
+    user: {
         type: String,
         required: true,
         trim: true,
