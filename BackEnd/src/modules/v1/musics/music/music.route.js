@@ -10,5 +10,6 @@ const controller = require('./music.controller')
 const validator = require('../../../../middlewares/validate.middleware')
 const authGuard = require('../../../../middlewares/guard/auth.guard')
 
+router.route('/').post(authGuard, validator.createMusicValidator)
 
 module.exports = router;
