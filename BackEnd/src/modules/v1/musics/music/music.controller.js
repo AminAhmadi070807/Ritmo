@@ -3,6 +3,7 @@
 const musicModel = require('./music.model')
 const deleteFile = require('../../../../utils/delete.file')
 const response = require('../../../../helpers/response.helper')
+const {isValidObjectId} = require("mongoose");
 const fileFormat = {
     "music": ["audio/mpeg", "audio/wav", "audio/x-wav", "audio/ogg", "audio/opus", "audio/mp4", "audio/x-m4a", "audio/flac"],
     "image": ["image/jpeg", "image/jpg", "image/png", "image/webp", "image/gif", "image/svg+xml"]
@@ -51,3 +52,29 @@ module.exports.create = async (req, res, next) => {
         next(error)
     }
 }
+
+module.exports.remove = async (req, res, next) => {
+    try {
+        const user = req.user;
+        const { id } = req.params;
+
+        if (!isValidObjectId(id)) return response(res, 422, "id is not correct.")
+
+        const music = await musicModel.findById(id).lean()
+
+        if (!music) return response(res, 404, "music not found. or has already been removed")
+
+        if (music.user.toString() !== user.uuid.toString()) return response(res, 403, "you cannot deleted this song.")
+
+        await musicModel.findByIdAndDelete(id)
+
+        await deleteFile('BackEnd/public', music.poster)
+        await deleteFile('BackEnd/public', music.music)
+
+        return response(res, 200, "removed music successfully.")
+    }
+    catch (error) {
+        next(error)
+    }
+}
+

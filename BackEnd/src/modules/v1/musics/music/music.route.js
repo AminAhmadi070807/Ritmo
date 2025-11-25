@@ -14,4 +14,6 @@ const upload = multer({ storage: diskStorage('music'), limits: { fileSize: 1024 
 
 router.route('/').post(authGuard, upload.fields([{ name: 'music', maxCount: 1 }, { name: 'poster', maxCount: 1 }]), validator.createMusicValidator, controller.create)
 
+router.route('/:id').delete(authGuard, controller.remove)
+
 module.exports = router;
