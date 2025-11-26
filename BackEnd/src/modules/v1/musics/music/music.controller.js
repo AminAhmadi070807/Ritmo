@@ -78,3 +78,13 @@ module.exports.remove = async (req, res, next) => {
     }
 }
 
+module.exports.trendingMusic = async (req, res, next) => {
+    try {
+        let musics = await musicModel.find({ }).lean().sort({ _id: -1, views: -1 }).limit(15)
+
+        return response(res, 200, null, musics)
+    }
+    catch (error) {
+        next(error)
+    }
+}

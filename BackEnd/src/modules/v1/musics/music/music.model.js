@@ -39,6 +39,11 @@ const schema = new mongoose.Schema({
             required: true,
             trim: true,
         }]
+    },
+    views: {
+        type: Number,
+        required: true,
+        default: 0,
     }
 }, { timestamps: true });
 
