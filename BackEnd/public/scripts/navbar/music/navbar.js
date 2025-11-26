@@ -7,7 +7,6 @@ const rightNavbarImage = document.getElementById("right-navbar-image");
 const socialIcon = document.getElementById("social-icon");
 const categoryIconList = document.getElementById('category-list')
 
-
 ;(async () => {
     try {
         const response = await fetch('/api/v1/users/Me')
