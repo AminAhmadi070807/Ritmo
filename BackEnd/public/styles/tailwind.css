@@ -9,8 +9,10 @@
       "Courier New", monospace;
     --color-gray-300: oklch(87.2% 0.01 258.338);
     --color-gray-500: oklch(55.1% 0.027 264.364);
+    --color-gray-600: oklch(44.6% 0.03 256.802);
     --color-gray-800: oklch(27.8% 0.033 256.848);
     --color-gray-900: oklch(21% 0.034 264.665);
+    --color-gray-950: oklch(13% 0.028 261.692);
     --color-neutral-500: oklch(55.6% 0 0);
     --color-white: #fff;
     --spacing: 0.25rem;
@@ -62,7 +64,6 @@
     --spacing-92: 23rem;
     --spacing-100: 25rem;
     --spacing-104: 26rem;
-    --spacing-125: 31.25rem;
     --font-Pelak_Regular: "Pelak_Regular";
     --font-Pelak_Medium: "Pelak_Medium";
     --font-Pelak_Bold: "Pelak_Bold";
@@ -396,9 +397,6 @@
   .mb-2 {
     margin-bottom: calc(var(--spacing) * 2);
   }
-  .mb-6 {
-    margin-bottom: calc(var(--spacing) * 6);
-  }
   .mb-8 {
     margin-bottom: calc(var(--spacing) * 8);
   }
@@ -502,23 +500,14 @@
   .h-52 {
     height: calc(var(--spacing) * 52);
   }
-  .h-60 {
-    height: calc(var(--spacing) * 60);
-  }
   .h-75 {
     height: var(--spacing-75);
   }
   .h-92 {
     height: var(--spacing-92);
   }
-  .h-100 {
-    height: var(--spacing-100);
-  }
   .h-104 {
     height: var(--spacing-104);
-  }
-  .h-125 {
-    height: var(--spacing-125);
   }
   .h-\[68px\] {
     height: 68px;
@@ -573,12 +562,6 @@
   }
   .min-h-92 {
     min-height: var(--spacing-92);
-  }
-  .min-h-100 {
-    min-height: var(--spacing-100);
-  }
-  .min-h-125 {
-    min-height: var(--spacing-125);
   }
   .w-10 {
     width: calc(var(--spacing) * 10);
@@ -721,9 +704,6 @@
   .min-w-\[64px\] {
     min-width: 64px;
   }
-  .min-w-\[272px\] {
-    min-width: 272px;
-  }
   .min-w-\[275px\] {
     min-width: 275px;
   }
@@ -770,9 +750,6 @@
   }
   .items-center {
     align-items: center;
-  }
-  .items-end {
-    align-items: flex-end;
   }
   .items-start {
     align-items: flex-start;
@@ -912,6 +889,15 @@
   }
   .border-Success-200 {
     border-color: var(--color-Success-200);
+  }
+  .border-gray-500 {
+    border-color: var(--color-gray-500);
+  }
+  .border-gray-600 {
+    border-color: var(--color-gray-600);
+  }
+  .border-gray-950 {
+    border-color: var(--color-gray-950);
   }
   .border-t-Neutral-600 {
     border-top-color: var(--color-Neutral-600);
@@ -1305,11 +1291,6 @@
   .sm\:max-w-100 {
     @media (width >= 40rem) {
       max-width: var(--spacing-100);
-    }
-  }
-  .sm\:max-w-\[272px\] {
-    @media (width >= 40rem) {
-      max-width: 272px;
     }
   }
   .sm\:grid-cols-2 {

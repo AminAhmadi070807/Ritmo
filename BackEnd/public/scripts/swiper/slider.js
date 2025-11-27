@@ -6,7 +6,6 @@ new Swiper(".trending-sung-swiper", {
     slidesPerView: "auto",
     spaceBetween: 20,
     grabCursor: true,
-    loop: true,
     speed: 3000,
     // auto play
     autoplay: {
@@ -24,7 +23,6 @@ new Swiper(".trending-sung-swiper", {
 new Swiper(".trending-singer-swiper", {
     slidesPerView: "auto",
     spaceBetween: 16,
-    loop: true,
     speed: 3000,
     // auto play
     autoplay: {
@@ -42,7 +40,6 @@ new Swiper(".trending-singer-swiper", {
 new Swiper(".music-video-swiper", {
     slidesPerView: "auto",
     spaceBetween: 16,
-    loop: true,
     speed: 3000,
     // auto play
     autoplay: {
@@ -60,7 +57,6 @@ new Swiper(".music-video-swiper", {
 new Swiper(".album-swiper", {
     slidesPerView: "auto",
     spaceBetween: 16,
-    loop: true,
     speed: 3000,
     // auto play
     autoplay: {
@@ -78,7 +74,6 @@ new Swiper(".album-swiper", {
 new Swiper(".playlist-swiper", {
     slidesPerView: "auto",
     spaceBetween: 16,
-    loop: true,
     speed: 3000,
     // auto play
     autoplay: {
@@ -96,9 +91,7 @@ new Swiper(".playlist-swiper", {
 new Swiper(".Category-swiper", {
     slidesPerView: "auto",
     spaceBetween: 16,
-    loop: true,
     speed: 3000,
-    // auto play
     autoplay: {
         delay: 5000,
         disableOnInteraction: false,
