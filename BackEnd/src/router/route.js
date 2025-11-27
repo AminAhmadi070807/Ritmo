@@ -8,6 +8,7 @@ const controller = require('./route.controller')
 const validator = require('../middlewares/validate.middleware')
 
 router.get('/', controller.music)
+router.get('/categories', controller.musicCategory)
 router.get('/podcast', controller.podcast)
 router.get('/404', controller.notFound)
 router.get('/auth/send', controller.authentication)

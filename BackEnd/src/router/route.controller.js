@@ -1,8 +1,11 @@
 "use strict"
 
-const path = require('path');
+const genereCategoriesModel = require('../modules/v1/musics/genre/genre.model')
+const axios = require('axios')
 
 module.exports.music = (req, res) => res.render('music/index.ejs')
+
+module.exports.musicCategory = async (req, res) => res.render('music/categories.ejs')
 
 module.exports.podcast = (req, res) => res.render('podcast/index.ejs')
 
