@@ -7,8 +7,6 @@ const $ = document;
         const response = await fetch("/api/v1/musics/trending")
         const data = await response.json()
 
-        console.log(data)
-
         data.data.forEach(music => {
               $.getElementById("trending-sung-container").insertAdjacentHTML("beforeend", `
                 <div class="swiper-slide">
@@ -28,10 +26,8 @@ const $ = document;
                     </div>
                   </a>
                 </div>
-`
-  );
-        })
-    }
+`);
+        })}
     catch (error) {}
 })()
 

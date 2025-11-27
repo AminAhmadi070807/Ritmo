@@ -75,7 +75,7 @@ const categoryIconList = document.getElementById('category-list')
 
 ;(async () => {
     try {
-        const response = await fetch('/api/v1/music/categories/')
+        const response = await fetch('/api/v1/categories/music/')
         const data = await response.json()
         const path = location.pathname
 
@@ -83,7 +83,7 @@ const categoryIconList = document.getElementById('category-list')
         data.data.categories.forEach((category) => {
             categoryIconList.insertAdjacentHTML('beforeend', `
                 <div>
-                    <a href="/${category.href}" class="flex items-center gap-x-3 py-4 ${path === category.href ? "active-list-music-small-size" : "no-active-list-music-small-size"}">
+                    <a href="${category.href}" class="flex items-center gap-x-3 py-4 ${path.toLowerCase() === category.href.toLowerCase() ? "active-list-music-small-size" : "no-active-list-music-small-size"}">
                         <svg class="${path === category.href ? "active-icon-in-music" : "no-active-icon-in-music"} ms-6"><use href="#${category.icon}"></use></svg>
                         <span id="right-navbar-text" class="hidden ${path === category.href ? "navbar-list-active" : "navbar-list-no-active"}">${category.title}</span>
                     </a>

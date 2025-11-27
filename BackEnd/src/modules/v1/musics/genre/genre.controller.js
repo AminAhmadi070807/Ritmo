@@ -33,7 +33,7 @@ module.exports.create = async (req, res, next) => {
 
 module.exports.getAll = async (req, res, next) => {
     try {
-        const genres = await genreModel.find({}).lean()
+        const genres = await genreModel.find({}, 'title cover href').lean()
 
         return response(res, 200,  null, genres)
     }
