@@ -18,7 +18,11 @@ module.exports.create = async (req, res, next) => {
 
         if (isExistGenre) return response(res, 409, "Genre is already exists.")
 
-        await genreModel.create({ title: req.body.title.trim(), cover: cover.filename })
+        await genreModel.create({
+            title: req.body.title.trim(),
+            href: req.body.href.trim(),
+            cover: cover.filename
+        })
 
         return response(res, 201, "Created new genre successfully.")
     }

@@ -12,7 +12,7 @@ const router = express.Router();
 const upload = multer({ storage: diskStorage('genres'), limits: { fileSize: 1024 * 1024 * 10 } });
 
 router.route('/')
-    .post(authGuard, roleGuard("ADMIN"), upload.single("Cover"), controller.create)
+    .post(authGuard, roleGuard("ADMIN"), upload.single("covers"), controller.create)
     // .get(controller.getAll)
 
 // router.route('/:id').delete(authGuard, roleGuard("ADMIN"), controller.remove)

@@ -31,7 +31,7 @@ app.set('views', path.resolve(__dirname, '..', '..', 'FrontEnd', "views"))
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/users', usersRouter)
 app.use('/api/v1/musics', musicRouter)
-app.use('/api/v1/musics/categories', musicCategoriesRouter)
+app.use('/api/v1/musics/genres', musicCategoriesRouter)
 app.use('/api/v1/categories/music', categoriesMusicRouter)
 
 app.use(route)

@@ -13,6 +13,11 @@ const schema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    href: {
+        type: String,
+        required: true,
+        trim: true,
+    }
 }, { timestamps: true })
 
 module.exports = mongoose.model("MusicGenre", schema);
