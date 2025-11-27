@@ -21,10 +21,21 @@ module.exports.create = async (req, res, next) => {
         await genreModel.create({
             title: req.body.title.trim(),
             href: req.body.href.trim(),
-            cover: cover.filename
+            cover: '/uploads/genres/' + cover.filename
         })
 
         return response(res, 201, "Created new genre successfully.")
+    }
+    catch (error) {
+        next(error)
+    }
+}
+
+module.exports.getAll = async (req, res, next) => {
+    try {
+        const genres = await genreModel.find({}).lean()
+
+        return response(res, 200,  null, genres)
     }
     catch (error) {
         next(error)
