@@ -38,17 +38,17 @@ const $ = document;
 
         data.data.forEach(category => {
             document.getElementById('category-container').insertAdjacentHTML("beforeend", `
-            <div class="swiper-slide">
-                <a href="/categories/details/${category.href}">
-                    <div class="relative w-[275px] h-50 cursor-pointer">
-                        <img src="${category.cover}" class="w-[275px] h-50 min-w-[275px] max-w-[275px] min-h-50 max-h-50"
-                             alt="${category.title}"/>
-                        <div class="absolute inset-0 m-auto h-10 w-20">
-                            <h4 class="font-Pelak_Bold text-2xl text-nowrap">${category.title}</h4>
+                <div class="swiper-slide">
+                    <a href="/categories/details/${category.href}">
+                        <div class="relative w-[275px] h-50 cursor-pointer">
+                            <img src="${category.cover}" class="w-[275px] h-50 min-w-[275px] max-w-[275px] min-h-50 max-h-50"
+                                 alt="${category.title}"/>
+                            <div class="absolute inset-0 m-auto h-10 w-20">
+                                <h4 class="font-Pelak_Bold text-2xl text-nowrap">${category.title}</h4>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
             `)
         })
     } catch (error) {

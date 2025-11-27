@@ -19,8 +19,7 @@ const schema = new mongoose.Schema({
         trim: true,
     },
     artist: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Artist",
+        type: String,
         required: true,
         trim: true,
     },
