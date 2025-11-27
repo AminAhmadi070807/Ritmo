@@ -1,6 +1,7 @@
 "use strict"
 
 const musicModel = require('./music.model')
+const albumModel = require('../album/album.model')
 const deleteFile = require('../../../../utils/delete.file')
 const response = require('../../../../helpers/response.helper')
 const {isValidObjectId} = require("mongoose");
@@ -9,7 +10,17 @@ const fileFormat = {
     "image": ["image/jpeg", "image/jpg", "image/png", "image/webp", "image/gif", "image/svg+xml"]
 }
 
-// todo validate channel
+const deleteFiles = async (routes) => {
+    try {
+        for (const route of routes) await deleteFile(route)
+
+        return { status: 200, message: "success" }
+    }
+    catch (error) {
+        return { status: 500, message: error.message };
+    }
+}
+
 module.exports.create = async (req, res, next) => {
     try {
         const user = req.user;
@@ -21,19 +32,25 @@ module.exports.create = async (req, res, next) => {
         if (!music && !poster) return response(res, 400, "music and poster is required.")
 
         if (!music) {
-            await deleteFile('BackEnd/public', `/uploads/posters/${poster[0].filename}`)
+            await deleteFiles(['BackEnd/public' + `/uploads/posters/${poster[0].filename}`])
             return response(res, 400, "music and poster is required.")
         }
 
         if (!poster) {
-            await deleteFile('BackEnd/public', `/uploads/musics/${music[0].filename}`)
+            await deleteFiles(['BackEnd/public' + `/uploads/musics/${music[0].filename}`])
             return response(res, 400, "music and poster is required.")
         }
 
         if (!fileFormat.music.includes(music[0].mimetype) || !fileFormat.image.includes(poster[0].mimetype)) {
-            await deleteFile('BackEnd/public', `/uploads/posters/${poster[0].filename}`)
-            await deleteFile('BackEnd/public', `/uploads/musics/${music[0].filename}`)
+            await deleteFiles(['BackEnd/public' + `/uploads/posters/${poster[0].filename}`, 'BackEnd/public' + `/uploads/musics/${music[0].filename}`])
             return response(res, 400, "music valid format (mpeg, wav, x-wav, ogg, opus, mp4, x-m4a, flac) && poster valid format (jpeg, jpg, png, webp, gif, svg+xml)")
+        }
+
+        const isExistAlbum = await albumModel.findById(album).lean()
+
+        if (!isExistAlbum) {
+            await deleteFiles(['BackEnd/public' + `/uploads/posters/${poster[0].filename}`, 'BackEnd/public' + `/uploads/musics/${music[0].filename}`])
+            return response(res, 400, "album is not existed.")
         }
 
         await musicModel.create({
@@ -49,6 +66,7 @@ module.exports.create = async (req, res, next) => {
         return response(res, 201, "created new music successfully.")
     }
     catch (error) {
+        await deleteFiles(['BackEnd/public' + `/uploads/posters/${req.file.poster[0].filename}`, 'BackEnd/public' + `/uploads/musics/${req.file.music[0].filename}`])
         next(error)
     }
 }
@@ -68,8 +86,7 @@ module.exports.remove = async (req, res, next) => {
 
         await musicModel.findByIdAndDelete(id)
 
-        await deleteFile('BackEnd/public', music.poster)
-        await deleteFile('BackEnd/public', music.music)
+        await deleteFiles(['BackEnd/public' + music.poster, 'BackEnd/public' + music.music])
 
         return response(res, 200, "removed music successfully.")
     }
