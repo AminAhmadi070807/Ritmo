@@ -16,6 +16,7 @@ const usersRouter = require('./modules/v1/users/user.route')
 const musicRouter = require('./modules/v1/musics/music/music.route')
 const musicCategoriesRouter = require('./modules/v1/musics/genre/genre.route')
 const categoriesMusicRouter = require('./modules/v1/musics/categories/category.route')
+const musicAlbumRouter = require('./modules/v1/musics/album/album.route')
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/users', usersRouter)
 app.use('/api/v1/musics', musicRouter)
 app.use('/api/v1/musics/genres', musicCategoriesRouter)
+app.use('/api/v1/musics/albums', musicAlbumRouter)
 app.use('/api/v1/categories/music', categoriesMusicRouter)
 
 app.use(route)

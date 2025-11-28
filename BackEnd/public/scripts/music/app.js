@@ -2,6 +2,7 @@
 
 const $ = document;
 
+// trending music
 ;(async () => {
     try {
         const response = await fetch("/api/v1/musics/trending")
@@ -12,12 +13,15 @@ const $ = document;
                 <div class="swiper-slide">
                   <a href="/musics/page/${music._id}">
                     <div class="w-88 h-104 max-w-88 max-h-104 cursor-pointer">
-                      <div class="w-88 h-92">
+                      <div class="relative w-88 h-92">
                         <img src="${music.poster}" class="w-88 h-92 min-w-88 min-h-92 max-w-88 max-h-92 object-cover object-center" alt="${music.artist}"/>
+                        <div class="absolute right-5 left-1 bottom-5">
+                            <h3 class="font-Pelak_Bold text-sm text-nowrap text-gray-600">خواننده : ${music.artist}</h3>
+                        </div>
                       </div>
     
                       <div class="flex items-center justify-between mt-4 px-4">
-                        <h3 class="font-Pelak_Bold text-xl">${music.artist}</h3>
+                        <h3 class="font-Pelak_Bold text-sm lg:text-lg text-nowrap">${music.title}</h3>
                         <div class="flex items-center justify-center gap-x-3">
                           <svg class="size-8 text-neutral-500"><use href="#heart"></use></svg>
                           <svg class="size-8 text-neutral-500"><use href="#add-circle"></use></svg>
@@ -55,7 +59,30 @@ const $ = document;
     }
 })()
 
-// crate category element
+;(async () => {
+    try {
+        const response = await fetch('/api/v1/musics/albums')
+        const data = await response.json()
+
+        data.data.albums.forEach(album => {
+            $.getElementById('album-container').insertAdjacentHTML('beforeend', `
+            <div class="swiper-slide">
+                <a href="/musics/albums/details/${album.title}">
+                  <div class="w-50 h-[276px] cursor-pointer">
+                    <img class="rounded-xl" src="${album.cover}" alt="${album.title + "From" + album.artist }" />
+                    <h3 class="font-Pelak_Bold text-center mt-2">${album.title}</h3>
+                    <cite class="font-Pelak_Regular not-italic text-center mt-2 text-sm text-Neutral-300 block">${album.artist}</cite>
+                  </div>
+                </a>
+            </div>
+           
+        `)
+        })
+    }
+    catch (error) {
+        console.log(error);
+    }
+})()
 
 
 $.getElementById("notification-mobile").addEventListener('click', () => {

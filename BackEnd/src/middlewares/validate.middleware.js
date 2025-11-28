@@ -4,7 +4,7 @@ const { registerSchema, verifyIdSchema } = require('../modules/v1/auth/auth.sche
 const categorySchema = require('../modules/v1/musics/categories/category.schema')
 const createMusicSchema = require('../modules/v1/musics/music/music.schema')
 const genreSchema = require('../modules/v1/musics/genre/genre.schema')
-const albumSchema = require('../modules/v1/musics/album/album.schema')
+const { createAlbumSchema } = require('../modules/v1/musics/album/album.schema')
 
 module.exports.authRegisterValidation = async (req, res, next) => {
     try {
@@ -61,9 +61,9 @@ module.exports.genreValidator = async (req, res, next) => {
     }
 }
 
-module.exports.albumValidator = async (req, res, next) => {
+module.exports.createAlbumValidator = async (req, res, next) => {
     try {
-        await albumSchema.validateAsync({ ...req.body })
+        await createAlbumSchema.validateAsync({ ...req.body })
 
         next()
     }

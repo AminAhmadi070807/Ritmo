@@ -31,7 +31,7 @@ const schema = new mongoose.Schema({
     album: {
         type: mongoose.Schema.Types.ObjectId,
         required: false,
-        ref: 'Album',
+        ref: 'MusicAlbum',
     },
     tags: {
         type: [String],
@@ -43,7 +43,7 @@ const schema = new mongoose.Schema({
         required: true,
         default: 0,
     },
-    Genre: {
+    genre: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'MusicGenre',

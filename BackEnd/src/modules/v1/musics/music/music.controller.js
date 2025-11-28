@@ -2,9 +2,11 @@
 
 const musicModel = require('./music.model')
 const albumModel = require('../album/album.model')
+const genreModel = require('../genre/genre.model')
 const deleteFile = require('../../../../utils/delete.file')
 const response = require('../../../../helpers/response.helper')
 const {isValidObjectId} = require("mongoose");
+
 const fileFormat = {
     "music": ["audio/mpeg", "audio/wav", "audio/x-wav", "audio/ogg", "audio/opus", "audio/mp4", "audio/x-m4a", "audio/flac"],
     "image": ["image/jpeg", "image/jpg", "image/png", "image/webp", "image/gif", "image/svg+xml"]
@@ -25,11 +27,11 @@ module.exports.create = async (req, res, next) => {
     try {
         const user = req.user;
 
-        const { tags, album, artist, category } = req.body;
+        const { tags, album, artist, genre, title} = req.body;
 
         const { music, poster } = req.files;
 
-        if (!music && !poster) return response(res, 400, "music and poster is required.")
+        if (!req.files || (!music && !poster)) return response(res, 400, "music and poster is required.")
 
         if (!music) {
             await deleteFiles(['BackEnd/public' + `/uploads/posters/${poster[0].filename}`])
@@ -53,11 +55,19 @@ module.exports.create = async (req, res, next) => {
             return response(res, 400, "album is not existed.")
         }
 
+        const isExistCategory = await genreModel.findById(genre).lean()
+
+        if (!isExistCategory) {
+            await deleteFiles(['BackEnd/public' + `/uploads/posters/${poster[0].filename}`, 'BackEnd/public' + `/uploads/musics/${music[0].filename}`])
+            return response(res, 400, "album is not existed.")
+        }
+
         await musicModel.create({
             tags: tags.split(","),
             album,
             artist,
-            category,
+            genre,
+            title,
             user: user.uuid,
             music: `/uploads/musics/${music[0].filename}`,
             poster: `/uploads/posters/${poster[0].filename}`,
@@ -66,7 +76,8 @@ module.exports.create = async (req, res, next) => {
         return response(res, 201, "created new music successfully.")
     }
     catch (error) {
-        await deleteFiles(['BackEnd/public' + `/uploads/posters/${req.file.poster[0].filename}`, 'BackEnd/public' + `/uploads/musics/${req.file.music[0].filename}`])
+        console.log(error)
+        await deleteFiles(['BackEnd/public' + `/uploads/posters/${req.files.poster[0].filename}`, 'BackEnd/public' + `/uploads/musics/${req.files.music[0].filename}`])
         next(error)
     }
 }

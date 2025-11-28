@@ -8,7 +8,7 @@ const schema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    artistID: {
+    artist: {
         type: String,
         required: true,
         trim: true
@@ -24,7 +24,12 @@ const schema = new mongoose.Schema({
             ref: "Music",
             required: true,
         }],
+    },
+    views: {
+        type: Number,
+        required: true,
+        default: 0
     }
 }, { timestamps: true })
 
-module.exports = mongoose.model("Album", schema)
+module.exports = mongoose.model("MusicAlbum", schema)

@@ -11,8 +11,9 @@ module.exports = Joi.object().keys({
         return value
     }).required(),
     artist: Joi.string().required(),
-    category: Joi.string().custom((value, helpers) => {
+    genre: Joi.string().custom((value, helpers) => {
         if (!isValidObjectId(value)) return helpers.message("category id is not correct")
         return value
     }).required(),
+    title: Joi.string().required(),
 })
