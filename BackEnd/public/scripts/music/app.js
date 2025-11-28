@@ -35,6 +35,7 @@ const $ = document;
     catch (error) {}
 })()
 
+// categories
 ;(async () => {
     try {
         const response = await fetch('/api/v1/musics/genres')
@@ -59,6 +60,7 @@ const $ = document;
     }
 })()
 
+// albums
 ;(async () => {
     try {
         const response = await fetch('/api/v1/musics/albums')
