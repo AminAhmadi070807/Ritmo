@@ -4,6 +4,7 @@ const albumModel = require('./album.model')
 const userModel = require('../../users/user.model')
 const response = require('../../../../helpers/response.helper')
 const deleteFile = require("../../../../utils/delete.file");
+const {isValidObjectId} = require("mongoose");
 
 const fileFormat = ["image/jpeg", "image/jpg", "image/png", "image/webp", "image/gif", "image/svg+xml"]
 
@@ -61,6 +62,28 @@ module.exports.getAll = async (req, res, next) => {
         }
 
         return response(res, 200, null, { albums: albumsArray })
+    }
+    catch (error) {
+        next(error)
+    }
+}
+
+module.exports.remove = async (req, res, next) => {
+    try {
+        const user = req.user;
+        const { id } = req.params
+
+        if (!isValidObjectId(id)) return response(res, 400, "album id is not correct")
+
+        const album = await albumModel.findById(id).lean()
+
+        if (!album) return response(res, 404, "album not found. or has already been removed")
+
+        if (!user.role.includes("ADMIN") || (user.uuid.toString() !== album.artist)) return response(res, 400, "you not access to removed album")
+
+        await albumModel.findByIdAndDelete(id).lean()
+
+        return response(res, 200, "deleted album successfully.")
     }
     catch (error) {
         next(error)

@@ -23,6 +23,7 @@ const schema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "Music",
             required: true,
+            unique: true
         }],
     },
     views: {

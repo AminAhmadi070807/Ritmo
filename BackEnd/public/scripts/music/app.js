@@ -84,7 +84,6 @@ const $ = document;
     }
 })()
 
-
 $.getElementById("notification-mobile").addEventListener('click', () => {
   $.getElementById('notification-modal-mobile').classList.toggle('invisible')
   $.getElementById('notification-modal-mobile').classList.toggle('opacity-0')
