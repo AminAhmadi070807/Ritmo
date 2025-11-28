@@ -13,12 +13,16 @@ const schema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    user: {
+        type: String,
+        required: true,
+        trim: true
+    },
     musics: {
         type: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: "Music",
             required: true,
-            unique: true
         }],
     },
     views: {

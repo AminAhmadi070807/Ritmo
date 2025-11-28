@@ -14,5 +14,7 @@ const validator = require('../../../../middlewares/validate.middleware')
 const authGuard = require('../../../../middlewares/guard/auth.guard')
 const roleGuard = require('../../../../middlewares/guard/role.guard')
 
+router.route('/').post(authGuard, roleGuard("ARTIST"), upload.single("cover"), validator.createAlbumValidator, controller.create)
+
 
 module.exports = router;
