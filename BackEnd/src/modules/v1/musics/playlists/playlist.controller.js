@@ -3,7 +3,6 @@
 const playlistModel = require('./playlist.model')
 const response = require('../../../../helpers/response.helper')
 const deleteFile = require("../../../../utils/delete.file");
-const {isValidObjectId} = require("mongoose");
 
 const fileFormat = ["image/jpeg", "image/jpg", "image/png", "image/webp", "image/gif", "image/svg+xml"]
 

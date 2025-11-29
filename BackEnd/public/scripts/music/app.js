@@ -13,12 +13,7 @@ const $ = document;
                 <div class="swiper-slide">
                   <a href="/musics/page/${music._id}">
                     <div class="w-88 h-104 max-w-88 max-h-104 cursor-pointer">
-                      <div class="relative w-88 h-92">
-                        <img src="${music.poster}" class="w-88 h-92 min-w-88 min-h-92 max-w-88 max-h-92 object-cover object-center" alt="${music.artist}"/>
-                        <div class="absolute right-5 left-1 bottom-5">
-                            <h3 class="font-Pelak_Bold text-sm text-nowrap text-gray-600">خواننده : ${music.artist}</h3>
-                        </div>
-                      </div>
+                    <img src="${music.poster}" class="w-88 h-92 min-w-88 min-h-92 max-w-88 max-h-92 object-cover object-center" alt="${music.title} from ${music.artist}"/>
     
                       <div class="flex items-center justify-between mt-4 px-4">
                         <h3 class="font-Pelak_Bold text-sm lg:text-lg text-nowrap">${music.title}</h3>
