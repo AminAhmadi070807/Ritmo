@@ -77,6 +77,12 @@ module.exports.create = async (req, res, next) => {
             poster: `/uploads/posters/${poster[0].filename}`,
         })
 
+        if (album) {
+            const result = await fetch(`${process.env.HREF}/api/v1/musics/albums/${musicResult._id}/${album}`)
+            const data = await result.json()
+
+            if (result.status !== 200) return response(result.status, result.status, data.message)
+        }
 
         return response(res, 201, "created new music successfully.")
     }
