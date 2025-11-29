@@ -62,7 +62,7 @@ module.exports.create = async (req, res, next) => {
             return response(res, 400, "album is not existed.")
         }
 
-        await musicModel.create({
+        const musicResult = await musicModel.create({
             tags: tags.split(","),
             album,
             artist,
@@ -76,7 +76,6 @@ module.exports.create = async (req, res, next) => {
         return response(res, 201, "created new music successfully.")
     }
     catch (error) {
-        console.log(error)
         await deleteFiles(['BackEnd/public' + `/uploads/posters/${req.files.poster[0].filename}`, 'BackEnd/public' + `/uploads/musics/${req.files.music[0].filename}`])
         next(error)
     }
