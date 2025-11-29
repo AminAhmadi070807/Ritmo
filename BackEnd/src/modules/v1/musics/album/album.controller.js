@@ -109,7 +109,9 @@ module.exports.addMusic = async (req, res, next) => {
 
         if (!isExistAlbum) return response(res, 404, "album not found. or has already been removed.")
 
-        if (isExistAlbum.artist.toString() !== isExistMusic.user.toString()) return response(res, 403, "you do not access to this album")
+        if (isExistAlbum.artist.toString() !== isExistMusic.user.toString()) return response(res, 403, "you do not access to this album and music")
+
+        if (user.uuid !== isExistAlbum.artist.toString() || user.uuid !== isExistMusic.user.toString()) return response(res, 403, "you do not access to this api")
 
         await albumModel.findByIdAndUpdate(albumId, {
             $push: {
