@@ -34,11 +34,11 @@ module.exports.create = async (req, res, next) => {
 
         await playlistModel.create({
             title: req.body.title,
-            artist: user.uuid,
+            user: user.uuid,
             cover: `/uploads/playlists/${cover.filename}`
         })
 
-        return response(res, 201, "created new album successfully.")
+        return response(res, 201, "created new playlist successfully.")
     }
     catch (error) {
         next(error)
