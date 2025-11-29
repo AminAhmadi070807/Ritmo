@@ -83,6 +83,8 @@ module.exports.remove = async (req, res, next) => {
 
         await albumModel.findByIdAndDelete(id).lean()
 
+        await deleteFiles(['BackEnd/public' + album.cover])
+
         return response(res, 200, "deleted album successfully.")
     }
     catch (error) {
