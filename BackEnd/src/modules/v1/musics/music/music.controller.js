@@ -29,6 +29,10 @@ module.exports.create = async (req, res, next) => {
 
         const { tags, album, artist, genre, title} = req.body;
 
+        if (!isValidObjectId(genre)) return response(res, 400, "genre is not correct.")
+
+        if (album !== undefined && !isValidObjectId(album)) return response(res, 400, "album is not correct.")
+
         const { music, poster } = req.files;
 
         if (!req.files || (!music && !poster)) return response(res, 400, "music and poster is required.")
@@ -72,6 +76,7 @@ module.exports.create = async (req, res, next) => {
             music: `/uploads/musics/${music[0].filename}`,
             poster: `/uploads/posters/${poster[0].filename}`,
         })
+
 
         return response(res, 201, "created new music successfully.")
     }
