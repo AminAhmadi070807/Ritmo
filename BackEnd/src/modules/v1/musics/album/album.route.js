@@ -20,6 +20,6 @@ router.route('/')
 
 router.route('/:id').delete(authGuard, controller.remove)
 
-
+router.route('/:musicId/:albumId').post(authGuard, roleGuard("ARTIST"), controller.addMusic)
 
 module.exports = router;
