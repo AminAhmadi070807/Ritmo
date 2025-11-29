@@ -48,7 +48,10 @@ module.exports.create = async (req, res, next) => {
             return response(res, 400, "music valid format (mpeg, wav, x-wav, ogg, opus, mp4, x-m4a, flac) && poster valid format (jpeg, jpg, png, webp, gif, svg+xml)")
         }
 
-        const isExistAlbum = await albumModel.findById(album).lean()
+        let isExistAlbum
+
+        if (album) isExistAlbum = await albumModel.findById(album).lean()
+        else isExistAlbum = true
 
         if (!isExistAlbum) {
             await deleteFiles(['BackEnd/public' + `/uploads/posters/${poster[0].filename}`, 'BackEnd/public' + `/uploads/musics/${music[0].filename}`])
@@ -64,7 +67,7 @@ module.exports.create = async (req, res, next) => {
 
         await musicModel.create({
             tags: tags.split(","),
-            album,
+            album: album,
             artist,
             genre,
             title,

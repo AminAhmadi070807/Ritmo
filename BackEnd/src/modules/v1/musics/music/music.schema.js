@@ -9,7 +9,7 @@ module.exports = Joi.object().keys({
         if (value === 'none') return value
         if (!isValidObjectId(value)) return helpers.message("category id is not correct")
         return value
-    }).required(),
+    }).optional(),
     artist: Joi.string().required(),
     genre: Joi.string().custom((value, helpers) => {
         if (!isValidObjectId(value)) return helpers.message("category id is not correct")

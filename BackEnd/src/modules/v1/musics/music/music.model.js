@@ -32,6 +32,7 @@ const schema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: false,
         ref: 'MusicAlbum',
+        default: null,
     },
     tags: {
         type: [String],
