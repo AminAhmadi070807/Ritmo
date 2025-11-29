@@ -3,6 +3,7 @@
 const playlistModel = require('./playlist.model')
 const response = require('../../../../helpers/response.helper')
 const deleteFile = require("../../../../utils/delete.file");
+const userModel = require("../../users/user.model");
 
 const fileFormat = ["image/jpeg", "image/jpg", "image/png", "image/webp", "image/gif", "image/svg+xml"]
 
@@ -39,6 +40,17 @@ module.exports.create = async (req, res, next) => {
         })
 
         return response(res, 201, "created new playlist successfully.")
+    }
+    catch (error) {
+        next(error)
+    }
+}
+
+module.exports.getAll = async (req, res, next) => {
+    try {
+        const playlist = await playlistModel.find({}, "title cover").sort({ views: -1 }).limit(20).lean()
+
+        return response(res, 200, null, { playlist })
     }
     catch (error) {
         next(error)
