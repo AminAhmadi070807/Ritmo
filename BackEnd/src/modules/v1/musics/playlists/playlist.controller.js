@@ -3,7 +3,6 @@
 const playlistModel = require('./playlist.model')
 const response = require('../../../../helpers/response.helper')
 const deleteFile = require("../../../../utils/delete.file");
-const userModel = require("../../users/user.model");
 
 const fileFormat = ["image/jpeg", "image/jpg", "image/png", "image/webp", "image/gif", "image/svg+xml"]
 
@@ -24,12 +23,12 @@ module.exports.create = async (req, res, next) => {
 
         const isExistAlbum = await playlistModel.findOne({ title: req.body.title.trim(), user: user.uuid.toString() }).lean()
 
-        if (isExistAlbum) return response(res, 409, 'Album with title already exists.')
+        if (isExistAlbum) return response(res, 409, 'playlists with title already exists.')
 
         const cover = req.file
 
         if (!fileFormat.includes(cover.mimetype)) {
-            await deleteFiles(['BackEnd/public' + `/uploads/albums/${cover.filename}`])
+            await deleteFiles(['BackEnd/public' + `/uploads/playlists/${cover.filename}`])
             return response(res, 400, "valid format (image/jpeg, image/jpg, image/png, image/webp, image/gif, image/svg+xml )")
         }
 
