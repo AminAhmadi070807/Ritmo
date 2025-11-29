@@ -55,3 +55,5 @@ module.exports.getAll = async (req, res, next) => {
         next(error)
     }
 }
+
+module.exports.remove = async (req, res, next) => {}
