@@ -1,6 +1,7 @@
 "use strict"
 
 const albumModel = require('./album.model')
+const musicModel = require('../music/music.model')
 const userModel = require('../../users/user.model')
 const response = require('../../../../helpers/response.helper')
 const deleteFile = require("../../../../utils/delete.file");
@@ -86,6 +87,39 @@ module.exports.remove = async (req, res, next) => {
         await deleteFiles(['BackEnd/public' + album.cover])
 
         return response(res, 200, "deleted album successfully.")
+    }
+    catch (error) {
+        next(error)
+    }
+}
+
+module.exports.addMusic = async (req, res, next) => {
+    try {
+        const user = req.user;
+
+        const { musicId, albumId } = req.params
+
+        if (!isValidObjectId(musicId) || !isValidObjectId(albumId)) return response(res, 400, "musicId or albumId is not correct.")
+
+        const isExistMusic = await musicModel.findById(musicId).lean()
+
+        if (!isExistMusic) return response(res, 404, 'music not found. or has already been removed.')
+
+        const isExistAlbum = await albumModel.findById(albumId)
+
+        if (!isExistAlbum) return response(res, 404, "album not found. or has already been removed.")
+
+        if (isExistAlbum.artist.toString() !== isExistMusic.user.toString()) return response(res, 403, "you do not access to this album and music")
+
+        if (user.uuid !== isExistAlbum.artist.toString() || user.uuid !== isExistMusic.user.toString()) return response(res, 403, "you do not access to this api")
+
+        await albumModel.findByIdAndUpdate(albumId, {
+            $push: {
+                musics: musicId,
+            }
+        })
+
+        return response(res, 200, "add music to album successfully.")
     }
     catch (error) {
         next(error)

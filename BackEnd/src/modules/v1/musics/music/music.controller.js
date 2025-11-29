@@ -29,6 +29,10 @@ module.exports.create = async (req, res, next) => {
 
         const { tags, album, artist, genre, title} = req.body;
 
+        if (!isValidObjectId(genre)) return response(res, 400, "genre is not correct.")
+
+        if (album !== undefined && !isValidObjectId(album)) return response(res, 400, "album is not correct.")
+
         const { music, poster } = req.files;
 
         if (!req.files || (!music && !poster)) return response(res, 400, "music and poster is required.")
@@ -65,7 +69,7 @@ module.exports.create = async (req, res, next) => {
             return response(res, 400, "album is not existed.")
         }
 
-        await musicModel.create({
+        const musicResult = await musicModel.create({
             tags: tags.split(","),
             album: album,
             artist,
@@ -76,10 +80,16 @@ module.exports.create = async (req, res, next) => {
             poster: `/uploads/posters/${poster[0].filename}`,
         })
 
+        if (album) {
+            const result = await fetch(`${process.env.HREF}/api/v1/musics/albums/${musicResult._id}/${album}`)
+            const data = await result.json()
+
+            if (result.status !== 200) return response(result.status, result.status, data.message)
+        }
+
         return response(res, 201, "created new music successfully.")
     }
     catch (error) {
-        console.log(error)
         await deleteFiles(['BackEnd/public' + `/uploads/posters/${req.files.poster[0].filename}`, 'BackEnd/public' + `/uploads/musics/${req.files.music[0].filename}`])
         next(error)
     }
