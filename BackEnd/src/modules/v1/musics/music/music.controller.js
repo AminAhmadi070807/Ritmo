@@ -81,10 +81,11 @@ module.exports.create = async (req, res, next) => {
         })
 
         if (album) {
-            const result = await fetch(`${process.env.HREF}/api/v1/musics/albums/${musicResult._id}/${album}`)
-            const data = await result.json()
-
-            if (result.status !== 200) return response(result.status, result.status, data.message)
+            await albumModel.findByIdAndUpdate(isExistAlbum._id, {
+                $push: {
+                    musics: musicResult._id,
+                }
+            })
         }
 
         return response(res, 201, "created new music successfully.")
