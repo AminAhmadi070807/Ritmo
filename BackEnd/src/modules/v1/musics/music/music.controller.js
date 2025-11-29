@@ -80,13 +80,7 @@ module.exports.create = async (req, res, next) => {
             poster: `/uploads/posters/${poster[0].filename}`,
         })
 
-        if (album) {
-            await albumModel.findByIdAndUpdate(isExistAlbum._id, {
-                $push: {
-                    musics: musicResult._id,
-                }
-            })
-        }
+        if (album) await albumModel.findByIdAndUpdate(isExistAlbum._id, { $push: { musics: musicResult._id, } })
 
         return response(res, 201, "created new music successfully.")
     }
