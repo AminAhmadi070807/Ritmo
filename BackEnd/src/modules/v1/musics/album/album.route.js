@@ -20,6 +20,8 @@ router.route('/')
 
 router.route('/trending').get(controller.trending)
 
+router.route('/newAlbum').get(controller.trending)
+
 router.route('/:id').delete(authGuard, controller.remove)
 
 router.route('/:musicId/:albumId').post(authGuard, roleGuard("ARTIST"), controller.addMusic)
