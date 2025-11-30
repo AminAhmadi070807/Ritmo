@@ -130,7 +130,17 @@ module.exports.trending = async (req, res, next) => {
     try {
         const albums = await albumModel.find({}).sort({ views: -1 }).limit(20).lean()
 
-        return response(res, 200, null, { albums })
+        const albumsArray = []
+        for (const album of albums) {
+            const user = await userModel.findOne({ uuid: album.artist, raw: true })
+
+            albumsArray.push({
+                ...album,
+                artist: user.fullName
+            })
+        }
+
+        return response(res, 200, null, { albums: albumsArray })
     }
     catch (error) {
         next(error)
