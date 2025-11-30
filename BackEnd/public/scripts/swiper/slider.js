@@ -53,7 +53,7 @@ new Swiper(".music-video-swiper", {
     },
 });
 
-// album
+// albums
 new Swiper(".album-swiper", {
     slidesPerView: "auto",
     spaceBetween: 16,
@@ -100,5 +100,49 @@ new Swiper(".Category-swiper", {
         nextEl: ".next-Category",
         prevEl: ".prev-Category",
         clickable: true,
+    },
+});
+
+new Swiper(".trending-album-swiper", {
+    slidesPerView: "auto",
+    spaceBetween: 20,
+    grabCursor: true,
+    speed: 3000,
+    centeredSlides : true,
+    breakpoints : {
+        500 : {
+            centeredSlides : false,
+        },
+    },
+    autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+    },
+    navigation: {
+        nextEl: ".next-trending-album",
+        prevEl: ".prev-trending-album",
+        clickable: false,
+    },
+});
+
+new Swiper(".new-album-swiper", {
+    slidesPerView: "auto",
+    spaceBetween: 20,
+    grabCursor: true,
+    speed: 3000,
+    centeredSlides : true,
+    breakpoints : {
+        500 : {
+            centeredSlides : false,
+        },
+    },
+    autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+    },
+    navigation: {
+        nextEl: ".next-Recently-Published-Album",
+        prevEl: ".prev-Recently-Published-Album",
+        clickable: false,
     },
 });

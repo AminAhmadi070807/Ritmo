@@ -125,3 +125,14 @@ module.exports.addMusic = async (req, res, next) => {
         next(error)
     }
 }
+
+module.exports.trending = async (req, res, next) => {
+    try {
+        const albums = await albumModel.find({}).sort({ views: -1 }).limit(20).lean()
+
+        return response(res, 200, null, { albums })
+    }
+    catch (error) {
+        next(error)
+    }
+}
