@@ -50,7 +50,7 @@ module.exports.create = async (req, res, next) => {
 
 module.exports.getAll = async (req, res, next) => {
     try {
-        const albums = await albumModel.find({}).sort({ views: -1 }).limit(20).lean()
+        const albums = await albumModel.find({}).sort({ _id: -1 }).lean()
 
         const albumsArray = []
         for (const album of albums) {
