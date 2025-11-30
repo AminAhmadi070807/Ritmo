@@ -146,3 +146,24 @@ module.exports.trending = async (req, res, next) => {
         next(error)
     }
 }
+
+module.exports.newAlbum = async (req, res, next) => {
+    try {
+        const albums = await albumModel.find({}).sort({ _id: -1 }).limit(20).lean()
+
+        const albumsArray = []
+        for (const album of albums) {
+            const user = await userModel.findOne({ uuid: album.artist, raw: true })
+
+            albumsArray.push({
+                ...album,
+                artist: user.fullName
+            })
+        }
+
+        return response(res, 200, null, { albums: albumsArray })
+    }
+    catch (error) {
+        next(error)
+    }
+}
