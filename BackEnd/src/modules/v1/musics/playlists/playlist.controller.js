@@ -48,7 +48,9 @@ module.exports.create = async (req, res, next) => {
 
 module.exports.getAll = async (req, res, next) => {
     try {
-        const playlist = await playlistModel.find({}, "title cover").sort({ views: -1 }).limit(20).lean()
+        const { page = 1, limit = 20 } = req.query
+
+        const playlist = await playlistModel.find({}, "title cover").sort({ views: -1 }).limit(+page * +limit).lean()
 
         return response(res, 200, null, { playlist })
     }
