@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="bg-background w-screen overflow-x-hidden">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="../../../css/tailwind.css" />
+    <link
+      rel="shortcut icon"
+      href="../../../image/svg/Ritmo.svg"
+      type="image/x-icon"
+    />
+    <title>Ritmo</title>
+  </head>
+
+  <body class="overflow-x-hidden text-white select-none transition-all w-screen mx-auto max-w-[1688px]">
+    <!-- all icons -->
+    <svg class="hidden">
+      <!-- heart -->
+      <symbol
+        id="heart"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="size-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+        />
+      </symbol>
+
+      <!-- chevron-down -->
+      <symbol
+        id="chevron-down"
+        viewBox="0 0 10 6"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M0.833008 1.33337L4.99967 4.66671L9.16634 1.33337"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </symbol>
+
+      <!-- chevron-right -->
+      <symbol
+        id="chevron-right"
+        viewBox="0 0 4 7"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M0.5 6.41669L3.5 3.50002L0.5 0.583354"
+          stroke="white"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </symbol>
+
+      <!-- chevron-double-down -->
+      <symbol
+        id="chevron-double-down"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5"
+        />
+      </symbol>
+
+      <!-- grid-02 -->
+      <symbol
+        id="grid-02"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        class="bi bi-grid"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z"
+        />
+      </symbol>
+
+      <!-- add-circle -->
+      <symbol
+        id="add-circle"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+        />
+      </symbol>
+
+      <!-- three-pin -->
+      <symbol
+        id="three-pin"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="size-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+        />
+      </symbol>
+
+      <!-- download-01 -->
+      <symbol
+        id="download-01"
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M6.66602 9.16671L9.99932 12.5M9.99932 12.5L13.3327 9.16671M9.99932 12.5L9.99932 0.833374"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M15.2051 6.66663C16.1201 7.80796 16.6673 9.25671 16.6673 10.8333C16.6673 14.5152 13.6825 17.5 10.0007 17.5C6.31875 17.5 3.33398 14.5152 3.33398 10.8333C3.33398 9.25671 3.88125 7.80796 4.79617 6.66663"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+        />
+      </symbol>
+
+      <!-- menu-queue -->
+      <symbol
+        id="menu-queue"
+        viewBox="0 0 20 19"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 3.00003H19M12 8.00003H19M1 13H19M1 18H19M3.89443 8.55282L7.42229 6.78889C8.89639 6.05184 8.89639 3.94823 7.42229 3.21118L3.89443 1.44725C2.56463 0.782346 1 1.74934 1 3.2361V6.76396C1 8.25073 2.56462 9.21772 3.89443 8.55282Z"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </symbol>
+    </svg>
+
+    <custom-navbar location="playlist"></custom-navbar>
+
+    <main
+      class="main-site px-5 lg:px-8 lg:mt-40 mt-24 ms-auto h-auto max-w-[1600px] z-10"
+    >
+      <h3 class="font-Pelak_Bold text-xl">پلی لیست شخصی</h3>
+
+      <section
+        class="relative playlist-Header flex items-center justify-center mt-8 w-full h-75 border border-Neutral-700 rounded-lg overflow-hidden -z-10"
+      >
+        <svg
+          class="absolute inset-0 m-auto size-50 sm:size-100 text-Neutral-800 opacity-30"
+        >
+          <use href="#logo"></use>
+        </svg>
+        <div class="flex flex-col gap-y-3 items-center justify-center z-50">
+          <h3 class="font-Pelak_Medium text-lg">ایجاد پلی لیست شخصی</h3>
+          <svg class="size-6"><use href="#add-circle"></use></svg>
+        </div>
+      </section>
+
+      <!-- all playlist -->
+      <section class="mt-18">
+        <!-- head -->
+        <div class="flex items-center gap-x-2.5 justify-between mb-8">
+          <h3 class="font-Pelak_Bold text-md md:text-xl text-nowrap">
+            پلی لیست
+          </h3>
+          <div class="flex items-center gap-x-3 sm:gap-x-4.5 md:gap-x-6">
+            <div class="flex items-center gap-x-2 sm:gap-x-4">
+              <span id="menu-app" class="text-Primary-500 cursor-pointer">
+                <svg class="size-8"><use href="#grid-02"></use></svg>
+              </span>
+              <span id="menu-line" class="cursor-pointer">
+                <svg
+                  width="32"
+                  height="32"
+                  viewBox="0 0 32 32"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5.33203 6.66663H26.6654M5.33203 16H26.6654M5.33203 25.3333H26.6654"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </span>
+            </div>
+            <div
+              class="flex gap-x-1 sm:gap-x-2 px-2 sm:px-4 py-2.5 cursor-pointer items-center bg-Neutral-900 border border-Neutral-100 rounded-lg"
+            >
+              <cite class="font-Pelak_Medium text-xs md:text-base not-italic"
+                >محبـوب‌‌ترین</cite
+              >
+              <svg class="size-5"><use href="#chevron-down"></use></svg>
+            </div>
+          </div>
+        </div>
+        <!-- body -->
+        <div
+          id="all-playlist"
+          class="flex flex-wrap items-center justify-center gap-x-4 gap-y-6"
+        ></div>
+
+        <div
+          id="add-video-music-all"
+          class="items-center justify-center size-10 border border-Neutral-200 rounded-full mt-19 mx-auto cursor-pointer hidden md:flex"
+        >
+          <svg class="transform transition-transform dura30 size-5">
+            <use href="#chevron-double-down"></use>
+          </svg>
+        </div>
+      </section>
+    </main>
+
+    <custom-footer></custom-footer>
+
+    <script type="module" src="./playlist.js"></script>
+  </body>
+</html>

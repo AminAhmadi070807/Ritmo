@@ -58,7 +58,7 @@ const addAlbumBtn = document.getElementById("add-album-btn");
 
 ;(async () => {
     try {
-        const response = await fetch('/api/v1/musics/albums?page=1&limit=5&status=All')
+        const response = await fetch('/api/v1/musics/albums?page=1&limit=20&status=All')
         const data = await response.json();
 
         let albums = data.data.albums
@@ -77,7 +77,7 @@ const addAlbumBtn = document.getElementById("add-album-btn");
             );
         })
 
-        if (albums.length < 5) addAlbumBtn.classList.add('hidden')
+        if (albums.length < 20) addAlbumBtn.classList.add('hidden')
     }
     catch (error) {
         console.log(error);

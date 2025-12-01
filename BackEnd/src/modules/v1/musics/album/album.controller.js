@@ -115,8 +115,6 @@ module.exports.albums = async (req, res, next) => {
         else if (status === "All") albums = await albumModel.find({}).sort({ _id: -1 }).limit(+page * +limit).lean()
         else return response(res, 400, "status must be (trending, latest, All).")
 
-        console.log(albums)
-
         const albumsArray = []
 
         for (const album of albums) {
