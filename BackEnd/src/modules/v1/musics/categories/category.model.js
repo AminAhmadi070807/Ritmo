@@ -21,5 +21,9 @@ module.exports = database.define("MusicCategory", {
     icon: {
         type: DataTypes.STRING,
         allowNull: false,
+    },
+    description: {
+        type: DataTypes.STRING,
+        allowNull: false,
     }
 }, { timestamps: true })
