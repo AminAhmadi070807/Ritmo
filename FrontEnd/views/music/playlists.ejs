@@ -66,19 +66,11 @@
 
   <%- include('../partials/header.music.ejs') %>
 
-    <main
-      class="main-site px-5 lg:px-8 lg:mt-40 mt-24 ms-auto h-auto max-w-[1600px] z-10"
-    >
+    <main class="main-site px-5 lg:px-8 lg:mt-40 mt-24 ms-auto h-auto max-w-[1600px] z-10">
       <h3 class="font-Pelak_Bold text-xl">پلی لیست شخصی</h3>
 
-      <section
-        class="relative playlist-Header flex items-center justify-center mt-8 w-full h-75 border border-Neutral-700 rounded-lg overflow-hidden -z-10"
-      >
-        <svg
-          class="absolute inset-0 m-auto size-50 sm:size-100 text-Neutral-800 opacity-30"
-        >
-          <use href="#logo"></use>
-        </svg>
+      <section class="relative playlist-Header flex items-center justify-center mt-8 w-full h-75 border border-Neutral-700 rounded-lg overflow-hidden -z-10">
+        <svg class="absolute inset-0 m-auto size-50 sm:size-100 text-Neutral-800 opacity-30"><use href="#logo"></use></svg>
         <div class="flex flex-col gap-y-3 items-center justify-center z-50">
           <h3 class="font-Pelak_Medium text-lg">ایجاد پلی لیست شخصی</h3>
           <svg class="size-6"><use href="#add-circle"></use></svg>
@@ -89,54 +81,19 @@
       <section class="mt-18">
         <!-- head -->
         <div class="flex items-center gap-x-2.5 justify-between mb-8">
-          <h3 class="font-Pelak_Bold text-md md:text-xl text-nowrap">
-            پلی لیست
-          </h3>
+          <h3 class="font-Pelak_Bold text-md md:text-xl text-nowrap">پلی لیست</h3>
           <div class="flex items-center gap-x-3 sm:gap-x-4.5 md:gap-x-6">
-            <div class="flex items-center gap-x-2 sm:gap-x-4">
-              <span id="menu-app" class="text-Primary-500 cursor-pointer">
-                <svg class="size-8"><use href="#grid-02"></use></svg>
-              </span>
-              <span id="menu-line" class="cursor-pointer">
-                <svg
-                  width="32"
-                  height="32"
-                  viewBox="0 0 32 32"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M5.33203 6.66663H26.6654M5.33203 16H26.6654M5.33203 25.3333H26.6654"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                  />
-                </svg>
-              </span>
-            </div>
-            <div
-              class="flex gap-x-1 sm:gap-x-2 px-2 sm:px-4 py-2.5 cursor-pointer items-center bg-Neutral-900 border border-Neutral-100 rounded-lg"
-            >
-              <cite class="font-Pelak_Medium text-xs md:text-base not-italic"
-                >محبـوب‌‌ترین</cite
-              >
+            <div class="flex gap-x-1 sm:gap-x-2 px-2 sm:px-4 py-2.5 cursor-pointer items-center bg-Neutral-900 border border-Neutral-100 rounded-lg">
+              <cite class="font-Pelak_Medium text-xs md:text-base not-italic">محبـوب‌‌ترین</cite>
               <svg class="size-5"><use href="#chevron-down"></use></svg>
             </div>
           </div>
         </div>
         <!-- body -->
-        <div
-          id="all-playlist"
-          class="flex flex-wrap items-center justify-center gap-x-4 gap-y-6"
-        ></div>
+        <div id="all-playlist" class="flex flex-wrap items-center justify-center gap-x-4 gap-y-6"></div>
 
-        <div
-          id="add-video-music-all"
-          class="items-center justify-center size-10 border border-Neutral-200 rounded-full mt-19 mx-auto cursor-pointer hidden md:flex"
-        >
-          <svg class="transform transition-transform dura30 size-5">
-            <use href="#chevron-double-down"></use>
-          </svg>
+        <div id="add-video-music-all" class="items-center justify-center size-10 border border-Neutral-200 rounded-full mt-19 mx-auto cursor-pointer hidden md:flex">
+          <svg class="transform transition-transform dura30 size-5"><use href="#chevron-double-down"></use></svg>
         </div>
       </section>
     </main>
