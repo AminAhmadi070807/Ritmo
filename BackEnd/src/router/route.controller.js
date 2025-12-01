@@ -4,6 +4,8 @@ module.exports.music = (req, res) => res.render('music/index.ejs')
 
 module.exports.musicCategory = async (req, res) => res.render('music/categories.ejs')
 
+module.exports.musicCategoryDetails = async (req, res) => res.render('music/categoryDetails.ejs')
+
 module.exports.musicAlbums = async (req, res) => res.render('music/albums.ejs')
 
 module.exports.musicPlaylists = async (req, res) => res.render('music/playlists.ejs')

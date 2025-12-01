@@ -9,6 +9,7 @@ const validator = require('../middlewares/validate.middleware')
 
 router.get('/', controller.music)
 router.get('/musics/categories', controller.musicCategory)
+router.get('/musics/categories/details', controller.musicCategoryDetails)
 router.get('/musics/albums', controller.musicAlbums)
 router.get('/musics/playlist', controller.musicPlaylists)
 router.get('/404', controller.notFound)
