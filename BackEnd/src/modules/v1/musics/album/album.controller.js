@@ -48,27 +48,6 @@ module.exports.create = async (req, res, next) => {
     }
 }
 
-module.exports.getAll = async (req, res, next) => {
-    try {
-        const albums = await albumModel.find({}).sort({ _id: -1 }).lean()
-
-        const albumsArray = []
-        for (const album of albums) {
-            const user = await userModel.findOne({ uuid: album.artist, raw: true })
-
-            albumsArray.push({
-                ...album,
-                artist: user.fullName
-            })
-        }
-
-        return response(res, 200, null, { albums: albumsArray })
-    }
-    catch (error) {
-        next(error)
-    }
-}
-
 module.exports.remove = async (req, res, next) => {
     try {
         const user = req.user;
@@ -126,32 +105,18 @@ module.exports.addMusic = async (req, res, next) => {
     }
 }
 
-module.exports.trending = async (req, res, next) => {
+module.exports.albums = async (req, res, next) => {
     try {
-        const albums = await albumModel.find({}).sort({ views: -1 }).limit(20).lean()
+        const { page = 1, limit = 20, status = "trending" } = req.query;
+
+        let albums
+        if (status === 'trending') albums = await albumModel.find({}).sort({ views: -1 }).limit(+page * +limit).lean()
+        else if (status === 'latest') albums = await albumModel.find({}).sort({ _id: -1 }).limit(+page * +limit).lean()
+        else if (status === "All") albums = await albumModel.find({}).sort({ _id: -1 }).lean()
+        else return response(res, 400, "status must be (trending, latest, All).")
 
         const albumsArray = []
-        for (const album of albums) {
-            const user = await userModel.findOne({ uuid: album.artist, raw: true })
 
-            albumsArray.push({
-                ...album,
-                artist: user.fullName
-            })
-        }
-
-        return response(res, 200, null, { albums: albumsArray })
-    }
-    catch (error) {
-        next(error)
-    }
-}
-
-module.exports.newAlbum = async (req, res, next) => {
-    try {
-        const albums = await albumModel.find({}).sort({ _id: -1 }).limit(20).lean()
-
-        const albumsArray = []
         for (const album of albums) {
             const user = await userModel.findOne({ uuid: album.artist, raw: true })
 
