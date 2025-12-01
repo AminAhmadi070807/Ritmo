@@ -16,11 +16,7 @@ const roleGuard = require('../../../../middlewares/guard/role.guard')
 
 router.route('/')
     .post(authGuard, roleGuard("ARTIST"), upload.single("cover"), validator.createAlbumValidator, controller.create)
-    .get(controller.getAll)
-
-router.route('/trending').get(controller.trending)
-
-router.route('/newAlbum').get(controller.trending)
+    .get(controller.albums)
 
 router.route('/:id').delete(authGuard, controller.remove)
 

@@ -6,7 +6,7 @@ const allAlbumContainer = document.getElementById("all-album-container");
 
 ;(async () => {
     try {
-        const response = await fetch('/api/v1/musics/albums/trending')
+        const response = await fetch('/api/v1/musics/albums/?page=1&limit=20&status=trending')
         const data = await response.json();
 
         data.data.albums.forEach(album => {
@@ -30,7 +30,7 @@ const allAlbumContainer = document.getElementById("all-album-container");
 
 ;(async () => {
     try {
-        const response = await fetch('/api/v1/musics/albums/newAlbum')
+        const response = await fetch('/api/v1/musics/albums/?page=1&limit=20&status=latest')
         const data = await response.json();
 
         data.data.albums.forEach(album => {
@@ -57,7 +57,7 @@ const allAlbumContainer = document.getElementById("all-album-container");
 
 ;(async () => {
     try {
-        const response = await fetch('/api/v1/musics/albums/')
+        const response = await fetch('/api/v1/musics/albums/?page=1&limit=20&status=All')
         const data = await response.json();
 
         data.data.albums.forEach(album => {
