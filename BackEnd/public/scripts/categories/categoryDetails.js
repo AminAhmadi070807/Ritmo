@@ -94,15 +94,6 @@ const playlistInformation = [
     { id: 25, title: "آشپزی", src: "../../../image/playlist file/25.png" },
 ];
 
-const categoryParamsInfo = {
-    title: "رپ",
-    bg: "#D7840194",
-    src: "../../../image/Categories/1.png",
-    paragraph: `سبک موسیقی عامه پسند است و این سبک معمولا دارای ملودی‌های ساده و به یادماندنی٬ ریتم متناسب با رقص٬ و ترانه‌های مرتبط با موضوعات عمومی مانند عشق٬ زندگی روزمره و احساسات انسانی است.`,
-};
-
-// category head
-
 
 // create trending singer element
 trendingSingerInfo.forEach((el) => {
@@ -210,20 +201,5 @@ trendingSingerInfo.forEach((el) => {
       </div>
       
       `
-    );
-});
-
-TrendingSungInfo.forEach((el) => {
-    document.getElementById('all-song').insertAdjacentHTML(
-        "beforeend",
-        `
-      <a href="../Album/AlbumsDetail.html?title=${el.title}">
-        <div class="w-50 h-[276px] cursor-pointer">
-          <img src="${el.src}" alt="${el.title + "From" + el.subtitle}" />
-          <h3 class="font-Pelak_Bold text-center mt-2">${el.title}</h3>
-          <cite class="font-Pelak_Regular not-italic text-center mt-2 text-sm text-Neutral-300 block">${el.subtitle}</cite>
-        </div>
-      </a>
-    `
     );
 });

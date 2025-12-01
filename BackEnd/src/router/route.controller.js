@@ -1,6 +1,7 @@
 "use strict"
 
 const categoriesModel = require('../modules/v1/musics/genre/genre.model')
+const musicModel = require('../modules/v1/musics/music/music.model')
 const {isValidObjectId} = require("mongoose");
 const response = require('../helpers/response.helper')
 
@@ -18,8 +19,13 @@ module.exports.musicCategoryDetails = async (req, res, next) => {
 
         if (!category) return response(res, 404, 'category not found. or has already been removed.')
 
+        const musics = await musicModel.find({ genre: id }).lean()
+
+        console.log(musics)
+
         return res.render('music/categoryDetails.ejs', {
             category,
+            musics
         })
     }
     catch (err) {

@@ -126,7 +126,17 @@
           <h3 class="font-Pelak_Bold text-xl">تمامی آهنگ‌ها از این سبک</h3>
         </div>
         <!-- body -->
-        <div id="all-song" class="flex flex-wrap items-center justify-center gap-x-5 gap-y-6"></div>
+        <div id="all-song" class="flex flex-wrap items-center justify-center gap-5">
+            <% musics.forEach(music => { %>
+                <a href="/albums/details/<%= music._id %>">
+                    <div class="w-50 h-auto object-cover object-center cursor-pointer">
+                        <img src="<%= music.poster %>" alt="<%= music.title %> from <%= music.artist %>" class="h-[272px] min-h-[272px] max-h-[272px] w-full rounded-2xl object-cover object-center" />
+                        <h3 class="font-Pelak_Bold text-center mt-2"><%= music.title %></h3>
+                        <cite class="font-Pelak_Regular not-italic text-center mt-2 text-sm text-Neutral-300 block"><%= music.title %></cite>
+                    </div>
+                </a>
+            <% }) %>
+        </div>
 
         <div id="add-song" class="flex items-center justify-center size-10 border border-Neutral-200 rounded-full mt-19 mx-auto cursor-pointer" >
           <svg class="size-5"><use href="#chevron-double-down"></use></svg>
