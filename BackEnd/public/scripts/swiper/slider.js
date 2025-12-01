@@ -146,3 +146,78 @@ new Swiper(".new-album-swiper", {
         clickable: false,
     },
 });
+
+// trending singer
+new Swiper(".trending-singer-swiper", {
+    slidesPerView: "auto",
+    spaceBetween: 16,
+    speed: 3000,
+    autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+    },
+    navigation: {
+        nextEl: ".next-trending-singer",
+        prevEl: ".prev-trending-singer",
+        clickable: true,
+    },
+});
+// pop news
+new Swiper(".pop-news", {
+    slidesPerView: "auto",
+    spaceBetween: 16,
+    speed: 3000,
+    // auto play
+    autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+    },
+    navigation: {
+        nextEl: ".next-album",
+        prevEl: ".prev-album",
+        clickable: true,
+    },
+});
+// trending sung
+new Swiper(".category-trending-sung-swiper", {
+    slidesPerView: "auto",
+    spaceBetween: 16,
+    speed: 3000,
+    // auto play
+    autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+    },
+    navigation: {
+        nextEl: ".next-trending-sung",
+        prevEl: ".prev-trending-sung",
+        clickable: true,
+    },
+});
+// play list
+new Swiper(".category-playlist-swiper", {
+    slidesPerView: "auto",
+    spaceBetween: 16,
+    speed: 3000,
+    // auto play
+    autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+    },
+    navigation: {
+        nextEl: ".next-playlist",
+        prevEl: ".prev-playlist",
+        clickable: true,
+    },
+});
+// all artist of this style
+new Swiper(".category-all-artist-swiper", {
+    slidesPerView: "auto",
+    spaceBetween: 16,
+    speed: 3000,
+    // auto play
+    autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+    },
+});
