@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="bg-background w-screen overflow-x-hidden">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+      <link rel="stylesheet" href="/styles/swiper.css" />
+      <link rel="stylesheet" href="/styles/tailwind.css" />
+      <link rel="icon" href="/logo/icon.png">
+    <title>Ritmo</title>
+  </head>
+
+  <body
+    class="w-screen overflow-x-hidden text-white select-none max-w-[1688px] mx-auto"
+  >
+    <!-- all icons -->
+    <svg class="hidden">
+      <!-- chevron-double-down -->
+      <symbol
+        id="chevron-double-down"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5"
+        />
+      </symbol>
+
+      <!-- chevron-right -->
+      <symbol
+        id="chevron-right"
+        viewBox="0 0 4 7"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M0.5 6.41669L3.5 3.50002L0.5 0.583354"
+          stroke="white"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </symbol>
+
+      <!-- heart -->
+      <symbol
+        id="heart"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="size-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+        />
+      </symbol>
+
+      <!-- shuffle -->
+      <symbol
+        id="shuffle"
+        viewBox="0 0 24 25"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19.6655 3.5L21.5688 5.43934C22.1437 6.02513 22.1437 6.97487 21.5688 7.56066L19.6655 9.5M13.777 6.5H21.1376M10.8328 18.5H2M19.6655 21.5L21.5688 19.5607C22.1437 18.9749 22.1437 18.0251 21.5688 17.4393L19.6655 15.5M21.1376 18.5H18.8884C16.658 18.5 14.6191 17.216 13.6216 15.1833L10.9882 9.81672C9.99071 7.78401 7.95174 6.5 5.72134 6.5H2"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+        ></path>
+      </symbol>
+    </svg>
+
+    <%- include('../partials/svg.ejs') %>
+
+    <%- include('../partials/header.music.ejs') %>
+
+    <main class="main-site mt-18 md:mt-24 ms-auto h-auto max-w-[1600px]">
+      <!-- category header -->
+      <section id="header-category" class="relative h-[650px] md:h-100 w-full"></section>
+
+      <!-- trending singer -->
+      <section class="mt-14 px-5 lg:px-8 h-auto">
+        <!-- head -->
+        <div class="flex items-center justify-between w-full mb-8">
+          <h3 class="font-Pelak_Bold text-base md:text-xl">خواننده ترند</h3>
+          <div class="flex items-center justify-between w-16 sm:w-20">
+            <span
+              class="prev-trending-singer flex items-center justify-center cursor-pointer size-5 sm:size-8"
+            >
+              <svg class="size-3"><use href="#chevron-right"></use></svg>
+            </span>
+            <span
+              class="next-trending-singer flex items-center justify-center cursor-pointer size-5 sm:size-8"
+            >
+              <svg class="size-3 transform rotate-180">
+                <use href="#chevron-right"></use>
+              </svg>
+            </span>
+          </div>
+        </div>
+        <!-- body -->
+        <div class="swiper trending-singer-swiper">
+          <div id="trending-singer-container" class="swiper-wrapper"></div>
+        </div>
+      </section>
+
+      <!-- news-->
+      <section class="mt-14 px-5 lg:px-8 h-auto">
+        <!-- head -->
+        <div class="flex items-center justify-between w-full mb-8">
+          <h3 id="new-artist" class="font-Pelak_Bold text-base md:text-xl">
+            تازه‌های
+          </h3>
+          <div class="flex items-center justify-between w-16 sm:w-20">
+            <span
+              class="prev-album flex items-center justify-center cursor-pointer size-5 sm:size-8"
+            >
+              <svg class="size-3"><use href="#chevron-right"></use></svg>
+            </span>
+            <span
+              class="next-album flex items-center justify-center cursor-pointer size-5 sm:size-8"
+            >
+              <svg class="size-3 transform rotate-180">
+                <use href="#chevron-right"></use>
+              </svg>
+            </span>
+          </div>
+        </div>
+        <!-- body -->
+        <div class="swiper pop-news">
+          <div id="pop-news-container" class="swiper-wrapper"></div>
+        </div>
+      </section>
+
+      <!-- trending sung -->
+      <section class="mt-14 px-5 lg:px-8 h-auto">
+        <!-- head -->
+        <div class="flex items-center justify-between w-full mb-8">
+          <h3 class="font-Pelak_Bold text-base md:text-xl">آهنگ‌های ترند</h3>
+          <div class="flex items-center justify-between w-16 sm:w-20">
+            <span
+              class="prev-trending-sung flex items-center justify-center cursor-pointer size-5 sm:size-8"
+            >
+              <svg class="size-3"><use href="#chevron-right"></use></svg>
+            </span>
+            <span
+              class="next-trending-sung flex items-center justify-center cursor-pointer size-5 sm:size-8"
+            >
+              <svg class="size-3 transform rotate-180">
+                <use href="#chevron-right"></use>
+              </svg>
+            </span>
+          </div>
+        </div>
+        <!-- body -->
+        <div class="swiper category-trending-sung-swiper">
+          <div
+            id="category-trending-sung-container"
+            class="swiper-wrapper"
+          ></div>
+        </div>
+      </section>
+
+      <!-- selected playlist -->
+      <section class="mt-14 px-5 lg:px-8 h-auto">
+        <!-- head -->
+        <div class="flex items-center justify-between w-full mb-8">
+          <h3 class="font-Pelak_Bold text-base md:text-xl">پلی لیست منتخب</h3>
+          <div class="flex items-center justify-between w-16 sm:w-20">
+            <span
+              class="prev-playlist flex items-center justify-center cursor-pointer size-5 sm:size-8"
+            >
+              <svg class="size-3"><use href="#chevron-right"></use></svg>
+            </span>
+            <span
+              class="next-playlist flex items-center justify-center cursor-pointer size-5 sm:size-8"
+            >
+              <svg class="size-3 transform rotate-180">
+                <use href="#chevron-right"></use>
+              </svg>
+            </span>
+          </div>
+        </div>
+        <!-- body -->
+        <div class="swiper category-playlist-swiper">
+          <div id="all-playlist" class="swiper-wrapper"></div>
+        </div>
+      </section>
+
+      <!-- all artist of this style -->
+      <section class="mt-14 px-5 lg:px-8 h-auto">
+        <!-- head -->
+        <div class="flex items-center justify-between w-full mb-8">
+          <h3 class="font-Pelak_Bold text-base md:text-xl">
+            تمامی آرتیست‌های این سبک
+          </h3>
+          <a
+            href="../Artist/ArtistPage.html"
+            class="font-Pelak_Medium text-base text-Neutral-300"
+            >مشاهده‌ی همه</a
+          >
+        </div>
+        <!-- body -->
+        <div class="swiper category-all-artist-swiper">
+          <div id="all-artist" class="swiper-wrapper"></div>
+        </div>
+      </section>
+
+      <!-- All songs from this genre -->
+      <section class="mt-18 px-5 lg:px-8 h-auto">
+        <!-- head -->
+        <div class="flex items-center gap-x-4 justify-between mb-8">
+          <h3 class="font-Pelak_Bold text-xl">تمامی آهنگ‌ها از این سبک</h3>
+        </div>
+        <!-- body -->
+        <div id="all-song"class="flex flex-wrap items-center justify-center gap-x-5 gap-y-6"></div>
+
+        <div id="add-song" class="flex items-center justify-center size-10 border border-Neutral-200 rounded-full mt-19 mx-auto cursor-pointer" >
+          <svg class="size-5"><use href="#chevron-double-down"></use></svg>
+        </div>
+      </section>
+    </main>
+
+    <%- include('../partials/footer.ejs') %>
+
+    <script src="/scripts/swiper/swiper.js"></script>
+    <script src="/scripts/swiper/slider.js"></script>
+    <script src="/scripts/albums/album.js"></script>
+    <script src="/scripts/navbar/music/navbar.js"></script>
+  </body>
+</html>
