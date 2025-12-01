@@ -83,7 +83,7 @@ const categoryIconList = document.getElementById('category-list')
         data.data.categories.forEach((category) => {
             categoryIconList.insertAdjacentHTML('beforeend', `
                 <div>
-                    <a href="${category.href === '/' ? '/': "/musics" + category.href }" class="flex items-center gap-x-3 py-4 ${path.split('/').pop() === category.href.toLowerCase().split('/').pop() ? "active-list-music-small-size" : "no-active-list-music-small-size"}">
+                    <a href="${category.href}" class="flex items-center gap-x-3 py-4 ${path.split('/').pop() === category.href.toLowerCase().split('/').pop() ? "active-list-music-small-size" : "no-active-list-music-small-size"}">
                         <svg class="${path.split('/').pop() === category.href.toLowerCase().split('/').pop() ? "active-icon-in-music" : "no-active-icon-in-music"} ms-6"><use href="#${category.icon}"></use></svg>
                         <span id="right-navbar-text" class="hidden ${path.split('/').pop() === category.href.toLowerCase().split('/').pop() ? "navbar-list-active" : "navbar-list-no-active"}">${category.title}</span>
                     </a>

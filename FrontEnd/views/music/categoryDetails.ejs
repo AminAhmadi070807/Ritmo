@@ -18,7 +18,20 @@
 
     <main class="main-site mt-18 md:mt-24 ms-auto h-auto max-w-[1600px]">
       <!-- category header -->
-      <section id="header-category" class="relative h-[650px] md:h-100 w-full"></section>
+      <section id="header-category" class="relative h-[650px] md:h-100 w-full">
+          <img src="<%= category.cover %>" class="w-full h-full object-cover" alt="">
+          <div class="absolute inset-0 m-auto size-full bg-[#0D0D0E]/75 pe-4 pt-10">
+              <div class="flex flex-col md:flex-row items-center gap-x-8 ms-8">
+                  <div class="relative size-[288px] rounded-lg min-w-[288px] min-h-[288px]">
+                      <img src="<%= category.cover %>" class="size-[288px] rounded-lg min-w-[288px] min-h-[288px]" alt="<%= category.title %>">
+                  </div>
+                  <div class="max-w-[624px] w-full">
+                      <h3 class="font-Pelak_Bold text-[40px] text-center md:text-right "><%= category.title %></h3>
+                      <p class="font-Pelak_Regular text-Neutral-100 mt-8 text-base/loose md:text-justify text-center"><%= category.description %></p>
+                  </div>
+              </div>
+          </div>
+      </section>
 
       <!-- trending singer -->
       <section class="mt-14 px-5 lg:px-8 h-auto">
@@ -123,9 +136,9 @@
 
     <%- include('../partials/footer.ejs') %>
 
+    <script src="/scripts/navbar/music/navbar.js"></script>
     <script src="/scripts/swiper/swiper.js"></script>
     <script src="/scripts/swiper/slider.js"></script>
     <script src="/scripts/categories/categoryDetails.js"></script>
-    <script src="/scripts/navbar/music/navbar.js"></script>
   </body>
 </html>

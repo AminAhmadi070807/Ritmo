@@ -1,6 +1,5 @@
 "use strict"
 
-const categoryHead = document.getElementById("header-category");
 const allPlaylistContainer = document.getElementById('all-playlist')
 
 
@@ -95,8 +94,6 @@ const playlistInformation = [
     { id: 25, title: "آشپزی", src: "../../../image/playlist file/25.png" },
 ];
 
-const params = new URLSearchParams(window.location.search).get("title");
-
 const categoryParamsInfo = {
     title: "رپ",
     bg: "#D7840194",
@@ -104,25 +101,8 @@ const categoryParamsInfo = {
     paragraph: `سبک موسیقی عامه پسند است و این سبک معمولا دارای ملودی‌های ساده و به یادماندنی٬ ریتم متناسب با رقص٬ و ترانه‌های مرتبط با موضوعات عمومی مانند عشق٬ زندگی روزمره و احساسات انسانی است.`,
 };
 
-document.getElementById('new-artist').innerHTML += params
 // category head
-categoryHead.innerHTML = `
-        <img src="${categoryParamsInfo.src}" class="w-full h-full object-cover" alt="">
-        <div class="absolute inset-0 m-auto size-full bg-[#0D0D0E]/75 pe-4 pt-10">
-          <div class="flex flex-col md:flex-row items-center gap-x-8 ms-8">
-            <div class="relative size-[288px] rounded-lg min-w-[288px] min-h-[288px]">
-              <img src="${categoryParamsInfo.src}" class="size-[288px] rounded-lg min-w-[288px] min-h-[288px]" alt="">
-              <div class="absolute bottom-0 right-0 left-0 w-full h-[70%] bg-linear-0 rounded-lg min-w-[288px] min-h-[288px]" 
-              style="background: linear-gradient(0deg,${categoryParamsInfo.bg},transparent);">
-              </div>
-            </div>
-            <div class="max-w-[624px] w-full">
-              <h3 class="font-Pelak_Bold text-[40px] text-center md:text-right ">${categoryParamsInfo.title}</h3>
-              <p class="font-Pelak_Regular text-Neutral-100 mt-8 text-base/loose md:text-justify text-center">${categoryParamsInfo.paragraph}</p>
-            </div>
-          </div>
-        </div>
-`;
+
 
 // create trending singer element
 trendingSingerInfo.forEach((el) => {

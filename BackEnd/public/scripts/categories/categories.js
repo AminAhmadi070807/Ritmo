@@ -9,7 +9,7 @@ const categoriesContainer = document.getElementById('categoriesContainer');
 
         data.data.forEach(item => {
             categoriesContainer.insertAdjacentHTML('beforeend', `
-                    <a href="/categories/details/${item.href}">
+                    <a href="/categories/details/${item._id}">
                       <div class="relative group min-w-80 h-50 w-full min-h-50">
                         <img src="${item.cover}" class="h-50 min-h-50 w-full object-cover rounded-lg" alt="${item.title}"/>
 
