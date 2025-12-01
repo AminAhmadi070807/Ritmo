@@ -58,7 +58,7 @@ const $ = document;
 // albums
 ;(async () => {
     try {
-        const response = await fetch('/api/v1/musics/albums/trending')
+        const response = await fetch('/api/v1/musics/albums/')
         const data = await response.json()
 
         data.data.albums.forEach(album => {
