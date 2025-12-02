@@ -39,7 +39,7 @@ const $ = document;
         data.data.forEach(category => {
             document.getElementById('category-container').insertAdjacentHTML("beforeend", `
                 <div class="swiper-slide">
-                    <a href="/categories/details/${category.href}">
+                    <a href="/categories/details/${category._id}">
                         <div class="relative w-[275px] h-50 cursor-pointer">
                             <img src="${category.cover}" class="w-[275px] h-50 min-w-[275px] max-w-[275px] min-h-50 max-h-50"
                                  alt="${category.title}"/>

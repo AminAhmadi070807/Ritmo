@@ -19,7 +19,7 @@ module.exports.musicCategoryDetails = async (req, res, next) => {
 
         if (!category) return response(res, 404, 'category not found. or has already been removed.')
 
-        const musics = await musicModel.find({ genre: id }).lean()
+        const musics = await musicModel.find({ genre: id }).sort({ _id: -1 }).lean()
 
         return res.render('music/categoryDetails.ejs', {
             category,
