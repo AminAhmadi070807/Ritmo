@@ -21,8 +21,6 @@ module.exports.musicCategoryDetails = async (req, res, next) => {
 
         const musics = await musicModel.find({ genre: id }).lean()
 
-        console.log(musics)
-
         return res.render('music/categoryDetails.ejs', {
             category,
             musics

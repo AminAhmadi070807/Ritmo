@@ -124,3 +124,20 @@ module.exports.trendingMusic = async (req, res, next) => {
         next(error)
     }
 }
+
+module.exports.musics = async (req, res, next) => {
+    try {
+        const { page = 1, limit = 20, status = "trending" } = req.query
+
+        let musics
+        if (status === 'trending') musics = await musicModel.find({}).sort({ views: -1 }).limit(+page * +limit).lean()
+        else if (status === 'latest') musics = await musicModel.find({}).sort({ _id: -1 }).limit(+page * +limit).lean()
+        else if (status === "All") musics = await musicModel.find({}).sort({ _id: -1 }).limit(+page * +limit).lean()
+        else return response(res, 400, "status must be (trending, latest, All).")
+
+        return response(res, 200, null, musics)
+    }
+    catch (error) {
+        next(error)
+    }
+}

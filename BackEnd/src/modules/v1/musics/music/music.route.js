@@ -12,7 +12,9 @@ const authGuard = require('../../../../middlewares/guard/auth.guard')
 
 const upload = multer({ storage: diskStorage('music'), limits: { fileSize: 1024 * 1024 * 100 } });
 
-router.route('/').post(authGuard, upload.fields([{ name: 'music', maxCount: 1 }, { name: 'poster', maxCount: 1 }]), validator.createMusicValidator, controller.create)
+router.route('/')
+    .post(authGuard, upload.fields([{ name: 'music', maxCount: 1 }, { name: 'poster', maxCount: 1 }]), validator.createMusicValidator, controller.create)
+    .get(controller.musics)
 
 router.get('/trending', controller.trendingMusic)
 
