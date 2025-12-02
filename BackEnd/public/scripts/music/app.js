@@ -87,21 +87,21 @@ const $ = document;
         const response = await fetch('/api/v1/musics/playlists')
         const data = await response.json()
 
-        console.log(data)
-
         data.data.playlist.forEach(playlist => {
             $.getElementById('playlist-container').insertAdjacentHTML('beforeend', `
               <div class="swiper-slide">
-                <div class="w-51 max-w-51">
-                    <img src="${playlist.cover}" class="size-51 max-w-51 min-w-51 min-h-51 max-h-51" alt="playlist"/>
-                    <div class="flex items-center justify-between my-4 px-2">
-                        <h4 class="font-Pelak_Bold text-base">${playlist.title}</h4>
-                        <div class="flex items-center gap-x-3 text-Neutral-300">
-                            <svg class="size-6"><use href="#heart"></use></svg>
-                            <svg class="size-6"><use href="#add-circle"></use></svg>
+                <a href="/playlist/details/${playlist._id}">
+                    <div class="w-51 max-w-51">
+                        <img src="${playlist.cover}" class="size-51 max-w-51 min-w-51 min-h-51 max-h-51" alt="playlist"/>
+                        <div class="flex items-center justify-between my-4 px-2">
+                            <h4 class="font-Pelak_Bold text-base">${playlist.title}</h4>
+                            <div class="flex items-center gap-x-3 text-Neutral-300">
+                                <svg class="size-6"><use href="#heart"></use></svg>
+                                <svg class="size-6"><use href="#add-circle"></use></svg>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
               </div>         
         `)
         })

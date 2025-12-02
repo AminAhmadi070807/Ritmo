@@ -12,8 +12,8 @@ const latestPlaylistContainer = document.getElementById('latest-playlist-contain
         data.data.playlist.forEach(playlist => {
             playlistsContainer.insertAdjacentHTML('beforeend', `
                     <a href="/musics/playlist/datails/${playlist.title}">
-                        <div class="w-51 max-w-51">
-                            <img src="${playlist.cover}" class="size-51 max-w-51 min-w-51 min-h-51 max-h-51" alt="${playlist.title}">
+                        <div class="w-51 max-w-51 h-auto">
+                            <img src="${playlist.cover}" class="size-51 max-w-51 min-w-51 min-h-51 h-[276px] object-center object-cover rounded-2xl" alt="${playlist.title}">
                             <div class="flex items-center justify-between my-4 px-2">
                               <h4 class="font-Pelak_Bold text-base">${playlist.title}</h4>
                               <div class="flex items-center gap-x-3 text-Neutral-300">
@@ -40,8 +40,8 @@ const latestPlaylistContainer = document.getElementById('latest-playlist-contain
             trendingPlaylistContainer.insertAdjacentHTML('beforeend', `
                 <div class="swiper-slide">
                     <a href="./AlbumsDetail.html?title=${playlist.title}">
-                      <div class="w-51">
-                        <img src="${playlist.cover}" class="max-w-50 min-w-50 w-50 object-cover rounded-2xl" alt="trending album">
+                      <div class="w-51 h-auto">
+                        <img src="${playlist.cover}" class="max-w-50 min-w-50 w-50 h-[276px] object-center object-cover rounded-2xl" alt="trending album">
                         <h3 class="font-Pelak_Bold text-base my-2 text-center">${playlist.title}</h3>
                       </div>
                     </a>
@@ -63,8 +63,8 @@ const latestPlaylistContainer = document.getElementById('latest-playlist-contain
             latestPlaylistContainer.insertAdjacentHTML('beforeend', `
                 <div class="swiper-slide">
                     <a href="./AlbumsDetail.html?title=${playlist.title}">
-                      <div class="w-51">
-                        <img src="${playlist.cover}" class="max-w-50 min-w-50 w-50 object-cover rounded-2xl" alt="trending album">
+                      <div class="w-51 h-auto">
+                        <img src="${playlist.cover}" class="max-w-50 min-w-50 w-50 h-[276px] object-center object-cover rounded-2xl" alt="trending album">
                         <h3 class="font-Pelak_Bold text-base my-2 text-center">${playlist.title}</h3>
                       </div>
                     </a>
