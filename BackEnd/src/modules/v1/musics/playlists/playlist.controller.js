@@ -48,9 +48,13 @@ module.exports.create = async (req, res, next) => {
 
 module.exports.getAll = async (req, res, next) => {
     try {
-        const { page = 1, limit = 20 } = req.query
+        const { page = 1, limit = 20, status = "trending" } = req.query
 
-        const playlist = await playlistModel.find({}, "title cover").sort({ views: -1, _id: -1 }).limit(+page * +limit).lean()
+        let playlist
+        if (status === 'trending') playlist = await playlistModel.find({}).sort({ views: -1, _id: -1 }).limit(+page * +limit).lean()
+        else if (status === 'latest') playlist = await playlistModel.find({}).sort({ _id: -1 }).limit(+page * +limit).lean()
+        else if (status === "All") playlist = await playlistModel.find({}).sort({ _id: -1 }).limit(+page * +limit).lean()
+        else return response(res, 400, "status must be (trending, latest, All).")
 
         return response(res, 200, null, { playlist })
     }
