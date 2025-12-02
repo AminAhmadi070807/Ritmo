@@ -36,7 +36,7 @@
                 "beforeend",
                 `
                        <div class="swiper-slide">
-                          <a href="/musics/album/details/${music.title}">
+                          <a href="/albums/details/${music._id}">
                             <div class="w-50 h-auto cursor-pointer">
                               <img src="${music.poster}" alt="${music.title + "From" + music.artist}" class="h-[276px] object-center object-cover rounded-2xl"/>
                               <h3 class="font-Pelak_Bold text-center mt-2">${music.title}</h3>

@@ -7,7 +7,10 @@
       <link rel="stylesheet" href="/styles/swiper.css" />
       <link rel="stylesheet" href="/styles/tailwind.css" />
       <link rel="icon" href="/logo/icon.png">
-    <title>Ritmo category </title>
+      <meta name="description" content="<%= category.description %>">
+      <meta name="keywords" content="<%= category.title %> <%= category.description %>">
+      <meta name="author" content="Amin Ahmadi">
+      <title>Ritmo category </title>
   </head>
 
   <body class="w-screen overflow-x-hidden text-white select-none max-w-[1688px] mx-auto">
@@ -81,7 +84,7 @@
                     <div class="w-50 h-auto object-cover object-center cursor-pointer">
                         <img src="<%= music.poster %>" alt="<%= music.title %> from <%= music.artist %>" class="h-[272px] min-h-[272px] max-h-[272px] w-full rounded-2xl object-cover object-center" />
                         <h3 class="font-Pelak_Bold text-center mt-2"><%= music.title %></h3>
-                        <cite class="font-Pelak_Regular not-italic text-center mt-2 text-sm text-Neutral-300 block"><%= music.title %></cite>
+                        <cite class="font-Pelak_Regular not-italic text-center mt-2 text-sm text-Neutral-300 block"><%= music.artist %></cite>
                     </div>
                 </a>
             <% }) %>
