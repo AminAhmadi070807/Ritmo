@@ -1,7 +1,5 @@
 "use strict"
 
-const allPlaylistContainer = document.getElementById('all-playlist')
-
 ;(async () => {
     try {
         const response = await fetch(`/api/v1/musics/?page=1&limit=20&status=trending&genre=${location.href.split('/').pop()}`)
