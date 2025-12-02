@@ -127,12 +127,14 @@ module.exports.trendingMusic = async (req, res, next) => {
 
 module.exports.musics = async (req, res, next) => {
     try {
-        const { page = 1, limit = 20, status = "trending" } = req.query
+        const { page = 1, limit = 20, status = "trending", genre } = req.query
+
+        if (!isValidObjectId(genre)) return response(res, 400, "genre is not correct.")
 
         let musics
-        if (status === 'trending') musics = await musicModel.find({}).sort({ views: -1 }).limit(+page * +limit).lean()
-        else if (status === 'latest') musics = await musicModel.find({}).sort({ _id: -1 }).limit(+page * +limit).lean()
-        else if (status === "All") musics = await musicModel.find({}).sort({ _id: -1 }).limit(+page * +limit).lean()
+        if (status === 'trending') musics = await musicModel.find({ genre }).sort({ views: -1 }).select('poster artist title').limit(+page * +limit).lean()
+        else if (status === 'latest') musics = await musicModel.find({ genre }).sort({ _id: -1 }).select('poster artist title').limit(+page * +limit).lean()
+        else if (status === "All") musics = await musicModel.find({ genre }).sort({ _id: -1 }).select('poster artist title').limit(+page * +limit).lean()
         else return response(res, 400, "status must be (trending, latest, All).")
 
         return response(res, 200, null, musics)
