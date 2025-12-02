@@ -67,21 +67,55 @@
   <%- include('../partials/header.music.ejs') %>
 
     <main class="main-site px-5 lg:px-8 lg:mt-40 mt-24 ms-auto h-auto max-w-[1600px] z-10">
-      <h3 class="font-Pelak_Bold text-xl">پلی لیست شخصی</h3>
+        <!-- trending playlists -->
+        <section class="mt-16">
+            <!-- head -->
+            <div class="flex items-center gap-x-4 justify-between mb-8">
+                <h3 class="font-Pelak_Bold text-lg">پلی لیست های ترند</h3>
+                <div class="flex items-center gap-x-4">
+            <span class="next-trending-album">
+              <svg class="size-4"><use href="#chevron-right"></use></svg>
+            </span>
+                    <span class="prev-trending-album">
+              <svg class="size-4 transform rotate-180">
+                <use href="#chevron-right"></use>
+              </svg>
+            </span>
+                </div>
+            </div>
+            <!-- body -->
+            <div class="swiper trending-album-swiper">
+                <div id="trending-album-container" class="swiper-wrapper"></div>
+            </div>
+        </section>
 
-      <section class="relative playlist-Header flex items-center justify-center mt-8 w-full h-75 border border-Neutral-700 rounded-lg overflow-hidden -z-10">
-        <svg class="absolute inset-0 m-auto size-50 sm:size-100 text-Neutral-800 opacity-30"><use href="#logo"></use></svg>
-        <div class="flex flex-col gap-y-3 items-center justify-center z-50">
-          <h3 class="font-Pelak_Medium text-lg">ایجاد پلی لیست شخصی</h3>
-          <svg class="size-6"><use href="#add-circle"></use></svg>
-        </div>
-      </section>
+        <!-- latest playlists -->
+        <section class="mt-16">
+            <!-- head -->
+            <div class="flex items-center gap-x-4 justify-between mb-8">
+                <h3 class="font-Pelak_Bold text-lg">اخیرا منتشر شده</h3>
+                <div class="flex items-center gap-x-4">
+            <span class="next-Recently-Published-Album">
+              <svg class="size-4"><use href="#chevron-right"></use></svg>
+            </span>
+                    <span class="prev-Recently-Published-Album">
+              <svg class="size-4 transform rotate-180">
+                <use href="#chevron-right"></use>
+              </svg>
+            </span>
+                </div>
+            </div>
+            <!-- body -->
+            <div class="swiper new-album-swiper">
+                <div id="new-album-container" class="swiper-wrapper"></div>
+            </div>
+        </section>
 
       <!-- all playlist -->
       <section class="mt-18">
         <!-- head -->
         <div class="flex items-center gap-x-2.5 justify-between mb-8">
-          <h3 class="font-Pelak_Bold text-md md:text-xl text-nowrap">پلی لیست</h3>
+          <h3 class="font-Pelak_Bold text-md md:text-lg text-nowrap">تمامی پلی لیست ها</h3>
           <div class="flex items-center gap-x-3 sm:gap-x-4.5 md:gap-x-6">
             <div class="flex gap-x-1 sm:gap-x-2 px-2 sm:px-4 py-2.5 cursor-pointer items-center bg-Neutral-900 border border-Neutral-100 rounded-lg">
               <cite class="font-Pelak_Medium text-xs md:text-base not-italic">محبـوب‌‌ترین</cite>
