@@ -8,7 +8,7 @@ const playlistsContainer = document.getElementById("all-playlist");
         const data = await response.json();
 
         data.data.playlist.forEach(playlist => {
-            playlistsContainer.insertAdjacentHTML('beforebegin', `
+            playlistsContainer.insertAdjacentHTML('beforeend', `
                     <a href="/musics/playlist/datails/${playlist.title}">
                         <div class="w-51 max-w-51">
                             <img src="${playlist.cover}" class="size-51 max-w-51 min-w-51 min-h-51 max-h-51" alt="${playlist.title}">

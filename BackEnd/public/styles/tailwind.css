@@ -412,12 +412,6 @@
   .mt-auto {
     margin-top: auto;
   }
-  .mb-2 {
-    margin-bottom: calc(var(--spacing) * 2);
-  }
-  .mb-6 {
-    margin-bottom: calc(var(--spacing) * 6);
-  }
   .mb-8 {
     margin-bottom: calc(var(--spacing) * 8);
   }
@@ -526,12 +520,6 @@
   .h-50 {
     height: var(--spacing-50);
   }
-  .h-52 {
-    height: calc(var(--spacing) * 52);
-  }
-  .h-60 {
-    height: calc(var(--spacing) * 60);
-  }
   .h-75 {
     height: var(--spacing-75);
   }
@@ -546,9 +534,6 @@
   }
   .h-\[70px\] {
     height: 70px;
-  }
-  .h-\[200px\] {
-    height: 200px;
   }
   .h-\[272px\] {
     height: 272px;
@@ -580,23 +565,14 @@
   .max-h-51 {
     max-height: var(--spacing-51);
   }
-  .max-h-52 {
-    max-height: calc(var(--spacing) * 52);
-  }
   .max-h-92 {
     max-height: var(--spacing-92);
   }
   .max-h-104 {
     max-height: var(--spacing-104);
   }
-  .max-h-\[200px\] {
-    max-height: 200px;
-  }
   .max-h-\[272px\] {
     max-height: 272px;
-  }
-  .max-h-\[276px\] {
-    max-height: 276px;
   }
   .min-h-16 {
     min-height: calc(var(--spacing) * 16);
@@ -607,20 +583,11 @@
   .min-h-51 {
     min-height: var(--spacing-51);
   }
-  .min-h-52 {
-    min-height: calc(var(--spacing) * 52);
-  }
   .min-h-92 {
     min-height: var(--spacing-92);
   }
-  .min-h-\[200px\] {
-    min-height: 200px;
-  }
   .min-h-\[272px\] {
     min-height: 272px;
-  }
-  .min-h-\[276px\] {
-    min-height: 276px;
   }
   .min-h-\[288px\] {
     min-height: 288px;
@@ -730,9 +697,6 @@
   .max-w-\[275px\] {
     max-width: 275px;
   }
-  .max-w-\[368px\] {
-    max-width: 368px;
-  }
   .max-w-\[624px\] {
     max-width: 624px;
   }
@@ -778,9 +742,6 @@
   .min-w-\[288px\] {
     min-width: 288px;
   }
-  .min-w-\[368px\] {
-    min-width: 368px;
-  }
   .translate-x-64 {
     --tw-translate-x: calc(var(--spacing) * 64);
     translate: var(--tw-translate-x) var(--tw-translate-y);
@@ -821,9 +782,6 @@
   }
   .items-center {
     align-items: center;
-  }
-  .items-end {
-    align-items: flex-end;
   }
   .items-start {
     align-items: flex-start;
@@ -1188,10 +1146,6 @@
   .text-base {
     font-size: var(--text-base);
     line-height: var(--tw-leading, var(--text-base--line-height));
-  }
-  .text-base\/\[150\%\] {
-    font-size: var(--text-base);
-    line-height: 150%;
   }
   .text-base\/loose {
     font-size: var(--text-base);
