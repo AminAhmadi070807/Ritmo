@@ -4,6 +4,7 @@ const categoriesModel = require('../modules/v1/musics/genre/genre.model')
 const albumModel = require('../modules/v1/musics/album/album.model')
 const userModel = require('../modules/v1/users/user.model')
 const musicModel = require('../modules/v1/musics/music/music.model')
+const playlistModel = require('../modules/v1/musics/playlists/playlist.model')
 const {isValidObjectId} = require("mongoose");
 const response = require('../helpers/response.helper')
 
@@ -69,6 +70,46 @@ module.exports.musicAlbumDetails = async (req, res, next) => {
         return res.render('music/albumsDetail.ejs', {
             album,
             musics,
+            now
+        })
+    }
+    catch (error) {
+        next(error)
+    }
+}
+
+module.exports.musicPlaylistsDetails = async (req, res, next) => {
+    try {
+        const { id } = req.params
+
+        if (!isValidObjectId(id)) return response(res, 400, 'category id is not correct.')
+
+        let playlist = await playlistModel.findById(id).populate("musics").lean()
+
+        if (!playlist) return response(res, 404, "playlist not found")
+
+        const user = await userModel.findOne({
+            where: {
+                uuid: playlist.user,
+            },
+            raw: true
+        })
+
+        playlist.user = user.fullName
+
+        let time = 0
+
+        for (const music of playlist.musics) time += +music.time
+
+        let now = ''
+
+        if (time < 60) now = `ثانیه ${Math.floor(time)}`;
+        else if (time > 60 && time < 3600) now = `${Math.floor(time / 60)} دقیقه`
+        else if (time > 60 && time < 86400) now = `${Math.floor(time / 3600)} ساعت`
+
+
+        return res.render('music/playlistDetails.ejs', {
+            playlist,
             now
         })
     }
