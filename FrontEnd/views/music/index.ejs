@@ -11,9 +11,9 @@
       <title>Ritmo music</title>
   </head>
   <body class="w-screen overflow-x-hidden text-white select-none max-w-[1688px] mx-auto">
-  <%- include('../partials/svg.ejs') %>
+    <%- include('../partials/svg.ejs') %>
 
-  <%- include('../partials/header.music.ejs') %>
+    <%- include('../partials/header.music.ejs') %>
 
     <main class="main-site px-5 lg:px-8 h-auto lg:mt-40 mt-24 ms-auto max-w-[1600px]" >
       <!-- trending sung -->
@@ -352,12 +352,9 @@
       </section>
     </main>
 
+    <%- include('../partials/footer.ejs') %>
 
-  <%- include('../partials/music.player.desktop.ejs') %>
-
-  <%- include('../partials/footer.ejs') %>
-
-  <script src="/scripts/navbar/music/navbar.js"></script>
+    <script src="/scripts/navbar/music/navbar.js"></script>
     <script src="/scripts/swiper/swiper.js"></script>
     <script src="/scripts/swiper/slider.js"></script>
     <script type="module" src="/scripts/music/app.js"></script>

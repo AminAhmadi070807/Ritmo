@@ -62,7 +62,7 @@ module.exports.musicAlbumDetails = async (req, res, next) => {
 
         let now = ''
 
-        if (time < 60) now = `ثانیه ${Math.floor(time)}`;
+        if (time < 60) now = `ثانیه ${Math.floor(Math.floor(time))}`;
         else if (time > 60 && time < 3600) now = `${Math.floor(time / 60)} دقیقه`
         else if (time > 60 && time < 86400) now = `${Math.floor(time / 3600)} ساعت`
 

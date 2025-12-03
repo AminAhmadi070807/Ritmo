@@ -221,3 +221,46 @@ new Swiper(".category-all-artist-swiper", {
         disableOnInteraction: false,
     },
 });
+
+new Swiper(".trending-video-music-swiper", {
+    slidesPerView: "auto",
+    spaceBetween: 30,
+    speed: 3000,
+    centeredSlides: true,
+    breakpoints: {
+        500: {
+            spaceBetween: 15,
+            centeredSlides: false,
+        },
+    },
+    navigation: {
+        nextEl: ".next-trending-video-music",
+        prevEl: ".prev-trending-video-music",
+    },
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+    },
+});
+
+new Swiper(".recently-published-swiper", {
+    slidesPerView: "auto",
+    spaceBetween: 30,
+    speed: 3000,
+    centeredSlides: true,
+    breakpoints: {
+        500: {
+            spaceBetween: 15,
+            centeredSlides: false,
+        },
+    },
+    navigation: {
+        nextEl: ".next-Recently-Published-video-music",
+        prevEl: ".prev-Recently-Published-video-music",
+    },
+
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+    },
+});

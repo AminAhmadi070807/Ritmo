@@ -16,9 +16,6 @@
 
     <%- include('../partials/header.music.ejs') %>
 
-
-    <custom-navbar location="album"></custom-navbar>
-
     <main class="main-site mt-18 md:mt-24 ms-auto h-auto max-w-[1600px]">
       <!-- album header -->
       <section id="header-album" class="relative h-[650px] md:h-102 w-screen">
@@ -111,8 +108,7 @@
           <% }) %>
       </section>
     </main>
-
-    <custom-footer></custom-footer>
+    <%- include('../partials/music.player.desktop.ejs') %>
 
     <%- include('../partials/footer.ejs') %>
 
