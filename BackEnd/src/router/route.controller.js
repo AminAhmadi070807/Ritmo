@@ -6,6 +6,7 @@ const userModel = require('../modules/v1/users/user.model')
 const musicModel = require('../modules/v1/musics/music/music.model')
 const {isValidObjectId} = require("mongoose");
 const response = require('../helpers/response.helper')
+const playlistModel = require("../modules/v1/musics/playlists/playlist.model");
 
 module.exports.music = (req, res) => res.render('music/index.ejs')
 
@@ -65,6 +66,7 @@ module.exports.musicAlbumDetails = async (req, res, next) => {
         else if (time > 60 && time < 3600) now = `${Math.floor(time / 60)} دقیقه`
         else if (time > 60 && time < 86400) now = `${Math.floor(time / 3600)} ساعت`
 
+        await albumModel.findByIdAndUpdate(id, {$inc: {views: 1}})
 
         return res.render('music/albumsDetail.ejs', {
             album,
