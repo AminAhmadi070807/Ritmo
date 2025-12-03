@@ -1,6 +1,8 @@
 "use strict"
 
 const categoriesModel = require('../modules/v1/musics/genre/genre.model')
+const albumModel = require('../modules/v1/musics/album/album.model')
+const userModel = require('../modules/v1/users/user.model')
 const musicModel = require('../modules/v1/musics/music/music.model')
 const {isValidObjectId} = require("mongoose");
 const response = require('../helpers/response.helper')
@@ -39,6 +41,24 @@ module.exports.musicAlbumDetails = async (req, res, next) => {
         const { id } = req.params
 
         if (!isValidObjectId(id)) return response(res, 400, 'category id is not correct.')
+
+        let album = await albumModel.findById(id).lean()
+
+        const user = await userModel.findOne({
+            where: {
+                uuid: album.artist,
+            },
+            raw: true
+        })
+
+        album.artist = user.fullName
+
+        const musics = await musicModel.find({ album: id }, "poster artist title").lean()
+
+        return res.render('music/albumsDetail.ejs', {
+            album,
+            musics
+        })
     }
     catch (error) {
         next(error)

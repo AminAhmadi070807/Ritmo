@@ -1,5 +1,6 @@
 "use strict"
 
+const mm = require('music-metadata')
 const musicModel = require('./music.model')
 const albumModel = require('../album/album.model')
 const genreModel = require('../genre/genre.model')
