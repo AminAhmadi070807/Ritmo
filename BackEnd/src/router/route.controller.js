@@ -53,11 +53,23 @@ module.exports.musicAlbumDetails = async (req, res, next) => {
 
         album.artist = user.fullName
 
-        const musics = await musicModel.find({ album: id }, "poster artist title").lean()
+        const musics = await musicModel.find({ album: id }, "poster artist title time").lean()
+
+        let time = 0
+
+        for (const music of musics) time += +music.time
+
+        let now = ''
+
+        if (time < 60) now = `ثانیه ${Math.floor(time)}`;
+        else if (time > 60 && time < 3600) now = `${Math.floor(time / 60)} دقیقه`
+        else if (time > 60 && time < 86400) now = `${Math.floor(time / 3600)} ساعت`
+
 
         return res.render('music/albumsDetail.ejs', {
             album,
-            musics
+            musics,
+            now
         })
     }
     catch (error) {

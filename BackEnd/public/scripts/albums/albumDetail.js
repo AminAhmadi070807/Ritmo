@@ -12,7 +12,48 @@ let i = 1
 // album head
 if (albumParamInfo) {
   albumHeader.innerHTML = `
-
+        <img
+          src="${albumParamInfo.src}"
+          class="w-full h-full object-cover"
+          alt="${albumParamInfo.title}"
+        />
+        <div class="absolute inset-0 m-auto size-full bg-[#0D0D0E]/75 pe-4 pt-10">
+          <div class="flex flex-col md:flex-row items-center gap-x-8 ms-8">
+            <div class="size-[288px] rounded-lg min-w-[288px] min-h-[288px]">
+              <img
+                src="${albumParamInfo.src}"
+                class="size-[288px] rounded-lg min-w-[288px] min-h-[288px]"
+                alt=""
+              />
+            </div>
+            <div class="flex flex-col items-center justify-center md:items-start max-w-[624px] w-full">
+              <h3 class="font-Pelak_Bold text-2xl text-center text-Neutral-200 mb-2 md:text-right mt-5">آلبوم</h3>
+              <h2 class="font-Pelak_Bold text-[40px] text-center md:text-right mb-6">${albumParamInfo.title}</h2>
+              <cite class="font-Pelak_Bold text-center md:text-right">${albumParamInfo.subtitle}</cite>
+              <div class="flex items-center gap-x-2 text-Neutral-200 mt-4 *:text-[15px] *:font-Pelak_Medium" >
+                <span id="number-song">۱۸ آهنگ</span>
+                <div class="size-1 rounded-full bg-white"></div>
+                <span id="time-song">۱ ساعت و ۲۰ دقیقه</span>
+                <div class="size-1 rounded-full bg-white"></div>
+                <span id="data-song">۱۲ فروردین ۱۴۰۳</span>
+              </div>
+              <div class="flex items-center gap-x-10 mt-9">
+                <div id="play-music" class="flex items-center justify-center h-12 w-40 bg-Primary-500 gap-x-2 text-white rounded-lg" >
+                  <svg class="size-5"><use href="#play"></use></svg>
+                  <span class="font-Pelak_Medium">پخش موزیک</span>
+                </div>
+                <div class="flex items-center gap-x-4">
+                  <div>
+                    <svg class="size-6"><use href="#shuffle"></use></svg>
+                  </div>
+                  <div>
+                    <svg class="size-6"><use href="#share"></use></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 `;
 albumInfo.forEach(el => {
   if (i < albumInfo.length) {
@@ -80,7 +121,8 @@ albumInfo.forEach(el => {
   }
 })
   
-} else {
+}
+else {
   albumHeader.innerHTML = `
         <img
           src="${albumInfo[0].src}"

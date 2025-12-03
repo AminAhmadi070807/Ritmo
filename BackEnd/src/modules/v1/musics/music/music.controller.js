@@ -72,7 +72,7 @@ module.exports.create = async (req, res, next) => {
             return response(res, 400, "album is not existed.")
         }
 
-        const metadata = await mm.parseFile(path.join(__dirname, '..', '..', '..', '..', '..', '..', 'FrontEnd', 'uploads', 'musics', music[0].filename))
+        const metadata = await mm.parseFile(path.join(__dirname, '..', '..', '..', '..', '..', 'public', 'uploads', 'musics', music[0].filename))
 
         const musicResult = await musicModel.create({
             tags: tags.split(","),
