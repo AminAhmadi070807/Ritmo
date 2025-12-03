@@ -37,10 +37,10 @@
                           <div class="size-1 rounded-full bg-white"></div>
                           <span id="time-song"><%= now %></span>
                           <div class="size-1 rounded-full bg-white"></div>
-                          <span id="data-song">۱۲ فروردین ۱۴۰۳</span>
+                          <span id="data-song"><%= new Intl.DateTimeFormat("fa-IR", {year: "numeric", month: "long", day: "numeric"}).format(new Date(album.updatedAt)); %></span>
                       </div>
                       <div class="flex items-center gap-x-10 mt-9">
-                          <div id="play-music" class="flex items-center justify-center h-12 w-40 bg-Primary-500 gap-x-2 text-white rounded-lg" >
+                          <div id="play-music" class="flex items-center justify-center h-12 w-40 bg-Primary-500 gap-x-2 text-white rounded-lg cursor-pointer" >
                               <svg class="size-5"><use href="#play"></use></svg>
                               <span class="font-Pelak_Medium">پخش موزیک</span>
                           </div>
@@ -59,7 +59,57 @@
       </section>
 
       <!-- album body -->
-      <section id="album-playlist" class="mt-10"></section>
+      <section id="album-playlist" class="mt-10">
+          <% musics.forEach((music, index) => { %>
+              <a href="/music/<%= music._id %>">
+                  <div id="lest-heard-music" class="flex items-center w-full h-20 justify-between border-b-2 border-b-Neutral-800 py-2 px-6 md:px-8">
+                      <div class="flex gap-x-4 min-w-50 md:min-w-100 items-center">
+                          <data value="${i}" class="font-FA_Pelak_Regular text-xl"><%= index + 1 %></data>
+                          <img src="<%= music.poster %>" class="size-16 max-w-16 min-w-16 max-h-16 min-h-16 rounded-lg object-cover" alt="<%= music.title %>"/>
+                          <div class="flex items-center h-14 w-50">
+                              <h4 class="font-Pelak_Bold text-sm sm:text-base md:text-lg"><%= music.title %></h4>
+                          </div>
+                      </div>
+                      <div class="hidden md:flex items-center w-100 justify-between">
+                          <div class="flex gap-x-4 items-center">
+                              <a href="#"><svg class="size-6 text-Neutral-300"><use href="#heart"></use></svg></a>
+                              <a href="#"><svg class="size-6 text-Neutral-300"><use href="#download-01"></use></svg></a>
+                              <a href="#"><svg class="size-6 text-Neutral-300"><use href="#add-circle"></use></svg></a>
+                              <a href="#"><svg class="size-6 text-Neutral-300"><use href="#menu-queue"></use></svg></a>
+                          </div>
+                          <div class="ps-10">
+                              <time datetime="00:01:41" class="font-Pelak_Medium text-base"><%= Math.floor(music.time / 60) %> دقیقه</time>
+                          </div>
+                      </div>
+                      <div id="album-menu" class="absolute hidden opacity-0 transition-all duration-300 left-25 size-50 min-w-50 min-h-50 bg-transparent-2 rounded-lg md:hidden ms-auto mt-25">
+                          <div class="flex flex-col gap-y-4 justify-center items-between p-5 text-white">
+                              <a href="#" class="flex items-center gap-x-3 font-Pelak_Regular text-sm">
+                                  <svg class="size-6"><use href="#heart"></use></svg>
+                                  علاقه مندی ها
+                              </a>
+                              <a href="#" class="flex items-center gap-x-3 font-Pelak_Regular text-sm">
+                                  <svg class="size-6"><use href="#download-01"></use></svg>
+                                  دانلود
+                              </a>
+                              <a href="#" class="flex items-center gap-x-3 font-Pelak_Regular text-sm">
+                                  <svg class="size-6"><use href="#add-circle"></use></svg>
+                                  افزودن به لیست
+                              </a>
+                              <a href="#" class="flex items-center gap-x-3 font-Pelak_Regular text-sm">
+                                  <svg class="size-6"><use href="#menu-queue"></use></svg>
+                                  افزودن به پلی لیست
+                              </a>
+                          </div>
+                      </div>
+                      <div class="flex items-center justify-center md:hidden">
+                          <svg id="toggle-menu" class="size-7 transform rotate-90">
+                              <use href="#three-pin"></use>
+                          </svg>
+                      </div>
+                  </div>
+              </a>
+          <% }) %>
+      </section>
     </main>
 
     <custom-footer></custom-footer>
