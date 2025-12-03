@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="bg-background w-screen overflow-x-hidden">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <link rel="stylesheet" href="/styles/swiper.css" />
+      <link rel="stylesheet" href="/styles/tailwind.css" />
+      <link rel="icon" href="/logo/icon.png">
+    <title>Ritmo</title>
+  </head>
+
+  <body class="w-screen overflow-x-hidden text-white select-none max-w-[1688px] mx-auto">
+
+    <%- include('../partials/svg.ejs') %>
+
+    <%- include('../partials/header.music.ejs') %>
+
+
+    <custom-navbar location="album"></custom-navbar>
+
+    <main class="main-site mt-18 md:mt-24 ms-auto h-auto max-w-[1600px]">
+      <!-- album header -->
+      <section
+        id="header-album"
+        class="relative h-[650px] md:h-102 w-screen"
+      ></section>
+
+      <!-- album body -->
+      <section id="album-playlist" class="mt-10"></section>
+    </main>
+
+    <custom-footer></custom-footer>
+
+    <%- include('../partials/footer.ejs') %>
+
+    <script src="/scripts/navbar/music/navbar.js"></script>
+    <script src="/scripts/swiper/swiper.js"></script>
+    <script src="/scripts/swiper/slider.js"></script>
+  </body>
+</html>
