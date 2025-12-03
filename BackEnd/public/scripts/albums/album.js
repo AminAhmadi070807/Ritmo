@@ -13,7 +13,7 @@ const addAlbumBtn = document.getElementById("add-album-btn");
         data.data.albums.forEach(album => {
             trendingAlbumContainer.insertAdjacentHTML('beforeend', `
                 <div class="swiper-slide">
-                    <a href="./AlbumsDetail.html?title=${album.title}">
+                    <a href="/albums/details/${album._id}">
                       <div class="w-51">
                         <img src="${album.cover}" class="max-w-50 min-w-50 w-50 object-cover rounded-2xl" alt="trending album">
                         <h3 class="font-Pelak_Bold text-base my-2 text-center">${album.title}</h3>
@@ -39,7 +39,7 @@ const addAlbumBtn = document.getElementById("add-album-btn");
                 "beforeend",
                 `            
                         <div class="swiper-slide">
-                          <a href="./AlbumsDetail.html?title=${album.title}">
+                          <a href="/albums/details/${album._id}">
                             <div class="w-51">
                               <img src="${album.cover}" class="max-w-50 min-w-50 w-50 object-cover rounded-2xl" alt="trending album">
                               <h3 class="font-Pelak_Bold text-base my-2 text-center">${album.title}</h3>
@@ -67,7 +67,7 @@ const addAlbumBtn = document.getElementById("add-album-btn");
             allAlbumContainer.insertAdjacentHTML(
                 "beforeend",
                 `            
-                        <a href="/musics/album/details/${album.title}">
+                        <a href="/albums/details/${album._id}">
                           <div class="w-50 min-w-50 max-w-50">
                             <img src="${album.cover}" class="max-w-50 min-w-50 w-50 min-h-51 max-h-51 object-cover rounded-2xl" alt="trending album">
                             <h3 class="font-Pelak_Bold text-base my-2 text-center">${album.title}</h3>
@@ -99,7 +99,7 @@ const albumsFunc = async () => {
             allAlbumContainer.insertAdjacentHTML(
                 "beforeend",
                 `            
-                        <a href="/musics/album/details/${album.title}">
+                        <a href="/albums/details/${album._id}">
                           <div class="w-50 min-w-50 max-w-50">
                             <img src="${album.cover}" class="max-w-50 min-w-50 w-50 min-h-51 max-h-51 object-cover rounded-2xl" alt="trending album">
                             <h3 class="font-Pelak_Bold text-base my-2 text-center">${album.title}</h3>

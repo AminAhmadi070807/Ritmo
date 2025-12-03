@@ -34,6 +34,17 @@ module.exports.musicCategoryDetails = async (req, res, next) => {
 
 module.exports.musicAlbums = async (req, res) => res.render('music/albums.ejs')
 
+module.exports.musicAlbumDetails = async (req, res, next) => {
+    try {
+        const { id } = req.params
+
+        if (!isValidObjectId(id)) return response(res, 400, 'category id is not correct.')
+    }
+    catch (error) {
+        next(error)
+    }
+}
+
 module.exports.musicPlaylists = async (req, res) => res.render('music/playlists.ejs')
 
 module.exports.notFound = (req, res) => res.render('404.ejs')

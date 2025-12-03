@@ -376,6 +376,9 @@
   .mt-8 {
     margin-top: calc(var(--spacing) * 8);
   }
+  .mt-9 {
+    margin-top: calc(var(--spacing) * 9);
+  }
   .mt-10 {
     margin-top: calc(var(--spacing) * 10);
   }
@@ -409,6 +412,12 @@
   .mt-auto {
     margin-top: auto;
   }
+  .mb-2 {
+    margin-bottom: calc(var(--spacing) * 2);
+  }
+  .mb-6 {
+    margin-bottom: calc(var(--spacing) * 6);
+  }
   .mb-8 {
     margin-bottom: calc(var(--spacing) * 8);
   }
@@ -427,13 +436,13 @@
   .hidden {
     display: none;
   }
+  .size-1 {
+    width: calc(var(--spacing) * 1);
+    height: calc(var(--spacing) * 1);
+  }
   .size-3 {
     width: calc(var(--spacing) * 3);
     height: calc(var(--spacing) * 3);
-  }
-  .size-4 {
-    width: calc(var(--spacing) * 4);
-    height: calc(var(--spacing) * 4);
   }
   .size-5 {
     width: calc(var(--spacing) * 5);
@@ -529,9 +538,6 @@
   .h-\[70px\] {
     height: 70px;
   }
-  .h-\[271px\] {
-    height: 271px;
-  }
   .h-\[272px\] {
     height: 272px;
   }
@@ -604,6 +610,9 @@
   .w-25 {
     width: var(--spacing-25);
   }
+  .w-40 {
+    width: calc(var(--spacing) * 40);
+  }
   .w-50 {
     width: var(--spacing-50);
   }
@@ -624,6 +633,9 @@
   }
   .w-88 {
     width: var(--spacing-88);
+  }
+  .w-100 {
+    width: var(--spacing-100);
   }
   .w-\[64x\] {
     width: 64x;
@@ -1259,6 +1271,16 @@
       cursor: pointer;
     }
   }
+  .\*\:font-Pelak_Medium {
+    :is(& > *) {
+      font-family: var(--font-Pelak_Medium);
+    }
+  }
+  .\*\:text-\[15px\] {
+    :is(& > *) {
+      font-size: 15px;
+    }
+  }
   .\*\*\:rounded-3xl {
     :is(& *) {
       border-radius: var(--radius-3xl);
@@ -1387,6 +1409,11 @@
       height: var(--spacing-100);
     }
   }
+  .md\:h-102 {
+    @media (width >= 48rem) {
+      height: calc(var(--spacing) * 102);
+    }
+  }
   .md\:min-w-100 {
     @media (width >= 48rem) {
       min-width: var(--spacing-100);
@@ -1395,6 +1422,11 @@
   .md\:flex-row {
     @media (width >= 48rem) {
       flex-direction: row;
+    }
+  }
+  .md\:items-start {
+    @media (width >= 48rem) {
+      align-items: flex-start;
     }
   }
   .md\:justify-between {
