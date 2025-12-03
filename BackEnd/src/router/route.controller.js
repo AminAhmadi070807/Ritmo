@@ -107,6 +107,8 @@ module.exports.musicPlaylistsDetails = async (req, res, next) => {
         else if (time > 60 && time < 3600) now = `${Math.floor(time / 60)} دقیقه`
         else if (time > 60 && time < 86400) now = `${Math.floor(time / 3600)} ساعت`
 
+        await playlistModel.findByIdAndUpdate(id, {$inc: {views: 1}})
+
 
         return res.render('music/playlistDetails.ejs', {
             playlist,
