@@ -8,6 +8,8 @@ const deleteFile = require('../../../../utils/delete.file')
 const response = require('../../../../helpers/response.helper')
 const {isValidObjectId} = require("mongoose");
 
+const path = require("path");
+
 const fileFormat = {
     "music": ["audio/mpeg", "audio/wav", "audio/x-wav", "audio/ogg", "audio/opus", "audio/mp4", "audio/x-m4a", "audio/flac"],
     "image": ["image/jpeg", "image/jpg", "image/png", "image/webp", "image/gif", "image/svg+xml"]
@@ -70,12 +72,15 @@ module.exports.create = async (req, res, next) => {
             return response(res, 400, "album is not existed.")
         }
 
+        const metadata = await mm.parseFile(path.join(__dirname, '..', '..', '..', '..', '..', '..', 'FrontEnd', 'uploads', 'musics', music[0].filename))
+
         const musicResult = await musicModel.create({
             tags: tags.split(","),
             album: album,
             artist,
             genre,
             title,
+            time: +metadata.format.duration,
             user: user.uuid,
             music: `/uploads/musics/${music[0].filename}`,
             poster: `/uploads/posters/${poster[0].filename}`,
