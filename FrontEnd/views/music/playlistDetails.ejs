@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="bg-background w-screen overflow-x-hidden">
+  <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+      <link rel="stylesheet" href="/styles/swiper.css" />
+      <link rel="stylesheet" href="/styles/tailwind.css" />
+      <link rel="icon" href="/logo/icon.png">
+    <title>Ritmo</title>
+  </head>
+
+  <body class="w-screen overflow-x-hidden text-white select-none max-w-[1688px] mx-auto">
+
+    <%- include('../partials/svg.ejs') %>
+
+    <%- include('../partials/header.music.ejs') %>
+
+
+    <main class="main-site mt-18 md:mt-24 ms-auto h-auto max-w-[1600px]">
+      <!-- album header -->
+      <section id="header-playlist" class="relative h-[650px] md:h-102 w-screen">
+          <img src="<%= playlist.cover %>" class="w-full h-full object-cover" alt="<%= playlist.title %>"/>
+          <div class="absolute inset-0 m-auto size-full bg-[#0D0D0E]/75 pe-4 pt-10">
+              <div class="flex flex-col md:flex-row items-center gap-x-8 ms-8">
+                  <div class="size-[288px] rounded-lg min-w-[288px] min-h-[288px]">
+                      <img src="<%= playlist.cover %>" class="size-[288px] rounded-lg min-w-[288px] min-h-[288px]" alt="<%= playlist.title %>"/>
+                  </div>
+                  <div class="flex flex-col items-center justify-center md:items-start max-w-[624px] w-full">
+                      <h3 class="font-Pelak_Bold text-xl text-center text-Neutral-200 mb-2 md:text-right mt-5">پلی لیست</h3>
+                      <h2 class="font-Pelak_Bold text-[40px] text-center md:text-right mb-6"><%= playlist.title %></h2>
+                      <div class="flex items-center gap-x-2 text-Neutral-200 mt-4 *:text-[15px] *:font-Pelak_Medium" >
+                          <span id="number-song"><%= playlist.musics.length %> آهنگ</span>
+                          <div class="size-1 rounded-full bg-white"></div>
+                          <span id="time-song"><%= playlist.title %></span>
+                          <div class="size-1 rounded-full bg-white"></div>
+                          <span id="data-song"><%= new Intl.DateTimeFormat("fa-IR", {year: "numeric", month: "long", day: "numeric"}).format(new Date(playlist.updatedAt)); %></span>
+                      </div>
+                      <div class="flex items-center gap-x-10 mt-9">
+                          <div id="play-music" class="flex items-center justify-center h-12 w-40 bg-Primary-500 gap-x-2 text-white rounded-lg" >
+                              <svg class="size-5"><use href="#play"></use></svg>
+                              <span class="font-Pelak_Medium">پخش موزیک</span>
+                          </div>
+                          <div class="flex items-center gap-x-4">
+                              <div>
+                                  <svg class="size-6"><use href="#shuffle"></use></svg>
+                              </div>
+                              <div>
+                                  <svg class="size-6"><use href="#share"></use></svg>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <!-- album body -->
+      <section id="playlist" class="mt-10">
+          <% playlist.musics.forEach(music => { %>
+              <a href="/musics/details/<%= music._id %>">
+                  <div id="lest-heard-music" class="flex items-center w-full h-20 justify-between border-b-2 border-b-Neutral-800 py-2 px-6 md:px-8">
+                      <div class="flex gap-x-4 min-w-50 md:min-w-100 items-center">
+                          <data value="${i}" class="font-FA_Pelak_Regular text-xl">${i}</data>
+                          <img src="<%= music.poster %>" class="size-16 max-w-16 min-w-16 max-h-16 min-h-16 rounded-lg object-cover" alt="<%= music.title %>"/>
+                          <div class="flex items-center h-14 w-50">
+                              <h4 class="font-Pelak_Bold text-sm sm:text-base md:text-lg"><%= music.title %></h4>
+                          </div>
+                      </div>
+                      <div class="hidden md:flex items-center w-100 justify-between">
+                          <div class="flex gap-x-4 items-center">
+                              <a href="#">
+                                  <svg class="size-6 text-Neutral-300"><use href="#heart"></use> </svg>
+                              </a>
+                              <a href="#">
+                                  <svg class="size-6 text-Neutral-300"><use href="#download-01"></use></svg>
+                              </a>
+                              <a href="#">
+                                  <svg class="size-6 text-Neutral-300"><use href="#add-circle"></use></svg>
+                              </a>
+                              <a href="#">
+                                  <svg class="size-6 text-Neutral-300"><use href="#menu-queue"></use></svg>
+                              </a>
+                          </div>
+                          <div class="ps-10">
+                              <time datetime="<%= Math.floor(music.time / 60) %>" class="font-Pelak_Medium text-base"><%= Math.floor(music.time / 60) %></time>
+                          </div>
+                      </div>
+                      <div id="playlist-menu" class="absolute hidden opacity-0 transition-all duration-300 left-25 size-50 min-w-50 min-h-50 bg-transparent-2 rounded-lg md:hidden ms-auto mt-25">
+                          <div class="flex flex-col gap-y-4 justify-center items-between p-5 text-white">
+                              <a href="#" class="flex items-center gap-x-3 font-Pelak_Regular text-sm">
+                                  <svg class="size-6"><use href="#heart"></use></svg>
+                                  علاقه مندی ها
+                              </a>
+                              <a href="#" class="flex items-center gap-x-3 font-Pelak_Regular text-sm">
+                                  <svg class="size-6"><use href="#download-01"></use></svg>
+                                  دانلود
+                              </a>
+                              <a href="#" class="flex items-center gap-x-3 font-Pelak_Regular text-sm">
+                                  <svg class="size-6"><use href="#add-circle"></use></svg>
+                                  افزودن به لیست
+                              </a>
+                              <a href="#" class="flex items-center gap-x-3 font-Pelak_Regular text-sm">
+                                  <svg class="size-6"><use href="#menu-queue"></use></svg>
+                                  افزودن به پلی لیست
+                              </a>
+                          </div>
+                      </div>
+                      <div class="flex items-center justify-center md:hidden">
+                          <svg id="toggle-menu" class="size-7 transform rotate-90">
+                              <use href="#three-pin"></use>
+                          </svg>
+                      </div>
+                  </div>
+              </a>
+          <% }) %>
+      </section>
+    </main>
+
+
+
+    <%- include('../partials/footer.ejs') %>
+    <script src="/scripts/swiper/swiper.js"></script>
+    <script src="/scripts/swiper/slider.js"></script>
+    <script src="/scripts/navbar/music/navbar.js"></script>
+    <script type="module" src="/scripts/playlistDetails.js"></script>
+  </body>
+</html>
