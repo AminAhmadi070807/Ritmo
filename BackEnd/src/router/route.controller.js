@@ -7,7 +7,6 @@ const musicModel = require('../modules/v1/musics/music/music.model')
 const playlistModel = require('../modules/v1/musics/playlists/playlist.model')
 const {isValidObjectId} = require("mongoose");
 const response = require('../helpers/response.helper')
-const playlistModel = require("../modules/v1/musics/playlists/playlist.model");
 
 module.exports.music = (req, res) => res.render('music/index.ejs')
 

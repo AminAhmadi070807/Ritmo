@@ -64,7 +64,7 @@ const $ = document;
         data.data.albums.forEach(album => {
             $.getElementById('album-container').insertAdjacentHTML('beforeend', `
             <div class="swiper-slide">
-                <a href="/musics/albums/details/${album.title}">
+                <a href="/albums/details/${album._id}">
                   <div class="w-50 h-[276px] cursor-pointer">
                     <img class="rounded-xl" src="${album.cover}" alt="${album.title + "From" + album.artist }" />
                     <h3 class="font-Pelak_Bold text-center mt-2">${album.title}</h3>
