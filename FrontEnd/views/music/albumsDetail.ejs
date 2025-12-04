@@ -39,7 +39,7 @@
                       <div class="flex items-center gap-x-10 mt-9">
                           <div id="play-music" class="flex items-center justify-center h-12 w-40 bg-Primary-500 gap-x-2 text-white rounded-lg cursor-pointer" >
                               <svg class="size-5"><use href="#play"></use></svg>
-                              <span class="font-Pelak_Medium">پخش موزیک</span>
+                              <span id="player-music" class="font-Pelak_Medium">پخش موزیک</span>
                           </div>
                           <div class="flex items-center gap-x-4">
                               <div>
@@ -61,8 +61,8 @@
               <a href="/music/<%= music._id %>">
                   <div id="lest-heard-music" class="flex items-center w-full h-20 justify-between border-b-2 border-b-Neutral-800 py-2 px-6 md:px-8">
                       <div class="flex gap-x-4 min-w-50 md:min-w-100 items-center">
-                          <data value="${i}" class="font-FA_Pelak_Regular text-xl"><%= index + 1 %></data>
-                          <img src="<%= music.poster %>" class="size-16 max-w-16 min-w-16 max-h-16 min-h-16 rounded-lg object-cover" alt="<%= music.title %>"/>
+                          <data value="<%= index + 1 %>>" class="font-FA_Pelak_Regular text-xl"><%= index + 1 %></data>
+                          <img src="<%= music.poster %>" class="size-16 max-w-16 min-w-16 max-h-16 min-h-16 rounded-lg object-cover object-center" alt="<%= music.title %>"/>
                           <div class="flex items-center h-14 w-50">
                               <h4 class="font-Pelak_Bold text-sm sm:text-base md:text-lg"><%= music.title %></h4>
                           </div>
@@ -108,10 +108,39 @@
           <% }) %>
       </section>
     </main>
-    <%- include('../partials/music.player.desktop.ejs') %>
+
+    <section class="fixed flex gap-x-5 inset-0 p-5 w-150 h-60 border border-gray-900 m-auto rounded-2xl bg-Neutral-900">
+        <div class="size-50 min-w-50">
+            <img src="<%= musics[0].poster %>" class="size-50 rounded-2xl" alt="<%= musics[0].title %>" />
+        </div>
+        <div class="flex flex-col justify-between w-full">
+            <div>
+                <h2 class="font-FA_Pelak_Bold text-2xl"><%= musics[0].title %></h2>
+                <h2 class="font-FA_Pelak_Regular mt-5 text-Neutral-600 text-xl"><%= musics[0].artist %></h2>
+            </div>
+            <div>
+                <div>
+                    <div class="flex items-center justify-between mb-3 font-FA_Pelak_Medium">
+                        <span>15 : 15</span>
+                        <span>15 : 15</span>
+                    </div>
+                    <div class="w-full h-2 bg-Neutral-300 rounded-2xl *:rounded-2xl">
+                        <div class="w-full h-full bg-Primary-600"></div>
+                    </div>
+                    <div class="flex items-center justify-center mt-3">
+                        <a href="#"><svg class="size-10 rotate-180"><use href="#prev-music"></use></svg></a>
+                        <a href="#"><svg class="size-10"><use href="#play-music"></use></svg></a>
+                        <a href="#"><svg class="size-10"><use href="#prev-music"></use></svg></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <%- include('../partials/footer.ejs') %>
 
+    <script src="/scripts/player/player.js"></script>
     <script src="/scripts/navbar/music/navbar.js"></script>
     <script src="/scripts/swiper/swiper.js"></script>
     <script src="/scripts/swiper/slider.js"></script>

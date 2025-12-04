@@ -54,7 +54,7 @@ module.exports.musicAlbumDetails = async (req, res, next) => {
 
         album.artist = user.fullName
 
-        const musics = await musicModel.find({ album: id }, "poster artist title time updatedAt").lean()
+        const musics = await musicModel.find({ album: id }, "poster artist title time updatedAt music").lean()
 
         let time = 0
 

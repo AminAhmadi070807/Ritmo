@@ -571,6 +571,7 @@
   .setting-button-no-active {
     @apply *:font-Pelak_Regular text-sm;
   }
+
 }
 
 @layer utilities {
