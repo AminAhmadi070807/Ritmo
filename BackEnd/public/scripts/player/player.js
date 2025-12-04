@@ -35,7 +35,7 @@ let musicArray = [];
     try {
         const response = await fetch(`/api/v1/musics/albums/${location.href.split('/').pop()}`)
         const data = await response.json();
-        musicArray = data.data.album
+        musicArray = data.data.album.musics
     }
     catch (error) {
         console.log()
