@@ -34,8 +34,9 @@ let musicArray = [];
 
 ;(async () => {
     try {
-        const response = await fetch(`/api/v1/musics/albums/${location.href.split('/').pop()}`)
+        const response = await fetch(`/api/v1/musics/${location.href.split('/')[location.href.split('/').length - 3]}/${location.href.split('/').pop()}`)
         const data = await response.json();
+
         musicArray = data.data.album.musics
 
         document.getElementById('music-box').src = musicArray[0].poster
