@@ -18,7 +18,7 @@ router.route('/')
     .post(authGuard, roleGuard("ARTIST"), upload.single("cover"), validator.createAlbumValidator, controller.create)
     .get(controller.albums)
 
-router.route('/:id').delete(authGuard, controller.remove)
+router.route('/:id').delete(authGuard, controller.remove).get(controller.album)
 
 router.route('/:musicId/:albumId').post(authGuard, roleGuard("ARTIST"), controller.addMusic)
 

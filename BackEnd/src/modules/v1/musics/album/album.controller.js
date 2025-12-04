@@ -132,3 +132,18 @@ module.exports.albums = async (req, res, next) => {
         next(error)
     }
 }
+
+module.exports.album = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+
+        if (!isValidObjectId(id)) return response(res, 400, 'album id is not correct')
+
+        const album = await albumModel.findById(id).lean().populate('musics')
+
+        return response(res, 200, null, { album })
+    }
+    catch (error) {
+        next(error)
+    }
+}
