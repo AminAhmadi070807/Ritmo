@@ -1,4 +1,4 @@
-<section id="audio-player" class="fixed bottom-0 right-0 left-0 h-[130px] transition-all duration-300 transform z-40 max-w-[1688px] mx-auto">
+<section id="audio-player" class="fixed hidden bottom-0 right-0 left-0 h-[130px] transition-all duration-300 transform z-40 max-w-[1688px] mx-auto">
     <!-- audio player -->
     <div class="w-full flex items-center justify-between mx-auto h-full bg-transparent-1 lg:ps-30 px-4 md:px-8 lg:pe-8 z-40 transform">
         <div id="music-information-container" class="flex gap-x-2 lg:w-52">
@@ -124,12 +124,5 @@
         </div>
 
         <audio id="audio-play" src=""></audio>
-    </div>
-
-    <!-- close player -->
-    <div id="close-player" class="absolute flex items-start p-2.5 cursor-pointer justify-center -z-10 left-5 ms-auto -top-7 size-15 bg-transparent-1 rounded-full">
-        <svg class="transform transition-all duration-300 size-4">
-            <use href="#chevron-down"></use>
-        </svg>
     </div>
 </section>

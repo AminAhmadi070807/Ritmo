@@ -19,6 +19,8 @@ const timeEnd = document.getElementById("time-total-music");
 const playerHeartIcon = document.getElementById("player-heart");
 let loopMusicIcon = loopMusicBtn.querySelector("svg");
 
+const playMusicBtn = document.getElementById('player-music')
+
 // create random number
 const random = (min = 0, max = 1, floating = false) => {
     if (max < min) [min, max] = [max, min];
@@ -36,6 +38,11 @@ let musicArray = [];
         const response = await fetch(`/api/v1/musics/albums/${location.href.split('/').pop()}`)
         const data = await response.json();
         musicArray = data.data.album.musics
+
+        document.getElementById('music-box').src = musicArray[0].poster
+        document.getElementById('music-title').innerText = musicArray[0].title
+        document.getElementById('music-subtitle').innerText = musicArray[0].artist
+        audio.src = musicArray[0].music
     }
     catch (error) {
         console.log()
@@ -56,7 +63,7 @@ const updatePlayerProgress = (e) => {
         rangePlayer.style.width = playerCalculator + "%";
         localStorage.setItem("audio-time", (playerCalculator / 100) * audio.duration);
         audio.pause();
-        playerIcon.setAttribute("href", "#play");
+        playerIcon.setAttribute("href", "#play-music");
     }
 };
 // update volume bar
@@ -82,7 +89,6 @@ const updateVolumePlayerProgress = (e) => {
 
 // audio pauser
 const audioPause = () => {
-    localStorage.setItem("audio-time", 0);
     audio.currentTime = 0;
     playerIcon.setAttribute("href", "#pause");
     rangePlayer.style.width = "0%";
@@ -92,14 +98,14 @@ const audioPause = () => {
 
 // audio player
 const audioPlayer = () => {
-    if (playerIcon.getAttribute("href") === "#play") {
+    if (playerIcon.getAttribute("href") === "#play-music") {
         audio.play();
         audio.currentTime = localStorage.getItem("audio-time");
         playerIcon.setAttribute("href", "#pause");
     } else {
         localStorage.setItem("audio-time", audio.currentTime);
         audio.pause();
-        playerIcon.setAttribute("href", "#play");
+        playerIcon.setAttribute("href", "#play-music");
     }
 };
 
@@ -117,7 +123,8 @@ const forwardTenMusic = (e) => {
     if (e.key === "ArrowRight") {
         audio.currentTime += 10;
         localStorage.setItem("audio-time", audio.currentTime);
-    } else if (e.key === "ArrowLeft") {
+    }
+    else if (e.key === "ArrowLeft") {
         audio.currentTime -= 10;
         localStorage.setItem("audio-time", audio.currentTime);
     } else if (e.key === "ArrowUp") nextMusic();
@@ -137,10 +144,10 @@ const nextMusic = () => {
         audioPause();
         musicInfo = musicArray[musicID];
 
-        document.getElementById("music-box").setAttribute("src", `${musicInfo.src}`);
+        document.getElementById("music-box").setAttribute("src", `${musicInfo.poster}`);
         document.getElementById("music-title").innerHTML = `${musicInfo.title}`;
-        document.getElementById("music-subtitle").innerHTML = `${musicInfo.subtitle}`;
-        audio.setAttribute("src", musicInfo.audio_src);
+        document.getElementById("music-subtitle").innerHTML = `${musicInfo.artist}`;
+        audio.setAttribute("src", musicInfo.music);
         audio.play();
     } else shuffleMusic();
 };
@@ -153,10 +160,10 @@ const prevMusic = () => {
         audioPause();
         musicInfo = musicArray[musicID];
 
-        document.getElementById("music-box").setAttribute("src", `${musicInfo.src}`);
+        document.getElementById("music-box").setAttribute("src", `${musicInfo.poster}`);
         document.getElementById("music-title").innerHTML = `${musicInfo.title}`;
-        document.getElementById("music-subtitle").innerHTML = `${musicInfo.subtitle}`;
-        audio.setAttribute("src", musicInfo.audio_src);
+        document.getElementById("music-subtitle").innerHTML = `${musicInfo.artist}`;
+        audio.setAttribute("src", musicInfo.music);
         audio.play();
     } else shuffleMusic();
 };
@@ -188,10 +195,10 @@ const shuffleMusic = () => {
     // crate an object
     let OBJ = musicArray[randomMusicID];
 
-    musicInfoContainer.querySelector("img").src = OBJ.src;
+    musicInfoContainer.querySelector("img").src = OBJ.poster;
     musicInfoContainer.querySelector("#music-information h3").innerHTML = OBJ.title;
-    musicInfoContainer.querySelector("#music-information cite").innerHTML = OBJ.subtitle;
-    audio.setAttribute("src", OBJ.audio_src);
+    musicInfoContainer.querySelector("#music-information cite").innerHTML = OBJ.artist;
+    audio.setAttribute("src", OBJ.music);
     // play new music
     audio.play();
 };
@@ -212,13 +219,6 @@ const musicSilent = () => {
     }
     audio.muted = !audio.muted;
 };
-
-
-// close player bottom
-closePlayer.addEventListener("click", () => {
-    document.getElementById("audio-player").classList.toggle("translate-y-[130px]");
-    closePlayer.querySelector("svg").classList.toggle("rotate-180");
-});
 
 player.addEventListener("click", audioPlayer);
 
@@ -325,3 +325,20 @@ window.toggleIconsMenu = function (event) {
         musicListMenu.classList.add("opacity-100");
     }
 };
+
+playMusicBtn.addEventListener('click', () => {
+    audioPlayer()
+    if (playMusicBtn.querySelector('svg use').getAttribute('href') === '#play') {
+        playMusicBtn.innerHTML = `
+            <svg class="size-5" stroke="3"><use href="#pause"></use></svg>
+            <span class="font-Pelak_Medium">توقف موزیک</span>
+        `
+    }
+    else {
+        playMusicBtn.innerHTML = `
+            <svg class="size-5"><use href="#play"></use></svg>
+            <span class="font-Pelak_Medium">پخش موزیک</span>
+        `
+    }
+    document.getElementById("audio-player").classList.toggle("hidden");
+})
