@@ -20,7 +20,7 @@ router.route('/')
 
 router.route('/:musicId/:playlistId').put(authGuard, roleGuard("ARTIST"), controller.addMusic)
 
-router.route('/:id').delete(authGuard, controller.remove)
+router.route('/:id').delete(authGuard, controller.remove).get(controller.playlist)
 
 
 module.exports = router;
