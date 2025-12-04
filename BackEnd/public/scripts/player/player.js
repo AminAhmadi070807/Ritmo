@@ -1,6 +1,5 @@
 "use strict";
 
-const closePlayer = document.getElementById("close-player");
 const rangePlayerContainer = document.getElementById("range-player-container");
 const rangePlayer = document.getElementById("range-player");
 const volumeRangeContainer = document.getElementById("volume-range-container");
@@ -306,7 +305,6 @@ shuffleMusicBtn.addEventListener("click", () => {
     audio.loop = false;
 });
 
-// show modal in size mobile
 window.toggleIconsMenu = function (event) {
     let musicList = event.currentTarget.parentElement.parentElement;
     let musicList_2 = musicList.parentElement.querySelector("#music-list-menu.opacity-100");

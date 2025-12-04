@@ -4,6 +4,7 @@ const playlistModel = require('./playlist.model')
 const response = require('../../../../helpers/response.helper')
 const deleteFile = require("../../../../utils/delete.file");
 const {isValidObjectId} = require("mongoose");
+const musicModel = require("../music/music.model");
 
 const fileFormat = ["image/jpeg", "image/jpg", "image/png", "image/webp", "image/gif", "image/svg+xml"]
 
@@ -81,6 +82,39 @@ module.exports.remove = async (req, res, next) => {
         await deleteFiles(['BackEnd/public' + playlist.cover])
 
         return response(res, 200, "deleted playlist successfully.")
+    }
+    catch (error) {
+        next(error)
+    }
+}
+
+module.exports.addMusic = async (req, res, next) => {
+    try {
+        const user = req.user;
+
+        const { musicId, playlistId } = req.params
+
+        if (!isValidObjectId(musicId) || !isValidObjectId(playlistId)) return response(res, 400, "musicId or playlistId is not correct.")
+
+        const isExistMusic = await musicModel.findById(musicId).lean()
+
+        if (!isExistMusic) return response(res, 404, 'music not found. or has already been removed.')
+
+        const isExistPlaylist = await playlistModel.findById(playlistId)
+
+        if (!isExistPlaylist) return response(res, 404, "playlist not found. or has already been removed.")
+
+        if (isExistPlaylist.user.toString() !== isExistMusic.user.toString()) return response(res, 403, "you do not access to this playlist and music")
+
+        if (user.uuid !== isExistPlaylist.user.toString() || user.uuid !== isExistMusic.user.toString()) return response(res, 403, "you do not access to this api")
+
+        await playlistModel.findByIdAndUpdate(playlistId, {
+            $push: {
+                musics: musicId,
+            }
+        })
+
+        return response(res, 200, "add music to playlist successfully.")
     }
     catch (error) {
         next(error)

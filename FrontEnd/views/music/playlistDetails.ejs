@@ -58,11 +58,11 @@
 
       <!-- album body -->
       <section id="playlist" class="mt-10">
-          <% playlist.musics.forEach(music => { %>
+          <% playlist.musics.forEach((music, index) => { %>
               <a href="/musics/details/<%= music._id %>">
                   <div id="lest-heard-music" class="flex items-center w-full h-20 justify-between border-b-2 border-b-Neutral-800 py-2 px-6 md:px-8">
                       <div class="flex gap-x-4 min-w-50 md:min-w-100 items-center">
-                          <data value="${i}" class="font-FA_Pelak_Regular text-xl">${i}</data>
+                          <data value="<%= index + 1 %>>" class="font-FA_Pelak_Regular text-xl"><%= index + 1 %></data>
                           <img src="<%= music.poster %>" class="size-16 max-w-16 min-w-16 max-h-16 min-h-16 rounded-lg object-cover" alt="<%= music.title %>"/>
                           <div class="flex items-center h-14 w-50">
                               <h4 class="font-Pelak_Bold text-sm sm:text-base md:text-lg"><%= music.title %></h4>
@@ -84,7 +84,7 @@
                               </a>
                           </div>
                           <div class="ps-10">
-                              <time datetime="<%= Math.floor(music.time / 60) %>" class="font-Pelak_Medium text-base"><%= Math.floor(music.time / 60) %></time>
+                              <time datetime="<%= Math.floor(music.time / 60) %>" class="font-Pelak_Medium text-base"><%= Math.floor(music.time / 60) %> دقیقه</time>
                           </div>
                       </div>
                       <div id="playlist-menu" class="absolute hidden opacity-0 transition-all duration-300 left-25 size-50 min-w-50 min-h-50 bg-transparent-2 rounded-lg md:hidden ms-auto mt-25">
