@@ -110,8 +110,6 @@ module.exports.musicPlaylistsDetails = async (req, res, next) => {
 
         await playlistModel.findByIdAndUpdate(id, {$inc: {views: 1}})
 
-        console.log("NOW ====))))", now)
-
         return res.render('music/playlistDetails.ejs', {
             now,
             playlist,

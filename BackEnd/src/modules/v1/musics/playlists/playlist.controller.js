@@ -120,3 +120,20 @@ module.exports.addMusic = async (req, res, next) => {
         next(error)
     }
 }
+
+module.exports.playlist = async (req, res, next) => {
+    try {
+        const { id } = req.params
+
+        if (!isValidObjectId(id)) return response(res, 400, "playlist id is not correct.")
+
+        const playlist = await playlistModel.findById(id).lean()
+
+        if (!playlist) return response(res, 404, "playlist with id not found.")
+
+        return response(res, 200, null, { playlist })
+    }
+    catch (error) {
+        next(error)
+    }
+}
