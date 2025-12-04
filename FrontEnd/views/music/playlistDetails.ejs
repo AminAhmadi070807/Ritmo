@@ -33,7 +33,7 @@
                       <div class="flex items-center gap-x-2 text-Neutral-200 mt-4 *:text-[15px] *:font-Pelak_Medium" >
                           <span id="number-song"><%= playlist.musics.length %> آهنگ</span>
                           <div class="size-1 rounded-full bg-white"></div>
-                          <span id="time-song"><%= playlist.title %></span>
+                          <span id="time-song"><%- now %></span>
                           <div class="size-1 rounded-full bg-white"></div>
                           <span id="data-song"><%= new Intl.DateTimeFormat("fa-IR", {year: "numeric", month: "long", day: "numeric"}).format(new Date(playlist.updatedAt)); %></span>
                       </div>
@@ -124,6 +124,6 @@
     <script src="/scripts/swiper/swiper.js"></script>
     <script src="/scripts/swiper/slider.js"></script>
     <script src="/scripts/navbar/music/navbar.js"></script>
-    <script type="module" src="/scripts/playlistDetails.js"></script>
+    <script src="/scripts/playlist/playlistDetails.js"></script>
   </body>
 </html>

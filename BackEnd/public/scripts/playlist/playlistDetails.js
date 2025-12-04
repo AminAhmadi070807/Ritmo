@@ -7,7 +7,7 @@ const togglePlaylistMenu = document.getElementById("toggle-menu")
 
 togglePlaylistMenu.addEventListener("click", (event) => {
     let musicList = event.currentTarget.parentElement.parentElement;
-    let musicList_2 = musicList.parentElement.querySelector("#playlist-menu.opacity-100");;
+    let musicList_2 = musicList.parentElement.querySelector("#playlist-menu.opacity-100");
 
     let musicListMenu = musicList.querySelector("#playlist-menu");
     musicListMenu.classList.toggle("hidden");
