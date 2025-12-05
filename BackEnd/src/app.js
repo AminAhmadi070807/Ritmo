@@ -18,6 +18,7 @@ const musicCategoriesRouter = require('./modules/v1/musics/genre/genre.route')
 const categoriesMusicRouter = require('./modules/v1/musics/categories/category.route')
 const musicAlbumRouter = require('./modules/v1/musics/album/album.route')
 const musicPlaylistsRouter = require('./modules/v1/musics/playlists/playlist.route')
+const musicLastHeardRouter = require('./modules/v1/last-heard/last-heard.route')
 
 const app = express();
 
@@ -37,6 +38,7 @@ app.use('/api/v1/musics/genres', musicCategoriesRouter)
 app.use('/api/v1/musics/albums', musicAlbumRouter)
 app.use('/api/v1/musics/playlists', musicPlaylistsRouter)
 app.use('/api/v1/categories/music', categoriesMusicRouter)
+app.use('/api/v1/musics/lastHeard', musicLastHeardRouter)
 
 app.use(route)
 
