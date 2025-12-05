@@ -16,6 +16,13 @@ const schema = new mongoose.Schema({
         type: Number,
         required: true,
         default: 0
+    },
+    percent: {
+        type: Number,
+        required: true,
+        default: 0,
+        min: 0,
+        max: 100
     }
 }, { timestamps: true });
 
