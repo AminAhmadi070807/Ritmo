@@ -26,7 +26,10 @@ module.exports.add = async (req, res, next) => {
             user: user.uuid,
             time,
             music: id,
-            percent: (time / isExistMusic.time) * 100
+            percent: (time / isExistMusic.time) * 100,
+            $inc: {
+                numberOfPlay: 1
+            }
         }, {
             new: true,
             upsert: true
