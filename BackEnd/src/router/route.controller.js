@@ -10,6 +10,27 @@ const response = require('../helpers/response.helper')
 
 module.exports.music = (req, res) => res.render('music/index.ejs')
 
+module.exports.musicPage = async (req, res, next) => {
+    try {
+        const { id } = req.params
+
+        if (!isValidObjectId(id)) return response(res, 400, "music id is not correct")
+
+        const isExistMusic = await musicModel.findById(id).lean()
+
+        if (!isExistMusic) return response(res, 404, "music not found")
+
+        if (isExistMusic.album) return res.redirect(`/albums/details/${isExistMusic.album.toString()}`)
+
+        return render('music/index.ejs', {
+            music: isExistMusic,
+        })
+    }
+    catch (err) {
+        next(err)
+    }
+}
+
 module.exports.musicCategory = async (req, res) => res.render('music/categories.ejs')
 
 module.exports.musicCategoryDetails = async (req, res, next) => {
