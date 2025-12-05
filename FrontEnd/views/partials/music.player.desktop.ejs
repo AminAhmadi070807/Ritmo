@@ -1,17 +1,17 @@
-<section id="audio-player" class="fixed hidden bottom-0 right-0 left-0 h-[130px] transition-all duration-300 transform z-40 max-w-[1688px] mx-auto">
+<section id="audio-player" class="fixed <%= music !== null ? "" : "hidden" %> bottom-0 right-0 left-0 h-[130px] transition-all duration-300 transform z-40 max-w-[1688px] mx-auto">
     <!-- audio player -->
     <div class="w-full flex items-center justify-between mx-auto h-full bg-transparent-1 lg:ps-30 px-4 md:px-8 lg:pe-8 z-40 transform">
         <div id="music-information-container" class="flex gap-x-2 lg:w-52">
-            <img id="music-box" src="" class="size-20 md:size-14 object-cover rounded-md" alt="اگه میموندی"/>
+            <img id="music-box" src="<%= music !== null ? music.poster : "" %>" class="size-20 md:size-14 object-cover rounded-md" alt=""/>
             <div id="music-information" class="hidden sm:block">
-                <h3 id="music-title" class="font-Pelak_Bold text-xl mb-2 text-nowrap">اگه میموندی</h3>
-                <cite id="music-subtitle" class="font-Pelak_Medium text-Neutral-300 text-nowrap">اشوان</cite>
+                <h3 id="music-title" class="font-Pelak_Bold text-xl mb-2 text-nowrap"><%= music !== null ? music.title : "" %></h3>
+                <cite id="music-subtitle" class="font-Pelak_Medium text-Neutral-300 text-nowrap"><%= music !== null ? music.artist : "" %></cite>
             </div>
         </div>
 
         <div class="flex flex-col items-center gap-y-2">
             <div class="flex items-center gap-x-4.5 *:cursor-pointer">
-              <span id="loop-music">
+                <span id="loop-music">
                 <svg
                         class="w-5 h-6 text-Neutral-300"
                         viewBox="0 0 20 23"
@@ -45,26 +45,11 @@
               </span>
 
                 <span id="player" class="cursor-pointer">
-                <svg class="size-10">
-                  <use id="play-icon" href="#play-music"></use>
-                </svg>
+                <svg class="size-10"><use id="play-icon" href="#play-music"></use></svg>
               </span>
 
                 <span id="prev-music">
-                <svg
-                        width="32"
-                        height="33"
-                        viewBox="0 0 32 33"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                          d="M17.3724 13.3888L24.0287 9.50594C25.8065 8.46892 28.0391 9.75125 28.0391 11.8094V21.1905C28.0391 23.2486 25.8065 24.5309 24.0287 23.4939L17.3724 19.611M17.3724 13.3888V11.8094C17.3724 9.75125 15.1398 8.46892 13.3621 9.50594L5.3211 14.1965C3.55709 15.2255 3.55708 17.7743 5.3211 18.8033L13.3621 23.4939C15.1398 24.5309 17.3724 23.2486 17.3724 21.1905V19.611M17.3724 13.3888V19.611"
-                          stroke="white"
-                          stroke-width="1.5"
-                          stroke-linejoin="round"
-                  />
-                </svg>
+                <svg width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.3724 13.3888L24.0287 9.50594C25.8065 8.46892 28.0391 9.75125 28.0391 11.8094V21.1905C28.0391 23.2486 25.8065 24.5309 24.0287 23.4939L17.3724 19.611M17.3724 13.3888V11.8094C17.3724 9.75125 15.1398 8.46892 13.3621 9.50594L5.3211 14.1965C3.55709 15.2255 3.55708 17.7743 5.3211 18.8033L13.3621 23.4939C15.1398 24.5309 17.3724 23.2486 17.3724 21.1905V19.611M17.3724 13.3888V19.611" stroke="white" stroke-width="1.5" stroke-linejoin="round"/></svg>
               </span>
 
                 <span id="random-music">
@@ -87,7 +72,7 @@
                 </div>
 
                 <!-- music played time-->
-                <time id="time-music-start" datetime="00:01:44" class="font-FA_Pelak_Medium text-Neutral-200 w-10 text-center">00:00</time>
+                <time id="time-music-start" datetime="<%= music !== null ? music.time : "" %>" class="font-FA_Pelak_Medium text-Neutral-200 w-10 text-center">00:00</time>
             </div>
         </div>
 
@@ -123,6 +108,6 @@
             </div>
         </div>
 
-        <audio id="audio-play" src=""></audio>
+        <audio id="audio-play" src="<%= music !== null ? music.music : "" %>"></audio>
     </div>
 </section>

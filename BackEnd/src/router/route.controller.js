@@ -8,7 +8,7 @@ const playlistModel = require('../modules/v1/musics/playlists/playlist.model')
 const {isValidObjectId} = require("mongoose");
 const response = require('../helpers/response.helper')
 
-module.exports.music = (req, res) => res.render('music/index.ejs')
+module.exports.music = (req, res) => res.render('music/index.ejs', { musics: null })
 
 module.exports.musicPage = async (req, res, next) => {
     try {
@@ -22,8 +22,8 @@ module.exports.musicPage = async (req, res, next) => {
 
         if (isExistMusic.album) return res.redirect(`/albums/details/${isExistMusic.album.toString()}`)
 
-        return render('music/index.ejs', {
-            music: isExistMusic,
+        return res.render('music/index.ejs', {
+            musics: isExistMusic,
         })
     }
     catch (err) {
@@ -47,7 +47,8 @@ module.exports.musicCategoryDetails = async (req, res, next) => {
 
         return res.render('music/categoryDetails.ejs', {
             category,
-            musics
+            musics,
+            music: null
         })
     }
     catch (err) {
@@ -92,7 +93,8 @@ module.exports.musicAlbumDetails = async (req, res, next) => {
         return res.render('music/albumsDetail.ejs', {
             album,
             musics,
-            now
+            now,
+            music: null
         })
     }
     catch (error) {
@@ -134,6 +136,7 @@ module.exports.musicPlaylistsDetails = async (req, res, next) => {
         return res.render('music/playlistDetails.ejs', {
             now,
             playlist,
+            music: null
         })
     }
     catch (error) {
