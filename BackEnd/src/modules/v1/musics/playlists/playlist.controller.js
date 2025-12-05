@@ -108,6 +108,10 @@ module.exports.addMusic = async (req, res, next) => {
 
         if (user.uuid !== isExistPlaylist.user.toString() || user.uuid !== isExistMusic.user.toString()) return response(res, 403, "you do not access to this api")
 
+        const existMusic = isExistPlaylist.musics.includes(musicId)
+
+        if (existMusic) return response(res, 404, "music not found. or has already been removed.")
+
         await playlistModel.findByIdAndUpdate(playlistId, {
             $push: {
                 musics: musicId,
