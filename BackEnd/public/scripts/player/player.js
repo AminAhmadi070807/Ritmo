@@ -37,7 +37,9 @@ let musicArray = [];
         const response = await fetch(`/api/v1/musics/${location.href.split('/')[location.href.split('/').length - 3]}/${location.href.split('/').pop()}`)
         const data = await response.json();
 
-        musicArray = data.data.album.musics
+        musicArray = data.data[location.href.split('/')[location.href.split('/').length - 3].slice(0, -1)].musics
+
+        console.log(musicArray);
 
         document.getElementById('music-box').src = musicArray[0].poster
         document.getElementById('music-title').innerText = musicArray[0].title
@@ -185,7 +187,7 @@ const musicLoop = () => {
 let musicInfoContainer = document.getElementById("music-information-container");
 let RandomID = 0;
 const shuffleMusic = () => {
-    let randomMusicID = random(0, musicArray.length - 1);
+    let randomMusicID = random(0, musicArray.length);
     // checks random music id
     if (randomMusicID === RandomID) randomMusicID++;
     else RandomID = randomMusicID;
@@ -257,23 +259,16 @@ let isLoop;
 let isShuffle;
 audio.addEventListener("timeupdate", () => {
     isLoop = loopMusicIcon.classList.contains("text-Neutral-300");
-    isShuffle = shuffleMusicBtn
-        .querySelector("svg")
-        .classList.contains("text-Primary-500");
+    isShuffle = shuffleMusicBtn.querySelector("svg").classList.contains("text-Primary-500");
 
     let audioStart = audio.currentTime;
     let audioEnd = audio.duration;
     rangePlayer.style.width = `${(audioStart / audioEnd) * 100}%`;
 
     timeStart.innerHTML = `${formatTime(audioStart)}`;
-    localStorage.setItem("audio-time", audio.currentTime);
 
-    if (audio.ended && isLoop && !isShuffle) {
-        nextMusic();
-    } else if (audio.ended && isLoop && isShuffle) {
-        // audio.loop = false;
-        shuffleMusic();
-    }
+    if (audio.ended && isLoop && !isShuffle) nextMusic();
+    else if (audio.ended && isLoop && isShuffle) shuffleMusic();
 });
 
 audio.addEventListener("loadedmetadata", () => {

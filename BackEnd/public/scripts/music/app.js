@@ -90,7 +90,7 @@ const $ = document;
         data.data.playlist.forEach(playlist => {
             $.getElementById('playlist-container').insertAdjacentHTML('beforeend', `
               <div class="swiper-slide">
-                <a href="/playlist/details/${playlist._id}">
+                <a href="/playlists/details/${playlist._id}">
                     <div class="w-51 max-w-51">
                         <img src="${playlist.cover}" class="size-51 max-w-51 min-w-51 min-h-51 max-h-51" alt="playlist"/>
                         <div class="flex items-center justify-between my-4 px-2">

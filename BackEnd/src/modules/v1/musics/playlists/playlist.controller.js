@@ -127,11 +127,48 @@ module.exports.playlist = async (req, res, next) => {
 
         if (!isValidObjectId(id)) return response(res, 400, "playlist id is not correct.")
 
-        const playlist = await playlistModel.findById(id).lean()
+        const playlist = await playlistModel.findById(id).lean().populate('musics')
 
         if (!playlist) return response(res, 404, "playlist with id not found.")
 
         return response(res, 200, null, { playlist })
+    }
+    catch (error) {
+        next(error)
+    }
+}
+
+module.exports.removeMusic = async (req, res, next) => {
+    try {
+        const user = req.user;
+
+        const { musicId, playlistId } = req.params
+
+        if (!isValidObjectId(musicId) || !isValidObjectId(playlistId)) return response(res, 400, "musicId or playlistId is not correct.")
+
+        const isExistMusic = await musicModel.findById(musicId).lean()
+
+        if (!isExistMusic) return response(res, 404, 'music not found. or has already been removed.')
+
+        const isExistPlaylist = await playlistModel.findById(playlistId)
+
+        if (!isExistPlaylist) return response(res, 404, "playlist not found. or has already been removed.")
+
+        if (isExistPlaylist.user.toString() !== isExistMusic.user.toString()) return response(res, 403, "you do not access to this playlist and music")
+
+        if (user.uuid !== isExistPlaylist.user.toString() || user.uuid !== isExistMusic.user.toString()) return response(res, 403, "you do not access to this api")
+
+        const existMusic = isExistPlaylist.musics.includes(musicId)
+
+        if (!existMusic) return response(res, 404, "music not found. or has already been removed.")
+
+        await playlistModel.findByIdAndUpdate(playlistId, {
+            $pull: {
+                musics: musicId,
+            }
+        })
+
+        return response(res, 200, "remove music from playlist successfully.")
     }
     catch (error) {
         next(error)
