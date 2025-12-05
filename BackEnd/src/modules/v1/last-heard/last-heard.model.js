@@ -23,6 +23,11 @@ const schema = new mongoose.Schema({
         default: 0,
         min: 0,
         max: 100
+    },
+    numberOfPlay: {
+        type: Number,
+        required: true,
+        default: 1
     }
 }, { timestamps: true });
 
