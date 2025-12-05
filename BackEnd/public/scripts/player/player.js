@@ -105,20 +105,19 @@ const audioPlayer = async () => {
         playerIcon.setAttribute("href", "#pause");
         const audioId = audio.getAttribute('audio-id')
 
-        const response = await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
+        await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
             method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                time: audio.currentTime
+            })
         })
-        const data = await response.json();
-
-        console.log(data, response.status)
     }
     else {
         localStorage.setItem("audio-time", audio.currentTime);
         audio.pause();
         playerIcon.setAttribute("href", "#play-music");
     }
-
-
 };
 
 // time player calculator

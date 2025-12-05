@@ -9,8 +9,9 @@ module.exports.add = async (req, res, next) => {
     try {
         const user = req.user;
         const { id } = req.params;
+        const { time } = req.body;
 
-        console.log(id)
+        if (!isNaN(time)) return response(res, 400, "time is not type of number")
 
         if (!isValidObjectId(id)) return response(res, 400, 'music id is not correct.')
 
@@ -18,9 +19,16 @@ module.exports.add = async (req, res, next) => {
 
         if (!isExistMusic) return response(res, 400, 'music not found. or has already been removed.')
 
-        await lastHeardModel.create({
+        await lastHeardModel.findOneAndUpdate({
             user: user.uuid,
             music: id
+        }, {
+            user: user.uuid,
+            time,
+            music: id
+        }, {
+            new: true,
+            upsert: true
         })
 
         return response(res, 201, "successfully added music to last heard")
