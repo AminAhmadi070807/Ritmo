@@ -58,13 +58,24 @@ let isVolumeDrag = false;
 let isVolumeClicked = false;
 
 // update music player bar
-const updatePlayerProgress = (e) => {
+const updatePlayerProgress = async (e) => {
     if (e.target.id === "range-player" || e.target.id === "range-player-container") {
         playerCalculator = Math.floor((e.offsetX / rangePlayerContainer.offsetWidth) * 100);
         rangePlayer.style.width = playerCalculator + "%";
         localStorage.setItem("audio-time", (playerCalculator / 100) * audio.duration);
         audio.pause();
         playerIcon.setAttribute("href", "#play-music");
+
+        const audioId = audio.getAttribute('audio-id')
+
+        await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                time: audio.currentTime,
+                play: false
+            })
+        })
     }
 };
 // update volume bar
@@ -89,27 +100,40 @@ const updateVolumePlayerProgress = (e) => {
 };
 
 // audio pauser
-const audioPause = () => {
+const audioPause = async () => {
     audio.currentTime = 0;
     playerIcon.setAttribute("href", "#pause");
     rangePlayer.style.width = "0%";
     timeStart.innerHTML = "00:00";
     timeEnd.innerHTML = `${formatTime(audio.duration)}`;
+    localStorage.setItem("audio-time", audio.currentTime);
+
+    const audioId = audio.getAttribute('audio-id')
+
+    await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
+        method: 'post',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            time: audio.currentTime,
+            play: true
+        })
+    })
 };
 
 // audio player
 const audioPlayer = async () => {
+    const audioId = audio.getAttribute('audio-id')
     if (playerIcon.getAttribute("href") === "#play-music") {
         audio.play();
         audio.currentTime = localStorage.getItem("audio-time") || 0;
         playerIcon.setAttribute("href", "#pause");
-        const audioId = audio.getAttribute('audio-id')
 
         await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                time: audio.currentTime
+                time: audio.currentTime,
+                play: true
             })
         })
     }
@@ -117,6 +141,14 @@ const audioPlayer = async () => {
         localStorage.setItem("audio-time", audio.currentTime);
         audio.pause();
         playerIcon.setAttribute("href", "#play-music");
+        await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                time: audio.currentTime,
+                play: false
+            })
+        })
     }
 };
 
@@ -129,18 +161,29 @@ const formatTime = (seconds) => {
 
 
 // forward & back music 10 seconds
-const forwardTenMusic = (e) => {
-    e.preventDefault()
+const forwardTenMusic = async (e) => {
     if (e.key === "ArrowRight") {
+        e.preventDefault()
         audio.currentTime += 10;
         localStorage.setItem("audio-time", audio.currentTime);
     }
     else if (e.key === "ArrowLeft") {
+        e.preventDefault()
         audio.currentTime -= 10;
         localStorage.setItem("audio-time", audio.currentTime);
-    } else if (e.key === "ArrowUp") nextMusic();
-    else if (e.key === "ArrowDown") prevMusic();
-    else if (e.code === 'Space')audioPlayer()
+    }
+    else if (e.key === "ArrowUp") {
+        e.preventDefault()
+        return await nextMusic();
+    }
+    else if (e.key === "ArrowDown") {
+        e.preventDefault()
+        return await prevMusic();
+    }
+    else if (e.code === 'Space') {
+        e.preventDefault()
+        return await audioPlayer()
+    }
 };
 
 // next music
@@ -152,7 +195,7 @@ const nextMusic = async () => {
     if (!isShuffleMusic) {
         musicID++;
         if (musicID === musicArray.length) musicID = 0;
-        audioPause();
+        await audioPause();
         musicInfo = musicArray[musicID];
 
         document.getElementById("music-box").setAttribute("src", `${musicInfo.poster}`);
@@ -161,16 +204,6 @@ const nextMusic = async () => {
         audio.setAttribute("src", musicInfo.music);
         audio.setAttribute('audio-id', musicInfo._id);
         audio.play();
-
-        const audioId = audio.getAttribute('audio-id')
-
-        await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
-            method: 'post',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                time: audio.currentTime
-            })
-        })
     }
     else await shuffleMusic();
 };
@@ -180,7 +213,7 @@ const prevMusic = async () => {
     if (!isShuffleMusic) {
         musicID--;
         if (musicID === -1) musicID = musicArray.length - 1;
-        audioPause();
+        await audioPause();
         musicInfo = musicArray[musicID];
 
         document.getElementById("music-box").setAttribute("src", `${musicInfo.poster}`);
@@ -189,22 +222,12 @@ const prevMusic = async () => {
         audio.setAttribute("src", musicInfo.music);
         audio.setAttribute('audio-id', musicInfo._id);
         audio.play();
-
-        const audioId = audio.getAttribute('audio-id')
-
-        await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
-            method: 'post',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                time: audio.currentTime
-            })
-        })
     } else await shuffleMusic();
 };
 
 // music loop
 let isLoopMusic;
-const musicLoop = () => {
+const musicLoop = async () => {
     shuffleMusicIcon.classList.add("text-Neutral-300");
     shuffleMusicIcon.classList.remove("text-Primary-500");
     loopMusicIcon.classList.toggle("text-Primary-500");
@@ -225,7 +248,7 @@ const shuffleMusic = async () => {
     else RandomID = randomMusicID;
     musicID = RandomID
 
-    audioPause();
+    await audioPause();
     // crate an object
     let OBJ = musicArray[randomMusicID];
 
@@ -235,16 +258,6 @@ const shuffleMusic = async () => {
     audio.setAttribute("src", OBJ.music);
     // play new music
     audio.play();
-
-    const audioId = audio.getAttribute('audio-id')
-
-    await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
-        method: 'post',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-            time: audio.currentTime
-        })
-    })
 };
 
 // volume silent

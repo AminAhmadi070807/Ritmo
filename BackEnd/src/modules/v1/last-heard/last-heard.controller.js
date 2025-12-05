@@ -9,7 +9,7 @@ module.exports.add = async (req, res, next) => {
     try {
         const user = req.user;
         const { id } = req.params;
-        const { time } = req.body;
+        const { time, play = true } = req.body;
 
         if (isNaN(time)) return response(res, 400, "time is not type of number")
 
@@ -23,12 +23,16 @@ module.exports.add = async (req, res, next) => {
             user: user.uuid,
             music: id
         }, {
-            user: user.uuid,
-            time,
-            music: id,
-            percent: (time / isExistMusic.time) * 100,
+            $set: {
+                user: user.uuid,
+                music: id,
+            },
+            $max: {
+                time: time,
+                percent: (time / isExistMusic.time) * 100,
+            },
             $inc: {
-                numberOfPlay: 1
+                numberOfPlay: play ? 1 : -1
             }
         }, {
             new: true,
