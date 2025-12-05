@@ -29,7 +29,7 @@ module.exports.add = async (req, res, next) => {
             },
             $max: {
                 time: time,
-                percent: (time / isExistMusic.time) * 100,
+                percent: Math.floor((time / isExistMusic.time) * 100),
             },
             $inc: {
                 numberOfPlay: play ? 1 : -1
@@ -52,7 +52,7 @@ module.exports.lastHeardUser = async (req, res, next) => {
 
         const lastHeard = await lastHeardModel.find({
             user: user.uuid,
-        }).lean().limit(8).sort({ updatedAt: -1 })
+        }, 'music').lean().limit(8).sort({ updatedAt: -1 }).populate('music')
 
         return response(res, 200, null, { lastHeard });
     }

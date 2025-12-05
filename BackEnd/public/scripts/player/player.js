@@ -68,7 +68,7 @@ const updatePlayerProgress = async (e) => {
 
         const audioId = audio.getAttribute('audio-id')
 
-        await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
+        const response = await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -76,6 +76,20 @@ const updatePlayerProgress = async (e) => {
                 play: false
             })
         })
+
+        switch (response.status) {
+            case 401:
+                const refresh = await fetch('/api/v1/auth/refresh')
+                if (refresh.status === 404) return location.href = '/'
+                await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
+                    method: 'post',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        time: audio.currentTime,
+                        play: false
+                    })
+                })
+        }
     }
 };
 // update volume bar
@@ -110,7 +124,7 @@ const audioPause = async () => {
 
     const audioId = audio.getAttribute('audio-id')
 
-    await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
+    const response = await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -118,6 +132,20 @@ const audioPause = async () => {
             play: true
         })
     })
+
+    switch (response.status) {
+        case 401:
+            const refresh = await fetch('/api/v1/auth/refresh')
+            if (refresh.status === 404) return location.href = '/'
+            await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
+                method: 'post',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    time: audio.currentTime,
+                    play: true
+                })
+            })
+    }
 };
 
 // audio player
@@ -128,7 +156,7 @@ const audioPlayer = async () => {
         audio.currentTime = localStorage.getItem("audio-time") || 0;
         playerIcon.setAttribute("href", "#pause");
 
-        await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
+        const response = await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -136,12 +164,27 @@ const audioPlayer = async () => {
                 play: true
             })
         })
+
+        switch (response.status) {
+            case 401:
+                console.log(response)
+                const refresh = await fetch('/api/v1/auth/refresh')
+                if (refresh.status === 404) return location.href = '/'
+                await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
+                    method: 'post',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        time: audio.currentTime,
+                        play: true
+                    })
+                })
+        }
     }
     else {
         localStorage.setItem("audio-time", audio.currentTime);
         audio.pause();
         playerIcon.setAttribute("href", "#play-music");
-        await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
+        const response = await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -149,6 +192,20 @@ const audioPlayer = async () => {
                 play: false
             })
         })
+
+        switch (response.status) {
+            case 401:
+                const refresh = await fetch('/api/v1/auth/refresh')
+                if (refresh.status === 404) return location.href = '/'
+                await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
+                    method: 'post',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        time: audio.currentTime,
+                        play: false
+                    })
+                })
+        }
     }
 };
 
