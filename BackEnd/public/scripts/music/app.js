@@ -117,10 +117,13 @@ const formatTime = (seconds) => {
     }
 })()
 
+// last heard
 ;(async () => {
     try {
         const response = await fetch('/api/v1/musics/lastHeard')
         const data = await response.json()
+
+        if (!data.data.lastHeard.length) return document.getElementById('last-heard').classList.add('hidden');
 
         data.data.lastHeard.forEach((lastHeard, index) => {
             $.getElementById('lest-heard-music-container').insertAdjacentHTML('beforeend', `
@@ -157,8 +160,7 @@ const formatTime = (seconds) => {
 
               <div id="playlist-menu" class="absolute hidden opacity-0 transition-all duration-300 left-25 size-50 min-w-50 min-h-50 bg-transparent-2 rounded-lg md:hidden ms-auto mt-25">
                 <div class="flex flex-col gap-y-4 justify-center items-between p-5 text-white">
-                  <a
-                    href="#" class="flex items-center gap-x-3 font-Pelak_Regular text-sm" >
+                  <a href="#" class="flex items-center gap-x-3 font-Pelak_Regular text-sm" >
                     <svg class="size-6"><use href="#heart"></use></svg>
                     علاقه مندی ها
                   </a>
@@ -177,13 +179,36 @@ const formatTime = (seconds) => {
                 </div>
               </div>
 
-              <div class="flex items-center justify-center md:hidden">
-                <svg onclick="toggleIconsMenu(event)" class="size-7 transform rotate-90">
+              <div id="toggle-menu" class="flex items-center justify-center md:hidden">
+                <svg class="size-7 transform rotate-90">
                   <use href="#three-pin"></use>
                 </svg>
               </div>
             </div>
         `)
+        })
+
+        const togglePlaylistMenus = document.querySelectorAll("#toggle-menu")
+
+        togglePlaylistMenus.forEach(btn => {
+            btn.addEventListener("click", (event) => {
+                let musicList = event.currentTarget.parentElement.parentElement;
+                let musicList_2 = musicList.parentElement.querySelector("#playlist-menu.opacity-100");
+
+                let musicListMenu = musicList.querySelector("#playlist-menu");
+                musicListMenu.classList.toggle("hidden");
+                musicListMenu.classList.toggle("opacity-0");
+                musicListMenu.classList.toggle("opacity-100");
+                if (musicList_2) {
+                    musicList_2.classList.add("hidden");
+                    musicList_2.classList.add("opacity-0");
+                    musicList_2.classList.remove("opacity-100");
+                } else {
+                    musicListMenu.classList.remove("hidden");
+                    musicListMenu.classList.remove("opacity-0");
+                    musicListMenu.classList.add("opacity-100");
+                }
+            })
         })
     }
     catch (error) {
