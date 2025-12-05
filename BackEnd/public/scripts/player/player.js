@@ -147,7 +147,7 @@ const forwardTenMusic = (e) => {
 let musicID = 0;
 let musicInfo = null;
 let isShuffleMusic;
-const nextMusic = () => {
+const nextMusic = async () => {
     isShuffleMusic = shuffleMusicIcon.classList.contains("text-Primary-500");
     if (!isShuffleMusic) {
         musicID++;
@@ -161,11 +161,21 @@ const nextMusic = () => {
         audio.setAttribute("src", musicInfo.music);
         audio.setAttribute('audio-id', musicInfo._id);
         audio.play();
+
+        const audioId = audio.getAttribute('audio-id')
+
+        await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                time: audio.currentTime
+            })
+        })
     }
-    else shuffleMusic();
+    else await shuffleMusic();
 };
 // prev music
-const prevMusic = () => {
+const prevMusic = async () => {
     isShuffleMusic = shuffleMusicIcon.classList.contains("text-Primary-500");
     if (!isShuffleMusic) {
         musicID--;
@@ -179,7 +189,17 @@ const prevMusic = () => {
         audio.setAttribute("src", musicInfo.music);
         audio.setAttribute('audio-id', musicInfo._id);
         audio.play();
-    } else shuffleMusic();
+
+        const audioId = audio.getAttribute('audio-id')
+
+        await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                time: audio.currentTime
+            })
+        })
+    } else await shuffleMusic();
 };
 
 // music loop
@@ -198,7 +218,7 @@ const musicLoop = () => {
 // shuffle music
 let musicInfoContainer = document.getElementById("music-information-container");
 let RandomID = 0;
-const shuffleMusic = () => {
+const shuffleMusic = async () => {
     let randomMusicID = random(0, musicArray.length);
     // checks random music id
     if (randomMusicID === RandomID) randomMusicID++;
@@ -215,6 +235,16 @@ const shuffleMusic = () => {
     audio.setAttribute("src", OBJ.music);
     // play new music
     audio.play();
+
+    const audioId = audio.getAttribute('audio-id')
+
+    await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
+        method: 'post',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            time: audio.currentTime
+        })
+    })
 };
 
 // volume silent
