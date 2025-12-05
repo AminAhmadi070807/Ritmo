@@ -105,6 +105,43 @@ module.exports.addMusic = async (req, res, next) => {
     }
 }
 
+module.exports.removeMusic = async (req, res, next) => {
+    try {
+        const user = req.user;
+
+        const { musicId, albumId } = req.params
+
+        if (!isValidObjectId(musicId) || !isValidObjectId(albumId)) return response(res, 400, "musicId or albumId is not correct.")
+
+        const isExistMusic = await musicModel.findById(musicId).lean()
+
+        if (!isExistMusic) return response(res, 404, 'music not found. or has already been removed.')
+
+        const isExistAlbum = await albumModel.findById(albumId)
+
+        if (!isExistAlbum) return response(res, 404, "album not found. or has already been removed.")
+
+        if (isExistAlbum.artist.toString() !== isExistMusic.user.toString()) return response(res, 403, "you do not access to this album and music")
+
+        if (user.uuid !== isExistAlbum.artist.toString() || user.uuid !== isExistMusic.user.toString()) return response(res, 403, "you do not access to this api")
+
+        const existMusic = isExistAlbum.musics.includes(musicId)
+
+        if (!existMusic) return response(res, 404, "music not found. or has already been removed.")
+
+        await albumModel.findByIdAndUpdate(albumId, {
+            $pull: {
+                musics: musicId,
+            }
+        })
+
+        return response(res, 200, "add music to album successfully.")
+    }
+    catch (error) {
+        next(error)
+    }
+}
+
 module.exports.albums = async (req, res, next) => {
     try {
         const { page = 1, limit = 20, status = "trending" } = req.query;
