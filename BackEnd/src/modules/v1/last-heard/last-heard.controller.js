@@ -45,3 +45,18 @@ module.exports.add = async (req, res, next) => {
         next(error)
     }
 }
+
+module.exports.lastHeardUser = async (req, res, next) => {
+    try {
+        const user = req.user;
+
+        const lastHeard = await lastHeardModel.find({
+            user: user.uuid,
+        }).lean().limit(8).sort({ updatedAt: -1 })
+
+        return response(res, 200, null, { lastHeard });
+    }
+    catch (error) {
+        next(error)
+    }
+}
