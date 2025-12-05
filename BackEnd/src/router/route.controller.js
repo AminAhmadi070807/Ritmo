@@ -8,7 +8,7 @@ const playlistModel = require('../modules/v1/musics/playlists/playlist.model')
 const {isValidObjectId} = require("mongoose");
 const response = require('../helpers/response.helper')
 
-module.exports.music = (req, res) => res.render('music/index.ejs', { musics: null })
+module.exports.music = (req, res) => res.render('music/index.ejs', { music: null })
 
 module.exports.musicPage = async (req, res, next) => {
     try {

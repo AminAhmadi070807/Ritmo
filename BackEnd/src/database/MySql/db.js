@@ -3,11 +3,11 @@
 const { Sequelize } = require('sequelize')
 
 
-const sequelize = new Sequelize('ritmo', 'root', '', { dialect: 'mysql', logging: false })
+const sequelize = new Sequelize('ritmo', 'root', '', { dialect: 'mysql', logging: () => {} })
 
 ;(async () => {
     try {
-        await sequelize.sync({ alter: false, logging: false })
+        await sequelize.sync({ alter: false, logging: () => {} })
         await sequelize.authenticate()
         // console.log("Connected to mysql successfully")
     }
