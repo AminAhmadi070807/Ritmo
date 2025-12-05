@@ -39,12 +39,11 @@ let musicArray = [];
 
         musicArray = data.data[location.href.split('/')[location.href.split('/').length - 3].slice(0, -1)].musics
 
-        console.log(musicArray);
-
         document.getElementById('music-box').src = musicArray[0].poster
         document.getElementById('music-title').innerText = musicArray[0].title
         document.getElementById('music-subtitle').innerText = musicArray[0].artist
         audio.src = musicArray[0].music
+        audio.setAttribute('audio-id', musicArray[0]._id)
     }
     catch (error) {
         console.log()
@@ -99,16 +98,27 @@ const audioPause = () => {
 };
 
 // audio player
-const audioPlayer = () => {
+const audioPlayer = async () => {
     if (playerIcon.getAttribute("href") === "#play-music") {
         audio.play();
-        audio.currentTime = localStorage.getItem("audio-time");
+        audio.currentTime = localStorage.getItem("audio-time") || 0;
         playerIcon.setAttribute("href", "#pause");
-    } else {
+        const audioId = audio.getAttribute('audio-id')
+
+        const response = await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
+            method: 'post',
+        })
+        const data = await response.json();
+
+        console.log(data, response.status)
+    }
+    else {
         localStorage.setItem("audio-time", audio.currentTime);
         audio.pause();
         playerIcon.setAttribute("href", "#play-music");
     }
+
+
 };
 
 // time player calculator
@@ -150,8 +160,10 @@ const nextMusic = () => {
         document.getElementById("music-title").innerHTML = `${musicInfo.title}`;
         document.getElementById("music-subtitle").innerHTML = `${musicInfo.artist}`;
         audio.setAttribute("src", musicInfo.music);
+        audio.setAttribute('audio-id', musicInfo._id);
         audio.play();
-    } else shuffleMusic();
+    }
+    else shuffleMusic();
 };
 // prev music
 const prevMusic = () => {
@@ -166,6 +178,7 @@ const prevMusic = () => {
         document.getElementById("music-title").innerHTML = `${musicInfo.title}`;
         document.getElementById("music-subtitle").innerHTML = `${musicInfo.artist}`;
         audio.setAttribute("src", musicInfo.music);
+        audio.setAttribute('audio-id', musicInfo._id);
         audio.play();
     } else shuffleMusic();
 };
@@ -320,8 +333,8 @@ window.toggleIconsMenu = function (event) {
     }
 };
 
-playMusicBtn.addEventListener('click', () => {
-    audioPlayer()
+playMusicBtn.addEventListener('click', async() => {
+    await audioPlayer()
     if (playMusicBtn.querySelector('svg use').getAttribute('href') === '#play') {
         playMusicBtn.innerHTML = `
             <svg class="size-5" stroke="3"><use href="#pause"></use></svg>

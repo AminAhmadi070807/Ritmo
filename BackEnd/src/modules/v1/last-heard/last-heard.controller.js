@@ -10,6 +10,8 @@ module.exports.add = async (req, res, next) => {
         const user = req.user;
         const { id } = req.params;
 
+        console.log(id)
+
         if (!isValidObjectId(id)) return response(res, 400, 'music id is not correct.')
 
         const isExistMusic = await musicModel.findById(id).lean()

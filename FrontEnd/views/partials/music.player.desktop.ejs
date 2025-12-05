@@ -1,11 +1,11 @@
-<section id="audio-player" class="fixed <%= music !== null ? "" : "hidden" %> bottom-0 right-0 left-0 h-[130px] transition-all duration-300 transform z-40 max-w-[1688px] mx-auto">
+<section id="audio-player" class="fixed hidden bottom-0 right-0 left-0 h-[130px] transition-all duration-300 transform z-40 max-w-[1688px] mx-auto">
     <!-- audio player -->
     <div class="w-full flex items-center justify-between mx-auto h-full bg-transparent-1 lg:ps-30 px-4 md:px-8 lg:pe-8 z-40 transform">
         <div id="music-information-container" class="flex gap-x-2 lg:w-52">
-            <img id="music-box" src="<%= music !== null ? music.poster : "" %>" class="size-20 md:size-14 object-cover rounded-md" alt=""/>
+            <img id="music-box" src="" class="size-20 md:size-14 object-cover rounded-md" alt=""/>
             <div id="music-information" class="hidden sm:block">
-                <h3 id="music-title" class="font-Pelak_Bold text-xl mb-2 text-nowrap"><%= music !== null ? music.title : "" %></h3>
-                <cite id="music-subtitle" class="font-Pelak_Medium text-Neutral-300 text-nowrap"><%= music !== null ? music.artist : "" %></cite>
+                <h3 id="music-title" class="font-Pelak_Bold text-xl mb-2 text-nowrap"></h3>
+                <cite id="music-subtitle" class="font-Pelak_Medium text-Neutral-300 text-nowrap"></cite>
             </div>
         </div>
 
@@ -72,7 +72,7 @@
                 </div>
 
                 <!-- music played time-->
-                <time id="time-music-start" datetime="<%= music !== null ? music.time : "" %>" class="font-FA_Pelak_Medium text-Neutral-200 w-10 text-center">00:00</time>
+                <time id="time-music-start" datetime="" class="font-FA_Pelak_Medium text-Neutral-200 w-10 text-center">00:00</time>
             </div>
         </div>
 
@@ -108,6 +108,6 @@
             </div>
         </div>
 
-        <audio id="audio-play" src="<%= music !== null ? music.music : "" %>"></audio>
+        <audio id="audio-play" src=""></audio>
     </div>
 </section>
