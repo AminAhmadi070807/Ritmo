@@ -11,6 +11,11 @@ const schema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true
+    },
+    time: {
+        type: Number,
+        required: true,
+        default: 0
     }
 }, { timestamps: true });
 
