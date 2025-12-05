@@ -5,7 +5,7 @@ const musicModel = require('../musics/music/music.model')
 const {isValidObjectId} = require("mongoose");
 const response = require('../../../helpers/response.helper')
 
-module.exports.create = async (req, res, next) => {
+module.exports.add = async (req, res, next) => {
     try {
         const user = req.user;
         const { id } = req.params;
@@ -20,6 +20,8 @@ module.exports.create = async (req, res, next) => {
             user: user.uuid,
             music: id
         })
+
+        return response(res, 201, "successfully added music to last heard")
     }
     catch (error) {
         next(error)
