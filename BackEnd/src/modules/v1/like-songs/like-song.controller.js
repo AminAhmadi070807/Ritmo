@@ -41,9 +41,11 @@ module.exports.userLikeSongs = async (req, res, next) => {
 
         const user = req.user;
 
+        const numberOfUserLikeSong = await likeSongModel.countDocuments({})
+
         const likeSongs = await likeSongModel.find({user: user.uuid}, 'music').limit(+page * +limit).lean().sort({ updatedAt: -1 }).populate('music')
 
-        return response(res, 200, null, { likeSongs });
+        return response(res, 200, null, { likeSongs, numberOfUserLikeSong });
     }
     catch (error) {
         next(error)
