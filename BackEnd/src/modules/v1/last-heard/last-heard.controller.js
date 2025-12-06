@@ -49,9 +49,11 @@ module.exports.add = async (req, res, next) => {
 
 module.exports.lastHeardUser = async (req, res, next) => {
     try {
+        const { limit = 100, page = 1 } = req.query;
+
         const user = req.user;
 
-        const lastHeards = await lastHeardModel.find({user: user.uuid}, 'music').lean().sort({ updatedAt: -1 }).populate('music')
+        const lastHeards = await lastHeardModel.find({user: user.uuid}, 'music').limit(+page * +limit).lean().sort({ updatedAt: -1 }).populate('music')
 
         const lastHeardArray = []
 
