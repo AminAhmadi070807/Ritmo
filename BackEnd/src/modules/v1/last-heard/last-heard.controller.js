@@ -2,6 +2,7 @@
 
 const lastHeardModel = require('./last-heard.model')
 const musicModel = require('../musics/music/music.model')
+const likeSongModel = require('../like-songs/like-song.model')
 const {isValidObjectId} = require("mongoose");
 const response = require('../../../helpers/response.helper')
 
@@ -50,11 +51,20 @@ module.exports.lastHeardUser = async (req, res, next) => {
     try {
         const user = req.user;
 
-        const lastHeard = await lastHeardModel.find({
-            user: user.uuid,
-        }, 'music').lean().limit(8).sort({ updatedAt: -1 }).populate('music')
+        const lastHeards = await lastHeardModel.find({user: user.uuid}, 'music').lean().sort({ updatedAt: -1 }).populate('music')
 
-        return response(res, 200, null, { lastHeard });
+        const lastHeardArray = []
+
+        for (const lastHeard of lastHeards) {
+            const isLikeUserSong = await likeSongModel.findOne({ user: user.uuid, music: lastHeard.music._id }).lean()
+
+            lastHeardArray.push({
+                ...lastHeard,
+                likeMusic: !!isLikeUserSong
+            })
+        }
+
+        return response(res, 200, null, { lastHeard: lastHeardArray });
     }
     catch (error) {
         next(error)
