@@ -20,7 +20,7 @@ module.exports.toggleLike = async (req, res, next) => {
 
         if (isExistMusicLike) {
             await likeSongModel.findByIdAndDelete(isExistMusicLike._id)
-            return response(res, 204, 'music dis liked successfully')
+            return response(res, 200, 'music dis liked successfully')
         }
 
         await likeSongModel.create({

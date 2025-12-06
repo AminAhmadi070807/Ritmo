@@ -219,20 +219,27 @@ const formatTime = (seconds) => {
 
         likeSongBtn.forEach(btn => {
             btn.addEventListener("click", async() => {
-                const response = await fetch(`/api/v1/musics/likeSongs/${btn.getAttribute('music-id')}`, { method: 'post' })
+                let response = await fetch(`/api/v1/musics/likeSongs/${btn.getAttribute('music-id')}`, { method: 'post' })
                 let data = await response.json()
 
+                console.log(data, response)
+
                 if (response.status === 401) {
-                    const response = await fetch('/api/v1/auth/refresh')
+                    const refresh = await fetch('/api/v1/auth/refresh')
 
-                    if (response.status === 401) return location.href = '/auth/send'
+                    if (refresh.status === 401) return location.href = '/auth/send'
 
-                    data = (await fetch(`/api/v1/musics/likeSongs/${btn.getAttribute('music-id')}`, {method: 'post'})).json()
+                    response = await fetch(`/api/v1/musics/likeSongs/${btn.getAttribute('music-id')}`, {method: 'post'})
+                    data = response.json()
                 }
 
                 switch (response.status) {
                     case 201:
                         btn.innerHTML = '<svg class="size-6 text-Primary-600"><use href="#heart-solid"></use></svg>'
+                        break;
+                    case 200:
+                        btn.innerHTML = '<svg class="size-6 text-Neutral-300"><use href="#heart"></use></svg>'
+                        break;
                 }
             })
         })
