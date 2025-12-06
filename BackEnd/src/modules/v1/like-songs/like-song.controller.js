@@ -1,6 +1,7 @@
 "use strict"
 
 const likeSongModel = require('./like-song.model')
+const musicModel = require('../musics/music/music.model')
 const {isValidObjectId} = require("mongoose");
 const response = require('../../../helpers/response.helper')
 
@@ -10,6 +11,10 @@ module.exports.toggleLike = async (req, res, next) => {
         const { id } = req.params
 
         if (!isValidObjectId(id)) return response(res, 400, 'music id is not correct')
+
+        const isExistMusic = await musicModel.findById(id).lean()
+
+        if (!isExistMusic) return response(res, 404, 'music not found. or has already been removed.')
 
         const isExistMusicLike = await likeSongModel.findOne({ user: user.uuid, music: id }).lean()
 

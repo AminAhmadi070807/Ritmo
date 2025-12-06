@@ -142,9 +142,9 @@ const formatTime = (seconds) => {
               </div>
 
               <div class="hidden md:flex gap-x-4 items-center">
-                <a href="#">
+                <span id="like-song" music-id="${lastHeard.music._id}">
                   <svg class="size-6 text-Neutral-300"><use href="#heart"></use></svg>
-                </a>
+                </span>
                 <a href="#">
                   <svg class="size-6 text-Neutral-300"><use href="#download-01"></use></svg>
                 </a>
@@ -211,6 +211,28 @@ const formatTime = (seconds) => {
                     musicListMenu.classList.remove("hidden");
                     musicListMenu.classList.remove("opacity-0");
                     musicListMenu.classList.add("opacity-100");
+                }
+            })
+        })
+
+        const likeSongBtn = document.querySelectorAll("#like-song")
+
+        likeSongBtn.forEach(btn => {
+            btn.addEventListener("click", async() => {
+                const response = await fetch(`/api/v1/musics/likeSongs/${btn.getAttribute('music-id')}`, { method: 'post' })
+                let data = await response.json()
+
+                if (response.status === 401) {
+                    const response = await fetch('/api/v1/auth/refresh')
+
+                    if (response.status === 401) return location.href = '/auth/send'
+
+                    data = (await fetch(`/api/v1/musics/likeSongs/${btn.getAttribute('music-id')}`, {method: 'post'})).json()
+                }
+
+                switch (response.status) {
+                    case 201:
+                        btn.innerHTML = '<svg class="size-6 text-Primary-600"><use href="#heart-solid"></use></svg>'
                 }
             })
         })

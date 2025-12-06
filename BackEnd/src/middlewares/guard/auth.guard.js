@@ -11,7 +11,7 @@ module.exports = async (req, res, next) => {
     try {
         const { 'access-token': accessToken, 'refresh-token': refreshToken } = await req.cookies
 
-        if (!accessToken && refreshToken) return response(res, 401, "access token has expired", {redirect: "/api/v1/auth/refresh"})
+        if (!accessToken || !refreshToken) return response(res, 401, "access token has expired", {redirect: "/api/v1/auth/refresh"})
 
         let verifyToken
         try {

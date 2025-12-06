@@ -40,6 +40,7 @@
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
     --color-Primary-500: #ed265d;
+    --color-Primary-600: #cb1145;
     --color-Secondary-500: #4353ff;
     --color-Neutral-100: #e6e8ed;
     --color-Neutral-200: #c7cbd8;
@@ -1280,6 +1281,9 @@
   }
   .text-Primary-500 {
     color: var(--color-Primary-500);
+  }
+  .text-Primary-600 {
+    color: var(--color-Primary-600);
   }
   .text-Success-200 {
     color: var(--color-Success-200);
