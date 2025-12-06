@@ -5,7 +5,8 @@ const rightNavbar = document.getElementById("right-navbar");
 const rightNavbarBtn = document.getElementById("arrow-right-navbar");
 const rightNavbarImage = document.getElementById("right-navbar-image");
 const socialIcon = document.getElementById("social-icon");
-const categoryIconList = document.getElementById('category-list')
+const categoryIconList = document.getElementById('category-list');
+const categoryIconSubList = document.getElementById('music-sublist-desktop')
 
 ;(async () => {
     try {
@@ -90,6 +91,46 @@ const categoryIconList = document.getElementById('category-list')
                 </div>
             `)
         })
+    }
+    catch (error) {
+        console.log(error)
+    }
+})()
+
+;(async () => {
+    try {
+        const path = location.pathname
+
+
+        categoryIconSubList.innerHTML = `
+                    <div>
+                        <a href="/lastHeard" class="py-4 flex items-center gap-x-3 ${ path.split('/').pop() === "lastHeard" ? "active-list-music-small-size" : "no-active-list-music-small-size"}">
+                            <svg class="active-icon-in-music ${ path.split('/').pop() === "lastHeard" ? "active-icon-in-music" : "no-active-icon-in-music"} ms-6"><use href="#headphone"></use></svg>
+                            <span id="right-navbar-text" class="hidden ${ path.split('/').pop() === "lastHeard" ? "navbar-list-active" : "navbar-list-no-active"}">آخرین شنیده‌ها</span>
+                        </a>
+                    </div>
+
+                    <div>
+                        <a href="/likedSongs" class="${ path.split('/').pop() === "likedSongs" ? "active-list-music-small-size" : "no-active-list-music-small-size"} flex items-center gap-x-3 py-4">
+                            <svg class="${ path.split('/').pop() === "likedSongs" ? "active-icon-in-music" : "no-active-icon-in-music"} ms-6"><use href="#heart"></use></svg>
+                            <span id="right-navbar-text" class="hidden ${ path.split('/').pop() === "likedSongs" ? "navbar-list-active" : "navbar-list-no-active"}">مورد علاقه‌ها</span>
+                        </a>
+                    </div>
+
+                    <div>
+                        <a href="/suggestions" class="${ path.split('/').pop() === "suggestions" ? "active-list-music-small-size" : "no-active-list-music-small-size"} py-4 flex items-center gap-x-3">
+                            <svg class="${ path.split('/').pop() === "suggestions" ? "active-icon-in-music" : "no-active-icon-in-music"} ms-6"><use href="#vynil"></use></svg>
+                            <span id="right-navbar-text" class="hidden ${ path.split('/').pop() === "suggestions" ? "navbar-list-active" : "navbar-list-no-active"}">پیشنهادها</span>
+                        </a>
+                    </div>
+
+                    <div>
+                        <a href="/downloads" class="${ path.split('/').pop() === "downloads" ? "active-list-music-small-size" : "no-active-list-music-small-size"} py-4 text-white flex items-center gap-x-3">
+                            <svg class="${ path.split('/').pop() === "downloads" ? "active-icon-in-music" : "no-active-icon-in-music"} ms-6"><use href="#download-01"></use></svg>
+                            <span id="right-navbar-text" class="hidden ${ path.split('/').pop() === "downloads" ? "navbar-list-active" : "navbar-list-no-active"}">دانلودشده‌ها</span>
+                        </a>
+                    </div>
+            `
     }
     catch (error) {
         console.log(error)

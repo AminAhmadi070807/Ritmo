@@ -16,7 +16,7 @@
     <%- include('../partials/header.music.ejs') %>
 
     <main class="main-site px-5 lg:px-8 lg:mt-40 mt-24 ms-auto h-screen max-w-[1600px]">
-      <div class="flex flex-col items-center justify-center size-full max-w-[392px] mx-auto">
+      <div id="last-heard-icon" class="hidden flex-col items-center justify-center size-full max-w-[392px] mx-auto">
         <svg class="w-[185px] h-50"><use href="#microphone-playlist"></use></svg>
         <div class="flex flex-col justify-center mt-20">
           <h3 class="font-Pelak_Bold text-2xl">هنوز هیچ محتوایی گوش نکردی!</h3>
@@ -26,6 +26,13 @@
           </div>
         </div>
       </div>
+
+        <div id="last-heard-container">
+            <!-- head -->
+            <h3 class="text-xl font-Pelak_Bold">اخرین شنیده ها</h3>
+            <!-- body -->
+            <div id="lastHeard" class="mt-16"></div>
+        </div>
     </main>
 
     <%- include('../partials/footer.ejs') %>
