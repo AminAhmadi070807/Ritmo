@@ -142,8 +142,8 @@ const formatTime = (seconds) => {
               </div>
 
               <div class="hidden md:flex gap-x-4 items-center">
-                <span id="like-song" music-id="${lastHeard.music._id}">
-                  <svg class="size-6 text-Neutral-300"><use href="#heart"></use></svg>
+                <span id="like-song" music-id="${lastHeard.music._id}" class="cursor-pointer">
+                  <svg class="size-6 ${lastHeard.likeMusic ? "text-Primary-600" : "text-Neutral-300"}"><use href="#${lastHeard.likeMusic ? "heart-solid" : "heart"}"></use></svg>
                 </span>
                 <a href="#">
                   <svg class="size-6 text-Neutral-300"><use href="#download-01"></use></svg>
@@ -220,9 +220,6 @@ const formatTime = (seconds) => {
         likeSongBtn.forEach(btn => {
             btn.addEventListener("click", async() => {
                 let response = await fetch(`/api/v1/musics/likeSongs/${btn.getAttribute('music-id')}`, { method: 'post' })
-                let data = await response.json()
-
-                console.log(data, response)
 
                 if (response.status === 401) {
                     const refresh = await fetch('/api/v1/auth/refresh')
@@ -230,7 +227,6 @@ const formatTime = (seconds) => {
                     if (refresh.status === 401) return location.href = '/auth/send'
 
                     response = await fetch(`/api/v1/musics/likeSongs/${btn.getAttribute('music-id')}`, {method: 'post'})
-                    data = response.json()
                 }
 
                 switch (response.status) {

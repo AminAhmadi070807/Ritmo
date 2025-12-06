@@ -34,7 +34,7 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
                     </div>
                     <div class="hidden lg:flex items-center w-100 justify-between">
                       <div class="flex gap-x-4 items-center">
-                        <a href="#"><svg class="size-6 text-Neutral-300"><use href="#heart"></use></svg></a>
+                        <a href="#"><svg class="size-6 ${lastHeard.likeMusic ? "text-Primary-600" : "text-Neutral-300" }"><use href="#${ lastHeard.likeMusic ? "heart-solid":  "heart" }"></use></svg></a>
                         <a href="#"><svg class="size-6 text-Neutral-300"><use href="#download-01"></use></svg></a>
                         <a href="#"><svg class="size-6 text-Neutral-300"><use href="#menu-queue"></use></svg></a>
                       </div>
