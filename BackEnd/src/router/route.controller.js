@@ -127,6 +127,8 @@ module.exports.musicPlaylistsDetails = async (req, res, next) => {
 
 module.exports.musicPlaylists = async (req, res) => res.render('music/playlists.ejs')
 
+module.exports.lastHeard = async (req, res) => res.render('music/lastHeard.ejs')
+
 module.exports.notFound = (req, res) => res.render('404.ejs')
 
 module.exports.authentication = (req, res ) => res.render('auth.ejs')
