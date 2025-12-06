@@ -21,25 +21,26 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
             data = await response.json()
         }
 
-        data.data.lastHeard.forEach((lastHeard, index) => {
+        data.data.likeSongs.forEach((likeSong, index) => {
             document.getElementById('like-song-container').insertAdjacentHTML('beforeend', `
                   <div class="flex items-center w-full h-20 justify-between border-b-2 border-b-Neutral-800 py-2 px-6 md:px-8">
                     <div class="flex gap-x-4 min-w-50 md:min-w-100 items-center">
                       <data value="${index + 1}" class="font-FA_Pelak_Regular text-xl">${index + 1}</data>
-                      <img src="${lastHeard.music.poster}" class="size-16 max-w-16 min-w-16 max-h-16 min-h-16 rounded-lg object-cover" alt="${lastHeard.music.title + lastHeard.music.artist}"/>
+                      <img src="${likeSong.music.poster}" class="size-16 max-w-16 min-w-16 max-h-16 min-h-16 rounded-lg object-cover" alt="${likeSong.music.title + likeSong.music.artist}"/>
                       <div class="h-14 w-50">
-                        <h4 class="font-Pelak_Bold text-sm sm:text-base md:text-lg">${lastHeard.music.title}</h4>
-                        <cite class="font-Pelak_Regular text-xs sm:text-sm md:text-base text-Neutral-300 mt-1">${lastHeard.music.artist}</cite>
+                        <h4 class="font-Pelak_Bold text-sm sm:text-base md:text-lg">${likeSong.music.title}</h4>
+                        <cite class="font-Pelak_Regular text-xs sm:text-sm md:text-base text-Neutral-300 mt-1">${likeSong.music.artist}</cite>
                       </div>
                     </div>
                     <div class="hidden lg:flex items-center w-100 justify-between">
                       <div class="flex gap-x-4 items-center">
-                        <a href="#"><svg class="size-6 ${lastHeard.likeMusic ? "text-Primary-600" : "text-Neutral-300" }"><use href="#${ lastHeard.likeMusic ? "heart-solid":  "heart" }"></use></svg></a>
+                        <a href="#"><svg class="size-6 text-Primary-600"><use href="#heart-solid"></use></svg></a>
                         <a href="#"><svg class="size-6 text-Neutral-300"><use href="#download-01"></use></svg></a>
+                        <a href="#"><svg class="size-6 text-Neutral-300"><use href="#add-circle"></use></svg></a>
                         <a href="#"><svg class="size-6 text-Neutral-300"><use href="#menu-queue"></use></svg></a>
                       </div>
                       <div class="ps-10">
-                        <time datetime="01:42" class="font-FA_Pelak_Medium text-base">${formatTime(lastHeard.music.time)}</time>
+                        <time datetime="01:42" class="font-FA_Pelak_Medium text-base">${formatTime(likeSong.music.time)}</time>
                       </div>
                     </div>
                     <div id="download-menu" class="absolute hidden opacity-0 transition-all duration-300 left-25 size-50 min-w-50 h-auto bg-transparent-2 rounded-lg lg:hidden ms-auto mt-25">
@@ -51,6 +52,10 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
                         <a href="#" class="flex items-center gap-x-3 font-Pelak_Regular text-sm">
                           <svg class="size-6"><use href="#download-01"></use></svg>
                           دانلود
+                        </a>
+                        <a href="#" class="flex items-center gap-x-3 font-Pelak_Regular text-sm">
+                          <svg class="size-6"><use href="#download-01"></use></svg>
+                          افزردن به لیست
                         </a>
                         <a href="#" class="flex items-center gap-x-3 font-Pelak_Regular text-sm">
                           <svg class="size-6"><use href="#menu-queue"></use></svg>
@@ -66,7 +71,7 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
             `)
         })
 
-        if (data.data.lastHeard) {
+        if (data.data.likeSongs) {
             main.className = `${mainClass} h-auto lg:mt-40 mt-24 min-h-[252px]`;
             document.getElementById('is-not-like').classList.remove('flex')
             document.getElementById('is-not-like').classList.add('hidden')
