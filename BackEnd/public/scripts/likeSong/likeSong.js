@@ -34,7 +34,7 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
                     </div>
                     <div class="hidden lg:flex items-center w-100 justify-between">
                       <div class="flex gap-x-4 items-center">
-                        <a href="#"><svg class="size-6 text-Primary-600"><use href="#heart-solid"></use></svg></a>
+                        <span id="like-song" music-id="${likeSong.music._id}" ><svg class="size-6 text-Primary-600"><use href="#heart-solid"></use></svg></span>
                         <a href="#"><svg class="size-6 text-Neutral-300"><use href="#download-01"></use></svg></a>
                         <a href="#"><svg class="size-6 text-Neutral-300"><use href="#add-circle"></use></svg></a>
                         <a href="#"><svg class="size-6 text-Neutral-300"><use href="#menu-queue"></use></svg></a>
@@ -45,10 +45,10 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
                     </div>
                     <div id="download-menu" class="absolute hidden opacity-0 transition-all duration-300 left-25 size-50 min-w-50 h-auto bg-transparent-2 rounded-lg lg:hidden ms-auto mt-25">
                       <div class="flex flex-col gap-y-4 justify-center items-between p-5 text-white">
-                        <a href="../LikedSongs/LikedSongs.html" class="flex items-center gap-x-3 font-Pelak_Regular text-sm">
+                        <span id="like-song" music-id="${likeSong.music._id}" class="flex items-center gap-x-3 font-Pelak_Regular text-sm">
                           <svg class="size-6"><use href="#heart"></use></svg>
                           علاقه مندی ها
-                        </a>
+                        </span>
                         <a href="#" class="flex items-center gap-x-3 font-Pelak_Regular text-sm">
                           <svg class="size-6"><use href="#download-01"></use></svg>
                           دانلود
@@ -69,6 +69,31 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
             
                   </div>
             `)
+        })
+
+        const likeSongBtn = document.querySelectorAll("#like-song")
+
+        likeSongBtn.forEach(btn => {
+            btn.addEventListener("click", async() => {
+                let response = await fetch(`/api/v1/musics/likeSongs/${btn.getAttribute('music-id')}`, { method: 'post' })
+
+                if (response.status === 401) {
+                    const refresh = await fetch('/api/v1/auth/refresh')
+
+                    if (refresh.status === 401) return location.href = '/auth/send'
+
+                    response = await fetch(`/api/v1/musics/likeSongs/${btn.getAttribute('music-id')}`, {method: 'post'})
+                }
+
+                switch (response.status) {
+                    case 201:
+                        btn.innerHTML = '<svg class="size-6 text-Primary-600"><use href="#heart-solid"></use></svg>'
+                        break;
+                    case 200:
+                        btn.innerHTML = '<svg class="size-6 text-Neutral-300"><use href="#heart"></use></svg>'
+                        break;
+                }
+            })
         })
 
         if (data.data.likeSongs) {

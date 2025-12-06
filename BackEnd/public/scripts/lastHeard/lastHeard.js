@@ -71,7 +71,8 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
             document.getElementById('last-heard-icon').classList.remove('flex')
             document.getElementById('last-heard-icon').classList.add('hidden')
             document.getElementById('last-heard-container').classList.remove('hidden')
-        } else {
+        }
+        else {
             main.className = `${mainClass} h-screen`;
             document.getElementById('last-heard-icon').classList.add('flex')
             document.getElementById('last-heard-icon').classList.remove('hidden')
