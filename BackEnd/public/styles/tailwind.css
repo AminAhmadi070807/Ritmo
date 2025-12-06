@@ -70,6 +70,7 @@
     --spacing-92: 23rem;
     --spacing-100: 25rem;
     --spacing-104: 26rem;
+    --spacing-150: 37.5rem;
     --font-Pelak_Regular: "Pelak_Regular";
     --font-Pelak_Medium: "Pelak_Medium";
     --font-Pelak_Bold: "Pelak_Bold";
@@ -750,6 +751,9 @@
   }
   .max-w-88 {
     max-width: var(--spacing-88);
+  }
+  .max-w-150 {
+    max-width: var(--spacing-150);
   }
   .max-w-\[157px\] {
     max-width: 157px;
@@ -1464,6 +1468,12 @@
       padding-inline: calc(var(--spacing) * 10);
     }
   }
+  .sm\:text-2xl {
+    @media (width >= 40rem) {
+      font-size: var(--text-2xl);
+      line-height: var(--tw-leading, var(--text-2xl--line-height));
+    }
+  }
   .sm\:text-base {
     @media (width >= 40rem) {
       font-size: var(--text-base);
@@ -1479,6 +1489,11 @@
   .md\:mt-15 {
     @media (width >= 48rem) {
       margin-top: var(--spacing-15);
+    }
+  }
+  .md\:mt-20 {
+    @media (width >= 48rem) {
+      margin-top: calc(var(--spacing) * 20);
     }
   }
   .md\:mt-24 {

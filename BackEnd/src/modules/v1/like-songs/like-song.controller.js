@@ -34,3 +34,5 @@ module.exports.toggleLike = async (req, res, next) => {
         next(error)
     }
 }
+
+module.exports.userLikeSongs = async (req, res, next) => {}

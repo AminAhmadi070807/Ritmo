@@ -109,9 +109,9 @@ const categoryIconSubList = document.getElementById('music-sublist-desktop')
                     </div>
 
                     <div>
-                        <a href="/likedSongs" class="${ path.split('/').pop() === "likedSongs" ? "active-list-music-small-size" : "no-active-list-music-small-size"} flex items-center gap-x-3 py-4">
-                            <svg class="${ path.split('/').pop() === "likedSongs" ? "active-icon-in-music" : "no-active-icon-in-music"} ms-6"><use href="#heart"></use></svg>
-                            <span id="right-navbar-text" class="hidden ${ path.split('/').pop() === "likedSongs" ? "navbar-list-active" : "navbar-list-no-active"}">مورد علاقه‌ها</span>
+                        <a href="/likeSongs" class="${ path.split('/').pop() === "likeSongs" ? "active-list-music-small-size" : "no-active-list-music-small-size"} flex items-center gap-x-3 py-4">
+                            <svg class="${ path.split('/').pop() === "likeSongs" ? "active-icon-in-music" : "no-active-icon-in-music"} ms-6"><use href="#heart"></use></svg>
+                            <span id="right-navbar-text" class="hidden ${ path.split('/').pop() === "likeSongs" ? "navbar-list-active" : "navbar-list-no-active"}">مورد علاقه‌ها</span>
                         </a>
                     </div>
 

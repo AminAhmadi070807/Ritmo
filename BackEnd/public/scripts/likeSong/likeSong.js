@@ -12,12 +12,12 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
 
 ;(async () => {
     try {
-        const response = await fetch('/api/v1/musics/lastHeard/?limit=100&?page=1')
+        const response = await fetch('/api/v1/musics/likeSongs/?limit=100&?page=1')
         let data = await response.json()
         if (response.status === 401) {
             const refresh = await fetch('/api/v1/auth/refresh')
             if (refresh.status !== 200) return location.href = '/'
-            const response = await fetch('/api/v1/musics/lastHeard')
+            const response = await fetch('/api/v1/musics/likeSongs/?limit=100&?page=1')
             data = await response.json()
         }
 
@@ -68,15 +68,15 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
 
         if (data.data.lastHeard) {
             main.className = `${mainClass} h-auto lg:mt-40 mt-24 min-h-[252px]`;
-            document.getElementById('last-heard-icon').classList.remove('flex')
-            document.getElementById('last-heard-icon').classList.add('hidden')
-            document.getElementById('last-heard-container').classList.remove('hidden')
+            document.getElementById('is-not-like').classList.remove('flex')
+            document.getElementById('is-not-like').classList.add('hidden')
+            document.getElementById('like-song-container').classList.remove('hidden')
         }
         else {
             main.className = `${mainClass} h-screen`;
-            document.getElementById('last-heard-icon').classList.add('flex')
-            document.getElementById('last-heard-icon').classList.remove('hidden')
-            document.getElementById('last-heard-container').classList.add('hidden')
+            document.getElementById('is-not-like').classList.add('flex')
+            document.getElementById('is-not-like').classList.remove('hidden')
+            document.getElementById('like-song-container').classList.add('hidden')
         }
     }
     catch (error) {

@@ -17,7 +17,7 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
         if (response.status === 401) {
             const refresh = await fetch('/api/v1/auth/refresh')
             if (refresh.status !== 200) return location.href = '/'
-            const response = await fetch('/api/v1/musics/lastHeard')
+            const response = await fetch('/api/v1/musics/lastHeard/?limit=100&?page=1')
             data = await response.json()
         }
 
