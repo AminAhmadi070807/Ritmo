@@ -245,6 +245,19 @@ const formatTime = (seconds) => {
     }
 })()
 
+;(async () => {
+    try {
+        const likeSongResponse = await fetch('/api/v1/musics/likeSongs')
+        const data = await likeSongResponse.json()
+
+        document.getElementById('number-of-user-like-song').setAttribute('value', data.data.numberOfUserLikeSong)
+        document.getElementById('number-of-user-like-song').innerText = data.data.numberOfUserLikeSong
+    }
+    catch (error) {
+        console.log(error);
+    }
+})()
+
 $.getElementById("notification-mobile").addEventListener('click', () => {
   $.getElementById('notification-modal-mobile').classList.toggle('invisible')
   $.getElementById('notification-modal-mobile').classList.toggle('opacity-0')
