@@ -120,7 +120,7 @@ const formatTime = (seconds) => {
 // last heard
 ;(async () => {
     try {
-        const response = await fetch('/api/v1/musics/lastHeard')
+        const response = await fetch('/api/v1/musics/lastHeard/?limit=8&?page=1')
         let data = await response.json()
 
         if (response.status === 401) {

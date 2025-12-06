@@ -12,7 +12,7 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
 
 ;(async () => {
     try {
-        const response = await fetch('/api/v1/musics/lastHeard')
+        const response = await fetch('/api/v1/musics/lastHeard/?limit=100&?page=1')
         let data = await response.json()
         if (response.status === 401) {
             const refresh = await fetch('/api/v1/auth/refresh')
