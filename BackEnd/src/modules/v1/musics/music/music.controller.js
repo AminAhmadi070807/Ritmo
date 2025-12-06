@@ -32,9 +32,7 @@ module.exports.create = async (req, res, next) => {
 
         const { tags, album, artist, genre, title} = req.body;
 
-        if (!isValidObjectId(genre)) return response(res, 400, "genre is not correct.")
-
-        if (album !== undefined && !isValidObjectId(album)) return response(res, 400, "album is not correct.")
+        if (!isValidObjectId(genre) || !isValidObjectId(album)) return response(res, 400, "genre or album is not correct.")
 
         const { music, poster } = req.files;
 
@@ -55,10 +53,7 @@ module.exports.create = async (req, res, next) => {
             return response(res, 400, "music valid format (mpeg, wav, x-wav, ogg, opus, mp4, x-m4a, flac) && poster valid format (jpeg, jpg, png, webp, gif, svg+xml)")
         }
 
-        let isExistAlbum
-
-        if (album) isExistAlbum = await albumModel.findById(album).lean()
-        else isExistAlbum = true
+        let isExistAlbum = await albumModel.findById(album).lean()
 
         if (!isExistAlbum) {
             await deleteFiles(['BackEnd/public' + `/uploads/posters/${poster[0].filename}`, 'BackEnd/public' + `/uploads/musics/${music[0].filename}`])
@@ -86,7 +81,7 @@ module.exports.create = async (req, res, next) => {
             poster: `/uploads/posters/${poster[0].filename}`,
         })
 
-        if (album) await albumModel.findByIdAndUpdate(isExistAlbum._id, { $push: { musics: musicResult._id, } })
+        await albumModel.findByIdAndUpdate(isExistAlbum._id, { $push: { musics: musicResult._id, } })
 
         return response(res, 201, "created new music successfully.")
     }

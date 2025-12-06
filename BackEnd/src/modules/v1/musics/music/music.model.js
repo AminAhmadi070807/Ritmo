@@ -30,9 +30,8 @@ const schema = new mongoose.Schema({
     },
     album: {
         type: mongoose.Schema.Types.ObjectId,
-        required: false,
+        required: true,
         ref: 'MusicAlbum',
-        default: null,
     },
     tags: {
         type: [String],
