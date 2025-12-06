@@ -35,4 +35,17 @@ module.exports.toggleLike = async (req, res, next) => {
     }
 }
 
-module.exports.userLikeSongs = async (req, res, next) => {}
+module.exports.userLikeSongs = async (req, res, next) => {
+    try {
+        const { limit = 100, page = 1 } = req.query;
+
+        const user = req.user;
+
+        const likeSongs = await likeSongModel.find({user: user.uuid}, 'music').limit(+page * +limit).lean().sort({ updatedAt: -1 }).populate('music')
+
+        return response(res, 200, null, { likeSongs });
+    }
+    catch (error) {
+        next(error)
+    }
+}
