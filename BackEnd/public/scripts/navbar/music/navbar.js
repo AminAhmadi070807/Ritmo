@@ -79,8 +79,6 @@ const categoryIconSubList = document.getElementById('music-sublist-desktop')
         const response = await fetch('/api/v1/categories/music/')
         const data = await response.json()
         const path = location.pathname
-
-
         data.data.categories.forEach((category) => {
             categoryIconList.insertAdjacentHTML('beforeend', `
                 <div>
