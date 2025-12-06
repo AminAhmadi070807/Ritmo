@@ -121,9 +121,13 @@ const formatTime = (seconds) => {
 ;(async () => {
     try {
         const response = await fetch('/api/v1/musics/lastHeard')
-        const data = await response.json()
+        let data = await response.json()
 
-        if (!data.data.lastHeard.length) return document.getElementById('last-heard').classList.add('hidden');
+        if (response.status === 401) {
+            await fetch('/api/v1/auth/refresh')
+            const response = await fetch('/api/v1/musics/lastHeard')
+            data = await response.json()
+        }
 
         data.data.lastHeard.forEach((lastHeard, index) => {
             $.getElementById('lest-heard-music-container').insertAdjacentHTML('beforeend', `
