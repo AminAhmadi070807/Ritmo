@@ -96,7 +96,7 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
             })
         })
 
-        if (data.data.likeSongs) {
+        if (data.data.likeSongs.length) {
             main.className = `${mainClass} h-auto lg:mt-40 mt-24 min-h-[252px]`;
             document.getElementById('is-not-like').classList.remove('flex')
             document.getElementById('is-not-like').classList.add('hidden')

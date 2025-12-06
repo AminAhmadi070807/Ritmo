@@ -66,7 +66,7 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
             `)
         })
 
-        if (data.data.lastHeard) {
+        if (data.data.lastHeard.length) {
             main.className = `${mainClass} h-auto lg:mt-40 mt-24 min-h-[252px]`;
             document.getElementById('last-heard-icon').classList.remove('flex')
             document.getElementById('last-heard-icon').classList.add('hidden')
