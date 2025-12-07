@@ -74,8 +74,8 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
         const likeSongBtn = document.querySelectorAll("#like-song")
 
         likeSongBtn.forEach(btn => {
-            btn.addEventListener("click", async() => {
-                let response = await fetch(`/api/v1/musics/likeSongs/${btn.getAttribute('music-id')}`, { method: 'post' })
+            btn.addEventListener("click", async () => {
+                let response = await fetch(`/api/v1/musics/likeSongs/${btn.getAttribute('music-id')}`, {method: 'post'})
 
                 if (response.status === 401) {
                     const refresh = await fetch('/api/v1/auth/refresh')
@@ -101,15 +101,13 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
             document.getElementById('is-not-like').classList.remove('flex')
             document.getElementById('is-not-like').classList.add('hidden')
             document.getElementById('like-song-container').classList.remove('hidden')
-        }
-        else {
+        } else {
             main.className = `${mainClass} h-screen`;
             document.getElementById('is-not-like').classList.add('flex')
             document.getElementById('is-not-like').classList.remove('hidden')
             document.getElementById('like-song-container').classList.add('hidden')
         }
-    }
-    catch (error) {
+    } catch (error) {
         console.log(error)
     }
 })()
