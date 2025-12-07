@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="bg-background w-screen overflow-x-hidden">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="../../../css/tailwind.css" />
+    <link
+      rel="shortcut icon"
+      href="../../../image/svg/Ritmo.svg"
+      type="image/x-icon"
+    />
+    <title>Ritmo</title>
+  </head>
+
+  <body class="w-screen overflow-x-hidden text-white select-none max-w-[1688px] mx-auto">
+    <svg class="hidden">
+      <!-- heart -->
+      <symbol
+        id="heart"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="size-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+        />
+      </symbol>
+
+      <!-- add-circle -->
+      <symbol
+        id="add-circle"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+        />
+      </symbol>
+
+      <!-- heart-solid -->
+      <symbol
+        id="heart-solid"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+      >
+        <path
+          d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z"
+        />
+      </symbol>
+
+      <!-- menu-queue -->
+      <symbol
+        id="menu-queue"
+        viewBox="0 0 20 19"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 3.00003H19M12 8.00003H19M1 13H19M1 18H19M3.89443 8.55282L7.42229 6.78889C8.89639 6.05184 8.89639 3.94823 7.42229 3.21118L3.89443 1.44725C2.56463 0.782346 1 1.74934 1 3.2361V6.76396C1 8.25073 2.56462 9.21772 3.89443 8.55282Z"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </symbol>
+
+      <!-- three-pin -->
+      <symbol
+        id="three-pin"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="size-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+        />
+      </symbol>
+
+      <!-- trash -->
+      <symbol
+        id="trash"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="size-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
+        />
+      </symbol>
+
+      <!-- microphone-download -->
+      <symbol
+        id="microphone-download"
+        width="185"
+        height="201"
+        viewBox="0 0 185 201"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g clip-path="url(#clip0_7909_11324)">
+          <path
+            d="M21.3014 132.767C9.52093 132.767 0 123.623 0 112.356V93.7734C0 82.5063 9.54287 73.3623 21.3014 73.3623C23.2758 73.3623 24.8773 74.8968 24.8773 76.7887V129.382C24.8773 131.274 23.2758 132.809 21.3014 132.809V132.767ZM17.7256 80.6144C11.6269 82.1279 7.12973 87.4462 7.12973 93.7524V112.335C7.12973 118.641 11.6489 123.959 17.7256 125.473V80.5934V80.6144Z"
+            fill="white"
+          />
+          <path
+            d="M163.677 132.767C161.703 132.767 160.102 131.232 160.102 129.34V76.7466C160.102 74.8547 161.703 73.3202 163.677 73.3202C175.458 73.3202 184.979 82.4642 184.979 93.7313V112.314C184.979 123.581 175.436 132.725 163.677 132.725V132.767ZM167.253 80.6144V125.494C173.352 123.98 177.849 118.662 177.849 112.356V93.7733C177.849 87.4671 173.33 82.1489 167.253 80.6354V80.6144Z"
+            fill="white"
+          />
+          <path
+            d="M155.013 193.37H95.7154V169.805C108.9 168.901 121.185 163.604 130.399 154.839C139.964 145.716 145.229 133.776 145.229 121.205C145.229 120.785 145.009 71.996 145.009 71.996C145.009 71.9539 145.009 71.9329 145.009 71.9119C145.009 71.7858 145.009 71.6596 145.009 71.5335C145.009 71.5335 144.987 69.8308 144.965 69.7467C143.781 42.5249 120.285 20.7054 91.5911 20.7054C62.8967 20.7054 41.6391 40.4859 38.5459 65.8579C38.3485 66.0891 38.1949 72.3533 38.2169 72.7107C38.2169 72.7107 38.2169 121.079 38.2169 121.205C38.2169 133.776 43.4819 145.716 53.0467 154.839C62.2605 163.625 74.5456 168.901 87.752 169.805V193.37H29.9683C27.7965 193.37 26.0195 195.072 26.0195 197.174C26.0195 199.276 27.7965 200.979 29.9683 200.979H155.013C157.185 200.979 158.983 199.276 158.983 197.174C158.983 195.072 157.185 193.37 155.013 193.37ZM46.1802 121.184C46.1802 120.827 46.0047 68.2122 46.0047 68.2122V68.023C48.0449 45.636 67.7229 27.9996 91.5911 27.9996C115.459 27.9996 136.497 46.9183 137.287 70.4825V121.332C137.199 143.929 116.797 162.301 91.7227 162.301C66.648 162.301 46.1802 143.845 46.1802 121.184Z"
+            fill="white"
+          />
+          <path
+            d="M163.019 65.5426H162.777C160.956 65.5426 159.487 64.1972 159.333 62.4525C157.797 45.5519 143.889 8.00889 93.0375 6.87377C73.4911 6.45336 57.3231 12.0659 44.9941 23.6063C32.1606 35.6091 26.6543 51.2695 25.6451 60.7288C25.4696 62.4315 23.9998 63.7558 22.2009 63.7558H21.9596C19.9414 63.7558 18.318 62.1162 18.4935 60.1823C19.6781 48.2425 26.5007 31.3209 39.9704 18.7295C53.7472 5.82274 71.5825 -0.462452 93.1911 0.0210244C144.174 1.17716 164.664 37.2067 166.485 61.969C166.616 63.903 165.037 65.5426 163.019 65.5426Z"
+            fill="white"
+          />
+          <path
+            d="M110.035 106.143L92.1397 122.473M92.1397 122.473L74.2443 106.143M92.1397 122.473V73.4839"
+            stroke="white"
+            stroke-width="6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </g>
+        <defs>
+          <clipPath id="clip0_7909_11324">
+            <rect width="185" height="201" fill="white" />
+          </clipPath>
+        </defs>
+      </symbol>
+
+    </svg>
+
+    <custom-navbar location="download"></custom-navbar>
+
+    <main
+      class="main-site px-5 lg:px-8 lg:mt-40 mt-24 ms-auto h-screen max-w-[1600px]"
+    >
+      <div
+        id="is-not-download"
+        class="flex flex-col items-center justify-center size-full max-w-150 mx-auto"
+      >
+        <svg class="w-[185px] h-50">
+          <use href="#microphone-download"></use>
+        </svg>
+        <div class="flex flex-col justify-center mt-10 md:mt-20">
+          <h3 class="font-Pelak_Bold text-2xl text-center">
+            هنوز محتوایی دانلود نکردی!
+          </h3>
+          <div class="flex items-center gap-x-5 mt-8 mx-auto">
+            <a
+              href="../../index.html"
+              role="button"
+              class="flex items-center justify-center font-Pelak_Medium text-base h-12 min-h-12 w-[157px] text-center border rounded-lg max-w-[157px] max-h-12 text-nowrap"
+              >بازگشت</a
+            >
+            <a
+              href="../../index.html"
+              role="button"
+              class="flex items-center justify-center font-Pelak_Medium text-base h-12 min-h-12 w-[157px] text-center bg-Primary-500 rounded-lg max-w-[157px] max-h-12 text-nowrap"
+              >صفحه اصلی</a
+            >
+          </div>
+        </div>
+      </div>
+      <!-- download -->
+      <div id="download-container">
+        <!-- head -->
+        <h3 class="text-xl font-Pelak_Bold">دانلودشده‌ها</h3>
+        <!-- body -->
+        <div id="download" class="mt-16"></div>
+      </div>
+    </main>
+
+    <audio id="audio" src=""></audio>
+
+    <custom-footer></custom-footer>
+
+    <script type="module" src="./download.js"></script>
+  </body>
+</html>
