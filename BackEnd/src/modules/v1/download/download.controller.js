@@ -5,7 +5,7 @@ const musicModel = require('../musics/music/music.model')
 const {isValidObjectId} = require("mongoose");
 const response = require('../../../helpers/response.helper')
 
-module.exports.toggleLike = async (req, res, next) => {
+module.exports.download = async (req, res, next) => {
     try {
         const user = req.user;
         const { id } = req.params
@@ -18,10 +18,7 @@ module.exports.toggleLike = async (req, res, next) => {
 
         const isExistMusicLike = await downloadModel.findOne({ user: user.uuid, music: id }).lean()
 
-        if (isExistMusicLike) {
-            await likeSongModel.findByIdAndDelete(isExistMusicLike._id)
-            return response(res, 200, 'music dis liked successfully')
-        }
+        if (isExistMusicLike) return response(res, 200, 'music already downloaded successfully')
 
         await downloadModel.create({
             user: user.uuid,
