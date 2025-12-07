@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="bg-background w-screen overflow-x-hidden">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+      <link rel="stylesheet" href="/styles/tailwind.css" />
+      <link rel="icon" href="/logo/icon.png">
+    <title>Ritmo</title>
+  </head>
+  <body class="mx-auto w-screen overflow-hidden h-auto">
+  <%- include('../partials/svg.ejs') %>
+
+  <%- include('../partials/header.music.ejs') %>
+
+    <main class="mt-30 text-white max-w-[1440px] mx-auto h-auto">
+      <!-- head -->
+      <section class="head max-w-[1016px] mx-auto h-auto mb-19">
+        <h2 class="font-Pelak_Bold text-[32px]/[150%] mb-16 mx-auto text-center">پلن‌های اشتراک</h2>
+        <div class="flex gap-x-6 gap-y-[5rem] flex-col md:flex-row *:w-auto *:sm:w-[496px] px-4 *:max-w-[496px]">
+          <div class="ritmo-plus-cart-container relative rounded-2xl pb-8 px-8 md:px-8 lg:px-12 border border-Neutral-100 mx-auto">
+            <div class="absolute -top-[10%] drop-shadow-ritmo-plus left-0 right-0 mx-auto flex items-center justify-center size-24 ritmo-plus-cart rounded-full">
+              <svg class="size-[66px]"><use href="#gem"></use></svg>
+            </div>
+            <div>
+              <h3 class="font-Pelak_Bold text-center text-[40px] mt-23">ریتمو پلاس</h3>
+              <p class="font-Pelak_Regular text-base mt-2 text-center">تجربه حرفه‌ای موسیقی</p>
+              <ul class="flex flex-col gap-y-1.5 mt-8 mb-8 list-disc ms-5 *:text-nowrap">
+                <li class="font-Pelak_Regular text-base">دسترسی به محتوای انحصاری و ویژه</li>
+                <li class="font-Pelak_Regular text-base">پخش بدون تبلیغات</li>
+                <li class="font-Pelak_Regular text-base">دانلود و گوش دادن آفلاین</li>
+                <li class="font-Pelak_Regular text-base">کیفیت پخش بالا (High Quality)</li>
+                <li class="font-Pelak_Regular text-base">امکان رد کردن نامحدود موسیقی‌ها</li>
+                <li class="font-Pelak_Regular text-base">امکان شخصی‌سازی بیشتر پلی‌لیست‌ها</li>
+                <li class="font-Pelak_Regular text-base">پشتیبانی ویژه و سریع</li>
+              </ul>
+            </div>
+            <div class="flex gap-x-2 sm:gap-x-3 md:gap-x-4 lg:gap-x-8 items-center">
+              <button type="button" class="text-xs sm:text-base md:text-xs lg:text-base text-nowrap font-FA_Pelak_Bold w-full h-12 rounded-lg bg-white text-Neutral-800">ماهانه ۴۰ هزار تومان</button>
+              <button type="button" class="text-xs sm:text-base md:text-xs lg:text-base text-nowrap font-FA_Pelak_Bold w-full h-12 rounded-lg bg-white text-Neutral-800">سالانه ۴۰۰ هزار تومان</button>
+            </div>
+          </div>
+          <div class="relative bg-transparent-1/35 rounded-2xl pb-8 px-8 md:px-8 lg:px-12 border border-Neutral-700 mx-auto min-w-[350px]">
+            <div class="absolute -top-[10%] drop-shadow-custom-cart left-0 right-0 mx-auto flex items-center justify-center size-24 bg-Neutral-800 rounded-full">
+              <svg class="size-[66px]"><use href="#user-circle"></use></svg>
+            </div>
+            <div>
+              <h3 class="font-Pelak_Bold text-center text-[40px] mt-23">اکانت رایگان</h3>
+              <p class="font-Pelak_Regular text-base mt-2 text-center">رایگان برای همیشه</p>
+              <ul class="flex flex-col gap-y-1.5 mt-8 mb-15 list-disc ms-5">
+                <li class="font-Pelak_Regular text-base">آرشیو عمومی</li>
+                <li class="font-Pelak_Regular text-base">ساخت پلی‌لیست</li>
+                <li class="font-Pelak_Regular text-base">پخش آنلاین</li>
+                <li class="font-Pelak_Regular text-base">تبلیغات بین محتوا</li>
+                <li class="font-Pelak_Regular text-base">کیفیت معمولی</li>
+                <li class="font-Pelak_Regular text-base">دنبال کردن هنرمندان</li>
+              </ul>
+            </div>
+            <a href="/">
+              <button type="button" class="font-Pelak_Medium w-full h-12 rounded-lg bg-Neutral-500">دانلود رایگان</button>
+            </a>
+          </div>
+        </div>
+      </section>
+
+        <section class="main max-w-[1016px] mx-auto h-auto">
+            <h2 class="font-Pelak_Bold text-[32px]/[150%] mb-16 mx-auto text-center mt-7">امکانات ریتمو پلاس</h2>
+            <div class="flex gap-y-10 sm:gap-y-15 md:gap-y-[74px] items-center justify-between flex-wrap *:w-[300px] *:mx-auto mx-auto">
+                <div class="group ritmo-plus-category bg-[#040404] hover:bg-linear-180 from-[#FF2626]/80 to-[#000]">
+                    <div class="absolute top-[-2rem] left-0 right-0 mx-auto flex items-center justify-center size-16 bg-menu group-hover:bg-Error-200 rounded-full"><svg class="size-8"><use href="#computer-mobil"></use></svg></div>
+                    <div class="inline-block">
+                        <h3 class="inline-block font-Pelak_Bold text-2xl">چنددستگاهی</h3>
+                        <div class="flex items-center justify-between mt-2">
+                            <span class="size-2 rounded-full bg-white"></span>
+                            <span class="block bg-white w-full h-px"></span>
+                            <span class="size-2 rounded-full bg-white"></span>
+                        </div>
+                    </div>
+                    <p class="font-Pelak_Regular mt-6 w-[234px] text-xs/[20px] h-[54px]">قابلیت گوش دادن به موسیقی یا پادکست روی چند دستگاه (مانند موبایل، لپ‌تاپ، و تلویزیون) به صورت همزمان.</p>
+                </div>
+
+                <div class="group ritmo-plus-category bg-[#040404] hover:bg-linear-180 from-[#FF4C00]/80 to-[#000]">
+                    <div class="absolute top-[-2rem] left-0 right-0 mx-auto flex items-center justify-center size-16 bg-menu rounded-full group-hover:bg-[#FF4D00]">
+                        <svg class="size-8"><use href="#play-list"></use></svg>
+                    </div>
+                    <div class="inline-block">
+                        <h3 class="inline-block font-Pelak_Bold text-2xl">پلی‌لیست گروهی</h3>
+                        <div class="flex items-center justify-between mt-2">
+                            <span class="size-2 rounded-full bg-white"></span>
+                            <span class="block bg-white w-full h-px"></span>
+                            <span class="size-2 rounded-full bg-white"></span>
+                        </div>
+                    </div>
+                    <p class="font-Pelak_Regular mt-6 w-[234px] text-xs/[20px] h-[54px]">امکان ایجاد و مدیریت پلی‌لیست‌های مشترک با دوستان و مشاهده تغییرات آن‌ها به صورت لحظه‌ای.</p>
+                </div>
+
+                <div class="group ritmo-plus-category bg-[#040404] hover:bg-linear-180 from-[#FFA726]/80 to-[#000]">
+                    <div class="absolute top-[-2rem] left-0 right-0 mx-auto flex items-center justify-center size-16 bg-menu rounded-full group-hover:bg-Warning-200">
+                        <svg class="size-8"><use href="#vynil"></use></svg>
+                    </div>
+                    <div class="inline-block">
+                        <h3 class="inline-block font-Pelak_Bold text-2xl">ریتم اختصاصی</h3>
+                        <div class="flex items-center justify-between mt-2">
+                            <span class="size-2 rounded-full bg-white"></span>
+                            <span class="block bg-white w-full h-px"></span>
+                            <span class="size-2 rounded-full bg-white"></span>
+                        </div>
+                    </div>
+                    <p class="font-Pelak_Regular mt-6 w-[234px] text-xs/[20px] h-[54px]">ایجاد ایستگاه‌های موسیقی هوشمند که بر اساس سلیقه‌ی کاربران به صورت داینامیک بروزرسانی می‌شوند.</p>
+                </div>
+
+                <div class="group ritmo-plus-category bg-[#040404] hover:bg-linear-180 from-[#009C07]/80 to-[#000]">
+                    <div class="absolute top-[-2rem] left-0 right-0 mx-auto flex items-center justify-center size-16 bg-menu group-hover:bg-Success-200 rounded-full">
+                        <svg class="size-8"><use href="#user-circle"></use></svg>
+                    </div>
+                    <div class="inline-block">
+                        <h3 class="inline-block font-Pelak_Bold text-2xl">پروفایل پلاس</h3>
+                        <div class="flex items-center justify-between mt-2">
+                            <span class="size-2 rounded-full bg-white"></span>
+                            <span class="block bg-white w-full h-px"></span>
+                            <span class="size-2 rounded-full bg-white"></span>
+                        </div>
+                    </div>
+                    <p class="font-Pelak_Regular mt-6 w-[234px] text-xs/[20px] h-[54px]">امکان شخصی‌سازی پروفایل کاربری با نمایش سلیقه‌های موسیقی، آمار شنیدن و محبوب‌ترین آهنگ‌های در ماه..</p>
+                </div>
+
+                <div class="group ritmo-plus-category bg-[#040404] hover:bg-linear-180 from-[#2979FF]/80 to-[#000]">
+                    <div class="absolute top-[-2rem] left-0 right-0 mx-auto flex items-center justify-center size-16 bg-menu group-hover:bg-Info-200 rounded-full">
+                        <svg class="size-8"><use href="#music-01"></use></svg>
+                    </div>
+                    <div class="inline-block">
+                        <h3 class="inline-block font-Pelak_Bold text-2xl">محتوای ویژه</h3>
+                        <div class="flex items-center justify-between mt-2">
+                            <span class="size-2 rounded-full bg-white"></span>
+                            <span class="block bg-white w-full h-px"></span>
+                            <span class="size-2 rounded-full bg-white"></span>
+                        </div>
+                    </div>
+                    <p class="font-Pelak_Regular mt-6 w-[234px] text-xs/[20px] h-[54px]">دریافت پیام‌های صوتی یا ویدئویی از هنرمندان محبوب کاربران به همراه محتوای اختصاصی مانند اجراهای زنده یا پشت صحنه..</p>
+                </div>
+
+                <div class="group ritmo-plus-category bg-[#040404] hover:bg-linear-180 from-[#9747FF]/80 to-[#000]">
+                    <div class="absolute top-[-2rem] left-0 right-0 mx-auto flex items-center justify-center size-16 bg-menu group-hover:bg-[#9747FF] rounded-full">
+                        <svg class="size-8"><use href="#computer-mobil"></use></svg>
+                    </div>
+                    <div class="inline-block">
+                        <h3 class="inline-block font-Pelak_Bold text-2xl">تقویم ریتمو</h3>
+                        <div class="flex items-center justify-between mt-2">
+                            <span class="size-2 rounded-full bg-white"></span>
+                            <span class="block bg-white w-full h-px"></span>
+                            <span class="size-2 rounded-full bg-white"></span>
+                        </div>
+                    </div>
+                    <p class="font-Pelak_Regular mt-6 w-[234px] text-xs/[20px] h-[54px]">دسترسی به تقویم رویدادهای موسیقی (کنسرت‌ها و انتشار آثار) بر اساس هنرمندان مورد علاقه و امکان خرید بلیت مستقیم..</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="questions" class="max-w-[1016px] mx-auto h-auto mt-19 px-4">
+        <h2
+          class="font-Pelak_Bold text-[32px]/[150%] mb-16 mx-auto text-center mt-7"
+        >
+          سوالات متداول
+        </h2>
+        <div>
+          <div
+            id="questation-ritmo-plus"
+            class="flex mt-6 flex-col py-4 w-full h-auto transition-all duration-500 bg-transparent-1/75 rounded-sm border-r-4 border-r-Primary-500 px-4 cursor-pointer"
+          >
+            <div class="flex items-center justify-between w-full">
+              <label class="font-Pelak_Medium text-xs sm:text-base"
+                >۱. ریتمو پلاس چیست؟</label
+              >
+              <svg
+                id="arrowDown"
+                class="size-8 transition-all duration-500 transform"
+              >
+                <use href="#chevron-down"></use>
+              </svg>
+            </div>
+            <p
+              class="hidden font-Pelak_Medium text-xs sm:text-base mt-4"
+              id="answer"
+            >
+              با مراجعه به بخش «ریتمو پلاس» در اپلیکیشن، پلن مورد نظر خود را
+              انتخاب کرده و با چند کلیک ساده اشتراک خود را فعال کنید.
+            </p>
+          </div>
+
+          <div
+            id="questation-ritmo-plus"
+            class="flex mt-6 flex-col py-4 w-full h-auto transition-all duration-500 bg-transparent-1/75 rounded-sm border-r-4 border-r-Primary-500 px-4 cursor-pointer"
+          >
+            <div class="flex items-center justify-between w-full">
+              <label class="font-Pelak_Medium text-xs sm:text-base"
+                >۲. چگونه می‌توانم به Ritmo Plus ارتقا دهم؟.
+              </label>
+              <svg
+                id="arrowDown"
+                class="size-8 transition-all duration-500 transform"
+              >
+                <use href="#chevron-down"></use>
+              </svg>
+            </div>
+            <p
+              class="hidden font-Pelak_Medium text-xs sm:text-base mt-4"
+              id="answer"
+            >
+              با مراجعه به بخش «ریتمو پلاس» در اپلیکیشن، پلن مورد نظر خود را
+              انتخاب کرده و با چند کلیک ساده اشتراک خود را فعال کنید.
+            </p>
+          </div>
+
+          <div
+            id="questation-ritmo-plus"
+            class="flex mt-6 flex-col py-4 w-full h-auto transition-all duration-500 bg-transparent-1/75 rounded-sm border-r-4 border-r-Primary-500 px-4 cursor-pointer"
+          >
+            <div class="flex items-center justify-between w-full">
+              <label class="font-Pelak_Medium text-xs sm:text-base"
+                >۳. اشتراک Ritmo Plus روی چند دستگاه قابل استفاده است؟</label
+              >
+              <svg
+                id="arrowDown"
+                class="size-8 transition-all duration-500 transform"
+              >
+                <use href="#chevron-down"></use>
+              </svg>
+            </div>
+            <p
+              class="hidden font-Pelak_Medium text-xs sm:text-base mt-4"
+              id="answer"
+            >
+              با مراجعه به بخش «ریتمو پلاس» در اپلیکیشن، پلن مورد نظر خود را
+              انتخاب کرده و با چند کلیک ساده اشتراک خود را فعال کنید.
+            </p>
+          </div>
+
+          <div
+            id="questation-ritmo-plus"
+            class="flex mt-6 flex-col py-4 w-full h-auto transition-all duration-500 bg-transparent-1/75 rounded-sm border-r-4 border-r-Primary-500 px-4 cursor-pointer"
+          >
+            <div class="flex items-center justify-between w-full">
+              <label class="font-Pelak_Medium text-xs sm:text-base"
+                >۴. آیا می‌توانم قبل از خرید، نسخه پلاس را تست کنم؟</label
+              >
+              <svg
+                id="arrowDown"
+                class="size-8 transition-all duration-500 transform"
+              >
+                <use href="#chevron-down"></use>
+              </svg>
+            </div>
+            <p
+              class="hidden font-Pelak_Medium text-xs sm:text-base mt-4"
+              id="answer"
+            >
+              با مراجعه به بخش «ریتمو پلاس» در اپلیکیشن، پلن مورد نظر خود را
+              انتخاب کرده و با چند کلیک ساده اشتراک خود را فعال کنید.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+
+    <%- include('../partials/footer.ejs') %>
+
+    <script src="/scripts/navbar/music/navbar.js"></script>
+  </body>
+</html>

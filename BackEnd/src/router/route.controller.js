@@ -10,6 +10,8 @@ const response = require('../helpers/response.helper')
 
 module.exports.music = (req, res) => res.render('music/index.ejs', { music: null })
 
+module.exports.plan = (req, res) => res.render('music/plan.ejs')
+
 module.exports.musicPage = async (req, res) => res.render('music/page.ejs')
 
 module.exports.musicCategory = async (req, res) => res.render('music/categories.ejs')

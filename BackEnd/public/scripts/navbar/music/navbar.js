@@ -82,7 +82,7 @@ const categoryIconSubList = document.getElementById('music-sublist-desktop')
         data.data.categories.forEach((category) => {
             categoryIconList.insertAdjacentHTML('beforeend', `
                 <div>
-                    <a href="${category.href}" class="flex items-center gap-x-3 py-4 ${path.split('/').pop() === category.href.toLowerCase().split('/').pop() ? "active-list-music-small-size" : "no-active-list-music-small-size"}">
+                    <a href="${category.href}" class="flex items-center gap-x-3 py-4 text-white ${path.split('/').pop() === category.href.toLowerCase().split('/').pop() ? "active-list-music-small-size" : "no-active-list-music-small-size"}">
                         <svg class="${path.split('/').pop() === category.href.toLowerCase().split('/').pop() ? "active-icon-in-music" : "no-active-icon-in-music"} ms-6"><use href="#${category.icon}"></use></svg>
                         <span id="right-navbar-text" class="hidden ${path.split('/').pop() === category.href.toLowerCase().split('/').pop() ? "navbar-list-active" : "navbar-list-no-active"}">${category.title}</span>
                     </a>
@@ -102,28 +102,28 @@ const categoryIconSubList = document.getElementById('music-sublist-desktop')
 
         categoryIconSubList.innerHTML = `
                     <div>
-                        <a href="/lastHeard" class="py-4 flex items-center gap-x-3 ${ path.split('/').pop() === "lastHeard" ? "active-list-music-small-size" : "no-active-list-music-small-size"}">
+                        <a href="/lastHeard" class="py-4 flex items-center gap-x-3 text-white ${ path.split('/').pop() === "lastHeard" ? "active-list-music-small-size" : "no-active-list-music-small-size"}">
                             <svg class="active-icon-in-music ${ path.split('/').pop() === "lastHeard" ? "active-icon-in-music" : "no-active-icon-in-music"} ms-6"><use href="#headphone"></use></svg>
                             <span id="right-navbar-text" class="hidden ${ path.split('/').pop() === "lastHeard" ? "navbar-list-active" : "navbar-list-no-active"}">آخرین شنیده‌ها</span>
                         </a>
                     </div>
 
                     <div>
-                        <a href="/likeSongs" class="${ path.split('/').pop() === "likeSongs" ? "active-list-music-small-size" : "no-active-list-music-small-size"} flex items-center gap-x-3 py-4">
+                        <a href="/likeSongs" class="text-white ${ path.split('/').pop() === "likeSongs" ? "active-list-music-small-size" : "no-active-list-music-small-size"} flex items-center gap-x-3 py-4">
                             <svg class="${ path.split('/').pop() === "likeSongs" ? "active-icon-in-music" : "no-active-icon-in-music"} ms-6"><use href="#heart"></use></svg>
                             <span id="right-navbar-text" class="hidden ${ path.split('/').pop() === "likeSongs" ? "navbar-list-active" : "navbar-list-no-active"}">مورد علاقه‌ها</span>
                         </a>
                     </div>
 
                     <div>
-                        <a href="/suggestions" class="${ path.split('/').pop() === "suggestions" ? "active-list-music-small-size" : "no-active-list-music-small-size"} py-4 flex items-center gap-x-3">
+                        <a href="/suggestions" class="text-white ${ path.split('/').pop() === "suggestions" ? "active-list-music-small-size" : "no-active-list-music-small-size"} py-4 flex items-center gap-x-3">
                             <svg class="${ path.split('/').pop() === "suggestions" ? "active-icon-in-music" : "no-active-icon-in-music"} ms-6"><use href="#vynil"></use></svg>
                             <span id="right-navbar-text" class="hidden ${ path.split('/').pop() === "suggestions" ? "navbar-list-active" : "navbar-list-no-active"}">پیشنهادها</span>
                         </a>
                     </div>
 
                     <div>
-                        <a href="/downloads" class="${ path.split('/').pop() === "downloads" ? "active-list-music-small-size" : "no-active-list-music-small-size"} py-4 text-white flex items-center gap-x-3">
+                        <a href="/downloads" class="text-white ${ path.split('/').pop() === "downloads" ? "active-list-music-small-size" : "no-active-list-music-small-size"} py-4 text-white flex items-center gap-x-3">
                             <svg class="${ path.split('/').pop() === "downloads" ? "active-icon-in-music" : "no-active-icon-in-music"} ms-6"><use href="#download-01"></use></svg>
                             <span id="right-navbar-text" class="hidden ${ path.split('/').pop() === "downloads" ? "navbar-list-active" : "navbar-list-no-active"}">دانلودشده‌ها</span>
                         </a>
