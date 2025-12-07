@@ -12,16 +12,16 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
 
 ;(async () => {
     try {
-        const response = await fetch('/api/v1/musics/likeSongs/?limit=100&?page=1')
+        const response = await fetch('/api/v1/musics/downloads/?limit=100&?page=1')
         let data = await response.json()
         if (response.status === 401) {
             const refresh = await fetch('/api/v1/auth/refresh')
             if (refresh.status !== 200) return location.href = '/'
-            const response = await fetch('/api/v1/musics/likeSongs/?limit=100&?page=1')
+            const response = await fetch('/api/v1/musics/downloads/?limit=100&?page=1')
             data = await response.json()
         }
 
-        data.data.likeSongs.forEach((likeSong, index) => {
+        data.data.downloads.forEach((likeSong, index) => {
             document.getElementById('download-container').insertAdjacentHTML('beforeend', `
                   <div class="flex items-center w-full h-20 justify-between border-b-2 border-b-Neutral-800 py-2 px-6 md:px-8">
                     <div class="flex gap-x-4 min-w-50 md:min-w-100 items-center">
@@ -96,7 +96,7 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
             })
         })
 
-        if (data.data.likeSongs.length) {
+        if (data.data.count) {
             main.className = `${mainClass} h-auto lg:mt-40 mt-24 min-h-[252px]`;
             document.getElementById('download-icon').classList.remove('flex')
             document.getElementById('download-icon').classList.add('hidden')
