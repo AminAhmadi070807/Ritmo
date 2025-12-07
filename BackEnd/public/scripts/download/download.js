@@ -22,7 +22,7 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
         }
 
         data.data.likeSongs.forEach((likeSong, index) => {
-            document.getElementById('like-song-container').insertAdjacentHTML('beforeend', `
+            document.getElementById('download-container').insertAdjacentHTML('beforeend', `
                   <div class="flex items-center w-full h-20 justify-between border-b-2 border-b-Neutral-800 py-2 px-6 md:px-8">
                     <div class="flex gap-x-4 min-w-50 md:min-w-100 items-center">
                       <data value="${index + 1}" class="font-FA_Pelak_Regular text-xl">${index + 1}</data>
@@ -100,13 +100,13 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
             main.className = `${mainClass} h-auto lg:mt-40 mt-24 min-h-[252px]`;
             document.getElementById('download-icon').classList.remove('flex')
             document.getElementById('download-icon').classList.add('hidden')
-            document.getElementById('like-song-container').classList.remove('hidden')
+            document.getElementById('download-container').classList.remove('hidden')
         }
         else {
             main.className = `${mainClass} h-screen`;
             document.getElementById('download-icon').classList.add('flex')
             document.getElementById('download-icon').classList.remove('hidden')
-            document.getElementById('like-song-container').classList.add('hidden')
+            document.getElementById('download-container').classList.add('hidden')
         }
     }
     catch (error) {
