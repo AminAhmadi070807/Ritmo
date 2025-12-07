@@ -1,6 +1,5 @@
 "use strict"
 
-
 const questionRitmoPlus = document.querySelectorAll("#questions-ritmo-plus");
 
 questionRitmoPlus.forEach((questionContainer) => {
