@@ -19,7 +19,7 @@
         <section class="head max-w-[1016px] mx-auto h-auto mb-19">
             <h2 class="font-Pelak_Bold text-[32px]/[150%] mb-16 mx-auto text-center">پلن‌های اشتراک</h2>
             <div class="flex gap-x-6 gap-y-[5rem] flex-col md:flex-row *:w-auto *:sm:w-[496px] px-4 *:max-w-[496px]">
-              <div class="ritmo-plus-cart-container relative rounded-2xl pb-8 px-8 md:px-8 lg:px-12 border border-Neutral-100 mx-auto">
+              <div id="ritmo-plus-container" class="ritmo-plus-cart-container relative rounded-2xl pb-8 px-8 md:px-8 lg:px-12 border border-Neutral-100 mx-auto">
                 <div class="absolute -top-[10%] drop-shadow-ritmo-plus left-0 right-0 mx-auto flex items-center justify-center size-24 ritmo-plus-cart rounded-full">
                   <svg class="size-[66px]"><use href="#gem"></use></svg>
                 </div>
@@ -27,18 +27,14 @@
                   <h3 class="font-Pelak_Bold text-center text-[40px] mt-23">ریتمو پلاس</h3>
                   <p class="font-Pelak_Regular text-base mt-2 text-center">تجربه حرفه‌ای موسیقی</p>
                   <ul class="flex flex-col gap-y-1.5 mt-8 mb-8 list-disc ms-5 *:text-nowrap">
-                    <li class="font-Pelak_Regular text-base">دسترسی به محتوای انحصاری و ویژه</li>
-                    <li class="font-Pelak_Regular text-base">پخش بدون تبلیغات</li>
-                    <li class="font-Pelak_Regular text-base">دانلود و گوش دادن آفلاین</li>
-                    <li class="font-Pelak_Regular text-base">کیفیت پخش بالا (High Quality)</li>
-                    <li class="font-Pelak_Regular text-base">امکان رد کردن نامحدود موسیقی‌ها</li>
-                    <li class="font-Pelak_Regular text-base">امکان شخصی‌سازی بیشتر پلی‌لیست‌ها</li>
-                    <li class="font-Pelak_Regular text-base">پشتیبانی ویژه و سریع</li>
+                      <% plans[0].description.forEach(plan => { %>
+                          <li class="font-Pelak_Regular text-base"><%= plan %></li>
+                      <% }) %>
                   </ul>
                 </div>
                 <div class="flex gap-x-2 sm:gap-x-3 md:gap-x-4 lg:gap-x-8 items-center">
-                  <button type="button" class="text-xs sm:text-base md:text-xs lg:text-base text-nowrap font-FA_Pelak_Bold w-full h-12 rounded-lg bg-Primary-500 cursor-pointer shadow-xl border shadow-Primary-500 text-white">ماهانه ۴۰ هزار تومان</button>
-                  <button type="button" class="text-xs sm:text-base md:text-xs lg:text-base text-nowrap font-FA_Pelak_Bold w-full h-12 rounded-lg bg-Primary-500 cursor-pointer shadow-xl border shadow-Primary-500 text-white">سالانه ۴۰۰ هزار تومان</button>
+                  <a href="/api/v1/payment/plan/<%= plans[0]._id %>" type="button" class="text-xs flex-center sm:text-base md:text-xs lg:text-base text-nowrap font-FA_Pelak_Bold w-full h-12 rounded-lg bg-Primary-500 cursor-pointer shadow-xl border shadow-Primary-500 text-white">ماهانه ۴۰ هزار تومان</a>
+                  <a href="/api/v1/payment/plan/<%= plans[1]._id %>" type="button" class="text-xs flex-center sm:text-base md:text-xs lg:text-base text-nowrap font-FA_Pelak_Bold w-full h-12 rounded-lg bg-Primary-500 cursor-pointer shadow-xl border shadow-Primary-500 text-white">سالانه ۴۰۰ هزار تومان</a>
                 </div>
               </div>
               <div class="relative bg-transparent-1/35 rounded-2xl pb-8 px-8 md:px-8 lg:px-12 border border-Neutral-700 mx-auto min-w-[350px]">

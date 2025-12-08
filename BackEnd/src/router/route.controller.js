@@ -5,12 +5,24 @@ const albumModel = require('../modules/v1/musics/album/album.model')
 const userModel = require('../modules/v1/users/user.model')
 const musicModel = require('../modules/v1/musics/music/music.model')
 const playlistModel = require('../modules/v1/musics/playlists/playlist.model')
+const planModel = require('../modules/v1/plan/plan.model')
 const {isValidObjectId} = require("mongoose");
 const response = require('../helpers/response.helper')
 
 module.exports.music = (req, res) => res.render('music/index.ejs', { music: null })
 
-module.exports.plan = (req, res) => res.render('music/plan.ejs')
+module.exports.plan = async (req, res, next) => {
+    try {
+        const plans = await planModel.find({}).lean()
+
+        return res.render('music/plan.ejs', {
+            plans
+        })
+    }
+    catch (err) {
+        next(err)
+    }
+}
 
 module.exports.musicPage = async (req, res) => res.render('music/page.ejs')
 
