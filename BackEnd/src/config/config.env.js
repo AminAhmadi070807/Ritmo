@@ -11,5 +11,11 @@ module.exports = {
         accessExpiresIn: process.env.ACCESS_TOKEN_EXPIRE_IN,
         refreshSecretKey: process.env.REFRESH_TOKEN_EXPIRE_IN,
         refreshExpiresIn: process.env.REFRESH_TOKEN_EXPIRE_IN
+    },
+    zarinPal: {
+        zarinPalRoute: process.env.ZARIN_PAL_PAYMENT_ROUTE,
+        zarinPalAddress: process.env.ZARIN_PAL_PAYMENT_ADDRESS,
+        zarinPalCallbackRoute: process.env.ZARIN_PAL_PAYMENT_CALBACK_URL,
+        zarinPalMerchantId: process.env.ZARIN_PAL_PAYMENT_MERCHANT_ID,
     }
 }
