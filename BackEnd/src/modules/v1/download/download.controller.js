@@ -2,6 +2,7 @@
 
 const downloadModel = require('./download.model')
 const musicModel = require('../musics/music/music.model')
+const userPlan = require('../plan/user.plan.model')
 const {isValidObjectId} = require("mongoose");
 const response = require('../../../helpers/response.helper')
 
@@ -19,6 +20,10 @@ module.exports.download = async (req, res, next) => {
         const isExistMusicLike = await downloadModel.findOne({ user: user.uuid, music: id }).lean()
 
         if (isExistMusicLike) return response(res, 200, 'music already downloaded successfully')
+
+        const isExistUserPlan = await userPlan.findOne({ user: user.uuid })
+
+        if (!isExistUserPlan) return response(res, 400, "you do not have access to download music.")
 
         await downloadModel.create({
             user: user.uuid,
