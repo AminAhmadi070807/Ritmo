@@ -145,9 +145,9 @@ const formatTime = (seconds) => {
                 <span id="like-song" music-id="${lastHeard.music._id}" class="cursor-pointer">
                   <svg class="size-6 ${lastHeard.likeMusic ? "text-Primary-600" : "text-Neutral-300"}"><use href="#${lastHeard.likeMusic ? "heart-solid" : "heart"}"></use></svg>
                 </span>
-                <a href="#">
+                <button id="download-music" music-id="${lastHeard.music._id}" role="button" type="button" class="cursor-pointer">
                   <svg class="size-6 text-Neutral-300"><use href="#download-01"></use></svg>
-                </a>
+                </button>
                 <a href="#">
                   <svg class="size-6 text-Neutral-300"><use href="#add-circle"></use></svg>
                 </a>
