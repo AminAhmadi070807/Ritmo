@@ -14,6 +14,7 @@ module.exports = {
     },
     zarinPal: {
         zarinPalRoute: process.env.ZARIN_PAL_PAYMENT_ROUTE,
+        zarinPalRouteVerify: process.env.ZARIN_PAL_PAYMENT_ROUTE_VERIFY,
         zarinPalAddress: process.env.ZARIN_PAL_PAYMENT_ADDRESS,
         zarinPalCallbackRoute: process.env.ZARIN_PAL_PAYMENT_CALBACK_URL,
         zarinPalMerchantId: process.env.ZARIN_PAL_PAYMENT_MERCHANT_ID,

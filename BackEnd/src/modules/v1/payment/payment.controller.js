@@ -26,13 +26,14 @@ module.exports.payment = async (req, res, next) => {
             authority: paymentResult.authority,
             objectID: id,
             price: plan.price,
-            model: ["PLAN"],
+            model: "PLAN",
             status: false
         })
 
         return response(res, 200, null, { ...paymentResult })
     }
     catch (error) {
+        console.log(error)
         next(error);
     }
 }
@@ -45,8 +46,24 @@ module.exports.verify = async (req, res, next) => {
 
         if (Status !== "OK") return response(res, 400, "Payment is not successfully.")
 
+        const isExistAuthority = await paymentModel.findOne({
+            user: user.uuid,
+            authority: Authority,
+        }).lean()
 
-        return response(res, 200, null, user)
+        if (!isExistAuthority) return response(res, 404, "Payment not found.")
+
+        const paymentVerify = await zarinPalService.verify(Authority, isExistAuthority.price)
+
+        if (paymentVerify.status !== 200) return response(res, paymentVerify.status, paymentVerify.message)
+
+        await paymentModel.findByIdAndUpdate(isExistAuthority._id, {
+            $set: {
+                status: true
+            }
+        })
+
+        return response(res, 200, null, )
     }
     catch (error) {
         next(error);

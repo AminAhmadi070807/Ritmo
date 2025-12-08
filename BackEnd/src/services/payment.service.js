@@ -24,3 +24,24 @@ module.exports.payment = async (price, description) => {
         return { status: 500, message: error.message || "OoOps unknown server error" };
     }
 }
+
+module.exports.verify = async (authority, price) => {
+    try {
+        const response = await axios.post(configs.zarinPal.zarinPalRouteVerify, {
+            merchant_id: configs.zarinPal.zarinPalMerchantId,
+            amount: price,
+            authority
+        })
+
+        const data = await response.data;
+
+        if (data.data.code === 101) return { status: 409, message: "payment verification successfully.", ...data.data}
+
+        if (data.data.code === 100) return { status: 200, message: "payment verification successfully.", ...data.data }
+
+        return { status: data.data.code, message: data.data.message, ...data }
+    }
+    catch (error) {
+        return { status: 500, message: error.response.message || "OoOps unknown server error." };
+    }
+}
