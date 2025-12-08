@@ -2,6 +2,7 @@
 
 const paymentModel = require('./payment.model')
 const planModel = require('../plan/plan.model')
+const userPlanModel = require('../plan/user.plan.model')
 const { isValidObjectId } = require("mongoose");
 const response = require('../../../helpers/response.helper')
 const zarinPalService = require('../../../services/payment.service')
@@ -60,6 +61,14 @@ module.exports.verify = async (req, res, next) => {
             $set: {
                 status: true
             }
+        })
+
+        const plan = await planModel.findById(isExistAuthority._id).lean()
+
+        await userPlanModel.create({
+            user: user.uuid,
+            plan: isExistAuthority.objectID,
+            expireAt: new Date(new Date().setMonth(new Date().getMonth() + plan.month))
         })
 
         return res.redirect('/')
