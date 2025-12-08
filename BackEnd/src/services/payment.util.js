@@ -5,6 +5,8 @@ const axios = require('axios');
 
 module.exports.payment = async (price, description) => {
     try {
+        if (!price || !description) return { status: 400, message: "price and description must be required." }
+
         const response = await axios.post(configs.zarinPal.zarinPalRoute, {
             merchant_id: configs.zarinPal.zarinPalMerchantId,
             amount: +price,
