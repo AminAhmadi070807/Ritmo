@@ -3,7 +3,7 @@
 const configs = require('../config/config.env');
 const axios = require('axios');
 
-;(async (price = 100_000, description = "this description for testing") => {
+module.exports.payment = async (price, description) => {
     try {
         const response = await axios.post(configs.zarinPal.zarinPalRoute, {
             merchant_id: configs.zarinPal.zarinPalMerchantId,
@@ -21,4 +21,4 @@ const axios = require('axios');
     catch (error) {
         return { status: 500, message: error.message || "OoOps unknown server error" };
     }
-})()
+}
