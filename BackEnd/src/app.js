@@ -22,6 +22,7 @@ const musicLastHeardRouter = require('./modules/v1/last-heard/last-heard.route')
 const musicLikeSongsRouter = require('./modules/v1/like-songs/like-song.route')
 const musicDownloadRouter = require('./modules/v1/download/download.route')
 const planRouter = require('./modules/v1/plan/plan.route')
+const paymentRouter = require('./modules/v1/payment/payment.route')
 
 const app = express();
 
@@ -45,6 +46,7 @@ app.use('/api/v1/musics/lastHeard', musicLastHeardRouter)
 app.use('/api/v1/musics/likeSongs', musicLikeSongsRouter)
 app.use('/api/v1/musics/downloads', musicDownloadRouter)
 app.use('/api/v1/plan', planRouter)
+app.use('/api/v1/payment', paymentRouter)
 
 app.use(route)
 
