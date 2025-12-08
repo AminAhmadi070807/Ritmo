@@ -8,6 +8,7 @@ const zarinPalService = require('../../../services/payment.service')
 
 module.exports.payment = async (req, res, next) => {
     try {
+        const user = req.user;
         const { id } = req.params;
 
         if (!isValidObjectId(id)) return response(res, 400, "plan id is not correct.")
@@ -20,7 +21,28 @@ module.exports.payment = async (req, res, next) => {
 
         if (paymentResult.status !== 200) return response(res, paymentResult.status, paymentResult.message)
 
+        await paymentModel.create({
+            user: user.uuid,
+
+        })
+
         return response(res, 200, null, { ...paymentResult })
+    }
+    catch (error) {
+        next(error);
+    }
+}
+
+module.exports.verify = async (req, res, next) => {
+    try {
+        const user = req.user;
+
+        const { Authority, Status } = req.query;
+
+        if (Status !== "OK") return response(res, 400, "Payment is not successfully.")
+
+
+        return response(res, 200, null, user)
     }
     catch (error) {
         next(error);

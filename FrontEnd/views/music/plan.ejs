@@ -19,7 +19,7 @@
         <section class="head max-w-[1016px] mx-auto h-auto mb-19">
             <h2 class="font-Pelak_Bold text-[32px]/[150%] mb-16 mx-auto text-center">پلن‌های اشتراک</h2>
             <div class="flex gap-x-6 gap-y-[5rem] flex-col md:flex-row *:w-auto *:sm:w-[496px] px-4 *:max-w-[496px]">
-              <div id="ritmo-plus-container" class="ritmo-plus-cart-container relative rounded-2xl pb-8 px-8 md:px-8 lg:px-12 border border-Neutral-100 mx-auto">
+                <div id="ritmo-plus-container" class="ritmo-plus-cart-container relative rounded-2xl pb-8 px-8 md:px-8 lg:px-12 border border-Neutral-100 mx-auto">
                 <div class="absolute -top-[10%] drop-shadow-ritmo-plus left-0 right-0 mx-auto flex items-center justify-center size-24 ritmo-plus-cart rounded-full">
                   <svg class="size-[66px]"><use href="#gem"></use></svg>
                 </div>
@@ -33,30 +33,30 @@
                   </ul>
                 </div>
                 <div class="flex gap-x-2 sm:gap-x-3 md:gap-x-4 lg:gap-x-8 items-center">
-                  <a href="/api/v1/payment/plan/<%= plans[0]._id %>" role="link" class="text-xs flex-center sm:text-base md:text-xs lg:text-base text-nowrap font-FA_Pelak_Bold w-full h-12 rounded-lg bg-Primary-500 cursor-pointer shadow-xl border shadow-Primary-500 text-white">ماهانه ۴۰ هزار تومان</a>
-                  <a href="/api/v1/payment/plan/<%= plans[1]._id %>" role="link" class="text-xs flex-center sm:text-base md:text-xs lg:text-base text-nowrap font-FA_Pelak_Bold w-full h-12 rounded-lg bg-Primary-500 cursor-pointer shadow-xl border shadow-Primary-500 text-white">سالانه ۴۰۰ هزار تومان</a>
-                </div>
+                  <button role="button" plan-id="<%= plans[1]._id %>" type="button" class="payment-plan-btn text-xs flex-center sm:text-base md:text-xs lg:text-base text-nowrap font-FA_Pelak_Bold w-full h-12 rounded-lg bg-Primary-500 cursor-pointer shadow-xl border shadow-Primary-500 text-white">ماهانه <%= plans[1].price / 1000 %> هزار تومان</button>
+                  <button role="button" plan-id="<%= plans[0]._id %>" type="button" class="payment-plan-btn text-xs flex-center sm:text-base md:text-xs lg:text-base text-nowrap font-FA_Pelak_Bold w-full h-12 rounded-lg bg-Primary-500 cursor-pointer shadow-xl border shadow-Primary-500 text-white">سالانه <%= plans[0].price / 1000 %> هزار تومان</button>
               </div>
-              <div class="relative bg-transparent-1/35 rounded-2xl pb-8 px-8 md:px-8 lg:px-12 border border-Neutral-700 mx-auto min-w-[350px]">
-                <div class="absolute -top-[10%] drop-shadow-custom-cart left-0 right-0 mx-auto flex items-center justify-center size-24 bg-Neutral-800 rounded-full">
-                  <svg class="size-[66px]"><use href="#user-circle"></use></svg>
+            </div>
+                <div class="relative bg-transparent-1/35 rounded-2xl pb-8 px-8 md:px-8 lg:px-12 border border-Neutral-700 mx-auto min-w-[350px]">
+                    <div class="absolute -top-[10%] drop-shadow-custom-cart left-0 right-0 mx-auto flex items-center justify-center size-24 bg-Neutral-800 rounded-full">
+                        <svg class="size-[66px]"><use href="#user-circle"></use></svg>
+                    </div>
+                    <div>
+                        <h3 class="font-Pelak_Bold text-center text-[40px] mt-23">اکانت رایگان</h3>
+                        <p class="font-Pelak_Regular text-base mt-2 text-center">رایگان برای همیشه</p>
+                        <ul class="flex flex-col gap-y-1.5 mt-8 mb-15 list-disc ms-5">
+                            <li class="font-Pelak_Regular text-base">آرشیو عمومی</li>
+                            <li class="font-Pelak_Regular text-base">ساخت پلی‌لیست</li>
+                            <li class="font-Pelak_Regular text-base">پخش آنلاین</li>
+                            <li class="font-Pelak_Regular text-base">تبلیغات بین محتوا</li>
+                            <li class="font-Pelak_Regular text-base">کیفیت معمولی</li>
+                            <li class="font-Pelak_Regular text-base">دنبال کردن هنرمندان</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <a href="/" role="link" class="font-Pelak_Medium cursor-pointer block flex-center w-full h-12 rounded-lg bg-Neutral-500">دانلود رایگان</a>
+                    </div>
                 </div>
-                <div>
-                  <h3 class="font-Pelak_Bold text-center text-[40px] mt-23">اکانت رایگان</h3>
-                  <p class="font-Pelak_Regular text-base mt-2 text-center">رایگان برای همیشه</p>
-                  <ul class="flex flex-col gap-y-1.5 mt-8 mb-15 list-disc ms-5">
-                    <li class="font-Pelak_Regular text-base">آرشیو عمومی</li>
-                    <li class="font-Pelak_Regular text-base">ساخت پلی‌لیست</li>
-                    <li class="font-Pelak_Regular text-base">پخش آنلاین</li>
-                    <li class="font-Pelak_Regular text-base">تبلیغات بین محتوا</li>
-                    <li class="font-Pelak_Regular text-base">کیفیت معمولی</li>
-                    <li class="font-Pelak_Regular text-base">دنبال کردن هنرمندان</li>
-                  </ul>
-                </div>
-                <div>
-                  <a href="/" role="link" class="font-Pelak_Medium cursor-pointer block flex-center w-full h-12 rounded-lg bg-Neutral-500">دانلود رایگان</a>
-                </div>
-              </div>
             </div>
           </section>
 

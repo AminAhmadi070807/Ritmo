@@ -20,6 +20,11 @@ const schema = new mongoose.Schema({
     objectID: {
         type: mongoose.Schema.Types.ObjectId,
         required: true
+    },
+    status: {
+        type: Boolean,
+        required: true,
+        default: false
     }
 }, {timestamp: true})
 
