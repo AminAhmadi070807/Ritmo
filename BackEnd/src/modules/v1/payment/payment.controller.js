@@ -33,7 +33,6 @@ module.exports.payment = async (req, res, next) => {
         return response(res, 200, null, { ...paymentResult })
     }
     catch (error) {
-        console.log(error)
         next(error);
     }
 }
@@ -63,7 +62,7 @@ module.exports.verify = async (req, res, next) => {
             }
         })
 
-        return response(res, 200, null, )
+        return res.redirect('/')
     }
     catch (error) {
         next(error);

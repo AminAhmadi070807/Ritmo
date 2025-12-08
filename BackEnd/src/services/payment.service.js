@@ -21,7 +21,7 @@ module.exports.payment = async (price, description) => {
         return { status: 200, authority: data.data.authority, redirect: configs.zarinPal.zarinPalAddress + data.data.authority }
     }
     catch (error) {
-        return { status: 500, message: error.message || "OoOps unknown server error" };
+        return { status: 500, message: error.response.message || "OoOps unknown server error" };
     }
 }
 
