@@ -3,7 +3,7 @@
 const planModel = require('./plan.model')
 const response = require('../../../helpers/response.helper')
 
-module.exports = async (req, res, next) => {
+module.exports.create = async (req, res, next) => {
     try {
         const { price, month } = req.body;
 

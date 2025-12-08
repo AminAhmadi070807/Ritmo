@@ -247,6 +247,8 @@ const formatTime = (seconds) => {
 
 ;(async () => {
     try {
+        await fetch('/api/v1/auth/refresh')
+
         const likeSongResponse = await fetch('/api/v1/musics/likeSongs')
         const data = await likeSongResponse.json()
 
