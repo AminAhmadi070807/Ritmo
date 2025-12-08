@@ -75,7 +75,7 @@ module.exports.createAlbumValidator = async (req, res, next) => {
 
 module.exports.planValidator = async (req, res, next) => {
     try {
-        await planSchema.validateAsync({ ...req.params })
+        await planSchema.validateAsync({ ...req.body })
 
         next()
     }
