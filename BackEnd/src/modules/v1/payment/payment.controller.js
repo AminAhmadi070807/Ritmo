@@ -63,7 +63,7 @@ module.exports.verify = async (req, res, next) => {
             }
         })
 
-        const plan = await planModel.findById(isExistAuthority._id).lean()
+        const plan = await planModel.findById(isExistAuthority.objectID).lean()
 
         await userPlanModel.create({
             user: user.uuid,
