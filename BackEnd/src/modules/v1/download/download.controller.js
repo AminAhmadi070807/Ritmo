@@ -17,13 +17,13 @@ module.exports.download = async (req, res, next) => {
 
         if (!isExistMusic) return response(res, 404, 'music not found. or has already been removed.')
 
-        const isExistMusicLike = await downloadModel.findOne({ user: user.uuid, music: id }).lean()
-
-        if (isExistMusicLike) return response(res, 200, 'music already downloaded successfully')
-
         const isExistUserPlan = await userPlan.findOne({ user: user.uuid })
 
         if (!isExistUserPlan) return response(res, 400, "you do not have access to download music.")
+
+        const isExistMusicLike = await downloadModel.findOne({ user: user.uuid, music: id }).lean()
+
+        if (isExistMusicLike) return response(res, 409, 'music already downloaded successfully')
 
         await downloadModel.create({
             user: user.uuid,
