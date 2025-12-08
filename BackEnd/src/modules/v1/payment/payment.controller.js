@@ -23,7 +23,11 @@ module.exports.payment = async (req, res, next) => {
 
         await paymentModel.create({
             user: user.uuid,
-
+            authority: paymentResult.authority,
+            objectID: id,
+            price: plan.price,
+            model: ["PLAN"],
+            status: false
         })
 
         return response(res, 200, null, { ...paymentResult })

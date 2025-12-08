@@ -25,6 +25,11 @@ const schema = new mongoose.Schema({
         type: Boolean,
         required: true,
         default: false
+    },
+    authority: {
+        type: String,
+        required: true,
+        trim: true
     }
 }, {timestamp: true})
 
