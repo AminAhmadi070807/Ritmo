@@ -4,9 +4,8 @@ const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({
     month: {
-        type: String,
+        type: Number,
         required: true,
-        trim: true
     },
     price: {
         type: Number,

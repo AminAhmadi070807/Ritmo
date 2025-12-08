@@ -19,3 +19,14 @@ module.exports.create = async (req, res, next) => {
         next(error)
     }
 }
+
+module.exports.getAll = async (req, res, next) => {
+    try {
+        const plans = await planModel.find({}).lean()
+
+        return response(res, 200, null, { plans })
+    }
+    catch (error) {
+        next(error)
+    }
+}
