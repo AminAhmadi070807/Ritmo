@@ -44,7 +44,7 @@ module.exports = async (req, res, next) => {
         const musicsArray = []
 
         for (const music of musics) {
-            const likeMusic = await likeSongModel.findById(music._id).lean()
+            const likeMusic = await likeSongModel.findOne({music: music._id}).lean()
             musicsArray.push({
                 ...music,
                 likeSong: !!(likeMusic)
