@@ -64,7 +64,7 @@ module.exports = async (req, res, next) => {
         const suggestionNewArray = []
 
         for (const music of suggestionArray) {
-            const isLikeUserSong = await likeSongModel.findOne({ user: user.uuid, music: lastHeard.music._id }).lean()
+            const isLikeUserSong = await likeSongModel.findOne({ user: user.uuid, music: music._id }).lean()
 
             suggestionNewArray.push({
                 ...music,

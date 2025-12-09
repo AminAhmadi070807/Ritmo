@@ -32,7 +32,7 @@ const formatTime = (seconds) => {
                     </div>
                     <div class="hidden lg:flex items-center w-100 justify-between">
                       <div class="flex gap-x-4 items-center">
-                        <span id="like-song" music-id="${suggestion._id}" ><svg class="size-6 text-Neutral-300"><use href="#heart"></use></svg></span>
+                        <span id="like-song" music-id="${suggestion._id}"><svg class="size-6 ${suggestion.likeMusic ? "text-Primary-600" : "text-Neutral-300"}"><use href="#${suggestion.likeMusic ? "heart-solid" : "heart"}"></use></svg></span>
                         <a href="#"><svg class="size-6 text-Neutral-300"><use href="#download-01"></use></svg></a>
                         <a href="#"><svg class="size-6 text-Neutral-300"><use href="#add-circle"></use></svg></a>
                         <a href="#"><svg class="size-6 text-Neutral-300"><use href="#menu-queue"></use></svg></a>
