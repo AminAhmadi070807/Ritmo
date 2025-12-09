@@ -4,6 +4,7 @@ const musicModel = require('../musics/music/music.model')
 const likeModel = require('../like-songs/like-song.model')
 const lastHeardModel = require('../last-heard/last-heard.model')
 const response = require('../../../helpers/response.helper')
+const likeSongModel = require("../like-songs/like-song.model");
 
 module.exports = async (req, res, next) => {
     try {
@@ -55,10 +56,23 @@ module.exports = async (req, res, next) => {
         const suggestionArray = musics.sort((a, b) => {
             const scoreA = a.tags.reduce((sum, tag) => sum + (suggestionMap[tag.trim()] || 0), 0);
             const scoreB = b.tags.reduce((sum, tag) => sum + (suggestionMap[tag.trim()] || 0), 0);
-            return scoreB - scoreA; // نزولی
+            return scoreB - scoreA;
         });
 
-        return response(res, 200, null, { suggestionArray })
+        const count = suggestionArray.length
+
+        const suggestionNewArray = []
+
+        for (const music of suggestionArray) {
+            const isLikeUserSong = await likeSongModel.findOne({ user: user.uuid, music: lastHeard.music._id }).lean()
+
+            suggestionNewArray.push({
+                ...music,
+                likeMusic: !!isLikeUserSong
+            })
+        }
+
+        return response(res, 200, null, { suggestions : suggestionNewArray, count })
     }
     catch (error) {
         next(error)

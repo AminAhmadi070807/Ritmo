@@ -14,33 +14,18 @@
 
   <%- include('../partials/header.music.ejs') %>
 
-    <main
-      class="main-site px-5 lg:px-8 lg:mt-40 mt-24 ms-auto h-screen max-w-[1600px]"
-    >
-      <div
-        class="flex flex-col items-center justify-center size-full max-w-150 mx-auto"
-      >
+    <main class="main-site px-5 lg:px-8 lg:mt-40 mt-24 ms-auto h-screen max-w-[1600px]">
+        <div id="suggestion-icon" class="flex flex-col items-center justify-center size-full max-w-150 mx-auto">
         <svg class="w-[185px] h-50"><use href="#microphone-vynil"></use></svg>
         <div class="flex flex-col justify-center mt-10 md:mt-20">
-          <h3 class="font-Pelak_Bold text-2xl text-center">
-            فعلاً پیشنهادی برات نداریم!
-          </h3>
+          <h3 class="font-Pelak_Bold text-2xl text-center">فعلاً پیشنهادی برات نداریم!</h3>
           <div class="flex items-center gap-x-5 mt-8 mx-auto">
-            <a
-              href="../../index.html"
-              role="button"
-              class="flex items-center justify-center font-Pelak_Medium text-base h-12 min-h-12 w-[157px] text-center border rounded-lg max-w-[157px] max-h-12 text-nowrap"
-              >بازگشت</a
-            >
-            <a
-              href="../../index.html"
-              role="button"
-              class="flex items-center justify-center font-Pelak_Medium text-base h-12 min-h-12 w-[157px] text-center bg-Primary-500 rounded-lg max-w-[157px] max-h-12 text-nowrap"
-              >صفحه اصلی</a
-            >
+            <a href="/" role="button" class="flex items-center justify-center font-Pelak_Medium text-base h-12 min-h-12 w-[157px] text-center border rounded-lg max-w-[157px] max-h-12 text-nowrap">بازگشت</a>
+            <a href="/" role="button" class="flex items-center justify-center font-Pelak_Medium text-base h-12 min-h-12 w-[157px] text-center bg-Primary-500 rounded-lg max-w-[157px] max-h-12 text-nowrap">صفحه اصلی</a>
           </div>
         </div>
       </div>
+        <div class="hidden" id="suggestion-container"></div>
     </main>
 
     <%- include('../partials/footer.ejs') %>
