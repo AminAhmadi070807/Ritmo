@@ -147,6 +147,8 @@ module.exports.likeSongs = async (req, res) => res.render('music/likeSongs.ejs')
 
 module.exports.downloads = async (req, res) => res.render('music/download.ejs')
 
+module.exports.suggestions = async (req, res) => res.render('music/suggestions.ejs')
+
 module.exports.notFound = (req, res) => res.render('404.ejs')
 
 module.exports.authentication = (req, res ) => res.render('auth.ejs')
