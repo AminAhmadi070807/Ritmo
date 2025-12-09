@@ -70,7 +70,7 @@ module.exports.create = async (req, res, next) => {
         const metadata = await mm.parseFile(path.join(__dirname, '..', '..', '..', '..', '..', 'public', 'uploads', 'musics', music[0].filename))
 
         const musicResult = await musicModel.create({
-            tags: tags.split(","),
+            tags: [...tags.split(",").trim()],
             album: album,
             artist,
             genre,

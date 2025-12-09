@@ -10,9 +10,8 @@ module.exports = async (req, res, next) => {
     try {
         const user = req.user;
 
-        const musics = await musicModel.find({}).sort({ createdAt: -1 }).lean()
         const userLikeMusics = await likeModel.find({ user: user.uuid }).lean().sort({ createdAt: -1 }).populate('music')
-        const lastHeardMusics = await lastHeardModel.find({ user: user.uuid, percent: { $gte : 50 } }).sort({ createdAt: -1 }).lean().populate('music')
+        const lastHeardMusics = await lastHeardModel.find({ user: user.uuid, numberOfPlay: 1 }).sort({ createdAt: -1 }).lean().populate('music')
 
         const suggestionTagArray = []
 
@@ -20,11 +19,8 @@ module.exports = async (req, res, next) => {
             for (const tag of likeMusic.music.tags) {
                 const existing = suggestionTagArray.find(t => Object.keys(t)[0] === tag.trim());
 
-                if (!existing) {
-                    suggestionTagArray.push({
-                        [tag.trim()]: { score: 3, title: tag.trim() }
-                    });
-                }else existing[tag.trim()].score += 3;
+                if (!existing) suggestionTagArray.push({[tag.trim()]: 3});
+                else existing[tag.trim()] += 3;
             }
         }
 
@@ -32,47 +28,30 @@ module.exports = async (req, res, next) => {
             for (const tag of lastHeard.music.tags) {
                 const existing = suggestionTagArray.find(t => Object.keys(t)[0] === tag.trim());
 
-                if (!existing) suggestionTagArray.push({
-                        [tag.trim()] : { score: Math.ceil(lastHeard.numberOfPlay * lastHeard.percent / 100), title: tag.trim() }
-                });
-                else {
-                    existing[tag.trim()].score += Math.ceil(lastHeard.numberOfPlay * lastHeard.percent / 100)
-                }
+                if (!existing) suggestionTagArray.push({[tag.trim()] : Math.ceil(lastHeard.numberOfPlay * lastHeard.percent / 100)});
+                else existing[tag.trim()] += Math.ceil(lastHeard.numberOfPlay * lastHeard.percent / 100)
             }
         }
 
-        const suggestionSortArray = suggestionTagArray.sort((a, b) => {
-            const scoreA = Object.values(a)[0].score;
-            const scoreB = Object.values(b)[0].score;
-            return scoreB - scoreA; // نزولی
-        });
+        const suggestionSortArray = suggestionTagArray.sort((a, b) => Object.values(b)[0] - Object.values(a)[0]);
 
-        const suggestionMap = {};
-        suggestionSortArray.forEach(item => {
-            const key = Object.keys(item)[0];
-            suggestionMap[key] = item[key].score;
-        });
+        const suggestionTag = [];
 
-        const suggestionArray = musics.sort((a, b) => {
-            const scoreA = a.tags.reduce((sum, tag) => sum + (suggestionMap[tag.trim()] || 0), 0);
-            const scoreB = b.tags.reduce((sum, tag) => sum + (suggestionMap[tag.trim()] || 0), 0);
-            return scoreB - scoreA;
-        });
+        for (const tag in suggestionSortArray) if (tag < 3) suggestionTag.push(Object.keys(suggestionTagArray[tag])[0])
 
-        const count = suggestionArray.length
+        const musics = await musicModel.find({ tags: { $in: suggestionTag } }).sort({ updatedAt: -1 }).lean();
 
-        const suggestionNewArray = []
+        const musicsArray = []
 
-        for (const music of suggestionArray) {
-            const isLikeUserSong = await likeSongModel.findOne({ user: user.uuid, music: music._id }).lean()
-
-            suggestionNewArray.push({
+        for (const music of musics) {
+            const likeMusic = await likeSongModel.findById(music._id).lean()
+            musicsArray.push({
                 ...music,
-                likeMusic: !!isLikeUserSong
+                likeSong: !!(likeMusic)
             })
         }
 
-        return response(res, 200, null, { suggestions : suggestionNewArray, count })
+        return response(res, 200, null, { suggestions : musicsArray, count: musics.length || 0 })
     }
     catch (error) {
         next(error)

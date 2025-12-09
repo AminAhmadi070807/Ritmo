@@ -90,7 +90,7 @@ const formatTime = (seconds) => {
             })
         })
 
-        if (data.data.count) {
+        if (data.data.count !== 0) {
             main.className = `${mainClass} h-auto lg:mt-40 mt-24 min-h-[252px]`;
             document.getElementById('suggestion-icon').classList.remove('flex')
             document.getElementById('suggestion-icon').classList.add('hidden')
@@ -98,13 +98,10 @@ const formatTime = (seconds) => {
         }
         else {
             main.className = `${mainClass} h-screen`;
-            document.getElementById('download-icon').classList.add('flex')
-            document.getElementById('download-icon').classList.remove('hidden')
-            document.getElementById('download-container').classList.add('hidden')
+            document.getElementById('suggestion-icon').classList.add('flex')
+            document.getElementById('suggestion-icon').classList.remove('hidden')
+            document.getElementById('suggestion-container').classList.add('hidden')
         }
-
-        // if () main.className = `${mainClass} h-auto lg:mt-40 mt-24 min-h-[252px]`;
-        // else main.className = `${mainClass} h-screen`;
     }
     catch (e) {
         console.error(e);
