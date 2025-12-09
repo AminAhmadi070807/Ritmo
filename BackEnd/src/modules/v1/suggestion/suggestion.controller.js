@@ -52,7 +52,13 @@ module.exports = async (req, res, next) => {
             suggestionMap[key] = item[key].score;
         });
 
-        return response(res, 200, null, { suggestionMap })
+        const suggestionArray = musics.sort((a, b) => {
+            const scoreA = a.tags.reduce((sum, tag) => sum + (suggestionMap[tag.trim()] || 0), 0);
+            const scoreB = b.tags.reduce((sum, tag) => sum + (suggestionMap[tag.trim()] || 0), 0);
+            return scoreB - scoreA; // نزولی
+        });
+
+        return response(res, 200, null, { suggestionArray })
     }
     catch (error) {
         next(error)
