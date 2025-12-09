@@ -26,7 +26,7 @@ function modal (status, message) {
     setTimeout(() => {
         modalDev.classList.add('hidden')
         modalDev.classList.remove('flex')
-    }, 2000)
+    }, 5000)
 }
 
 const formatTime = (seconds) => {
@@ -244,15 +244,11 @@ const formatTime = (seconds) => {
 
         likeSongBtn.forEach(btn => {
             btn.addEventListener("click", async() => {
-                let response = await fetch(`/api/v1/musics/likeSongs/${btn.getAttribute('music-id')}`, { method: 'post' })
+                const refresh = await fetch('/api/v1/auth/refresh')
 
-                if (response.status === 401) {
-                    const refresh = await fetch('/api/v1/auth/refresh')
+                if (refresh.status === 401) return location.href = '/auth/send'
 
-                    if (refresh.status === 401) return location.href = '/auth/send'
-
-                    response = await fetch(`/api/v1/musics/likeSongs/${btn.getAttribute('music-id')}`, {method: 'post'})
-                }
+                const response = await fetch(`/api/v1/musics/likeSongs/${btn.getAttribute('music-id')}`, {method: 'post'})
 
                 switch (response.status) {
                     case 201:
