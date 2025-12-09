@@ -46,8 +46,13 @@ module.exports = async (req, res, next) => {
             return scoreB - scoreA; // نزولی
         });
 
+        const suggestionMap = {};
+        suggestionSortArray.forEach(item => {
+            const key = Object.keys(item)[0];
+            suggestionMap[key] = item[key].score;
+        });
 
-        return response(res, 200, null, { suggestionSortArray })
+        return response(res, 200, null, { suggestionMap })
     }
     catch (error) {
         next(error)
