@@ -23,6 +23,7 @@ const musicLikeSongsRouter = require('./modules/v1/like-songs/like-song.route')
 const musicDownloadRouter = require('./modules/v1/download/download.route')
 const planRouter = require('./modules/v1/plan/plan.route')
 const paymentRouter = require('./modules/v1/payment/payment.route')
+const suggestionRouter = require('./modules/v1/suggestion/suggestion.route')
 
 const app = express();
 
@@ -47,6 +48,7 @@ app.use('/api/v1/musics/likeSongs', musicLikeSongsRouter)
 app.use('/api/v1/musics/downloads', musicDownloadRouter)
 app.use('/api/v1/plan', planRouter)
 app.use('/api/v1/payment', paymentRouter)
+app.use('/api/v1/suggestions', suggestionRouter)
 
 app.use(route)
 
