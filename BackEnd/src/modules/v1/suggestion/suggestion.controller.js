@@ -11,7 +11,7 @@ module.exports = async (req, res, next) => {
         const user = req.user;
 
         const userLikeMusics = await likeModel.find({ user: user.uuid }).lean().sort({ createdAt: -1 }).populate('music')
-        const lastHeardMusics = await lastHeardModel.find({ user: user.uuid, numberOfPlay: 1 }).sort({ createdAt: -1 }).lean().populate('music')
+        const lastHeardMusics = await lastHeardModel.find({ user: user.uuid, percent: 50 }).sort({ createdAt: -1 }).lean().populate('music')
 
         const suggestionTagArray = []
 
@@ -28,8 +28,8 @@ module.exports = async (req, res, next) => {
             for (const tag of lastHeard.music.tags) {
                 const existing = suggestionTagArray.find(t => Object.keys(t)[0] === tag.trim());
 
-                if (!existing) suggestionTagArray.push({[tag.trim()] : Math.ceil(lastHeard.numberOfPlay * lastHeard.percent / 100)});
-                else existing[tag.trim()] += Math.ceil(lastHeard.numberOfPlay * lastHeard.percent / 100)
+                if (!existing) suggestionTagArray.push({[tag.trim()] : 3});
+                else existing[tag.trim()] += 3
             }
         }
 
