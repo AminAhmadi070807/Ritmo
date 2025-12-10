@@ -73,7 +73,7 @@ const audioPause = async () => {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
             time: audio.currentTime,
-            play: false
+            play: true
         })
     })
 };
