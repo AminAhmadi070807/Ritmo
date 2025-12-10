@@ -68,15 +68,9 @@ const formatTime = (seconds) => {
                 const response = await fetch(`/api/v1/musics/${music.getAttribute('music-id')}`)
                 const data = await response.json();
 
-                console.log(data)
-
-
-
-                // document.getElementById('music-box').src = musicArray[0].poster
-                // document.getElementById('music-title').innerText = musicArray[0].title
-                // document.getElementById('music-subtitle').innerText = musicArray[0].artist
-                // audio.src = musicArray[0].music
-                // audio.setAttribute('audio-id', musicArray[0]._id)
+                document.getElementById('music-box').src = data.data.poster
+                audio.src = data.data.music
+                audio.setAttribute('audio-id', data.data._id)
             })
         })
     }

@@ -32,9 +32,9 @@ const updatePlayerProgress = async (e) => {
     if (e.target.id === "range-player" || e.target.id === "range-player-container") {
         playerCalculator = Math.floor((e.offsetX / rangePlayerContainer.offsetWidth) * 100);
         rangePlayer.style.width = playerCalculator + "%";
-        localStorage.setItem("audio-time", (playerCalculator / 100) * audio.duration);
-        audio.pause();
         playerIcon.setAttribute("href", "#play-music");
+        audio.currentTime = audio.duration * (playerCalculator / 100)
+        audio.pause();
     }
 };
 
@@ -45,43 +45,15 @@ const audioPause = async () => {
     rangePlayer.style.width = "0%";
     timeStart.innerHTML = "00:00";
     timeEnd.innerHTML = `${formatTime(audio.duration)}`;
-    localStorage.setItem("audio-time", audio.currentTime);
-
-    const audioId = audio.getAttribute('audio-id')
-
-    const response = await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
-        method: 'post',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-            time: audio.currentTime,
-            play: true
-        })
-    })
-
-    switch (response.status) {
-        case 401:
-            const refresh = await fetch('/api/v1/auth/refresh')
-            if (refresh.status === 404) return location.href = '/'
-            await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
-                method: 'post',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    time: audio.currentTime,
-                    play: true
-                })
-            })
-    }
 };
 
 // audio player
 const audioPlayer = async () => {
     if (playerIcon.getAttribute("href") === "#play-music") {
         audio.play();
-        audio.currentTime = localStorage.getItem("audio-time") || 0;
         playerIcon.setAttribute("href", "#pause");
     }
     else {
-        localStorage.setItem("audio-time", audio.currentTime);
         audio.pause();
         playerIcon.setAttribute("href", "#play-music");
     }
@@ -92,12 +64,10 @@ const forwardTenMusic = async (e) => {
     if (e.key === "ArrowRight") {
         e.preventDefault()
         audio.currentTime += 10;
-        localStorage.setItem("audio-time", audio.currentTime);
     }
     else if (e.key === "ArrowLeft") {
         e.preventDefault()
         audio.currentTime -= 10;
-        localStorage.setItem("audio-time", audio.currentTime);
     }
     else if (e.key === "ArrowUp") {
         e.preventDefault()
@@ -206,7 +176,7 @@ rangePlayerContainer.addEventListener("click", async (e) => {
 
 let isLoop;
 let isShuffle;
-audio.addEventListener("timeupdate", () => {
+audio.addEventListener("timeupdate", async() => {
     isLoop = loopMusicIcon.classList.contains("text-Neutral-300");
     isShuffle = shuffleMusicBtn.querySelector("svg").classList.contains("text-Primary-500");
 
@@ -216,8 +186,8 @@ audio.addEventListener("timeupdate", () => {
 
     timeStart.innerHTML = `${formatTime(audioStart)}`;
 
-    if (audio.ended && isLoop && !isShuffle) nextMusic();
-    else if (audio.ended && isLoop && isShuffle) shuffleMusic();
+    if (audio.ended && isLoop && !isShuffle) await nextMusic();
+    else if (audio.ended && isLoop && isShuffle) await shuffleMusic();
 });
 
 audio.addEventListener("loadedmetadata", () => {
