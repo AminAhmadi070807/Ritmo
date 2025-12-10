@@ -64,17 +64,20 @@ const formatTime = (seconds) => {
         const musicBtn = document.querySelectorAll('.music-btn')
 
         musicBtn.forEach(music => {
-            music.addEventListener('click', async() => {
+            music.addEventListener('click', async () => {
+                console.log(`/api/v1/musics/${music.getAttribute('music-id')}`)
                 const response = await fetch(`/api/v1/musics/${music.getAttribute('music-id')}`)
                 const data = await response.json();
 
-                musicArray = data.data[location.href.split('/')[location.href.split('/').length - 3].slice(0, -1)].musics
+                console.log(data)
 
-                document.getElementById('music-box').src = musicArray[0].poster
-                document.getElementById('music-title').innerText = musicArray[0].title
-                document.getElementById('music-subtitle').innerText = musicArray[0].artist
-                audio.src = musicArray[0].music
-                audio.setAttribute('audio-id', musicArray[0]._id)
+                // musicArray = data.data[location.href.split('/')[location.href.split('/').length - 3].slice(0, -1)].musics
+
+                // document.getElementById('music-box').src = musicArray[0].poster
+                // document.getElementById('music-title').innerText = musicArray[0].title
+                // document.getElementById('music-subtitle').innerText = musicArray[0].artist
+                // audio.src = musicArray[0].music
+                // audio.setAttribute('audio-id', musicArray[0]._id)
             })
         })
     }

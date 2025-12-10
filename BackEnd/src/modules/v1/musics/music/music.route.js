@@ -18,6 +18,6 @@ router.route('/')
 
 router.get('/trending', controller.trendingMusic)
 
-router.route('/:id').delete(authGuard, controller.remove).get(controller.music)
+router.route('/:id').delete(authGuard, controller.remove).get(authGuard, controller.music)
 
 module.exports = router;

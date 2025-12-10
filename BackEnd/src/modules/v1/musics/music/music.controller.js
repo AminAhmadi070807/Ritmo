@@ -144,3 +144,20 @@ module.exports.musics = async (req, res, next) => {
         next(error)
     }
 }
+
+module.exports.music = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+
+        if (!isValidObjectId(id)) return response(res, 400, "id is not correct.")
+
+        const music = await musicModel.findById(id).lean()
+
+        if (!music) return response(res, 404, "music not found.")
+
+        return response(res, 200, null, music)
+    }
+    catch (error) {
+        next(error)
+    }
+}
