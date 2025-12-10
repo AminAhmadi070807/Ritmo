@@ -162,20 +162,17 @@ let musicInfoContainer = document.getElementById("music-information-container");
 let RandomID = 0;
 const shuffleMusic = async () => {
     let randomMusicID = random(0, musicArray.length);
-    // checks random music id
     if (randomMusicID === RandomID) randomMusicID++;
     else RandomID = randomMusicID;
     musicID = RandomID
 
     await audioPause();
-    // crate an object
     let OBJ = musicArray[randomMusicID];
 
     musicInfoContainer.querySelector("img").src = OBJ.poster;
     musicInfoContainer.querySelector("#music-information h3").innerHTML = OBJ.title;
     musicInfoContainer.querySelector("#music-information cite").innerHTML = OBJ.artist;
     audio.setAttribute("src", OBJ.music);
-    // play new music
     audio.play();
 };
 
