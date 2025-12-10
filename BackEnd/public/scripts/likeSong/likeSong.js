@@ -35,7 +35,7 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
                     <div class="hidden lg:flex items-center w-100 justify-between">
                       <div class="flex gap-x-4 items-center">
                         <span id="like-song" music-id="${likeSong.music._id}" ><svg class="size-6 text-Primary-600"><use href="#heart-solid"></use></svg></span>
-                        <a href="#"><svg class="size-6 text-Neutral-300"><use href="#download-01"></use></svg></a>
+                        <button role="button" type="button" music-id="${likeSong.music._id}" id="download-music"><svg class="size-6 text-Neutral-300"><use href="#download-01"></use></svg></button>
                         <a href="#"><svg class="size-6 text-Neutral-300"><use href="#add-circle"></use></svg></a>
                         <a href="#"><svg class="size-6 text-Neutral-300"><use href="#menu-queue"></use></svg></a>
                       </div>
@@ -96,12 +96,36 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
             })
         })
 
+        const downloadMusicBtn = document.querySelectorAll("#download-music")
+
+        downloadMusicBtn.forEach(btn => {
+            btn.addEventListener("click", async() => {
+                console.log('AMIN')
+                const refresh = await fetch('/api/v1/auth/refresh')
+
+                if (refresh.status === 401) return location.href = '/auth/send'
+
+                let response = await fetch(`/api/v1/musics/downloads/${btn.getAttribute('music-id')}`, { method: 'post' })
+                const data = await response.json()
+
+                switch (response.status) {
+                    case 201:
+                        modal('success', data.message)
+                        break;
+                    default:
+                        modal('error', data.message)
+                        break;
+                }
+            })
+        })
+
         if (data.data.likeSongs.length) {
             main.className = `${mainClass} h-auto lg:mt-40 mt-24 min-h-[252px]`;
             document.getElementById('is-not-like').classList.remove('flex')
             document.getElementById('is-not-like').classList.add('hidden')
             document.getElementById('like-song-container').classList.remove('hidden')
-        } else {
+        }
+        else {
             main.className = `${mainClass} h-screen`;
             document.getElementById('is-not-like').classList.add('flex')
             document.getElementById('is-not-like').classList.remove('hidden')

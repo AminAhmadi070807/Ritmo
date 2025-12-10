@@ -47,10 +47,10 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
                           <svg class="size-6"><use href="#heart"></use></svg>
                           علاقه مندی ها
                         </span>
-                        <a href="#" class="flex items-center gap-x-3 font-Pelak_Regular text-sm">
+                        <button role="button" type="button" music-id="${lastHeard.music._id}" id="download-music" class="flex items-center gap-x-3 font-Pelak_Regular text-sm">
                           <svg class="size-6"><use href="#download-01"></use></svg>
                           دانلود
-                        </a>
+                        </button>
                         <a href="#" class="flex items-center gap-x-3 font-Pelak_Regular text-sm">
                           <svg class="size-6"><use href="#download-01"></use></svg>
                           افزودن به لیست ها
