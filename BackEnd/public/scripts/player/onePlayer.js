@@ -13,6 +13,7 @@ const playerIcon = document.getElementById("play-icon");
 const timeStart = document.getElementById("time-music-start");
 const timeEnd = document.getElementById("time-total-music");
 let loopMusicIcon = loopMusicBtn.querySelector("svg");
+const closePlayerBtn = document.getElementById('close-player-box-btn')
 
 // create random number
 const random = (min = 0, max = 1, floating = false) => {
@@ -56,30 +57,6 @@ const audioPlayer = async () => {
     else {
         audio.pause();
         playerIcon.setAttribute("href", "#play-music");
-    }
-};
-
-// forward & back music 10 seconds
-const forwardTenMusic = async (e) => {
-    if (e.key === "ArrowRight") {
-        e.preventDefault()
-        audio.currentTime += 10;
-    }
-    else if (e.key === "ArrowLeft") {
-        e.preventDefault()
-        audio.currentTime -= 10;
-    }
-    else if (e.key === "ArrowUp") {
-        e.preventDefault()
-        return await nextMusic();
-    }
-    else if (e.key === "ArrowDown") {
-        e.preventDefault()
-        return await prevMusic();
-    }
-    else if (e.code === 'Space') {
-        e.preventDefault()
-        return await audioPlayer()
     }
 };
 
@@ -200,8 +177,6 @@ prevMusicBtn.addEventListener("click", prevMusic);
 
 loopMusicBtn.addEventListener("click", musicLoop);
 
-window.addEventListener("keydown", forwardTenMusic);
-
 shuffleMusicBtn.addEventListener("click", () => {
     shuffleMusicIcon.classList.toggle("text-Neutral-300");
     shuffleMusicIcon.classList.toggle("text-Primary-500");
@@ -228,3 +203,5 @@ window.toggleIconsMenu = function (event) {
         musicListMenu.classList.add("opacity-100");
     }
 };
+
+closePlayerBtn.addEventListener('click', () => document.getElementById('music-player-box').classList.add("hidden"))
