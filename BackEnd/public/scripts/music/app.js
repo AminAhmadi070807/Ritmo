@@ -43,7 +43,7 @@ const formatTime = (seconds) => {
 
         data.data.forEach(music => {
               $.getElementById("trending-sung-container").insertAdjacentHTML("beforeend", `
-                <div class="swiper-slide">
+                <div music-id="${music._id}" id="music-btn" class="swiper-slide">
                   <a href="/musics/page/${music._id}">
                     <div class="w-88 h-104 max-w-88 max-h-104 cursor-pointer">
                     <img src="${music.poster}" class="w-88 h-92 min-w-88 min-h-92 max-w-88 max-h-92 object-cover object-center" alt="${music.title} from ${music.artist}"/>
@@ -59,7 +59,8 @@ const formatTime = (seconds) => {
                   </a>
                 </div>
 `);
-        })}
+        })
+    }
     catch (error) {}
 })()
 

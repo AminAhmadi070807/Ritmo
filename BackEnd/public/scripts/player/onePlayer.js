@@ -14,6 +14,7 @@ const timeStart = document.getElementById("time-music-start");
 const timeEnd = document.getElementById("time-total-music");
 let loopMusicIcon = loopMusicBtn.querySelector("svg");
 
+console.log(musicPlayBtn);
 
 // create random number
 const random = (min = 0, max = 1, floating = false) => {
@@ -87,14 +88,6 @@ const audioPlayer = async () => {
         playerIcon.setAttribute("href", "#play-music");
     }
 };
-
-// time player calculator
-const formatTime = (seconds) => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = Math.floor(seconds % 60);
-    return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
-};
-
 
 // forward & back music 10 seconds
 const forwardTenMusic = async (e) => {
