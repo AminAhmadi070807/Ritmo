@@ -36,6 +36,21 @@ const updatePlayerProgress = async (e) => {
         playerIcon.setAttribute("href", "#play-music");
         audio.currentTime = audio.duration * (playerCalculator / 100)
         audio.pause();
+
+        const refresh = await fetch('/api/v1/auth/refresh')
+
+        if (refresh.status === 404) return location.href = '/auth/send'
+
+        const audioId = audio.getAttribute('audio-id')
+
+        await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                time: audio.currentTime,
+                play: false
+            })
+        })
     }
 };
 
@@ -46,6 +61,21 @@ const audioPause = async () => {
     rangePlayer.style.width = "0%";
     timeStart.innerHTML = "00:00";
     timeEnd.innerHTML = `${formatTime(audio.duration)}`;
+
+    const refresh = await fetch('/api/v1/auth/refresh')
+
+    if (refresh.status === 404) return location.href = '/auth/send'
+
+    const audioId = audio.getAttribute('audio-id')
+
+    await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
+        method: 'post',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            time: audio.currentTime,
+            play: false
+        })
+    })
 };
 
 // audio player
@@ -53,10 +83,40 @@ const audioPlayer = async () => {
     if (playerIcon.getAttribute("href") === "#play-music") {
         audio.play();
         playerIcon.setAttribute("href", "#pause");
+
+        const refresh = await fetch('/api/v1/auth/refresh')
+
+        if (refresh.status === 404) return location.href = '/auth/send'
+
+        const audioId = audio.getAttribute('audio-id')
+
+        await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                time: audio.currentTime,
+                play: true
+            })
+        })
     }
     else {
         audio.pause();
         playerIcon.setAttribute("href", "#play-music");
+
+        const refresh = await fetch('/api/v1/auth/refresh')
+
+        if (refresh.status === 404) return location.href = '/auth/send'
+
+        const audioId = audio.getAttribute('audio-id')
+
+        await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                time: audio.currentTime,
+                play: false
+            })
+        })
     }
 };
 
