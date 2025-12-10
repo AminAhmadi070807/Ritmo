@@ -151,7 +151,7 @@ module.exports.music = async (req, res, next) => {
 
         if (!isValidObjectId(id)) return response(res, 400, "id is not correct.")
 
-        const music = await musicModel.findById(id).lean()
+        const music = await musicModel.findById(id, 'title artist music poster time').lean()
 
         if (!music) return response(res, 404, "music not found.")
 

@@ -65,13 +65,12 @@ const formatTime = (seconds) => {
 
         musicBtn.forEach(music => {
             music.addEventListener('click', async () => {
-                console.log(`/api/v1/musics/${music.getAttribute('music-id')}`)
                 const response = await fetch(`/api/v1/musics/${music.getAttribute('music-id')}`)
                 const data = await response.json();
 
                 console.log(data)
 
-                // musicArray = data.data[location.href.split('/')[location.href.split('/').length - 3].slice(0, -1)].musics
+
 
                 // document.getElementById('music-box').src = musicArray[0].poster
                 // document.getElementById('music-title').innerText = musicArray[0].title
