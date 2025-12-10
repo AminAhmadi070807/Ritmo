@@ -24,8 +24,6 @@ module.exports.plan = async (req, res, next) => {
     }
 }
 
-module.exports.musicPage = async (req, res) => res.render('music/page.ejs')
-
 module.exports.musicCategory = async (req, res) => res.render('music/categories.ejs')
 
 module.exports.musicCategoryDetails = async (req, res, next) => {
