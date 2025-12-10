@@ -12,14 +12,12 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
 
 ;(async () => {
     try {
+        const refresh = await fetch('/api/v1/auth/refresh')
+
+        if (refresh.status === 401) return location.href = '/auth/send'
+
         const response = await fetch('/api/v1/musics/lastHeard/?limit=100&?page=1')
-        let data = await response.json()
-        if (response.status === 401) {
-            const refresh = await fetch('/api/v1/auth/refresh')
-            if (refresh.status !== 200) return location.href = '/'
-            const response = await fetch('/api/v1/musics/lastHeard/?limit=100&?page=1')
-            data = await response.json()
-        }
+        const data = await response.json()
 
         data.data.lastHeard.forEach((lastHeard, index) => {
             document.getElementById('lastHeard').insertAdjacentHTML('beforeend', `
@@ -35,7 +33,8 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
                     <div class="hidden lg:flex items-center w-100 justify-between">
                       <div class="flex gap-x-4 items-center">
                         <span id="like-song" music-id="${lastHeard.music._id}"><svg class="size-6 ${lastHeard.likeMusic ? "text-Primary-600" : "text-Neutral-300" }"><use href="#${ lastHeard.likeMusic ? "heart-solid":  "heart" }"></use></svg></span>
-                        <a href="#"><svg class="size-6 text-Neutral-300"><use href="#download-01"></use></svg></a>
+                        <button role="button" type="button" music-id="${lastHeard.music._id}" id="download-music"><svg class="size-6 text-Neutral-300"><use href="#download-01"></use></svg></button>
+                        <a href="#"><svg class="size-6 text-Neutral-300"><use href="#add-circle"></use></svg></a>
                         <a href="#"><svg class="size-6 text-Neutral-300"><use href="#menu-queue"></use></svg></a>
                       </div>
                       <div class="ps-10">
@@ -51,6 +50,10 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
                         <a href="#" class="flex items-center gap-x-3 font-Pelak_Regular text-sm">
                           <svg class="size-6"><use href="#download-01"></use></svg>
                           دانلود
+                        </a>
+                        <a href="#" class="flex items-center gap-x-3 font-Pelak_Regular text-sm">
+                          <svg class="size-6"><use href="#download-01"></use></svg>
+                          افزودن به لیست ها
                         </a>
                         <a href="#" class="flex items-center gap-x-3 font-Pelak_Regular text-sm">
                           <svg class="size-6"><use href="#menu-queue"></use></svg>
@@ -86,6 +89,29 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
                         break;
                     case 200:
                         btn.innerHTML = '<svg class="size-6 text-Neutral-300"><use href="#heart"></use></svg>'
+                        break;
+                }
+            })
+        })
+
+        const downloadMusicBtn = document.querySelectorAll("#download-music")
+
+        downloadMusicBtn.forEach(btn => {
+            btn.addEventListener("click", async() => {
+                console.log('AMIN')
+                const refresh = await fetch('/api/v1/auth/refresh')
+
+                if (refresh.status === 401) return location.href = '/auth/send'
+
+                let response = await fetch(`/api/v1/musics/downloads/${btn.getAttribute('music-id')}`, { method: 'post' })
+                const data = await response.json()
+
+                switch (response.status) {
+                    case 201:
+                        modal('success', data.message)
+                        break;
+                    default:
+                        modal('error', data.message)
                         break;
                 }
             })

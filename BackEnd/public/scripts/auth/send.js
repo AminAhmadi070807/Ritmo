@@ -20,13 +20,9 @@ const authentication = async () => {
         })
         const result = await response.json()
 
+        console.log(result)
+
         switch (response.status) {
-            case 500:
-            case 409:
-            case 403:
-            case 400:
-                modal("error", result.message)
-                break
             case 200:
                 modal("success", result.message)
                 location.href = result.data.href
