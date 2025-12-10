@@ -33,7 +33,7 @@ const formatTime = (seconds) => {
                     <div class="hidden lg:flex items-center w-100 justify-between">
                       <div class="flex gap-x-4 items-center">
                         <span id="like-song" music-id="${suggestion._id}"><svg class="size-6 ${suggestion.likeSong ? "text-Primary-600" : "text-Neutral-300"}"><use href="#${suggestion.likeSong ? "heart-solid" : "heart"}"></use></svg></span>
-                        <a href="#"><svg class="size-6 text-Neutral-300"><use href="#download-01"></use></svg></a>
+                        <button role="button" type="button" music-id="${suggestion._id}" id="download-music"><svg class="size-6 text-Neutral-300"><use href="#download-01"></use></svg></button>
                         <a href="#"><svg class="size-6 text-Neutral-300"><use href="#add-circle"></use></svg></a>
                         <a href="#"><svg class="size-6 text-Neutral-300"><use href="#menu-queue"></use></svg></a>
                       </div>
@@ -47,10 +47,10 @@ const formatTime = (seconds) => {
                           <svg class="size-6"><use href="#heart"></use></svg>
                           علاقه مندی ها
                         </span>
-                        <a href="#" class="flex items-center gap-x-3 font-Pelak_Regular text-sm">
+                        <button role="button" type="button" id="download-music" music-id="${suggestion._id}" class="flex items-center gap-x-3 font-Pelak_Regular text-sm">
                           <svg class="size-6"><use href="#download-01"></use></svg>
                           دانلود
-                        </a>
+                        </button>
                         <a href="#" class="flex items-center gap-x-3 font-Pelak_Regular text-sm">
                           <svg class="size-6"><use href="#download-01"></use></svg>
                           افزردن به لیست
@@ -85,6 +85,29 @@ const formatTime = (seconds) => {
                         break;
                     case 200:
                         btn.innerHTML = '<svg class="size-6 text-Neutral-300"><use href="#heart"></use></svg>'
+                        break;
+                }
+            })
+        })
+
+        const downloadMusicBtn = document.querySelectorAll("#download-music")
+
+        downloadMusicBtn.forEach(btn => {
+            btn.addEventListener("click", async() => {
+                console.log('AMIN')
+                const refresh = await fetch('/api/v1/auth/refresh')
+
+                if (refresh.status === 401) return location.href = '/auth/send'
+
+                let response = await fetch(`/api/v1/musics/downloads/${btn.getAttribute('music-id')}`, { method: 'post' })
+                const data = await response.json()
+
+                switch (response.status) {
+                    case 201:
+                        modal('success', data.message)
+                        break;
+                    default:
+                        modal('error', data.message)
                         break;
                 }
             })
