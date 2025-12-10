@@ -2,11 +2,8 @@
 
 const rangePlayerContainer = document.getElementById("range-player-container");
 const rangePlayer = document.getElementById("range-player");
-const volumeRangeContainer = document.getElementById("volume-range-container");
-const volumeRange = document.getElementById("volume-range");
 const nextMusicBtn = document.getElementById("next-music");
 const prevMusicBtn = document.getElementById("prev-music");
-const volumeIcon = document.getElementById("volume-icon");
 const loopMusicBtn = document.getElementById("loop-music");
 const shuffleMusicBtn = document.getElementById("random-music");
 let shuffleMusicIcon = shuffleMusicBtn.querySelector("svg");
@@ -15,10 +12,8 @@ const player = document.getElementById("player");
 const playerIcon = document.getElementById("play-icon");
 const timeStart = document.getElementById("time-music-start");
 const timeEnd = document.getElementById("time-total-music");
-const playerHeartIcon = document.getElementById("player-heart");
 let loopMusicIcon = loopMusicBtn.querySelector("svg");
 
-const playMusicBtn = document.getElementById('player-music')
 
 // create random number
 const random = (min = 0, max = 1, floating = false) => {
@@ -29,33 +24,9 @@ const random = (min = 0, max = 1, floating = false) => {
     return floating ? rand : Math.floor(rand);
 };
 
-// video music information
-let musicArray = [];
-
-;(async () => {
-    try {
-        const response = await fetch(`/api/v1/musics/${location.href.split('/')[location.href.split('/').length - 3]}/${location.href.split('/').pop()}`)
-        const data = await response.json();
-
-        musicArray = data.data[location.href.split('/')[location.href.split('/').length - 3].slice(0, -1)].musics
-
-        document.getElementById('music-box').src = musicArray[0].poster
-        document.getElementById('music-title').innerText = musicArray[0].title
-        document.getElementById('music-subtitle').innerText = musicArray[0].artist
-        audio.src = musicArray[0].music
-        audio.setAttribute('audio-id', musicArray[0]._id)
-    }
-    catch (error) {
-        console.log()
-    }
-})()
-
 let playerCalculator;
-let volumeCalculator;
 let isDrag = false;
 let isClicked = false;
-let isVolumeDrag = false;
-let isVolumeClicked = false;
 
 // update music player bar
 const updatePlayerProgress = async (e) => {
@@ -65,51 +36,6 @@ const updatePlayerProgress = async (e) => {
         localStorage.setItem("audio-time", (playerCalculator / 100) * audio.duration);
         audio.pause();
         playerIcon.setAttribute("href", "#play-music");
-
-        const audioId = audio.getAttribute('audio-id')
-
-        const response = await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
-            method: 'post',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                time: audio.currentTime,
-                play: false
-            })
-        })
-
-        switch (response.status) {
-            case 401:
-                const refresh = await fetch('/api/v1/auth/refresh')
-                if (refresh.status === 404) return location.href = '/'
-                await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
-                    method: 'post',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({
-                        time: audio.currentTime,
-                        play: false
-                    })
-                })
-        }
-    }
-};
-// update volume bar
-const updateVolumePlayerProgress = (e) => {
-    if (
-        e.target.id === "volume-range-container" ||
-        e.target.id === "volume-range"
-    ) {
-        volumeCalculator = Math.floor(
-            (e.offsetX / volumeRangeContainer.offsetWidth) * 100
-        );
-        volumeRange.style.width = volumeCalculator + "%";
-        if (volumeCalculator > 70) {
-            volumeIcon.innerHTML = '<use href="#volume-high"></use>';
-        } else if (volumeCalculator > 0 && volumeCalculator < 70) {
-            volumeIcon.innerHTML = '<use href="#volume-low"></use>';
-        } else {
-            volumeIcon.innerHTML = '<use href="#volume-cross"></use>';
-        }
-        audio.volume = volumeCalculator / 100;
     }
 };
 
@@ -150,62 +76,15 @@ const audioPause = async () => {
 
 // audio player
 const audioPlayer = async () => {
-    const audioId = audio.getAttribute('audio-id')
     if (playerIcon.getAttribute("href") === "#play-music") {
         audio.play();
         audio.currentTime = localStorage.getItem("audio-time") || 0;
         playerIcon.setAttribute("href", "#pause");
-
-        const response = await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
-            method: 'post',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                time: audio.currentTime,
-                play: true
-            })
-        })
-
-        switch (response.status) {
-            case 401:
-                console.log(response)
-                const refresh = await fetch('/api/v1/auth/refresh')
-                if (refresh.status === 404) return location.href = '/'
-                await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
-                    method: 'post',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({
-                        time: audio.currentTime,
-                        play: true
-                    })
-                })
-        }
     }
     else {
         localStorage.setItem("audio-time", audio.currentTime);
         audio.pause();
         playerIcon.setAttribute("href", "#play-music");
-        const response = await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
-            method: 'post',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                time: audio.currentTime,
-                play: false
-            })
-        })
-
-        switch (response.status) {
-            case 401:
-                const refresh = await fetch('/api/v1/auth/refresh')
-                if (refresh.status === 404) return location.href = '/'
-                await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
-                    method: 'post',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({
-                        time: audio.currentTime,
-                        play: false
-                    })
-                })
-        }
     }
 };
 
@@ -317,59 +196,26 @@ const shuffleMusic = async () => {
     audio.play();
 };
 
-// volume silent
-const musicSilent = () => {
-    if (volumeIcon.innerHTML !== '<use href="#volume-cross"></use>') {
-        volumeIcon.innerHTML = '<use href="#volume-cross"></use>';
-    } else {
-        if (
-            volumeRange.style.width < 70 + "%" &&
-            volumeRange.style.width > 0 + "%"
-        ) {
-            volumeIcon.innerHTML = '<use href="#volume-low"></use>';
-        } else {
-            volumeIcon.innerHTML = '<use href="#volume-high"></use>';
-        }
-    }
-    audio.muted = !audio.muted;
-};
-
-player?.addEventListener("click", audioPlayer);
+player.addEventListener("click", audioPlayer);
 
 
-rangePlayerContainer?.addEventListener("mousedown", () => (isDrag = true));
+rangePlayerContainer.addEventListener("mousedown", () => (isDrag = true));
 
-rangePlayerContainer?.addEventListener("mouseup", () => {
+rangePlayerContainer.addEventListener("mouseup", () => {
     isDrag = false;
     isClicked = false;
 });
-rangePlayerContainer?.addEventListener("mousemove", async(e) => {
+rangePlayerContainer.addEventListener("mousemove", async(e) => {
     if (isDrag && isClicked) await updatePlayerProgress(e);
 });
-rangePlayerContainer?.addEventListener("click", async (e) => {
+rangePlayerContainer.addEventListener("click", async (e) => {
     isClicked = true;
     if (isDrag) await updatePlayerProgress(e);
 });
 
-volumeRangeContainer?.addEventListener("mousedown", (e) => {
-    isVolumeDrag = true;
-    isVolumeClicked = true;
-    updateVolumePlayerProgress(e);
-});
-volumeRangeContainer?.addEventListener("mouseup", () => {
-    isVolumeClicked = false;
-    isVolumeDrag = false;
-});
-volumeRangeContainer?.addEventListener("mousemove", (e) => {
-    if (isVolumeClicked && isVolumeDrag) updateVolumePlayerProgress(e);
-});
-volumeRangeContainer?.addEventListener("click", (e) => {
-    if (isVolumeClicked && isVolumeDrag) updateVolumePlayerProgress(e);
-});
-
 let isLoop;
 let isShuffle;
-audio?.addEventListener("timeupdate", () => {
+audio.addEventListener("timeupdate", () => {
     isLoop = loopMusicIcon.classList.contains("text-Neutral-300");
     isShuffle = shuffleMusicBtn.querySelector("svg").classList.contains("text-Primary-500");
 
@@ -383,29 +229,19 @@ audio?.addEventListener("timeupdate", () => {
     else if (audio.ended && isLoop && isShuffle) shuffleMusic();
 });
 
-audio?.addEventListener("loadedmetadata", () => {
+audio.addEventListener("loadedmetadata", () => {
     timeEnd.innerHTML = `${formatTime(audio.duration)}`;
     timeEnd.setAttribute("datetime", `${formatTime(audio.duration)}`);
 });
 
-playerHeartIcon?.addEventListener("click", () => {
-    let heart = playerHeartIcon.querySelector("use");
-    let heartMode = heart.getAttribute("href");
-    heartMode === "#heart"
-        ? heart.setAttribute("href", "#heart-solid")
-        : heart.setAttribute("href", "#heart");
-});
+nextMusicBtn.addEventListener("click", nextMusic);
+prevMusicBtn.addEventListener("click", prevMusic);
 
-nextMusicBtn?.addEventListener("click", nextMusic);
-prevMusicBtn?.addEventListener("click", prevMusic);
-
-loopMusicBtn?.addEventListener("click", musicLoop);
-
-volumeIcon?.addEventListener("click", musicSilent);
+loopMusicBtn.addEventListener("click", musicLoop);
 
 window.addEventListener("keydown", forwardTenMusic);
 
-shuffleMusicBtn?.addEventListener("click", () => {
+shuffleMusicBtn.addEventListener("click", () => {
     shuffleMusicIcon.classList.toggle("text-Neutral-300");
     shuffleMusicIcon.classList.toggle("text-Primary-500");
     loopMusicIcon.classList.remove("text-Primary-500");
@@ -431,20 +267,3 @@ window.toggleIconsMenu = function (event) {
         musicListMenu.classList.add("opacity-100");
     }
 };
-
-playMusicBtn?.addEventListener('click', async() => {
-    await audioPlayer()
-    if (playMusicBtn.querySelector('svg use').getAttribute('href') === '#play') {
-        playMusicBtn.innerHTML = `
-            <svg class="size-5" stroke="3"><use href="#pause"></use></svg>
-            <span class="font-Pelak_Medium">توقف موزیک</span>
-        `
-    }
-    else {
-        playMusicBtn.innerHTML = `
-            <svg class="size-5"><use href="#play"></use></svg>
-            <span class="font-Pelak_Medium">پخش موزیک</span>
-        `
-    }
-    document.getElementById("audio-player").classList.toggle("hidden");
-})
