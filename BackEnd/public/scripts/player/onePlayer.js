@@ -14,8 +14,6 @@ const timeStart = document.getElementById("time-music-start");
 const timeEnd = document.getElementById("time-total-music");
 let loopMusicIcon = loopMusicBtn.querySelector("svg");
 
-console.log(musicPlayBtn);
-
 // create random number
 const random = (min = 0, max = 1, floating = false) => {
     if (max < min) [min, max] = [max, min];

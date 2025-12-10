@@ -43,8 +43,8 @@ const formatTime = (seconds) => {
 
         data.data.forEach(music => {
               $.getElementById("trending-sung-container").insertAdjacentHTML("beforeend", `
-                <div music-id="${music._id}" id="music-btn" class="swiper-slide">
-                  <a href="/musics/page/${music._id}">
+                <div music-id="${music._id}" class="music-btn swiper-slide">
+                  <div>
                     <div class="w-88 h-104 max-w-88 max-h-104 cursor-pointer">
                     <img src="${music.poster}" class="w-88 h-92 min-w-88 min-h-92 max-w-88 max-h-92 object-cover object-center" alt="${music.title} from ${music.artist}"/>
     
@@ -56,9 +56,26 @@ const formatTime = (seconds) => {
                         </div>
                       </div>
                     </div>
-                  </a>
+                  </div>
                 </div>
-`);
+              `);
+        })
+
+        const musicBtn = document.querySelectorAll('.music-btn')
+
+        musicBtn.forEach(music => {
+            music.addEventListener('click', async() => {
+                const response = await fetch(`/api/v1/musics/${music.getAttribute('music-id')}`)
+                const data = await response.json();
+
+                musicArray = data.data[location.href.split('/')[location.href.split('/').length - 3].slice(0, -1)].musics
+
+                document.getElementById('music-box').src = musicArray[0].poster
+                document.getElementById('music-title').innerText = musicArray[0].title
+                document.getElementById('music-subtitle').innerText = musicArray[0].artist
+                audio.src = musicArray[0].music
+                audio.setAttribute('audio-id', musicArray[0]._id)
+            })
         })
     }
     catch (error) {}
