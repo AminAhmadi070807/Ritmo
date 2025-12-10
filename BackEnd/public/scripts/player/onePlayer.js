@@ -87,21 +87,6 @@ const audioPlayer = async () => {
     else {
         audio.pause();
         playerIcon.setAttribute("href", "#play-music");
-
-        const refresh = await fetch('/api/v1/auth/refresh')
-
-        if (refresh.status === 404) return location.href = '/auth/send'
-
-        const audioId = audio.getAttribute('audio-id')
-
-        await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
-            method: 'post',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                time: audio.currentTime,
-                play: false
-            })
-        })
     }
 };
 

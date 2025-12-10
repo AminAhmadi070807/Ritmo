@@ -24,11 +24,6 @@ const schema = new mongoose.Schema({
         min: 0,
         max: 100
     },
-    numberOfPlay: {
-        type: Number,
-        required: true,
-        default: 1
-    }
 }, { timestamps: true });
 
 module.exports = mongoose.model('LastHeard', schema);

@@ -10,7 +10,7 @@ module.exports.add = async (req, res, next) => {
     try {
         const user = req.user;
         const { id } = req.params;
-        const { time, play = true } = req.body;
+        const { time} = req.body;
 
         if (isNaN(time)) return response(res, 400, "time is not type of number")
 
@@ -32,9 +32,6 @@ module.exports.add = async (req, res, next) => {
                 time: time,
                 percent: Math.floor((time / isExistMusic.time) * 100),
             },
-            $inc: {
-                numberOfPlay: play ? 1 : -1
-            }
         }, {
             new: true,
             upsert: true
