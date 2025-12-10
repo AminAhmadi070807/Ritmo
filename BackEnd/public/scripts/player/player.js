@@ -65,31 +65,6 @@ const updatePlayerProgress = async (e) => {
         localStorage.setItem("audio-time", (playerCalculator / 100) * audio.duration);
         audio.pause();
         playerIcon.setAttribute("href", "#play-music");
-
-        const audioId = audio.getAttribute('audio-id')
-
-        const response = await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
-            method: 'post',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                time: audio.currentTime,
-                play: false
-            })
-        })
-
-        switch (response.status) {
-            case 401:
-                const refresh = await fetch('/api/v1/auth/refresh')
-                if (refresh.status === 404) return location.href = '/'
-                await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
-                    method: 'post',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({
-                        time: audio.currentTime,
-                        play: false
-                    })
-                })
-        }
     }
 };
 // update volume bar
@@ -122,9 +97,13 @@ const audioPause = async () => {
     timeEnd.innerHTML = `${formatTime(audio.duration)}`;
     localStorage.setItem("audio-time", audio.currentTime);
 
+    const refresh = await fetch('/api/v1/auth/refresh')
+
+    if (refresh.status === 404) return location.href = '/auth/send'
+
     const audioId = audio.getAttribute('audio-id')
 
-    const response = await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
+    await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -132,20 +111,6 @@ const audioPause = async () => {
             play: true
         })
     })
-
-    switch (response.status) {
-        case 401:
-            const refresh = await fetch('/api/v1/auth/refresh')
-            if (refresh.status === 404) return location.href = '/'
-            await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
-                method: 'post',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    time: audio.currentTime,
-                    play: true
-                })
-            })
-    }
 };
 
 // audio player
@@ -156,7 +121,11 @@ const audioPlayer = async () => {
         audio.currentTime = localStorage.getItem("audio-time") || 0;
         playerIcon.setAttribute("href", "#pause");
 
-        const response = await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
+        const refresh = await fetch('/api/v1/auth/refresh')
+
+        if (refresh.status === 404) return location.href = '/auth/send'
+
+        await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -164,27 +133,17 @@ const audioPlayer = async () => {
                 play: true
             })
         })
-
-        switch (response.status) {
-            case 401:
-                console.log(response)
-                const refresh = await fetch('/api/v1/auth/refresh')
-                if (refresh.status === 404) return location.href = '/'
-                await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
-                    method: 'post',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({
-                        time: audio.currentTime,
-                        play: true
-                    })
-                })
-        }
     }
     else {
         localStorage.setItem("audio-time", audio.currentTime);
         audio.pause();
         playerIcon.setAttribute("href", "#play-music");
-        const response = await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
+
+        const refresh = await fetch('/api/v1/auth/refresh')
+        if (refresh.status === 404) return location.href = '/auth/send'
+
+
+        await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -193,19 +152,6 @@ const audioPlayer = async () => {
             })
         })
 
-        switch (response.status) {
-            case 401:
-                const refresh = await fetch('/api/v1/auth/refresh')
-                if (refresh.status === 404) return location.href = '/'
-                await fetch(`/api/v1/musics/lastHeard/${audioId}`, {
-                    method: 'post',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({
-                        time: audio.currentTime,
-                        play: false
-                    })
-                })
-        }
     }
 };
 
