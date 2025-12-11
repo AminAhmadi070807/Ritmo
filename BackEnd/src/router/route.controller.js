@@ -152,3 +152,5 @@ module.exports.notFound = (req, res) => res.render('404.ejs')
 module.exports.authentication = (req, res ) => res.render('auth.ejs')
 
 module.exports.verify = (req, res, ) => res.render('verify.ejs')
+
+module.exports.profile = async (req, res) => res.render('setting/profile.ejs')
