@@ -6,6 +6,7 @@ const createMusicSchema = require('../modules/v1/musics/music/music.schema')
 const genreSchema = require('../modules/v1/musics/genre/genre.schema')
 const { createAlbumSchema } = require('../modules/v1/musics/album/album.schema')
 const planSchema = require('../modules/v1/plan/plan.schema')
+const { update } = require('../modules/v1/users/user.schema')
 
 module.exports.authRegisterValidation = async (req, res, next) => {
     try {
@@ -76,6 +77,17 @@ module.exports.createAlbumValidator = async (req, res, next) => {
 module.exports.planValidator = async (req, res, next) => {
     try {
         await planSchema.validateAsync({ ...req.body })
+
+        next()
+    }
+    catch (error) {
+        next(error)
+    }
+}
+
+module.exports.userUpdateInfoValidator = async (req, res, next) => {
+    try {
+        await update.validateAsync({ ...req.body })
 
         next()
     }
