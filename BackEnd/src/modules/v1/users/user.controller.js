@@ -4,6 +4,7 @@ const response = require('../../../helpers/response.helper')
 const refreshModel = require('../token/token.model')
 const adminModel = require('../admins/admin.model')
 const userModel = require('../users/user.model')
+const deleteFile = require("../../../utils/delete.file");
 
 module.exports.getMe = async (req, res, next) => {
     try {
@@ -39,10 +40,21 @@ module.exports.update = async (req, res, next) => {
 
         const profile = req.file
 
-        if (profile) await userModel.update({username, fullName, email, bio, profile: '/uploads/profiles/' + profile.filename}, {where: {uuid: user.uuid}})
+        const userBackInfo = await userModel.findOne({ where: { uuid: user.uuid }, raw: true})
+
+        if (profile) {
+            await userModel.update({
+                username,
+                fullName,
+                email,
+                bio,
+                profile: '/uploads/profiles/' + profile.filename
+            }, {where: {uuid: user.uuid}})
+            await deleteFile('BackEnd/public', userBackInfo.profile)
+        }
         else await userModel.update({username, fullName, email, bio}, {where: {uuid: user.uuid}})
 
-        return response(res, 200, "update user information successfully")
+        return res.render('setting/settingProfile.ejs')
     }
     catch (error) {
         next(error)
