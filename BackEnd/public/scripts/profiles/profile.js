@@ -33,6 +33,12 @@
 
         document.getElementById('profile-number-of-playlist').innerText = dataPlaylist.data.count
         document.getElementById('profile-number-of-playlist').value = dataPlaylist.data.count
+
+        const responseStream = await fetch('/api/v1/musics/lastHeard/')
+        const dataStream = await responseStream.json()
+
+        document.getElementById('profile-number-of-stream').innerText = dataStream.data.count
+        document.getElementById('profile-number-of-stream').value = dataStream.data.count
     }
     catch (error) {
         console.error(error);

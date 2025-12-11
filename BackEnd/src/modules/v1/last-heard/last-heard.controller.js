@@ -52,6 +52,8 @@ module.exports.lastHeardUser = async (req, res, next) => {
 
         const lastHeards = await lastHeardModel.find({user: user.uuid}, 'music').limit(+page * +limit).lean().sort({ updatedAt: -1 }).populate('music')
 
+        const count = await lastHeardModel.countDocuments({})
+
         const lastHeardArray = []
 
         for (const lastHeard of lastHeards) {
@@ -63,7 +65,7 @@ module.exports.lastHeardUser = async (req, res, next) => {
             })
         }
 
-        return response(res, 200, null, { lastHeard: lastHeardArray });
+        return response(res, 200, null, { lastHeard: lastHeardArray, count });
     }
     catch (error) {
         next(error)
