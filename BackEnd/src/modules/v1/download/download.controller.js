@@ -3,6 +3,7 @@
 const downloadModel = require('./download.model')
 const musicModel = require('../musics/music/music.model')
 const userPlan = require('../plan/user.plan.model')
+const likeSongModel = require('../like-songs/like-song.model')
 const {isValidObjectId} = require("mongoose");
 const response = require('../../../helpers/response.helper')
 
@@ -47,7 +48,18 @@ module.exports.userDownloads = async (req, res, next) => {
 
         const downloads = await downloadModel.find({user: user.uuid}, 'music').limit(+page * +limit).lean().sort({ updatedAt: -1 }).populate('music')
 
-        return response(res, 200, null, { downloads, count: numberOfUserDownloads });
+        const downloadArray = []
+
+        for (const download of downloads) {
+            const likeSong = await likeSongModel.findOne({ music: download.music }).lean()
+            console.log(download._id)
+            downloadArray.push({
+                ...download,
+                likeSong: !!(likeSong),
+            })
+        }
+
+        return response(res, 200, null, { downloads: downloadArray, count: numberOfUserDownloads });
     }
     catch (error) {
         next(error)
