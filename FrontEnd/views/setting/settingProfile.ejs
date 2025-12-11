@@ -25,9 +25,9 @@
 
       <section class="flex flex-col lg:flex-row items-center justify-center gap-y-10 gap-x-20 mt-16 mx-auto max-w-[88%] h-auto">
         <!-- profile image -->
-        <div class="relative self-start">
+        <div class="relative group self-start">
             <img id="profile" class="size-[240px] min-w-[240px] min-h-[240px] object-cover rounded-2xl" alt="user profile"/>
-            <div class="flex-center absolute inset-0 m-auto size-full bg-gray-800/50 rounded-2xl cursor-pointer">
+            <div class="flex-center absolute inset-0 m-auto invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300 size-full bg-gray-950/70 rounded-2xl cursor-pointer">
                 <svg class="size-20 text-white"><use href="#arrow-down-on-square-stack"></use></svg>
                 <input id="profile-file" type="file" class="hidden">
             </div>
@@ -60,7 +60,7 @@
           <div id="biography-container" class="relative border border-Neutral-400 text-Neutral-100 rounded-lg mx-auto w-full bg-transparent focus:bg-transparent">
               <label for="bio-input" class="absolute right-5 -top-3 h-5 text-Neutral-300 bg-menu rounded-2xl px-3 text-sm">بیوگرافی</label>
               <div class="flex items-center flex-row-reverse h-auto p-3">
-                <textarea type="text" id="bio-input" rows="5" placeholder="اینجا بنویسید..." class="font-Pelak_Regular text-xs min-h-12 me-auto outline-0 border-0 focus:bg-transparent px-3.5 text-[#55596D] w-full resize-none"></textarea>
+                <textarea type="text" id="bio-input" rows="5" placeholder="اینجا بنویسید..." class="font-Pelak_Regular text-white text-xs min-h-12 me-auto outline-0 border-0 focus:bg-transparent px-3.5 w-full resize-none"></textarea>
               </div>
           </div>
 

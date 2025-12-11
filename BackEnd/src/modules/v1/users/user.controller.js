@@ -39,17 +39,8 @@ module.exports.update = async (req, res, next) => {
 
         const profile = req.file
 
-        await userModel.update({
-            username,
-            fullName,
-            email,
-            bio,
-            profile: '/uploads/profiles/' + profile.filename
-        }, {
-            where: {
-                uuid: user.uuid
-            }
-        })
+        if (profile) await userModel.update({username, fullName, email, bio, profile: '/uploads/profiles/' + profile.filename}, {where: {uuid: user.uuid}})
+        else await userModel.update({username, fullName, email, bio}, {where: {uuid: user.uuid}})
 
         return response(res, 200, "update user information successfully")
     }
