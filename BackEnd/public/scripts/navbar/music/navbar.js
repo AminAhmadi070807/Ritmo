@@ -19,7 +19,7 @@ const categoryIconSubList = document.getElementById('music-sublist-desktop')
                 const response = await fetch('/api/v1/users/Me')
                 const newData = await response.json()
                 if (refresh.status === 200) profileContainer.innerHTML = `
-                        <a href="/setting/profile"><img src="${newData.data.profile}" class="size-full object-cover rounded-full" alt="${newData.data.fullName}"/></a>
+                        <a href="/settings/profile"><img src="${newData.data.profile}" class="size-full object-cover rounded-full" alt="${newData.data.fullName}"/></a>
                         <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300 delay-75 absolute top-20 left-0 w-[304px] h-auto rounded-2xl border-t-4 border-t-Primary-500 bg-Neutral-900 px-2">
                             <ul class="text-[#FCFCFD]">
                                 <!-- add class profile-button-active remove class profile-button-no-active -->
@@ -43,7 +43,7 @@ const categoryIconSubList = document.getElementById('music-sublist-desktop')
                 break;
             case 200:
                 profileContainer.innerHTML = `
-                        <a href="/setting/profile"><img src="${data.data.profile}" class="size-full object-cover rounded-full" alt="${data.data.fullName}"/></a>
+                        <a href="/settings/profile"><img src="${data.data.profile}" class="size-full object-cover rounded-full" alt="${data.data.fullName}"/></a>
                         <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300 delay-75 absolute top-20 left-0 w-[304px] h-auto rounded-2xl border-t-4 border-t-Primary-500 bg-Neutral-900 px-2">
                             <ul class="text-[#FCFCFD]">
                                 <!-- add class profile-button-active remove class profile-button-no-active -->

@@ -394,6 +394,9 @@
   .mt-1 {
     margin-top: calc(var(--spacing) * 1);
   }
+  .mt-1\.5 {
+    margin-top: calc(var(--spacing) * 1.5);
+  }
   .mt-2 {
     margin-top: calc(var(--spacing) * 2);
   }
@@ -575,6 +578,10 @@
     width: 66px;
     height: 66px;
   }
+  .size-\[140px\] {
+    width: 140px;
+    height: 140px;
+  }
   .size-\[184px\] {
     width: 184px;
     height: 184px;
@@ -703,6 +710,9 @@
   }
   .min-h-92 {
     min-height: var(--spacing-92);
+  }
+  .min-h-\[140px\] {
+    min-height: 140px;
   }
   .min-h-\[184px\] {
     min-height: 184px;
@@ -842,8 +852,14 @@
   .max-w-150 {
     max-width: var(--spacing-150);
   }
+  .max-w-\[80\%\] {
+    max-width: 80%;
+  }
   .max-w-\[88\%\] {
     max-width: 88%;
+  }
+  .max-w-\[140px\] {
+    max-width: 140px;
   }
   .max-w-\[157px\] {
     max-width: 157px;
@@ -859,6 +875,9 @@
   }
   .max-w-\[1016px\] {
     max-width: 1016px;
+  }
+  .max-w-\[1424px\] {
+    max-width: 1424px;
   }
   .max-w-\[1440px\] {
     max-width: 1440px;
@@ -898,6 +917,9 @@
   }
   .min-w-\[64px\] {
     min-width: 64px;
+  }
+  .min-w-\[140px\] {
+    min-width: 140px;
   }
   .min-w-\[184px\] {
     min-width: 184px;
@@ -1039,9 +1061,6 @@
   .gap-y-\[5rem\] {
     row-gap: 5rem;
   }
-  .self-start {
-    align-self: flex-start;
-  }
   .overflow-hidden {
     overflow: hidden;
   }
@@ -1143,11 +1162,17 @@
   .border-Neutral-800 {
     border-color: var(--color-Neutral-800);
   }
+  .border-Primary-500 {
+    border-color: var(--color-Primary-500);
+  }
   .border-Success-200 {
     border-color: var(--color-Success-200);
   }
   .border-gray-500 {
     border-color: var(--color-gray-500);
+  }
+  .border-white {
+    border-color: var(--color-white);
   }
   .border-t-Neutral-600 {
     border-top-color: var(--color-Neutral-600);
@@ -1185,6 +1210,9 @@
   .bg-Error-200 {
     background-color: var(--color-Error-200);
   }
+  .bg-Info-200 {
+    background-color: var(--color-Info-200);
+  }
   .bg-Neutral-300 {
     background-color: var(--color-Neutral-300);
   }
@@ -1200,14 +1228,23 @@
   .bg-Primary-500 {
     background-color: var(--color-Primary-500);
   }
+  .bg-Success-200 {
+    background-color: var(--color-Success-200);
+  }
+  .bg-Warning-200 {
+    background-color: var(--color-Warning-200);
+  }
   .bg-\[\#0D0D0E\]\/75 {
     background-color: color-mix(in oklab, #0D0D0E 75%, transparent);
   }
-  .bg-\[\#4353FF\] {
-    background-color: #4353FF;
+  .bg-\[\#9747FF\] {
+    background-color: #9747FF;
   }
   .bg-\[\#040404\] {
     background-color: #040404;
+  }
+  .bg-\[\#FF4D00\] {
+    background-color: #FF4D00;
   }
   .bg-background {
     background-color: var(--color-background);
@@ -1266,10 +1303,6 @@
     --tw-gradient-from: color-mix(in oklab, #2979FF 80%, transparent);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
-  .from-\[\#4353FF99\] {
-    --tw-gradient-from: #4353FF99;
-    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
-  }
   .from-\[\#9747FF\]\/80 {
     --tw-gradient-from: color-mix(in oklab, #9747FF 80%, transparent);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
@@ -1312,6 +1345,9 @@
   .p-5 {
     padding: calc(var(--spacing) * 5);
   }
+  .p-8 {
+    padding: calc(var(--spacing) * 8);
+  }
   .px-1 {
     padding-inline: calc(var(--spacing) * 1);
   }
@@ -1339,6 +1375,9 @@
   .px-10 {
     padding-inline: calc(var(--spacing) * 10);
   }
+  .px-\[30px\] {
+    padding-inline: 30px;
+  }
   .py-1 {
     padding-block: calc(var(--spacing) * 1);
   }
@@ -1356,6 +1395,9 @@
   }
   .py-5 {
     padding-block: calc(var(--spacing) * 5);
+  }
+  .py-8 {
+    padding-block: calc(var(--spacing) * 8);
   }
   .py-10 {
     padding-block: calc(var(--spacing) * 10);
@@ -1417,6 +1459,9 @@
   .text-center {
     text-align: center;
   }
+  .text-right {
+    text-align: right;
+  }
   .font-FA_Pelak_Bold {
     font-family: var(--font-FA_Pelak_Bold);
   }
@@ -1474,6 +1519,10 @@
   .text-xs\/\[20px\] {
     font-size: var(--text-xs);
     line-height: 20px;
+  }
+  .text-xs\/\[30px\] {
+    font-size: var(--text-xs);
+    line-height: 30px;
   }
   .text-\[2rem\] {
     font-size: 2rem;
@@ -1851,6 +1900,12 @@
       line-height: var(--tw-leading, var(--text-sm--line-height));
     }
   }
+  .sm\:text-xl {
+    @media (width >= 40rem) {
+      font-size: var(--text-xl);
+      line-height: var(--tw-leading, var(--text-xl--line-height));
+    }
+  }
   .\*\:sm\:w-\[496px\] {
     :is(& > *) {
       @media (width >= 40rem) {
@@ -1921,6 +1976,11 @@
       min-width: var(--spacing-100);
     }
   }
+  .md\:flex-col {
+    @media (width >= 48rem) {
+      flex-direction: column;
+    }
+  }
   .md\:flex-row {
     @media (width >= 48rem) {
       flex-direction: row;
@@ -1966,6 +2026,12 @@
       text-align: right;
     }
   }
+  .md\:text-2xl {
+    @media (width >= 48rem) {
+      font-size: var(--text-2xl);
+      line-height: var(--tw-leading, var(--text-2xl--line-height));
+    }
+  }
   .md\:text-base {
     @media (width >= 48rem) {
       font-size: var(--text-base);
@@ -1976,6 +2042,12 @@
     @media (width >= 48rem) {
       font-size: var(--text-lg);
       line-height: var(--tw-leading, var(--text-lg--line-height));
+    }
+  }
+  .md\:text-sm {
+    @media (width >= 48rem) {
+      font-size: var(--text-sm);
+      line-height: var(--tw-leading, var(--text-sm--line-height));
     }
   }
   .md\:text-xl {
@@ -2033,6 +2105,16 @@
   .lg\:w-92 {
     @media (width >= 64rem) {
       width: var(--spacing-92);
+    }
+  }
+  .lg\:w-\[calc\(100vw-256px\)\] {
+    @media (width >= 64rem) {
+      width: calc(100vw - 256px);
+    }
+  }
+  .lg\:max-w-\[80\%\] {
+    @media (width >= 64rem) {
+      max-width: 80%;
     }
   }
   .lg\:min-w-100 {
