@@ -1,6 +1,13 @@
-const $ = document
-const checkNotification = $.getElementById('check-notification')
-const clockProfile = $.getElementById('close-box')
+"use strict";
+
+const checkNotification = document.getElementById('check-notification')
+const clockProfile = document.getElementById('close-box');
+const submitButton = document.getElementById('save-user-info');
+const file = document.getElementById('profile-input');
+const fullNameInput = document.getElementById('full-name-input');
+const usernameInput = document.getElementById('user-name-input');
+const emailInput = document.getElementById('email-input');
+const bioInput = document.getElementById('bio-input')
 
 ;(async () => {
     try {
@@ -36,3 +43,11 @@ checkNotification.addEventListener('click', () => {
 })
 
 clockProfile.addEventListener('click', () => window.history.go(-1))
+submitButton.addEventListener('click', () => {
+    try {
+
+    }
+    catch (error) {
+        console.error(error)
+    }
+})
