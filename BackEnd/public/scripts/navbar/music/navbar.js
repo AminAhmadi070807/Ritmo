@@ -10,16 +10,17 @@ const categoryIconSubList = document.getElementById('music-sublist-desktop')
 
 ;(async () => {
     try {
+        const refresh = await fetch('/api/v1/auth/refresh')
+
+        if (refresh.status !== 200) return location.href = '/auth/send'
+
         const response = await fetch('/api/v1/users/Me')
         const data = await response.json()
 
-        switch (response.status) {
-            case 401:
-                const refresh = await fetch('/api/v1/auth/refresh')
-                const response = await fetch('/api/v1/users/Me')
-                const newData = await response.json()
-                if (refresh.status === 200) profileContainer.innerHTML = `
-                        <a href="/settings/profile"><img src="${newData.data.profile}" class="size-full object-cover rounded-full" alt="${newData.data.fullName}"/></a>
+        profileContainer.innerHTML = `
+                        <a href="/settings/profile">
+                            <img src="${data.data.profile}" class="size-12 object-center object-cover rounded-full" alt="${data.data.fullName}"/>
+                        </a>
                         <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300 delay-75 absolute top-20 left-0 w-[304px] h-auto rounded-2xl border-t-4 border-t-Primary-500 bg-Neutral-900 px-2">
                             <ul class="text-[#FCFCFD]">
                                 <!-- add class profile-button-active remove class profile-button-no-active -->
@@ -39,35 +40,6 @@ const categoryIconSubList = document.getElementById('music-sublist-desktop')
                             </ul>
                         </div>
                     `
-                else profileContainer.innerHTML = `<a href="/auth/send"><svg class="size-8"><use href="#lock-closed"></use></svg></a>`
-                break;
-            case 200:
-                profileContainer.innerHTML = `
-                        <a href="/settings/profile"><img src="${data.data.profile}" class="size-full object-cover rounded-full" alt="${data.data.fullName}"/></a>
-                        <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300 delay-75 absolute top-20 left-0 w-[304px] h-auto rounded-2xl border-t-4 border-t-Primary-500 bg-Neutral-900 px-2">
-                            <ul class="text-[#FCFCFD]">
-                                <!-- add class profile-button-active remove class profile-button-no-active -->
-                                <li class="py-2.5 profile-button-no-active">
-                                    <a href="/settings/profile" class="ps-6">پروفایل</a>
-                                </li>
-                                <li class="py-2.5 profile-button-no-active">
-                                    <a href="#" class="ps-6">تنظیمات</a>
-                                </li>
-                                <li class="py-2.5 profile-button-no-active">
-                                    <a href="/settings/myAccount" class="ps-6">اکانت پریمویم</a>
-                                </li>
-                                <div class="border-t-2 border-t-Neutral-800 my-2"></div>
-                                <li class="pt-2.5 pb-4 profile-button-no-active">
-                                    <a href="/api/v1/users/logout" class="ps-6">خروج از اکانت</a>
-                                </li>
-                            </ul>
-                        </div>
-                    `
-                break;
-            default:
-                profileContainer.innerHTML = `<a href="/auth/send"><svg class="size-8"><use href="#lock-closed"></use></svg></a>`
-                break
-        }
     }
     catch (error) {
         console.log(error)
