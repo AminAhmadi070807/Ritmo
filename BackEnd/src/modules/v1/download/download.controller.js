@@ -52,7 +52,6 @@ module.exports.userDownloads = async (req, res, next) => {
 
         for (const download of downloads) {
             const likeSong = await likeSongModel.findOne({ music: download.music }).lean()
-            console.log(download._id)
             downloadArray.push({
                 ...download,
                 likeSong: !!(likeSong),
