@@ -178,3 +178,18 @@ module.exports.removeMusic = async (req, res, next) => {
         next(error)
     }
 }
+
+module.exports.userPlaylist = async (req, res, next) => {
+    try {
+        const user = req.user;
+
+        const playlists = await playlistModel.find({ user: user.uuid }).lean()
+
+        const count = await playlistModel.countDocuments({ user: user.uuid }).lean()
+
+        return response(res, 200, null, { count, playlists })
+    }
+    catch (error) {
+        next(error)
+    }
+}
