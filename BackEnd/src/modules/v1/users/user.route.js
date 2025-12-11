@@ -11,7 +11,7 @@ const diskStorage = require("../../../utils/upload.util");
 
 const upload = multer({ storage: diskStorage("profiles") })
 
-router.patch('/update', authGuard, upload.single('profile'), validator.userUpdateInfoValidator, controller.update)
+router.post('/update', authGuard, upload.single('profile'), validator.userUpdateInfoValidator, controller.update)
 router.get('/Me', authGuard, controller.getMe)
 router.get('/logout', authGuard, controller.logout)
 

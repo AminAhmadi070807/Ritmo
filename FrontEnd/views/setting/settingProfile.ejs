@@ -27,24 +27,23 @@
         <!-- profile image -->
         <div class="relative group self-start">
             <img id="profile" class="size-[240px] min-w-[240px] min-h-[240px] object-cover rounded-2xl" alt="user profile"/>
-            <div class="flex-center absolute inset-0 m-auto invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300 size-full bg-gray-950/70 rounded-2xl cursor-pointer">
+            <label for="profile-file" class="flex-center absolute inset-0 m-auto invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300 size-full bg-gray-950/70 rounded-2xl cursor-pointer">
                 <svg class="size-20 text-white"><use href="#arrow-down-on-square-stack"></use></svg>
-                <input id="profile-file" type="file" class="hidden">
-            </div>
+            </label>
         </div>
 
-        <div class="flex flex-col gap-y-12 w-full">
+        <form action="/api/v1/users/update" method="post" enctype="multipart/form-data" class="flex flex-col gap-y-12 w-full">
           <!-- fullName -->
           <div id="name-container" class="relative border border-Neutral-400 text-Neutral-100 rounded-lg mx-auto w-full bg-transparent focus:bg-transparent">
               <label for="full-name-input" class="absolute right-5 -top-[25%] h-5 text-Neutral-300 bg-menu rounded-2xl px-3 text-sm">نام</label>
-              <input type="text" id="full-name-input" class="font-Pelak_Regular text-sm w-[90%] h-12 me-auto outline-0 border-0 focus:bg-transparent px-3.5 text-Neutral-100"/>
+              <input name="fullName" type="text" id="full-name-input" class="font-Pelak_Regular text-sm w-[90%] h-12 me-auto outline-0 border-0 focus:bg-transparent px-3.5 text-Neutral-100"/>
           </div>
 
           <!-- email -->
           <div id="email-container" class="relative border border-Neutral-400 text-Neutral-100 rounded-lg mx-auto w-full bg-transparent focus:bg-transparent">
               <label for="email-input" class="absolute right-5 -top-[25%] h-5 text-Neutral-300 bg-menu rounded-2xl px-3 text-sm">ایمیل</label>
               <div class="flex items-center flex-row-reverse">
-                <input type="email" id="email-input" class="font-Pelak_Regular text-sm w-[90%] h-12 me-auto outline-0 border-0 focus:bg-transparent px-3.5 text-Neutral-100" placeholder="info@gmail.com"/>
+                <input name="email" type="email" id="email-input" class="font-Pelak_Regular text-sm w-[90%] h-12 me-auto outline-0 border-0 focus:bg-transparent px-3.5 text-Neutral-100" placeholder="info@gmail.com"/>
               </div>
           </div>
 
@@ -52,7 +51,7 @@
           <div id="userName-container" class="relative border border-Neutral-400 text-Neutral-100 rounded-lg mx-auto w-full bg-transparent focus:bg-transparent">
             <label for="user-name-input" class="absolute right-5 -top-[25%] h-5 text-Neutral-300 bg-menu rounded-2xl px-3 text-sm">نام کاربری</label>
             <div class="flex items-center flex-row-reverse">
-              <input type="text" id="user-name-input" class="font-Pelak_Regular text-sm w-[90%] h-12 me-auto outline-0 border-0 focus:bg-transparent px-3.5 text-Neutral-100"/>
+              <input name="username" type="text" id="user-name-input" class="font-Pelak_Regular text-sm w-[90%] h-12 me-auto outline-0 border-0 focus:bg-transparent px-3.5 text-Neutral-100"/>
             </div>
           </div>
 
@@ -60,7 +59,7 @@
           <div id="biography-container" class="relative border border-Neutral-400 text-Neutral-100 rounded-lg mx-auto w-full bg-transparent focus:bg-transparent">
               <label for="bio-input" class="absolute right-5 -top-3 h-5 text-Neutral-300 bg-menu rounded-2xl px-3 text-sm">بیوگرافی</label>
               <div class="flex items-center flex-row-reverse h-auto p-3">
-                <textarea type="text" id="bio-input" rows="5" placeholder="اینجا بنویسید..." class="font-Pelak_Regular text-white text-xs min-h-12 me-auto outline-0 border-0 focus:bg-transparent px-3.5 w-full resize-none"></textarea>
+                <textarea name="bio" type="text" id="bio-input" rows="5" placeholder="اینجا بنویسید..." class="font-Pelak_Regular text-white text-xs min-h-12 me-auto outline-0 border-0 focus:bg-transparent px-3.5 w-full resize-none"></textarea>
               </div>
           </div>
 
@@ -73,9 +72,11 @@
 
           <div class="flex items-center justify-end gap-x-5">
             <a href="/" role="button" type="button" class="py-3 w-full text-center bg-Neutral-500 rounded-lg font-Pelak_Medium max-w-[103px] text-nowrap">انصراف</a>
-            <button id="save-user-info" role="button" type="button" class="py-3 cursor-pointer w-full text-center bg-Success-200 rounded-lg font-Pelak_Medium max-w-[117px] text-nowrap">ثبت و ذخیره</button>
+            <button id="save-user-info" role="button" type="submit" class="py-3 cursor-pointer w-full text-center bg-Success-200 rounded-lg font-Pelak_Medium max-w-[117px] text-nowrap">ثبت و ذخیره</button>
           </div>
-        </div>
+
+            <input id="profile-file" name="profile" type="file" class="hidden">
+        </form>
       </section>
     </main>
 
