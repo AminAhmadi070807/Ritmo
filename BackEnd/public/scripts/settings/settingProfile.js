@@ -2,6 +2,31 @@ const $ = document
 const checkNotification = $.getElementById('check-notification')
 const clockProfile = $.getElementById('close-box')
 
+;(async () => {
+    try {
+        const refresh = await fetch('/api/v1/auth/refresh')
+
+        if (refresh.status !== 200) return location.href = '/auth/send'
+
+        const response = await fetch('/api/v1/users/Me')
+        const data = await response.json()
+
+        document.getElementById('profile').src = data.data.profile
+        document.getElementById('profile').alt = data.data.fullName
+
+        document.getElementById('full-name-input').value = data.data.fullName
+
+        document.getElementById('user-name-input').value = data.data.username
+        document.getElementById('email-input').value = data.data.email
+        document.getElementById('bio-input').value = data.data.bio
+
+        document.getElementById('profile-role').innerText = `${data.data.role[0] === "ADMIN" ? "ادمین" : data.data.role[0] === "ARTIST" ? "هنرمند" : "کاربر"}`
+    }
+    catch (error) {
+        console.error(error)
+    }
+})()
+
 let isNotification = true
 checkNotification.addEventListener('click', () => {
     isNotification = !isNotification
