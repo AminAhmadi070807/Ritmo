@@ -10,6 +10,10 @@
   </head>
   <body class="w-screen overflow-x-hidden text-white select-none max-w-[1688px] mx-auto">
 
+  <%- include('../partials/svg.ejs') %>
+
+  <%- include('../partials/header.music.ejs') %>
+
     <main class="w-full h-auto ms-auto max-w-[1688px] overflow-x-hidden py-10 min-h-screen pb-20">
       <!-- Setting Profile -->
       <section class="flex items-center h-auto justify-between mx-auto max-w-[88%]">
@@ -71,7 +75,12 @@
       </section>
     </main>
 
+  <%- include('../partials/status.mudal.ejs') %>
 
-    <script src="./User Profile.js"></script>
+  <%- include('../partials/footer.ejs') %>
+
+
+  <script type="text/javascript" src="/scripts/navbar/music/navbar.js"></script>
+  <script type="text/javascript" src="/scripts/settings/settingProfile.js"></script>
   </body>
 </html>

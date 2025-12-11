@@ -24,5 +24,6 @@ router.get('/auth/verify/:id', validator.authVerifyValidation, controller.verify
 router.get('/categories/details/:id', controller.musicCategoryDetails)
 router.get('/settings/profile', controller.profile)
 router.get('/settings/channel', controller.channel)
+router.get('/settings/setting/profile', controller.settingProfile)
 
 module.exports = router
