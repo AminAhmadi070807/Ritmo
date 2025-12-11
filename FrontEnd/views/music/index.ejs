@@ -350,59 +350,7 @@
       </section>
     </main>
 
-    <section id="music-player-box" class="relative hidden h-full">
-        <div class="fixed top-17 left-0 lg:top-27 border border-Neutral-800 bg-Neutral-900 lg:w-92 h-screen w-screen p-5 lg:h-auto rounded-2xl z-50">
-            <div class="relative w-full h-75 rounded-2xl">
-                <img id="music-box" class="w-full h-full object-cover object-top rounded-2xl" src="" alt="profile" />
-                <div id="close-player-box-btn" class="absolute flex-center top-5 left-5 cursor-pointer border size-10 rounded-full bg-Neutral-900 border-Neutral-500">
-                    <svg class="size-6 text-white"><use href="#x-mark"></use></svg>
-                </div>
-            </div>
-            <div class="flex items-center gap-x-8 mx-auto justify-center mt-5 *:cursor-pointer">
-                <span id="loop-music">
-                <svg class="w-5 h-6 text-Neutral-300" viewBox="0 0 20 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1.80052 11.5V10.0714C1.80052 6.91552 4.24788 4.35714 7.26684 4.35714H18.1995M16.8329 1.5L18.5997 3.34699C19.1334 3.90488 19.1334 4.8094 18.5997 5.3673L16.8329 7.21429M18.1995 11.5V12.9286C18.1995 16.0845 15.7521 18.6429 12.7332 18.6429H1.80052M3.1671 21.5L1.40026 19.653C0.86658 19.0951 0.86658 18.1906 1.40026 17.6327L3.1671 15.7857" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-                </svg>
-              </span>
-
-                <span id="next-music">
-                <svg width="26" height="17" viewBox="0 0 26 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M11.6667 5.38881L5.01032 1.50594C3.23257 0.468923 1 1.75125 1 3.80936V13.1905C1 15.2486 3.23257 16.5309 5.01032 15.4939L11.6667 11.611M11.6667 5.38881V3.80936C11.6667 1.75125 13.8992 0.468923 15.677 1.50594L23.718 6.19651C25.482 7.22552 25.482 9.77433 23.718 10.8033L15.677 15.4939C13.8992 16.5309 11.6667 15.2486 11.6667 13.1905V11.611M11.6667 5.38881V11.611" stroke="white" stroke-width="1.5" stroke-linejoin="round"></path>
-                </svg>
-              </span>
-
-              <span id="player" class="flex-center cursor-pointer size-13 bg-Primary-500 rounded-xl">
-                <svg class="size-10"><use id="play-icon" href="#play-music"></use></svg>
-              </span>
-
-                <span id="prev-music">
-                <svg width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.3724 13.3888L24.0287 9.50594C25.8065 8.46892 28.0391 9.75125 28.0391 11.8094V21.1905C28.0391 23.2486 25.8065 24.5309 24.0287 23.4939L17.3724 19.611M17.3724 13.3888V11.8094C17.3724 9.75125 15.1398 8.46892 13.3621 9.50594L5.3211 14.1965C3.55709 15.2255 3.55708 17.7743 5.3211 18.8033L13.3621 23.4939C15.1398 24.5309 17.3724 23.2486 17.3724 21.1905V19.611M17.3724 13.3888V19.611" stroke="white" stroke-width="1.5" stroke-linejoin="round"></path></svg>
-              </span>
-
-                <span id="random-music">
-                <svg class="size-6 text-Neutral-300">
-                  <use href="#shuffle"></use>
-                </svg>
-              </span>
-            </div>
-            <div class="flex items-center justify-center gap-x-4 mt-5">
-                <!-- music total time -->
-                <time id="time-total-music" datetime="3:37" class="font-FA_Pelak_Medium text-Neutral-200 w-10 text-center">00:00</time>
-
-                <!-- range bar -->
-                <div id="range-player-container" class="w-full flex items-center justify-end bg-Neutral-300 h-1 rounded-sm cursor-pointer">
-                    <div id="range-player" class="relative flex items-center justify-start h-full bg-Primary-500 cursor-pointer transition-all" style="width: 0;">
-                        <div class="absolute top-0 bottom-0 -right-3 my-auto size-3 rounded-full bg-Primary-500"></div>
-                    </div>
-                </div>
-
-                <!-- music played time-->
-                <time id="time-music-start" datetime="" class="font-FA_Pelak_Medium text-Neutral-200 w-10 text-center">00:00</time>
-            </div>
-        </div>
-
-        <audio id="audio-play" src=""></audio>
-    </section>
+    <%- include('../partials/music.app.player.ejs') %>
 
     <%- include('../partials/status.mudal.ejs') %>
 
