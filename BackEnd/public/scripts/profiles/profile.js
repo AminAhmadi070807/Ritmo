@@ -27,6 +27,12 @@
 
         document.getElementById('profile-number-of-download').innerText = dataDownload.data.count
         document.getElementById('profile-number-of-download').value = dataDownload.data.count
+
+        const responsePlaylist = await fetch('/api/v1/musics/playlists/Me')
+        const dataPlaylist = await responsePlaylist.json()
+
+        document.getElementById('profile-number-of-playlist').innerText = dataPlaylist.data.count
+        document.getElementById('profile-number-of-playlist').value = dataPlaylist.data.count
     }
     catch (error) {
         console.error(error);

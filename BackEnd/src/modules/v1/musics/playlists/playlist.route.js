@@ -18,11 +18,11 @@ router.route('/')
     .post(authGuard, roleGuard("ARTIST"), upload.single("cover"), validator.createAlbumValidator, controller.create)
     .get(controller.getAll)
 
+router.route('/Me').get(authGuard, controller.userPlaylist)
+
 router.route('/:musicId/:playlistId').put(authGuard, roleGuard("ARTIST"), controller.addMusic).delete(authGuard, roleGuard("ARTIST"), controller.removeMusic)
 
 router.route('/:id').delete(authGuard, controller.remove).get(controller.playlist)
-
-router.route('/Me').get(authGuard, controller.userPlaylist)
 
 
 module.exports = router;
