@@ -19,8 +19,6 @@ const clockProfile = $.getElementById('close-box')
         document.getElementById('user-name-input').value = data.data.username
         document.getElementById('email-input').value = data.data.email
         document.getElementById('bio-input').value = data.data.bio
-
-        document.getElementById('profile-role').innerText = `${data.data.role[0] === "ADMIN" ? "ادمین" : data.data.role[0] === "ARTIST" ? "هنرمند" : "کاربر"}`
     }
     catch (error) {
         console.error(error)
