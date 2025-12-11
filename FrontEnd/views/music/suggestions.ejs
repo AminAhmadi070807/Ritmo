@@ -10,9 +10,9 @@
   </head>
   <body class="w-screen overflow-x-hidden text-white select-none max-w-[1688px] mx-auto">
 
-  <%- include('../partials/svg.ejs') %>
+    <%- include('../partials/svg.ejs') %>
 
-  <%- include('../partials/header.music.ejs') %>
+    <%- include('../partials/header.music.ejs') %>
 
     <main class="main-site px-5 lg:px-8 lg:mt-40 mt-24 ms-auto h-screen max-w-[1600px]">
         <div id="suggestion-icon" class="hidden flex-col items-center justify-center size-full max-w-150 mx-auto">
@@ -28,12 +28,15 @@
         <div class="hidden" id="suggestion-container"></div>
     </main>
 
+    <%- include('../partials/music.app.player.ejs') %>
+
     <%- include('../partials/status.mudal.ejs') %>
 
     <%- include('../partials/footer.ejs') %>
 
-    <script src="/scripts/suggestion/suggestion.js"></script>
   <script src="/scripts/modal/modal.js"></script>
     <script src="/scripts/navbar/music/navbar.js"></script>
+    <script type="text/javascript" src="/scripts/player/onePlayer.js"></script>
+    <script src="/scripts/suggestion/suggestion.js"></script>
   </body>
 </html>

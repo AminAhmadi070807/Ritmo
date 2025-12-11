@@ -22,7 +22,7 @@ const formatTime = (seconds) => {
         data.data.suggestions.forEach((suggestion, index) => {
             document.getElementById('suggestion-container').insertAdjacentHTML('beforeend', `
                   <div class="flex items-center w-full h-20 justify-between border-b-2 border-b-Neutral-800 py-2 px-6 md:px-8">
-                    <div class="flex gap-x-4 min-w-50 md:min-w-100 items-center">
+                    <div music-id="${suggestion._id}" class="music-btn flex gap-x-4 min-w-50 md:min-w-100 items-center">
                       <data value="${index + 1}" class="font-FA_Pelak_Regular text-xl">${index + 1}</data>
                       <img src="${suggestion.poster}" class="size-16 max-w-16 min-w-16 max-h-16 min-h-16 rounded-lg object-cover" alt="${suggestion.title + suggestion.artist}"/>
                       <div class="h-14 w-50">
@@ -64,7 +64,6 @@ const formatTime = (seconds) => {
                     <div class="flex items-center justify-center lg:hidden">
                       <svg onclick="toggleIconsMenu(event)" class="size-7 transform rotate-90"><use href="#three-pin"></use></svg>
                     </div>
-
                   </div>
             `)
         })
@@ -110,6 +109,26 @@ const formatTime = (seconds) => {
                         modal('error', data.message)
                         break;
                 }
+            })
+        })
+
+        const musicBtn = document.querySelectorAll('.music-btn')
+
+        musicBtn.forEach(music => {
+            music.addEventListener('click', async () => {
+                const refresh = await fetch('/api/v1/auth/refresh')
+                if (refresh.status !== 200) return location.href = '/auth/send'
+
+                const response = await fetch(`/api/v1/musics/${music.getAttribute('music-id')}`)
+                const data = await response.json();
+
+                document.getElementById('music-player-box').classList.remove("hidden")
+
+                document.getElementById('music-box').src = data.data.poster
+                audio.src = data.data.music
+                audio.currentTime = 0
+                rangePlayer.style.width = 0 + "%"
+                audio.setAttribute('audio-id', data.data._id)
             })
         })
 
