@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="bg-background w-screen overflow-x-hidden">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <link rel="stylesheet" href="/styles/tailwind.css" />
+      <link rel="icon" href="/logo/icon.png">
+    <title>Ritmo</title>
+  </head>
+  <body class="w-screen overflow-x-hidden text-white select-none max-w-[1688px] mx-auto">
+
+    <main class="w-full h-auto ms-auto max-w-[1688px] overflow-x-hidden py-10 min-h-screen pb-20">
+      <!-- Setting Profile -->
+      <section class="flex items-center h-auto justify-between mx-auto max-w-[88%]">
+        <h3 class="text-lg sm:text-xl md:text-2xl font-Pelak_Bold">تنظیمات پروفایل</h3>
+        <div id="close-box" class="flex-center border rounded-[10px] size-8 sm:size-9 md:size-10 cursor-pointer">
+          <svg class="size-6 sm:size-7 md:size-8 stroke-2"><use href="#x-mark"></use></svg>
+        </div>
+      </section>
+
+      <section class="flex flex-col lg:flex-row items-center justify-center gap-y-10 gap-x-20 mt-16 mx-auto max-w-[88%] h-auto">
+        <!-- profile image -->
+        <div class="self-start">
+          <img id="profile" class="size-[240px] min-w-[240px] min-h-[240px] object-cover" alt="user profile"/>
+        </div>
+
+        <div class="flex flex-col gap-y-12 w-full">
+          <!-- fullName -->
+          <div id="name-container" class="relative border border-Neutral-400 text-Neutral-100 rounded-lg mx-auto w-full bg-transparent focus:bg-transparent">
+              <label for="full-name-input" class="absolute right-5 -top-[25%] h-5 text-Neutral-300 bg-menu rounded-2xl px-3 text-sm">نام</label>
+              <input type="email" id="full-name-input" class="font-Pelak_Regular text-sm w-[90%] h-12 me-auto outline-0 border-0 focus:bg-transparent px-3.5 text-Neutral-100" value="ستاره"/>
+          </div>
+
+          <!-- email -->
+          <div id="email-container" class="relative border border-Neutral-400 text-Neutral-100 rounded-lg mx-auto w-full bg-transparent focus:bg-transparent">
+              <label for="email-input" class="absolute right-5 -top-[25%] h-5 text-Neutral-300 bg-menu rounded-2xl px-3 text-sm">ایمیل</label>
+              <div class="flex items-center flex-row-reverse">
+                <input type="email" id="email-input" class="font-Pelak_Regular text-sm w-[90%] h-12 me-auto outline-0 border-0 focus:bg-transparent px-3.5 text-Neutral-100" placeholder="info@gmail.com" value="Setaree81@gmail.com"/>
+              </div>
+          </div>
+
+          <!-- user Name -->
+          <div id="userName-container" class="relative border border-Neutral-400 text-Neutral-100 rounded-lg mx-auto w-full bg-transparent focus:bg-transparent">
+            <label for="user-name-input" class="absolute right-5 -top-[25%] h-5 text-Neutral-300 bg-menu rounded-2xl px-3 text-sm">نام کاربری</label>
+            <div class="flex items-center flex-row-reverse">
+              <input type="text" id="user-name-input" class="font-Pelak_Regular text-sm w-[90%] h-12 me-auto outline-0 border-0 focus:bg-transparent px-3.5 text-Neutral-100" value=""/>
+            </div>
+          </div>
+
+          <!-- biography -->
+          <div id="biography-container" class="relative border border-Neutral-400 text-Neutral-100 rounded-lg mx-auto w-full bg-transparent focus:bg-transparent">
+              <label for="bio-input" class="absolute right-5 -top-3 h-5 text-Neutral-300 bg-menu rounded-2xl px-3 text-sm">بیوگرافی</label>
+              <div class="flex items-center flex-row-reverse h-auto p-3">
+                <textarea type="text" id="bio-input" rows="5" placeholder="اینجا بنویسید..." class="font-Pelak_Regular text-xs min-h-12 me-auto outline-0 border-0 focus:bg-transparent px-3.5 text-[#55596D] w-full resize-none"></textarea>
+              </div>
+          </div>
+
+          <div class="flex items-center justify-between">
+            <h3 class="font-Pelak_Medium text-xs sm:text-sm md:text-[15px]">ارسال نوتیفیکشن از آرتیست‌ها و پادکسترهای دنبال شده </h3>
+            <div id="check-notification" class="custom-button-active w-12 h-6 rounded-full relative flex items-center justify-start p-0.5 cursor-pointer" data-check="true">
+              <div class="size-5 bg-white rounded-full"></div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-end gap-x-5">
+            <button type="button" class="py-3 w-full text-center bg-Neutral-500 rounded-lg font-Pelak_Medium max-w-[103px] text-nowrap">انصراف</button>
+            <button type="button" class="py-3 w-full text-center bg-Success-200 rounded-lg font-Pelak_Medium max-w-[117px] text-nowrap">ثبت و ذخیره</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+
+    <script src="./User Profile.js"></script>
+  </body>
+</html>
