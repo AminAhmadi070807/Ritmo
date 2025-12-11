@@ -22,5 +22,7 @@ router.route('/:musicId/:playlistId').put(authGuard, roleGuard("ARTIST"), contro
 
 router.route('/:id').delete(authGuard, controller.remove).get(controller.playlist)
 
+router.route('/Me').get(authGuard, controller.userPlaylist)
+
 
 module.exports = router;
