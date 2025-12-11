@@ -61,8 +61,8 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
                         </a>
                       </div>
                     </div>
-                    <div class="flex items-center justify-center lg:hidden">
-                      <svg onclick="toggleIconsMenu(event)" class="size-7 transform rotate-90"><use href="#three-pin"></use></svg>
+                    <div id="toggle-menu" class="flex items-center justify-center lg:hidden">
+                      <svg class="size-7 transform rotate-90"><use href="#three-pin"></use></svg>
                     </div>
                   </div>
             `)
@@ -106,6 +106,29 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
                 audio.currentTime = 0
                 rangePlayer.style.width = 0 + "%"
                 audio.setAttribute('audio-id', data.data._id)
+            })
+        })
+
+        const togglePlaylistMenus = document.querySelectorAll("#toggle-menu")
+
+        togglePlaylistMenus.forEach(btn => {
+            btn.addEventListener("click", (event) => {
+                let musicList = event.currentTarget.parentElement.parentElement;
+                let musicList_2 = musicList.parentElement.querySelector("#playlist-menu.opacity-100");
+
+                let musicListMenu = musicList.querySelector("#playlist-menu");
+                musicListMenu.classList.toggle("hidden");
+                musicListMenu.classList.toggle("opacity-0");
+                musicListMenu.classList.toggle("opacity-100");
+                if (musicList_2) {
+                    musicList_2.classList.add("hidden");
+                    musicList_2.classList.add("opacity-0");
+                    musicList_2.classList.remove("opacity-100");
+                } else {
+                    musicListMenu.classList.remove("hidden");
+                    musicListMenu.classList.remove("opacity-0");
+                    musicListMenu.classList.add("opacity-100");
+                }
             })
         })
 
