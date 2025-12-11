@@ -10,7 +10,7 @@ module.exports.getMe = async (req, res, next) => {
 
         const role = await adminModel.findOne({ user: user.uuid })
 
-        return response(res, 200, null, { fullName: user.fullName, profile: user.profile, role : role.role })
+        return response(res, 200, null, { ...user, role : role.role })
     }
     catch (error) {
         next(error)

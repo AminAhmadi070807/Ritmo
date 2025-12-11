@@ -11,9 +11,7 @@
       <link rel="icon" href="/logo/icon.png">
     <title>Ritmo</title>
   </head>
-  <body
-    class="w-screen overflow-x-hidden text-white select-none max-w-[1688px] mx-auto"
-  >
+  <body class="w-screen overflow-x-hidden text-white select-none max-w-[1688px] mx-auto">
     <svg class="hidden">
       <!-- x-mark -->
       <symbol
@@ -161,72 +159,40 @@
 
     <%- include('../partials/header.setting.ejs') %>
 
-    <main
-      class="lg:w-[calc(100vw-256px)] w-full h-auto ms-auto max-w-[1424px] overflow-x-hidden mt-10 min-h-screen"
-    >
+    <main class="lg:w-[calc(100vw-256px)] w-full h-auto ms-auto max-w-[1424px] overflow-x-hidden mt-10 min-h-screen">
       <!-- my account -->
-      <section
-        class="flex items-center h-auto justify-between mx-auto max-w-[88%]"
-      >
+      <section class="flex items-center h-auto justify-between mx-auto max-w-[88%]">
         <h3 class="text-lg sm:text-xl md:text-2xl font-Pelak_Bold">اکانت من</h3>
-        <div
-          id="back-site"
-          class="flex-center border rounded-[10px] size-8 sm:size-9 md:size-10 cursor-pointer"
-        >
-          <svg class="size-6 sm:size-7 md:size-8 stroke-2">
-            <use href="#x-mark"></use>
-          </svg>
+        <div id="back-site" class="flex-center border rounded-[10px] size-8 sm:size-9 md:size-10 cursor-pointer">
+          <svg class="size-6 sm:size-7 md:size-8 stroke-2"><use href="#x-mark"></use></svg>
         </div>
       </section>
 
       <!-- user information -->
       <section class="mx-auto max-w-[88%] h-auto mt-16">
-        <h3 class="text-lg sm:text-xl md:text-2xl font-Pelak_Bold">
-          مشخصات کاربر
-        </h3>
-        <div
-          class="flex flex-col md:flex-row items-center justify-between mt-8 w-full bg-Neutral-900 h-auto rounded-lg p-8 gap-y-6"
-        >
+        <h3 class="text-lg sm:text-xl md:text-2xl font-Pelak_Bold">مشخصات کاربر</h3>
+        <div class="flex flex-col md:flex-row items-center justify-between mt-8 w-full bg-Neutral-900 h-auto rounded-lg p-8 gap-y-6">
           <div class="flex flex-col md:flex-row items-center gap-x-6 gap-y-6">
             <div>
-              <img
-                src="../../../image-podcast/user-profile.png"
-                class="size-[140px] min-w-[140px] min-h-[140px] object-cover rounded-full"
-                alt="user profile"
-              />
+              <img id="profile" src="" class="size-[140px] min-w-[140px] min-h-[140px] object-cover rounded-full" alt="user profile"/>
             </div>
             <div>
-              <h3 class="font-FA_Pelak_Bold text-2xl text-center md:text-right">
-                ستاره
-              </h3>
+              <h3 id="profile-title" class="font-FA_Pelak_Bold text-2xl text-center md:text-right"></h3>
               <div class="flex items-center gap-x-8 mt-4">
-                <div
-                  class="flex flex-col text-center md:text-right gap-y-2 justify-center"
-                >
-                  <span class="font-FA_Pelak_Regular text-sm text-Neutral-200"
-                    >نام کاربری:</span
-                  >
-                  <span class="Pelak_Bold text-base">@Setaree</span>
+                <div class="flex flex-col text-center md:text-right gap-y-2 justify-center">
+                  <span class="font-FA_Pelak_Regular text-sm text-Neutral-200">نام کاربری:</span>
+                  <span id="profile-user-name" class="Pelak_Bold text-base"></span>
                 </div>
-                <div
-                  class="flex flex-col text-center md:text-right gap-y-2 justify-center"
-                >
-                  <span class="font-FA_Pelak_Regular text-sm text-Neutral-200"
-                    >ایمیل:</span
-                  >
-                  <span class="font-Pelak_Bold text-base"
-                    >Setaree81@gmail.com</span
-                  >
+                <div class="flex flex-col text-center md:text-right gap-y-2 justify-center">
+                  <span class="font-FA_Pelak_Regular text-sm text-Neutral-200">ایمیل:</span>
+                  <span id="profile-email" class="font-Pelak_Bold text-base"></span>
                 </div>
               </div>
             </div>
           </div>
           <div class="flex gap-x-6 md:flex-col gap-y-6">
-            <a href="../User Profile/User Profile.html" class="bg-Primary-500 font-Pelak_Medium w-full text-nowrap px-4 h-12 flex items-center justify-center rounded-lg">مشاهده پروفایل</a>
-            <a
-              href="#"
-              class="border border-white font-Pelak_Medium w-full text-nowrap px-[30px] h-12 flex items-center justify-center rounded-lg gap-x-2"
-            >
+            <a href="/settings/profile" class="bg-Primary-500 font-Pelak_Medium w-full text-nowrap px-4 h-12 flex items-center justify-center rounded-lg">مشاهده پروفایل</a>
+            <a href="#" class="border border-white font-Pelak_Medium w-full text-nowrap px-[30px] h-12 flex items-center justify-center rounded-lg gap-x-2">
               <svg class="size-5"><use href="#setting"></use></svg>
               تنظیمات
             </a>
@@ -236,20 +202,10 @@
 
       <!-- category -->
       <section class="mx-auto max-w-[88%] h-auto mt-16">
-        <h2
-          class="font-Pelak_Bold text-[32px]/[150%] mb-16 mx-auto text-right mt-7"
-        >
-          ریتمو پلاس
-        </h2>
-        <div
-          class="flex gap-y-10 gap-x-4 flex-wrap items-center sm:gap-y-15 md:gap-y-[74px] *:w-[300px] *:mx-auto mx-auto"
-        >
-          <div
-            class="ritmo-plus-category bg-linear-180 from-[#FF2626]/80 to-[#000]"
-          >
-            <div
-              class="absolute top-[-2rem] left-0 right-0 mx-auto flex items-center justify-center size-16 bg-Error-200 rounded-full"
-            >
+        <h2 class="font-Pelak_Bold text-[32px]/[150%] mb-16 mx-auto text-right mt-7">ریتمو پلاس</h2>
+        <div class="flex gap-y-10 gap-x-4 flex-wrap items-center sm:gap-y-15 md:gap-y-[74px] *:w-[300px] *:mx-auto mx-auto">
+          <div class="ritmo-plus-category bg-linear-180 from-[#FF2626]/80 to-[#000]">
+            <div class="absolute top-[-2rem] left-0 right-0 mx-auto flex items-center justify-center size-16 bg-Error-200 rounded-full">
               <svg class="size-8"><use href="#computer-mobil"></use></svg>
             </div>
             <div class="inline-block">
@@ -260,98 +216,56 @@
                 <span class="size-2 rounded-full bg-white"></span>
               </div>
             </div>
-            <p
-              class="font-Pelak_Regular mt-6 w-[234px] text-xs/[20px] h-[54px]"
-            >
-              قابلیت گوش دادن به موسیقی یا پادکست روی چند دستگاه (مانند موبایل،
-              لپ‌تاپ، و تلویزیون) به صورت همزمان.
-            </p>
+            <p class="font-Pelak_Regular mt-6 w-[234px] text-xs/[20px] h-[54px]">قابلیت گوش دادن به موسیقی یا پادکست روی چند دستگاه (مانند موبایل، لپ‌تاپ، و تلویزیون) به صورت همزمان.</p>
           </div>
 
-          <div
-            class="group ritmo-plus-category bg-linear-180 from-[#FF4C00]/80 to-[#000]"
-          >
-            <div
-              class="absolute top-[-2rem] left-0 right-0 mx-auto flex items-center justify-center size-16 rounded-full bg-[#FF4D00]"
-            >
+          <div class="group ritmo-plus-category bg-linear-180 from-[#FF4C00]/80 to-[#000]">
+            <div class="absolute top-[-2rem] left-0 right-0 mx-auto flex items-center justify-center size-16 rounded-full bg-[#FF4D00]">
               <svg class="size-8"><use href="#play-list"></use></svg>
             </div>
             <div class="inline-block">
-              <h3 class="inline-block font-Pelak_Bold text-2xl">
-                پلی‌لیست گروهی
-              </h3>
+              <h3 class="inline-block font-Pelak_Bold text-2xl">پلی‌لیست گروهی</h3>
               <div class="flex items-center justify-between mt-2">
                 <span class="size-2 rounded-full bg-white"></span>
                 <span class="block bg-white w-full h-px"></span>
                 <span class="size-2 rounded-full bg-white"></span>
               </div>
             </div>
-            <p
-              class="font-Pelak_Regular mt-6 w-[234px] text-xs/[20px] h-[54px]"
-            >
-              امکان ایجاد و مدیریت پلی‌لیست‌های مشترک با دوستان و مشاهده تغییرات
-              آن‌ها به صورت لحظه‌ای.
-            </p>
+            <p class="font-Pelak_Regular mt-6 w-[234px] text-xs/[20px] h-[54px]">امکان ایجاد و مدیریت پلی‌لیست‌های مشترک با دوستان و مشاهده تغییرات آن‌ها به صورت لحظه‌ای.</p>
           </div>
 
-          <div
-            class="group ritmo-plus-category bg-linear-180 from-[#FFA726]/80 to-[#000]"
-          >
-            <div
-              class="absolute top-[-2rem] left-0 right-0 mx-auto flex items-center justify-center size-16 rounded-full bg-Warning-200"
-            >
+          <div class="group ritmo-plus-category bg-linear-180 from-[#FFA726]/80 to-[#000]">
+            <div class="absolute top-[-2rem] left-0 right-0 mx-auto flex items-center justify-center size-16 rounded-full bg-Warning-200">
               <svg class="size-8"><use href="#vynil"></use></svg>
             </div>
             <div class="inline-block">
-              <h3 class="inline-block font-Pelak_Bold text-2xl">
-                ریتم اختصاصی
-              </h3>
+              <h3 class="inline-block font-Pelak_Bold text-2xl">ریتم اختصاصی</h3>
               <div class="flex items-center justify-between mt-2">
                 <span class="size-2 rounded-full bg-white"></span>
                 <span class="block bg-white w-full h-px"></span>
                 <span class="size-2 rounded-full bg-white"></span>
               </div>
             </div>
-            <p
-              class="font-Pelak_Regular mt-6 w-[234px] text-xs/[20px] h-[54px]"
-            >
-              ایجاد ایستگاه‌های موسیقی هوشمند که بر اساس سلیقه‌ی کاربران به صورت
-              داینامیک بروزرسانی می‌شوند.
-            </p>
+            <p class="font-Pelak_Regular mt-6 w-[234px] text-xs/[20px] h-[54px]">ایجاد ایستگاه‌های موسیقی هوشمند که بر اساس سلیقه‌ی کاربران به صورت داینامیک بروزرسانی می‌شوند.</p>
           </div>
 
-          <div
-            class="group ritmo-plus-category bg-linear-180 from-[#009C07]/80 to-[#000]"
-          >
-            <div
-              class="absolute top-[-2rem] left-0 right-0 mx-auto flex items-center justify-center size-16 bg-Success-200 rounded-full"
-            >
+          <div class="group ritmo-plus-category bg-linear-180 from-[#009C07]/80 to-[#000]">
+            <div class="absolute top-[-2rem] left-0 right-0 mx-auto flex items-center justify-center size-16 bg-Success-200 rounded-full">
               <svg class="size-8"><use href="#user-circle"></use></svg>
             </div>
             <div class="inline-block">
-              <h3 class="inline-block font-Pelak_Bold text-2xl">
-                پروفایل پلاس
-              </h3>
+              <h3 class="inline-block font-Pelak_Bold text-2xl">پروفایل پلاس</h3>
               <div class="flex items-center justify-between mt-2">
                 <span class="size-2 rounded-full bg-white"></span>
                 <span class="block bg-white w-full h-px"></span>
                 <span class="size-2 rounded-full bg-white"></span>
               </div>
             </div>
-            <p
-              class="font-Pelak_Regular mt-6 w-[234px] text-xs/[20px] h-[54px]"
-            >
-              امکان شخصی‌سازی پروفایل کاربری با نمایش سلیقه‌های موسیقی، آمار
-              شنیدن و محبوب‌ترین آهنگ‌های در ماه..
-            </p>
+            <p class="font-Pelak_Regular mt-6 w-[234px] text-xs/[20px] h-[54px]">امکان شخصی‌سازی پروفایل کاربری با نمایش سلیقه‌های موسیقی، آمار شنیدن و محبوب‌ترین آهنگ‌های در ماه..</p>
           </div>
 
-          <div
-            class="group ritmo-plus-category bg-linear-180 from-[#2979FF]/80 to-[#000]"
-          >
-            <div
-              class="absolute top-[-2rem] left-0 right-0 mx-auto flex items-center justify-center size-16 bg-Info-200 rounded-full"
-            >
+          <div class="group ritmo-plus-category bg-linear-180 from-[#2979FF]/80 to-[#000]">
+            <div class="absolute top-[-2rem] left-0 right-0 mx-auto flex items-center justify-center size-16 bg-Info-200 rounded-full">
               <svg class="size-8"><use href="#music-01"></use></svg>
             </div>
             <div class="inline-block">
@@ -362,20 +276,11 @@
                 <span class="size-2 rounded-full bg-white"></span>
               </div>
             </div>
-            <p
-              class="font-Pelak_Regular mt-6 w-[234px] text-xs/[20px] h-[54px]"
-            >
-              دریافت پیام‌های صوتی یا ویدئویی از هنرمندان محبوب کاربران به همراه
-              محتوای اختصاصی مانند اجراهای زنده یا پشت صحنه..
-            </p>
+            <p class="font-Pelak_Regular mt-6 w-[234px] text-xs/[20px] h-[54px]">دریافت پیام‌های صوتی یا ویدئویی از هنرمندان محبوب کاربران به همراه محتوای اختصاصی مانند اجراهای زنده یا پشت صحنه..</p>
           </div>
 
-          <div
-            class="group ritmo-plus-category bg-linear-180 from-[#9747FF]/80 to-[#000]"
-          >
-            <div
-              class="absolute top-[-2rem] left-0 right-0 mx-auto flex items-center justify-center size-16 bg-[#9747FF] rounded-full"
-            >
+          <div class="group ritmo-plus-category bg-linear-180 from-[#9747FF]/80 to-[#000]">
+            <div class="absolute top-[-2rem] left-0 right-0 mx-auto flex items-center justify-center size-16 bg-[#9747FF] rounded-full">
               <svg class="size-8"><use href="#computer-mobil"></use></svg>
             </div>
             <div class="inline-block">
@@ -386,12 +291,7 @@
                 <span class="size-2 rounded-full bg-white"></span>
               </div>
             </div>
-            <p
-              class="font-Pelak_Regular mt-6 w-[234px] text-xs/[20px] h-[54px]"
-            >
-              دسترسی به تقویم رویدادهای موسیقی (کنسرت‌ها و انتشار آثار) بر اساس
-              هنرمندان مورد علاقه و امکان خرید بلیت مستقیم..
-            </p>
+            <p class="font-Pelak_Regular mt-6 w-[234px] text-xs/[20px] h-[54px]">دسترسی به تقویم رویدادهای موسیقی (کنسرت‌ها و انتشار آثار) بر اساس هنرمندان مورد علاقه و امکان خرید بلیت مستقیم..</p>
           </div>
         </div>
       </section>
@@ -399,43 +299,21 @@
       <!-- password -->
       <section class="mx-auto max-w-[88%] h-auto mt-16">
         <h3 class="text-lg sm:text-xl md:text-2xl font-Pelak_Bold">رمز عبور</h3>
-        <div
-          class="flex items-center justify-between bg-Neutral-900 w-full py-8 mt-6 px-6 rounded-lg"
-        >
+        <div class="flex items-center justify-between bg-Neutral-900 w-full py-8 mt-6 px-6 rounded-lg">
           <h3 class="text-base font-Pelak_Bold text-nowrap">تغییر رمز عبور</h3>
-          <a
-            href="#"
-            class="border border-white font-Pelak_Medium w-full text-nowrap px-[30px] max-w-[140px] h-12 flex items-center justify-center rounded-lg gap-x-2"
-          >
-            تغییر رمز
-          </a>
+          <a href="#" class="border border-white font-Pelak_Medium w-full text-nowrap px-[30px] max-w-[140px] h-12 flex items-center justify-center rounded-lg gap-x-2">تغییر رمز</a>
         </div>
       </section>
 
       <!-- delete account -->
       <section class="mx-auto max-w-[88%] h-auto mt-16 mb-16">
-        <h3 class="text-lg sm:text-xl md:text-2xl font-Pelak_Bold">
-          حذف حساب کاربری
-        </h3>
+        <h3 class="text-lg sm:text-xl md:text-2xl font-Pelak_Bold">حذف حساب کاربری</h3>
         <div class="flex flex-col md:flex-row items-center justify-center gap-y-6 md:justify-between bg-Neutral-900 w-full py-8 mt-6 px-6 rounded-lg">
           <div class="max-w-[80%] text-center md:text-right">
-            <p class="text-xs/[30px] md:text-sm lg:text-base font-Pelak_Bold">
-              حساب کاربری شما تا یک ماه پس از حذف حساب کاربری، با اولین ورود
-              قابل بازیابی است.توضیح کوتاه
-            </p>
-            <p
-              class="text-xs/[30px] font-Pelak_Regular mt-1.5 text-Neutral-300"
-            >
-              تمامی اطلاعات و لیست‌های پخش شما به طور دائمی حذف خواهند شد و
-              امکان بازیابی حساب پس از حذف وجود ندارد.
-            </p>
+            <p class="text-xs/[30px] md:text-sm lg:text-base font-Pelak_Bold">حساب کاربری شما تا یک ماه پس از حذف حساب کاربری، با اولین ورود قابل بازیابی است.توضیح کوتاه</p>
+            <p class="text-xs/[30px] font-Pelak_Regular mt-1.5 text-Neutral-300">تمامی اطلاعات و لیست‌های پخش شما به طور دائمی حذف خواهند شد و امکان بازیابی حساب پس از حذف وجود ندارد.</p>
           </div>
-          <a
-            href="#"
-            class="border border-Primary-500 text-Primary-500 font-Pelak_Medium w-full text-nowrap px-[30px] max-w-[140px] h-12 flex items-center justify-center rounded-lg gap-x-2"
-          >
-            حذف و خروج
-          </a>
+          <a href="#" class="border border-Primary-500 text-Primary-500 font-Pelak_Medium w-full text-nowrap px-[30px] max-w-[140px] h-12 flex items-center justify-center rounded-lg gap-x-2">حذف و خروج</a>
         </div>
       </section>
     </main>
