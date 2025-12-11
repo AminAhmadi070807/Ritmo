@@ -12,14 +12,11 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
 
 ;(async () => {
     try {
+        const refresh = await fetch('/api/v1/auth/refresh')
+        if (refresh.status !== 200) return location.href = '/auth/send'
+
         const response = await fetch('/api/v1/musics/downloads/?limit=100&?page=1')
-        let data = await response.json()
-        if (response.status === 401) {
-            const refresh = await fetch('/api/v1/auth/refresh')
-            if (refresh.status !== 200) return location.href = '/'
-            const response = await fetch('/api/v1/musics/downloads/?limit=100&?page=1')
-            data = await response.json()
-        }
+        const data = await response.json()
 
         data.data.downloads.forEach((download, index) => {
             console.log(download.likeSong)
@@ -75,15 +72,11 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
 
         likeSongBtn.forEach(btn => {
             btn.addEventListener("click", async() => {
-                let response = await fetch(`/api/v1/musics/likeSongs/${btn.getAttribute('music-id')}`, { method: 'post' })
+                const refresh = await fetch('/api/v1/auth/refresh')
 
-                if (response.status === 401) {
-                    const refresh = await fetch('/api/v1/auth/refresh')
+                if (refresh.status === 401) return location.href = '/auth/send'
 
-                    if (refresh.status === 401) return location.href = '/auth/send'
-
-                    response = await fetch(`/api/v1/musics/likeSongs/${btn.getAttribute('music-id')}`, {method: 'post'})
-                }
+                const response = await fetch(`/api/v1/musics/likeSongs/${btn.getAttribute('music-id')}`, { method: 'post' })
 
                 switch (response.status) {
                     case 201:
