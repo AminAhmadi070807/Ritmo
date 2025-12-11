@@ -154,3 +154,5 @@ module.exports.authentication = (req, res ) => res.render('auth.ejs')
 module.exports.verify = (req, res, ) => res.render('verify.ejs')
 
 module.exports.profile = async (req, res) => res.render('setting/profile.ejs')
+
+module.exports.channel = async (req, res) => res.render('setting/channel.ejs')
