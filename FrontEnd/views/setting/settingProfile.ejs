@@ -25,8 +25,12 @@
 
       <section class="flex flex-col lg:flex-row items-center justify-center gap-y-10 gap-x-20 mt-16 mx-auto max-w-[88%] h-auto">
         <!-- profile image -->
-        <div class="self-start">
-          <img id="profile" class="size-[240px] min-w-[240px] min-h-[240px] object-cover rounded-2xl" alt="user profile"/>
+        <div class="relative self-start">
+            <img id="profile" class="size-[240px] min-w-[240px] min-h-[240px] object-cover rounded-2xl" alt="user profile"/>
+            <div class="flex-center absolute inset-0 m-auto size-full bg-gray-800/50 rounded-2xl cursor-pointer">
+                <svg class="size-20 text-white"><use href="#arrow-down-on-square-stack"></use></svg>
+                <input id="profile-file" type="file" class="hidden">
+            </div>
         </div>
 
         <div class="flex flex-col gap-y-12 w-full">
