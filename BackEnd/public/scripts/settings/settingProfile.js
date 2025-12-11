@@ -7,7 +7,8 @@ const file = document.getElementById('profile-input');
 const fullNameInput = document.getElementById('full-name-input');
 const usernameInput = document.getElementById('user-name-input');
 const emailInput = document.getElementById('email-input');
-const bioInput = document.getElementById('bio-input')
+const bioInput = document.getElementById('bio-input');
+const profileInput = document.getElementById('profile-file')
 
 ;(async () => {
     try {
@@ -43,9 +44,20 @@ checkNotification.addEventListener('click', () => {
 })
 
 clockProfile.addEventListener('click', () => window.history.go(-1))
-submitButton.addEventListener('click', () => {
+submitButton.addEventListener('click',  async() => {
     try {
+        const formData = new FormData();
 
+        formData.append('fullName', fullNameInput.value);
+        formData.append('username', usernameInput.value);
+        formData.append('email', emailInput.value);
+        formData.append('bio', bioInput.value);
+        formData.append('profile', profileInput.files[0]);
+
+        await fetch('/api/v1/users/update', {
+            method: 'patch',
+            body: formData
+        })
     }
     catch (error) {
         console.error(error)
