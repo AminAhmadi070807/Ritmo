@@ -29,3 +29,13 @@ module.exports.logout = async (req, res, next) => {
         next(error)
     }
 }
+
+module.exports.update = async (req, res, next) => {
+    try {
+        const user = req.user
+
+    }
+    catch (error) {
+        console.log(error)
+    }
+}

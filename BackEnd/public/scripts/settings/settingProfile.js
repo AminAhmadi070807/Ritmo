@@ -49,5 +49,6 @@ submitButton.addEventListener('click', () => {
     }
     catch (error) {
         console.error(error)
+        modal('error', error.message || "Please try load site")
     }
 })

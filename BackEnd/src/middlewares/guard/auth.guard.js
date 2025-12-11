@@ -23,7 +23,7 @@ module.exports = async (req, res, next) => {
             return response(res, 401, "Invalid access token");
         }
 
-        const user = await userModel.findOne({ where: { uuid: verifyToken._id }, raw: true })
+        const user = await userModel.findOne({ where: { uuid: verifyToken._id }, attributes: { exclude: "password" }, raw: true })
 
         if (!user) return response(res, 401, "Please log in first. the token has expires.")
 
