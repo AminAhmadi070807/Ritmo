@@ -24,6 +24,7 @@ const musicDownloadRouter = require('./modules/v1/download/download.route')
 const planRouter = require('./modules/v1/plan/plan.route')
 const paymentRouter = require('./modules/v1/payment/payment.route')
 const suggestionRouter = require('./modules/v1/suggestion/suggestion.route')
+const faqRouter = require('./modules/v1/FAQ/faq.route')
 
 const app = express();
 
@@ -49,6 +50,7 @@ app.use('/api/v1/musics', musicRouter)
 app.use('/api/v1/plan', planRouter)
 app.use('/api/v1/payment', paymentRouter)
 app.use('/api/v1/suggestions', suggestionRouter)
+app.use('/api/v1/FAQ', faqRouter)
 
 app.use(route)
 
