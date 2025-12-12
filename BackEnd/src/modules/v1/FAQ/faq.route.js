@@ -9,4 +9,6 @@ const roleGuard = require('../../../middlewares/guard/role.guard');
 
 router.route('/').post(controller.question)
 
+router.route('/:answerId').put(authGuard, roleGuard("ADMIN"), controller.answer)
+
 module.exports = router;

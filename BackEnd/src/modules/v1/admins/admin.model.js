@@ -6,8 +6,8 @@ const schema = new mongoose.Schema({
     role: [{
         type: String,
         required: true,
-        enum: ['ADMIN', "CONTENT-MODERATOR", 'EDITOR', "INVESTOR"],
-        default: 'CONTENT-MODERATOR'
+        enum: ['ADMIN', "CONTENT-MODERATOR", 'EDITOR', "INVESTOR", "USER"],
+        default: 'USER'
     }],
     user: {
         type: String,
