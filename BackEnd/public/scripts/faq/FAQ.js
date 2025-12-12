@@ -2,7 +2,6 @@
 
 const questionRitmoPlus = document.querySelectorAll("#question-ritmo-plus");
 
-
 questionRitmoPlus.forEach((question) => {
     question.addEventListener("click", () => {
         if (!question.querySelector("p.hidden")) {
