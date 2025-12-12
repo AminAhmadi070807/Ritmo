@@ -64,3 +64,14 @@ module.exports.AllFAQ = async (req, res, next) => {
         next(error)
     }
 }
+
+module.exports.AllQuestion = async (req, res, next) => {
+    try {
+        const faqs = await FAQModel.find({ isFAQ: false }).lean()
+
+        return response(res, 200, null, faqs)
+    }
+    catch (error) {
+        next(error)
+    }
+}
