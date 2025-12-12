@@ -8,6 +8,8 @@
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     --color-red-500: oklch(63.7% 0.237 25.331);
+    --color-blue-600: oklch(54.6% 0.245 262.881);
+    --color-blue-700: oklch(48.8% 0.243 264.376);
     --color-gray-300: oklch(87.2% 0.01 258.338);
     --color-gray-500: oklch(55.1% 0.027 264.364);
     --color-gray-800: oklch(27.8% 0.033 256.848);
@@ -771,9 +773,6 @@
   .min-h-screen {
     min-height: 100vh;
   }
-  .w-1\/2 {
-    width: calc(1/2 * 100%);
-  }
   .w-5 {
     width: calc(var(--spacing) * 5);
   }
@@ -1349,6 +1348,12 @@
   .bg-background-footer {
     background-color: var(--color-background-footer);
   }
+  .bg-blue-600 {
+    background-color: var(--color-blue-600);
+  }
+  .bg-blue-700 {
+    background-color: var(--color-blue-700);
+  }
   .bg-gray-900 {
     background-color: var(--color-gray-900);
   }
@@ -1673,9 +1678,6 @@
   }
   .text-Neutral-300 {
     color: var(--color-Neutral-300);
-  }
-  .text-Neutral-500 {
-    color: var(--color-Neutral-500);
   }
   .text-Primary-500 {
     color: var(--color-Primary-500);
