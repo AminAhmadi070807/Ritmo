@@ -193,21 +193,21 @@
             </div>
           </div>
         </div>
-        <form action="" method="post" class="flex flex-col gap-y-3 w-[350px] md:max-w-[453px] md:w-auto">
+        <form action="/api/v1/FAQ" method="post" class="flex flex-col gap-y-3 w-[350px] md:max-w-[453px] md:w-auto">
           <div class="flex items-center gap-x-3 *:bg-transparent-1/35 *:py-4 *:px-3.5 *:rounded-lg">
               <label class="w-full border border-Neutral-400">
-                  <input type="text" class="placeholder:text-white placeholder:text-sm font-Pelak_Regular outline-none " placeholder="نام"/>
+                  <input name="name" type="text" class="placeholder:text-white placeholder:text-sm font-Pelak_Regular outline-none " placeholder="نام"/>
               </label>
               <label class="w-full border border-Neutral-400">
-                  <input type="text" class="placeholder:text-white placeholder:text-sm font-Pelak_Regular outline-none" placeholder="عنوان پیام"/>
+                  <input name="title" type="text" class="placeholder:text-white placeholder:text-sm font-Pelak_Regular outline-none" placeholder="عنوان پیام"/>
               </label>
           </div>
           <div class="flex flex-col items-center justify-center gap-y-3 *:px-3.5 *:rounded-lg *:py-4 *:border *:border-Neutral-400 *:outline-none">
               <label class="w-full bg-transparent-1/35">
-                  <input type="email" placeholder="ایمیل" class="w-full placeholder:text-white placeholder:text-sm outline-none font-Pelak_Regular"/>
+                  <input name="email" type="email" placeholder="ایمیل" class="w-full placeholder:text-white placeholder:text-sm outline-none font-Pelak_Regular"/>
               </label>
               <label class="w-full bg-transparent-1/35">
-                  <textarea placeholder="اینجا بنویسید..." class="font-Pelak_Regular w-full resize-none text-xs p-3.5 placeholder:text-Neutral-400 outline-none max-h-25 min-h-25" rows="4" wrap="hard"></textarea>
+                  <textarea name="description" placeholder="اینجا بنویسید..." class="font-Pelak_Regular w-full resize-none text-xs p-3.5 placeholder:text-Neutral-400 outline-none max-h-25 min-h-25" rows="4" wrap="hard"></textarea>
               </label>
               <button type="submit" role="button" class="flex items-center justify-center text-white border-none outline-none font-Pelak_Medium text-base w-full h-12 cursor-pointer bg-blue-700">ارسال</button>
           </div>
