@@ -8,7 +8,6 @@
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     --color-red-500: oklch(63.7% 0.237 25.331);
-    --color-blue-600: oklch(54.6% 0.245 262.881);
     --color-blue-700: oklch(48.8% 0.243 264.376);
     --color-gray-300: oklch(87.2% 0.01 258.338);
     --color-gray-500: oklch(55.1% 0.027 264.364);
@@ -1348,9 +1347,6 @@
   .bg-background-footer {
     background-color: var(--color-background-footer);
   }
-  .bg-blue-600 {
-    background-color: var(--color-blue-600);
-  }
   .bg-blue-700 {
     background-color: var(--color-blue-700);
   }
@@ -1635,6 +1631,14 @@
     font-size: var(--text-sm);
     line-height: var(--tw-leading, var(--text-sm--line-height));
   }
+  .text-sm\/\[32\] {
+    font-size: var(--text-sm);
+    line-height: 32;
+  }
+  .text-sm\/\[32px\] {
+    font-size: var(--text-sm);
+    line-height: 32px;
+  }
   .text-xl {
     font-size: var(--text-xl);
     line-height: var(--tw-leading, var(--text-xl--line-height));
@@ -1650,6 +1654,10 @@
   .text-xs\/\[30px\] {
     font-size: var(--text-xs);
     line-height: 30px;
+  }
+  .text-xs\/\[32\] {
+    font-size: var(--text-xs);
+    line-height: 32;
   }
   .text-\[2rem\] {
     font-size: 2rem;
@@ -2105,12 +2113,6 @@
     @media (width >= 40rem) {
       font-size: var(--text-base);
       line-height: var(--tw-leading, var(--text-base--line-height));
-    }
-  }
-  .sm\:text-base\/\[42px\] {
-    @media (width >= 40rem) {
-      font-size: var(--text-base);
-      line-height: 42px;
     }
   }
   .sm\:text-base\/\[150\%\] {

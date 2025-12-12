@@ -17,7 +17,7 @@
                   <use href="#chevron-down"></use>
                 </svg>
               </div>
-              <p class="hidden font-Pelak_Medium text-xs sm:text-base/[42px] mt-4 max-w-[90%]" id="answer">${faq.description}</p>
+              <p class="hidden font-Pelak_Medium text-sm/[32px] mt-4 max-w-[90%]" id="answer">${faq.description}</p>
             </div>
 
             `)
