@@ -7,7 +7,7 @@ const sendEmail = require('../../../config/config.email')
 
 module.exports.question = async (req, res, next) => {
     try {
-        await FAQModel.create({...req.body, FAQ: false})
+        await FAQModel.create({...req.body, isFAQ: false})
 
         return response(res, 201, "saved question successfully")
     }
@@ -45,7 +45,7 @@ module.exports.FAQ = async (req, res, next) => {
     try {
         const { title, description } = req.body
 
-        await FAQModel.create({ title, description, FAQ: true })
+        await FAQModel.create({ title, description, isFAQ: true })
 
         return response(res, 201, "add new faq successfully.")
     }
@@ -56,7 +56,7 @@ module.exports.FAQ = async (req, res, next) => {
 
 module.exports.AllFAQ = async (req, res, next) => {
     try {
-        const faqs = await FAQModel.find({}).lean()
+        const faqs = await FAQModel.find({ isFAQ: true }).lean()
 
         return response(res, 200, null, faqs)
     }
