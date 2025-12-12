@@ -53,3 +53,14 @@ module.exports.FAQ = async (req, res, next) => {
         next(error)
     }
 }
+
+module.exports.AllFAQ = async (req, res, next) => {
+    try {
+        const faqs = await FAQModel.find({}).lean()
+
+        return response(res, 200, null, faqs)
+    }
+    catch(error) {
+        next(error)
+    }
+}
