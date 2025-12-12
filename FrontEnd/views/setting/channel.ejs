@@ -15,7 +15,7 @@
 
     <%- include('../partials/svg.ejs') %>
 
-    <%- include('../partials/header.setting.ejs') %>
+    <%- include('../partials/header.setting.ejs', { active: "channel" }) %>
 
     <main class="lg:w-[calc(100vw-256px)] w-full h-auto ms-auto max-w-[1424px] overflow-x-hidden mt-10 min-h-screen">
       <!-- my account -->
@@ -177,8 +177,6 @@
     </main>
 
     <%- include('../partials/status.mudal.ejs') %>
-
-    <%- include('../partials/footer.ejs') %>
 
     <script type="text/javascript" src="/scripts/navbar/music/navbar.js"></script>
     <script type="text/javascript" src="/scripts/settings/channel.js"></script>

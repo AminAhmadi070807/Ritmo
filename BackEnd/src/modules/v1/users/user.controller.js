@@ -54,7 +54,7 @@ module.exports.update = async (req, res, next) => {
         }
         else await userModel.update({username, fullName, email, bio}, {where: {uuid: user.uuid}})
 
-        return res.render('setting/settingProfile.ejs')
+        return res.redirect('/settings/setting/profile')
     }
     catch (error) {
         next(error)
