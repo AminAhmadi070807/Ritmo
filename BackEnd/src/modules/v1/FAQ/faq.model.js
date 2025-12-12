@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const schema = new mongoose.Schema({
     name: {
         type: String,
-        required: true,
+        required: false,
         trim: true,
     },
     title: {
@@ -15,13 +15,17 @@ const schema = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: true,
+        required: false,
     },
     description: {
         type: String,
         required: true,
         trim: true,
     },
+    isFAQ: {
+        type: Boolean,
+        default: false,
+    }
 }, { timestamps: true })
 
 module.exports = mongoose.model('FAQ', schema)

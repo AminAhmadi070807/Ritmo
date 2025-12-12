@@ -7,7 +7,7 @@ const sendEmail = require('../../../config/config.email')
 
 module.exports.question = async (req, res, next) => {
     try {
-        await FAQModel.create({...req.body, isAnswer: false})
+        await FAQModel.create({...req.body, FAQ: false})
 
         return response(res, 201, "saved question successfully")
     }
