@@ -22,21 +22,6 @@ const schema = new mongoose.Schema({
         required: true,
         trim: true,
     },
-    isAnswer: {
-        type: Boolean,
-        default: false,
-        required: true,
-    },
-    answer: {
-        type: String,
-        required: false,
-        trim: true,
-    },
-    userId: {
-        type: String,
-        required: false,
-        trim: true,
-    }
 }, { timestamps: true })
 
 module.exports = mongoose.model('FAQ', schema)
