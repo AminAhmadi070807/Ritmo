@@ -40,3 +40,16 @@ module.exports.answer = async (req, res, next) => {
         next(error);
     }
 }
+
+module.exports.FAQ = async (req, res, next) => {
+    try {
+        const { title, description } = req.body
+
+        await FAQModel.create({ title, description, FAQ: true })
+
+        return response(res, 201, "add new faq successfully.")
+    }
+    catch (error) {
+        next(error)
+    }
+}
