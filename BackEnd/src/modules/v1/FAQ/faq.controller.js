@@ -6,7 +6,7 @@ const response = require('../../../helpers/response.helper')
 
 module.exports.question = async (req, res, next) => {
     try {
-        await FAQModel.create({...req.body})
+        await FAQModel.create({...req.body, isAnswer: false})
 
         return response(res, 201, "saved question successfully")
     }
@@ -14,3 +14,5 @@ module.exports.question = async (req, res, next) => {
         next(error);
     }
 }
+
+module.exports.answer = async (req, res, next) => {}
