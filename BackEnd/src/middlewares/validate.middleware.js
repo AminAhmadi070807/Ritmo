@@ -97,7 +97,7 @@ module.exports.userUpdateInfoValidator = async (req, res, next) => {
     }
 }
 
-module.exports.faqValidator = async (req, res, next) => {
+module.exports.faqQuestionValidator = async (req, res, next) => {
     try {
         await faqSchema.question.validateAsync({ ...req.body })
 

@@ -20,11 +20,11 @@ module.exports.answer = async (req, res, next) => {
     try {
         const user = req.user
         const { answer } = req.body
-        const { answerId } = req.params
+        const { id } = req.params
 
-        if (!isValidObjectId(answerId)) return response(res, 400, 'answer id is not correct')
+        if (!isValidObjectId(id)) return response(res, 400, 'answer id is not correct')
 
-        const FAQ = await FAQModel.findByIdAndUpdate(answerId, {
+        const FAQ = await FAQModel.findByIdAndUpdate(id, {
             answer,
             userId: user.uuid,
             isAnswer: true
