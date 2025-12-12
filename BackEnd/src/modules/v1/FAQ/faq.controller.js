@@ -18,21 +18,18 @@ module.exports.question = async (req, res, next) => {
 
 module.exports.answer = async (req, res, next) => {
     try {
-        const user = req.user
         const { answer } = req.body
         const { id } = req.params
 
         if (!isValidObjectId(id)) return response(res, 400, 'answer id is not correct')
 
-        const FAQ = await FAQModel.findByIdAndUpdate(id, {
-            answer,
-            userId: user.uuid,
-            isAnswer: true
-        })
+        const FAQ = await FAQModel.findById(id)
 
         const sendEmailResult = await sendEmail(FAQ.email, answer, "FAQ")
 
         if (sendEmailResult.status !== 200) return  response(res, sendEmailResult.status, sendEmailResult.message)
+
+        await FAQModel.deleteOne({ _id: id })
 
         return response(res, 200, "answer to question successfully")
     }
