@@ -15,4 +15,19 @@ module.exports.question = async (req, res, next) => {
     }
 }
 
-module.exports.answer = async (req, res, next) => {}
+module.exports.answer = async (req, res, next) => {
+    try {
+        const user = req.user
+        const { answer } = req.body
+        const { answerId } = req.params
+
+        await FAQModel.findByIdAndUpdate(answerId, {
+            answer,
+            userId: user.uuid,
+            isAnswer: true
+        })
+    }
+    catch (error) {
+        next(error);
+    }
+}
