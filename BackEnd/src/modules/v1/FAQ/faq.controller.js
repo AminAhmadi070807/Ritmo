@@ -3,7 +3,7 @@
 const FAQModel = require('./faq.model')
 const response = require('../../../helpers/response.helper')
 const {isValidObjectId} = require("mongoose");
-
+const sendEmail = require('../../../config/config.email')
 
 module.exports.question = async (req, res, next) => {
     try {
@@ -24,11 +24,15 @@ module.exports.answer = async (req, res, next) => {
 
         if (!isValidObjectId(answerId)) return response(res, 400, 'answer id is not correct')
 
-        await FAQModel.findByIdAndUpdate(answerId, {
+        const FAQ = await FAQModel.findByIdAndUpdate(answerId, {
             answer,
             userId: user.uuid,
             isAnswer: true
         })
+
+        const sendEmailResult = await sendEmail(FAQ.email, answer, "FAQ")
+
+        if (sendEmailResult.status !== 200) return  response(res, sendEmailResult.status, sendEmailResult.message)
 
         return response(res, 200, "answer to question successfully")
     }
