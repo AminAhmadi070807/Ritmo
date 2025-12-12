@@ -72,3 +72,20 @@ module.exports.AllQuestion = async (req, res, next) => {
         next(error)
     }
 }
+
+module.exports.remove = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+
+        if (!isValidObjectId(id)) return response(res, 400, 'faq id is not correct.')
+
+        const faq = await FAQModel.findByIdAndDelete(id).lean()
+
+        if (!faq) return response(res, 404, 'faq not found.')
+
+        return response(res, 204)
+    }
+    catch(error) {
+        next(error)
+    }
+}
