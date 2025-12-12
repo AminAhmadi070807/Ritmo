@@ -10,8 +10,11 @@ const roleGuard = require('../../../middlewares/guard/role.guard');
 
 router.route('/').post(validator.faqQuestionValidator, controller.question).get(controller.AllFAQ)
 
-router.get('/question', controller.AllQuestion)
+router.get('/question',authGuard, roleGuard("ADMIN"), controller.AllQuestion)
 
-router.route('/:id').put(authGuard, roleGuard("ADMIN"), validator.faqValidator, controller.answer).post(authGuard, roleGuard("ADMIN"), controller.FAQ).delete(authGuard, roleGuard("ADMIN"), validator.faqValidator, controller.remove)
+router.route('/:id')
+    .put(authGuard, roleGuard("ADMIN"), validator.faqValidator, controller.answer)
+    .post(authGuard, roleGuard("ADMIN"), controller.FAQ)
+    .delete(authGuard, roleGuard("ADMIN"), controller.remove)
 
 module.exports = router;
