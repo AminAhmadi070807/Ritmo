@@ -17,7 +17,7 @@
 <main class="main-site px-5 lg:px-8 ms-auto h-auto mt-10 pb-10" >
     <section class="w-full">
         <header class="w-full">
-            <form class="grid md:grid-cols-2 text-white xl:grid-cols-3 font-FA_Pelak_Medium gap-5" method="post" action="/api/v1/musics/">
+            <form class="grid md:grid-cols-2 text-white xl:grid-cols-3 font-FA_Pelak_Medium gap-5" method="post" action="/api/v1/musics/" enctype="multipart/form-data">
                 <label class="w-full border border-Neutral-400 bg-transparent-1/35 rounded-lg px-3.5 py-4">
                     <input name="title" id="music-title" type="text" class="placeholder:text-white placeholder:text-sm font-Pelak_Regular w-full outline-none " placeholder="عنوام"/>
                 </label>
@@ -33,7 +33,7 @@
                     </select>
                 </label>
                 <label class="w-full border border-Neutral-400 bg-transparent-1/35 rounded-lg px-3.5 py-4">
-                    <select name="album" id="music-genre" class="font-Pelak_Regular w-full outline-none rounded-lg focus:outline-none">
+                    <select name="genre" id="music-genre" class="font-Pelak_Regular w-full outline-none rounded-lg focus:outline-none">
                         <option class="bg-transparent-1">ژنرا</option>
                         <% genres.forEach(genre => { %>
                             <option value="<%= genre._id %>" class="bg-transparent-1"><%= genre.title %></option>
