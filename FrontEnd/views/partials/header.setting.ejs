@@ -3,11 +3,17 @@
 
         <!-- main -->
         <div class="mt-5 pe-5 text-white">
-            <ul id="music-list-mobile" class="flex gap-y-2 flex-col">
+            <ul id="music-list-mobile" class="flex gap-y-2 flex-col font-FA_Pelak_Medium">
                 <li class="flex items-center text-sm h-14 <%= active && active === 'channel' ? 'setting-button-active' : 'setting-button-no-active' %>"><a href="/settings/channel" class="px-6">اکانت من</a></li>
                 <div class="w-full h-0.5 bg-Neutral-800"></div>
-                <li class="flex items-center text-sm h-14 <%= active && active === 'create-music' ? 'setting-button-active' : 'setting-button-no-active' %>">
-                    <a href="/music/create" class="px-6">ساخت اهنگ</a>
+                <li class="flex items-center text-sm h-14 setting-button-no-active">
+                    <a href="/music/create" class="px-6">ساخت آهنگ</a>
+                </li>
+                <li class="flex items-center text-sm h-14 setting-button-no-active">
+                    <a href="/album/create" class="px-6">ساخت آلبوم</a>
+                </li>
+                <li class="flex items-center text-sm h-14 setting-button-no-active">
+                    <a href="/playlist/create" class="px-6">ساخت پلی لیست</a>
                 </li>
                 <div class="w-full h-0.5 bg-Neutral-800"></div>
                 <li class="flex items-center text-sm h-14 setting-button-no-active"><a href="/" class="px-6">پشتیبانی</a></li>
