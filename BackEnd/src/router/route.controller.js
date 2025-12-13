@@ -160,3 +160,5 @@ module.exports.channel = async (req, res) => res.render('setting/channel.ejs')
 module.exports.settingProfile = async (req, res) => res.render('setting/settingProfile.ejs')
 
 module.exports.FAQ = async (req, res) => res.render('FAQ.ejs')
+
+module.exports.createMusic = async (req, res) => res.render('music/createMusic.ejs')

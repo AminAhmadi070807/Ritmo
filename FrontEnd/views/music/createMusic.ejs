@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fa" dir="rtl" class="bg-background w-screen overflow-x-hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/styles/tailwind.css" />
+    <link rel="icon" href="/logo/icon.png">
+    <title>Ritmo Create music</title>
+</head>
+<body>
+<%- include('../partials/svg.ejs') %>
+
+<%- include('../partials/header.music.ejs') %>
+
+<main class="main-site px-5 lg:px-8 lg:mt-40 mt-24 ms-auto h-auto max-w-[1600px]" >
+    <section class="mt-16">
+        <header>
+            <form class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" action="/api/v1/musics/">
+                    <label class="w-full border border-Neutral-400 bg-transparent-1/35 rounded-lg px-3.5 py-4">
+                        <input name="title" type="text" class="placeholder:text-white placeholder:text-sm font-Pelak_Regular w-full outline-none " placeholder="عنوام"/>
+                    </label>
+                    <label class="w-full border border-Neutral-400 bg-transparent-1/35 rounded-lg px-3.5 py-4">
+                        <input name="title" type="text" class="placeholder:text-white placeholder:text-sm font-Pelak_Regular w-full outline-none" placeholder="عنوان پیام"/>
+                    </label>
+                    <label class="w-full border border-Neutral-400 bg-transparent-1/35 rounded-lg px-3.5 py-4">
+                        <input name="name" type="text" class="placeholder:text-white placeholder:text-sm font-Pelak_Regular w-full outline-none " placeholder="نام"/>
+                    </label>
+                    <label class="w-full border border-Neutral-400 bg-transparent-1/35 rounded-lg px-3.5 py-4">
+                        <input name="title" type="text" class="placeholder:text-white placeholder:text-sm font-Pelak_Regular w-full outline-none" placeholder="عنوان پیام"/>
+                    </label>
+            </form>
+        </header>
+    </section>
+</main>
+
+<%- include('../partials/footer.ejs') %>
+
+<script src="/scripts/navbar/music/navbar.js"></script>
+<script src="/scripts/albums/album.js"></script>
+
+</body>
+</html>
