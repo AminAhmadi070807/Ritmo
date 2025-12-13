@@ -339,11 +339,23 @@ const formatTime = (seconds) => {
         const downloadResponse = await fetch('/api/v1/musics/downloads')
         const downloadData = await downloadResponse.json()
 
+        const responsePlaylist = await fetch('/api/v1/musics/playlists/Me')
+        const dataPlaylist = await responsePlaylist.json()
+
+        const responseStream = await fetch('/api/v1/musics/lastHeard/')
+        const dataStream = await responseStream.json()
+
         document.getElementById('number-of-user-like-song').setAttribute('value', data.data.numberOfUserLikeSong)
         document.getElementById('number-of-user-like-song').innerText = data.data.numberOfUserLikeSong
 
         document.getElementById('number-of-download-music').setAttribute('value', downloadData.data.count)
         document.getElementById('number-of-download-music').innerText = downloadData.data.count
+
+        document.getElementById('number-of-playlist').innerText = dataPlaylist.data.count
+        document.getElementById('number-of-playlist').value = dataPlaylist.data.count
+
+        document.getElementById('number-of-stream').innerText = dataStream.data.count
+        document.getElementById('number-of-stream').value = dataStream.data.count
     }
     catch (error) {
         console.log(error);
