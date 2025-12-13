@@ -161,4 +161,17 @@ module.exports.settingProfile = async (req, res) => res.render('setting/settingP
 
 module.exports.FAQ = async (req, res) => res.render('FAQ.ejs')
 
-module.exports.createMusic = async (req, res) => res.render('music/createMusic.ejs')
+module.exports.createMusic = async (req, res, next) => {
+    try {
+        const user = req.user
+
+        const userAlbums = await albumModel.find({ artist: user.uuid }).lean()
+
+        res.render('music/createMusic.ejs', {
+            albums: userAlbums
+        })
+    }
+    catch (error) {
+        next(error)
+    }
+}

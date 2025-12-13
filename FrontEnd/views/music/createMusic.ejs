@@ -21,10 +21,14 @@
                     <input name="title" type="text" class="placeholder:text-white placeholder:text-sm font-Pelak_Regular w-full outline-none " placeholder="عنوام"/>
                 </label>
                 <label class="w-full border border-Neutral-400 bg-transparent-1/35 rounded-lg px-3.5 py-4">
-                    <input name="tags" type="text" class="placeholder:text-white placeholder:text-sm font-Pelak_Regular w-full outline-none" placeholder="تگ ها"/>
+                    <input name="tags" type="text" class="placeholder:text-white placeholder:text-sm font-Pelak_Regular w-full outline-none" placeholder="تگ هارو با , جدا کنید"/>
                 </label>
                 <label class="w-full border border-Neutral-400 bg-transparent-1/35 rounded-lg px-3.5 py-4">
-                    <input name="album" type="text" class="placeholder:text-white placeholder:text-sm font-Pelak_Regular w-full outline-none " placeholder="البوم"/>
+                    <select name="album" class="font-Pelak_Regular w-full outline-none rounded-lg focus:outline-none">
+                        <option class="bg-transparent-1">البوم</option>
+                        <option class="bg-transparent-1">امین</option>
+                        <option class="bg-transparent-1">امین</option>
+                    </select>
                 </label>
                 <label class="w-full border border-Neutral-400 bg-transparent-1/35 rounded-lg px-3.5 py-4">
                     <input name="genre" type="text" class="placeholder:text-white placeholder:text-sm font-Pelak_Regular w-full outline-none" placeholder="ژنرا"/>
@@ -33,11 +37,11 @@
                     <input name="artist" type="text" class="placeholder:text-white placeholder:text-sm font-Pelak_Regular w-full outline-none" placeholder="هنرمند"/>
                 </label>
                 <label class="w-full border border-Neutral-400 bg-transparent-1/35 rounded-lg px-3.5 py-4 cursor-pointer">
-                    <input name="music" type="file" class="hidden"/>
+                    <input name="music" accept="audio/*" type="file" class="hidden"/>
                     <span class="font-FA_Pelak_Medium text-sm">اهنگ خود را بارگزاری کنید</span>
                 </label>
                 <label class="w-full border border-Neutral-400 bg-transparent-1/35 rounded-lg px-3.5 py-4 cursor-pointer">
-                    <input name="poster" type="file" class="hidden"/>
+                    <input name="poster" accept="image/*" type="file" class="hidden"/>
                     <span class="font-FA_Pelak_Medium text-sm">پوستر اهنگ را بارگزاری کنید</span>
                 </label>
                 <button role="button" type="submit" class="w-full bg-Primary-600 font-FA_Pelak_Medium rounded-lg px-3.5 py-4 cursor-pointer">آپلود</button>
