@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="fa" dir="rtl" class="bg-background w-screen overflow-x-hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/styles/tailwind.css" />
+    <link rel="icon" href="/logo/icon.png">
+    <title>Ritmo Create music</title>
+</head>
+<body>
+<%- include('../partials/svg.ejs') %>
+
+<%- include('../partials/header.music.dashboard.ejs', { active: "create/playlist" }) %>
+
+<main class="main-site px-5 lg:px-8 ms-auto h-auto mt-10 pb-10" >
+    <section class="w-full">
+        <header class="w-full">
+            <form class="grid md:grid-cols-2 text-white xl:grid-cols-3 font-FA_Pelak_Medium gap-5" method="post" action="/api/v1/musics/playlists" enctype="multipart/form-data">
+                <label class="w-full border border-Neutral-400 bg-transparent-1/35 rounded-lg px-3.5 py-4">
+                    <input name="title" id="music-title" type="text" class="placeholder:text-white placeholder:text-sm font-Pelak_Regular w-full outline-none " placeholder="عنوام"/>
+                </label>
+                <label class="w-full border border-Neutral-400 bg-transparent-1/35 rounded-lg px-3.5 py-4 cursor-pointer">
+                    <input name="cover" id="music-poster" accept="image/*" type="file" class="hidden"/>
+                    <span class="font-FA_Pelak_Medium text-sm">پوستر پلی لیست را بارگزاری کنید</span>
+                </label>
+                <button role="button" type="submit" id="submit-music" class="w-full bg-Primary-600 font-FA_Pelak_Medium rounded-lg px-3.5 py-4 cursor-pointer">ساخت</button>
+            </form>
+        </header>
+    </section>
+</main>
+
+<%- include('../partials/status.mudal.ejs') %>
+
+<script src="/scripts/modal/modal.js"></script>
+<script src="/scripts/settings/create/music.js"></script>
+</body>
+</html>

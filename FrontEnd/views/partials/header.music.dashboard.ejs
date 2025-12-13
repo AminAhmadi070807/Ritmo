@@ -1,6 +1,10 @@
 <header class="text-white h-25 bg-menu">
     <div class="flex items-center px-2 lg:justify-center text-sm h-full gap-x-5 w-full font-FA_Pelak_Medium overflow-x-scroll">
-        <a href="/settings/channel" class="flex-center px-5 py-3 <%= active === "setting" && "setting-button-active" %> gap-x-1 flex-shrink-0">
+        <a href="/" class="flex-center px-5 py-3 gap-x-1 flex-shrink-0">
+            <svg class="size-5 text-white"><use href="#home"></use></svg>
+            خانه
+        </a>
+        <a href="/settings/channel" class="flex-center px-5 py-3 gap-x-1 flex-shrink-0">
             <svg class="size-7 text-white"><use href="#setting"></use></svg>
             تنضیمات
         </a>
@@ -8,11 +12,11 @@
             <svg class="size-7 text-white"><use href="#music-01"></use></svg>
             ساخت اهنگ
         </a>
-        <a href="/music/create" class="flex-center px-5 py-3 <%= active === "create/album" && "setting-button-active" %> gap-x-1 flex-shrink-0">
+        <a href="/album/create" class="flex-center px-5 py-3 <%= active === "create/album" && "setting-button-active" %> gap-x-1 flex-shrink-0">
             <svg class="size-7 text-white"><use href="#music-05"></use></svg>
             ساخت آلبوم
         </a>
-        <a href="/music/create" class="flex-center px-5 py-3 <%= active === "create/playlist" && "setting-button-active" %> gap-x-1 flex-shrink-0">
+        <a href="/playlist/create" class="flex-center px-5 py-3 <%= active === "create/playlist" && "setting-button-active" %> gap-x-1 flex-shrink-0">
             <svg class="size-7 text-white"><use href="#playlist"></use></svg>
             ساخت پلی لیست
         </a>

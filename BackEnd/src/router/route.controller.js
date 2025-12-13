@@ -180,13 +180,5 @@ module.exports.createMusic = async (req, res, next) => {
     }
 }
 
-module.exports.createAlbum = async (req, res, next) => {
-    try {
-        const user = req.user
-
-        return res.render('music/createAlbum.ejs')
-    }
-    catch (error) {
-        next(error)
-    }
-}
+module.exports.createAlbum = async (req, res) => res.render('music/createAlbum.ejs')
+module.exports.createPlaylist = async (req, res) => res.render('music/createPlaylist.ejs')
