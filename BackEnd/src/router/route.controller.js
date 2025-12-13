@@ -166,7 +166,7 @@ module.exports.createMusic = async (req, res, next) => {
     try {
         const user = req.user
 
-        const userAlbums = await albumModel.find({ artist: user.uuid }).lean()
+        const userAlbums = await albumModel.find({ artist: user.uuid }).sort({ createdAt: -1 }).lean()
 
         const genres = await genreModel.find({}).lean()
 

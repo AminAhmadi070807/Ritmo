@@ -120,7 +120,7 @@ const formatTime = (seconds) => {
             <div class="swiper-slide">
                 <a href="/albums/details/${album._id}">
                   <div class="w-50 h-[276px] cursor-pointer">
-                    <img class="rounded-xl" src="${album.cover}" alt="${album.title + "From" + album.artist }" />
+                    <img class="rounded-xl object-cover object-center h-50" src="${album.cover}" alt="${album.title + "From" + album.artist }" />
                     <h3 class="font-Pelak_Bold text-center mt-2">${album.title}</h3>
                     <cite class="font-Pelak_Regular not-italic text-center mt-2 text-sm text-Neutral-300 block">${album.artist}</cite>
                   </div>
