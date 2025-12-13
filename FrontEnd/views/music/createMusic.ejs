@@ -11,23 +11,26 @@
 <body>
 <%- include('../partials/svg.ejs') %>
 
-<%- include('../partials/header.music.ejs') %>
+<%- include('../partials/header.setting.ejs', {
+    "active": "create-music"
+}) %>
 
-<main class="main-site px-5 lg:px-8 lg:mt-40 mt-24 ms-auto h-auto max-w-[1600px]" >
-    <section class="mt-16">
-        <header>
-            <form class="grid md:grid-cols-2 text-white lg:grid-cols-3 xl:grid-cols-4 gap-5" action="/api/v1/musics/" method="post">
+<main class="main-site px-5 lg:px-8 ms-auto h-auto max-w-[1600px]" >
+    <section class="relative flex items-center justify-center sm:justify-between gap-y-10 gap-x-20 mt-16 mx-auto lg:max-w-[80%] w-full h-auto">
+        <header class="w-full">
+            <form class="grid md:grid-cols-2 text-white xl:grid-cols-3 font-FA_Pelak_Medium gap-5" action="/api/v1/musics/" method="post">
                 <label class="w-full border border-Neutral-400 bg-transparent-1/35 rounded-lg px-3.5 py-4">
                     <input name="title" type="text" class="placeholder:text-white placeholder:text-sm font-Pelak_Regular w-full outline-none " placeholder="عنوام"/>
                 </label>
                 <label class="w-full border border-Neutral-400 bg-transparent-1/35 rounded-lg px-3.5 py-4">
-                    <input name="tags" type="text" class="placeholder:text-white placeholder:text-sm font-Pelak_Regular w-full outline-none" placeholder="تگ هارو با , جدا کنید"/>
+                    <input name="tags" type="text" class="placeholder:text-white placeholder:text-sm font-Pelak_Regular w-full outline-none" placeholder="تگ هارو با (   ,   ) جدا کنید"/>
                 </label>
                 <label class="w-full border border-Neutral-400 bg-transparent-1/35 rounded-lg px-3.5 py-4">
                     <select name="album" class="font-Pelak_Regular w-full outline-none rounded-lg focus:outline-none">
                         <option class="bg-transparent-1">البوم</option>
-                        <option class="bg-transparent-1">امین</option>
-                        <option class="bg-transparent-1">امین</option>
+                        <% albums.forEach(album => { %>
+                            <option class="bg-transparent-1"><%= album.title %></option>
+                        <% }) %>
                     </select>
                 </label>
                 <label class="w-full border border-Neutral-400 bg-transparent-1/35 rounded-lg px-3.5 py-4">
@@ -50,7 +53,6 @@
     </section>
 </main>
 
-<%- include('../partials/footer.ejs') %>
 
 <script src="/scripts/navbar/music/navbar.js"></script>
 <script src="/scripts/albums/album.js"></script>

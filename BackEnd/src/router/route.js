@@ -4,6 +4,7 @@ const express = require('express')
 const router = express.Router()
 
 const controller = require('./route.controller')
+const authGuard = require('../middlewares/guard/auth.guard')
 
 const validator = require('../middlewares/validate.middleware')
 
@@ -25,7 +26,7 @@ router.get('/categories/details/:id', controller.musicCategoryDetails)
 router.get('/settings/profile', controller.profile)
 router.get('/settings/channel', controller.channel)
 router.get('/FAQ', controller.FAQ)
-router.get('/music/create', controller.createMusic)
+router.get('/music/create',authGuard, controller.createMusic)
 router.get('/settings/setting/profile', controller.settingProfile)
 
 module.exports = router

@@ -167,7 +167,7 @@ module.exports.createMusic = async (req, res, next) => {
 
         const userAlbums = await albumModel.find({ artist: user.uuid }).lean()
 
-        res.render('music/createMusic.ejs', {
+        return res.render('music/createMusic.ejs', {
             albums: userAlbums
         })
     }

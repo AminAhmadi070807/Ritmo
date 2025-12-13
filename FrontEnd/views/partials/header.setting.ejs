@@ -2,9 +2,13 @@
     <div id="header" class="flex flex-col fixed top-0 right-0 z-50 transform translate-x-64 lg:translate-x-0 transition-all duration-300 w-64 bg-menu overflow-y-scroll h-screen pb-5">
 
         <!-- main -->
-        <div class="mt-5 pe-5">
+        <div class="mt-5 pe-5 text-white">
             <ul id="music-list-mobile" class="flex gap-y-2 flex-col">
                 <li class="flex items-center text-sm h-14 <%= active && active === 'channel' ? 'setting-button-active' : 'setting-button-no-active' %>"><a href="/settings/channel" class="px-6">اکانت من</a></li>
+                <div class="w-full h-0.5 bg-Neutral-800"></div>
+                <li class="flex items-center text-sm h-14 <%= active && active === 'create-music' ? 'setting-button-active' : 'setting-button-no-active' %>">
+                    <a href="/music/create" class="px-6">ساخت اهنگ</a>
+                </li>
                 <div class="w-full h-0.5 bg-Neutral-800"></div>
                 <li class="flex items-center text-sm h-14 setting-button-no-active"><a href="/" class="px-6">پشتیبانی</a></li>
                 <li class="flex items-center text-sm h-14 setting-button-no-active"><a href="/" class="px-6">قوانین و مقررات</a></li>
@@ -15,7 +19,7 @@
             </ul>
         </div>
         <!-- footer -->
-        <div class="flex items-center justify-evenly px-10 pt-5 gap-x-5 mt-auto">
+        <div class="flex items-center justify-evenly px-10 pt-5 gap-x-5 mt-auto text-white">
             <a href="#"><svg class="size-5"><use href="#facebook"></use></svg></a>
             <a href="#"><svg class="size-5"><use href="#X"></use></svg></a>
             <a href="#"><svg class="size-5"><use href="#tiktok"></use></svg></a>
