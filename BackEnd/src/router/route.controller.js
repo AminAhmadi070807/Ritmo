@@ -6,6 +6,7 @@ const userModel = require('../modules/v1/users/user.model')
 const musicModel = require('../modules/v1/musics/music/music.model')
 const playlistModel = require('../modules/v1/musics/playlists/playlist.model')
 const planModel = require('../modules/v1/plan/plan.model')
+const genreModel = require('../modules/v1/musics/genre/genre.model')
 const {isValidObjectId} = require("mongoose");
 const response = require('../helpers/response.helper')
 
@@ -167,8 +168,11 @@ module.exports.createMusic = async (req, res, next) => {
 
         const userAlbums = await albumModel.find({ artist: user.uuid }).lean()
 
+        const genres = await genreModel.find({}).lean()
+
         return res.render('music/createMusic.ejs', {
-            albums: userAlbums
+            albums: userAlbums,
+            genres
         })
     }
     catch (error) {
