@@ -34,13 +34,13 @@ module.exports.create = async (req, res, next) => {
             return response(res, 400, "valid format (image/jpeg, image/jpg, image/png, image/webp, image/gif, image/svg+xml )")
         }
 
-        await playlistModel.create({
+        const playlist = await playlistModel.create({
             title: req.body.title,
             user: user.uuid,
             cover: `/uploads/playlists/${cover.filename}`
         })
 
-        return res.redirect(`/albums/details/${album._id}`)
+        return res.redirect(`/playlists/details/${playlist._id}`)
     }
     catch (error) {
         next(error)
