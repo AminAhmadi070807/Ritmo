@@ -8,11 +8,11 @@
             <svg class="size-7 text-white"><use href="#music-01"></use></svg>
             ساخت اهنگ
         </a>
-        <a href="/music/create" class="flex-center px-5 py-3 rounded-2xl gap-x-1 flex-shrink-0">
+        <a href="/music/create" class="flex-center px-5 py-3 <%= active === "create/album" && "setting-button-active" %> gap-x-1 flex-shrink-0">
             <svg class="size-7 text-white"><use href="#music-05"></use></svg>
             ساخت آلبوم
         </a>
-        <a href="/music/create" class="flex-center px-5 py-3 rounded-2xl gap-x-1 flex-shrink-0">
+        <a href="/music/create" class="flex-center px-5 py-3 <%= active === "create/playlist" && "setting-button-active" %> gap-x-1 flex-shrink-0">
             <svg class="size-7 text-white"><use href="#playlist"></use></svg>
             ساخت پلی لیست
         </a>

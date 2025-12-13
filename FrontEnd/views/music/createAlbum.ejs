@@ -11,7 +11,7 @@
 <body>
 <%- include('../partials/svg.ejs') %>
 
-<%- include('../partials/header.music.dashboard.ejs', { active: "create/music" }) %>
+<%- include('../partials/header.music.dashboard.ejs', { active: "create/album" }) %>
 
 <main class="main-site px-5 lg:px-8 ms-auto h-auto mt-10 pb-10" >
     <section class="w-full">
@@ -21,10 +21,10 @@
                     <input name="title" id="music-title" type="text" class="placeholder:text-white placeholder:text-sm font-Pelak_Regular w-full outline-none " placeholder="عنوام"/>
                 </label>
                 <label class="w-full border border-Neutral-400 bg-transparent-1/35 rounded-lg px-3.5 py-4 cursor-pointer">
-                    <input name="poster" id="music-poster" accept="image/*" type="file" class="hidden"/>
+                    <input name="cover" id="music-poster" accept="image/*" type="file" class="hidden"/>
                     <span class="font-FA_Pelak_Medium text-sm">پوستر اهنگ را بارگزاری کنید</span>
                 </label>
-                <button role="button" type="submit" id="submit-music" class="w-full bg-Primary-600 font-FA_Pelak_Medium rounded-lg px-3.5 py-4 cursor-pointer">آپلود</button>
+                <button role="button" type="submit" id="submit-music" class="w-full bg-Primary-600 font-FA_Pelak_Medium rounded-lg px-3.5 py-4 cursor-pointer">ساخت</button>
             </form>
         </header>
     </section>
