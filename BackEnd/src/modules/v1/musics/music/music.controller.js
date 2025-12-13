@@ -83,7 +83,7 @@ module.exports.create = async (req, res, next) => {
 
         await albumModel.findByIdAndUpdate(isExistAlbum._id, { $push: { musics: musicResult._id, } })
 
-        return response(res, 201, "created new music successfully.")
+        return res.redirect(`/albums/details/${musicResult._id}`)
     }
     catch (error) {
         await deleteFiles(['BackEnd/public' + `/uploads/posters/${req.files.poster[0].filename}`, 'BackEnd/public' + `/uploads/musics/${req.files.music[0].filename}`])

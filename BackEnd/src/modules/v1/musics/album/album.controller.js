@@ -24,8 +24,6 @@ module.exports.create = async (req, res, next) => {
     try {
         const user = req.user;
 
-        console.log("USER")
-
         const isExistAlbum = await albumModel.findOne({ title: req.body.title.trim(), artist: user.uuid.toString() }).lean()
 
         if (isExistAlbum) return response(res, 409, 'Album with title already exists.')
@@ -37,15 +35,13 @@ module.exports.create = async (req, res, next) => {
             return response(res, 400, "valid format (image/jpeg, image/jpg, image/png, image/webp, image/gif, image/svg+xml )")
         }
 
-        console.log("USER")
-
-        await albumModel.create({
+        const album = await albumModel.create({
             title: req.body.title,
             artist: user.uuid,
             cover: `/uploads/albums/${cover.filename}`
         })
 
-        return response(res, 201, "created new album successfully.")
+        return res.redirect(`/albums/details/${album._id}`)
     }
     catch (error) {
         next(error)
