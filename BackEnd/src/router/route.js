@@ -27,6 +27,7 @@ router.get('/settings/profile', controller.profile)
 router.get('/settings/channel', controller.channel)
 router.get('/FAQ', controller.FAQ)
 router.get('/music/create',authGuard, controller.createMusic)
+router.get('/album/create',authGuard, controller.createAlbum)
 router.get('/settings/setting/profile', controller.settingProfile)
 
 module.exports = router

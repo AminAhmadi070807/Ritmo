@@ -179,3 +179,18 @@ module.exports.createMusic = async (req, res, next) => {
         next(error)
     }
 }
+
+module.exports.createAlbum = async (req, res, next) => {
+    try {
+        const user = req.user
+
+        const userAlbums = await albumModel.find({ artist: user.uuid }).lean()
+
+        const genres = await genreModel.find({}).lean()
+
+        return res.render('music/createAlbum.ejs')
+    }
+    catch (error) {
+        next(error)
+    }
+}
