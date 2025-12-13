@@ -4,9 +4,6 @@ const fs = require('fs');
 
 module.exports = async (baseFile, route) => {
     try {
-        console.log(baseFile, route)
-        if (!baseFile || !route) return { status: 422, message: "baseFile and fileName is required" }
-
         const isAvailableFile = fs.existsSync(`${baseFile}/${route}`)
 
         if (isAvailableFile) {
