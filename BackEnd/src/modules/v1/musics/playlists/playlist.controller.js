@@ -40,7 +40,7 @@ module.exports.create = async (req, res, next) => {
             cover: `/uploads/playlists/${cover.filename}`
         })
 
-        return response(res, 201, "created new playlist successfully.")
+        return res.redirect(`/albums/details/${album._id}`)
     }
     catch (error) {
         next(error)
