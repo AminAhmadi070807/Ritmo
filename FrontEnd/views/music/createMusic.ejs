@@ -8,8 +8,10 @@
     <link rel="icon" href="/logo/icon.png">
     <title>Ritmo Create music</title>
 </head>
-<body class="flex items-center">
+<body>
 <%- include('../partials/svg.ejs') %>
+
+<%- include('../partials/header.music.dashboard.ejs', { active: "create/music" }) %>
 
 
 <main class="main-site px-5 lg:px-8 ms-auto h-auto mt-20" >
@@ -56,8 +58,8 @@
 </main>
 
 
-<script src="/scripts/navbar/music/navbar.js"></script>
-<script src="/scripts/albums/album.js"></script>
+<!--<script src="/scripts/navbar/music/navbar.js"></script>-->
+<!--<script src="/scripts/albums/album.js"></script>-->
 
 </body>
 </html>
