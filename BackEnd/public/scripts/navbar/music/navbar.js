@@ -6,7 +6,8 @@ const rightNavbarBtn = document.getElementById("arrow-right-navbar");
 const rightNavbarImage = document.getElementById("right-navbar-image");
 const socialIcon = document.getElementById("social-icon");
 const categoryIconList = document.getElementById('category-list');
-const categoryIconSubList = document.getElementById('music-sublist-desktop')
+const categoryIconSubList = document.getElementById('music-sublist-desktop');
+const searchInput = document.querySelector('input[type=search]#search-input')
 
 ;(async () => {
     try {
@@ -106,6 +107,21 @@ const categoryIconSubList = document.getElementById('music-sublist-desktop')
         console.log(error)
     }
 })()
+
+searchInput.addEventListener('keyup', async (event) => {
+    try {
+        if (event.keyCode === 13) {
+            const refresh = await fetch('/api/v1/auth/refresh')
+
+            if (refresh.status !== 200) return location.href = '/auth/send'
+
+            location.href = `/search?search=${event.target.value}`
+        }
+    }
+    catch (error) {
+        console.log(error)
+    }
+})
 
 rightNavbarBtn.addEventListener("click", function () {
     const userRightNavbarText = document.querySelectorAll("#right-navbar-text");
