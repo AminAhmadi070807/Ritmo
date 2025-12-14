@@ -18,4 +18,7 @@ module.exports = database.define("Ban", {
             isDate: true
         }
     }
+}, {
+    tableName: "Bans",
+    timestamps: true
 })
