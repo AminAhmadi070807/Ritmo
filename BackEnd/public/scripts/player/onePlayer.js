@@ -231,4 +231,7 @@ window.toggleIconsMenu = function (event) {
     }
 };
 
-closePlayerBtn.addEventListener('click', () => document.getElementById('music-player-box').classList.add("hidden"))
+closePlayerBtn.addEventListener('click', () => {
+    document.getElementById('music-player-box').classList.add("hidden")
+    document.getElementById('music-player-box').classList.remove("flex-center")
+})

@@ -72,6 +72,7 @@ const formatTime = (seconds) => {
                 const data = await response.json();
 
                 document.getElementById('music-player-box').classList.remove("hidden")
+                document.getElementById('music-player-box').classList.add("flex-center")
 
                 document.getElementById('music-box').src = data.data.poster
                 audio.src = data.data.music
@@ -315,6 +316,7 @@ const formatTime = (seconds) => {
                 const data = await response.json();
 
                 document.getElementById('music-player-box').classList.remove("hidden")
+                document.getElementById('music-player-box').classList.add("flex-center")
 
                 document.getElementById('music-box').src = data.data.poster
                 audio.src = data.data.music
