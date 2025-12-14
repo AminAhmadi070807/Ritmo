@@ -22,4 +22,3 @@ module.exports = database.define("Ban", {
     tableName: "Bans",
     timestamps: true
 })
-
