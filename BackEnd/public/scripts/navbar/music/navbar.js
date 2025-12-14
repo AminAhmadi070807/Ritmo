@@ -145,22 +145,22 @@ const closeMobileMenuBtn = document.getElementById('x-btn-menu')
 
             <div>
                 <a href="/likeSongs" class="text-white ${ path.split('/').pop() === "likeSongs" ? "active-list-music" : "navbar-list-no-active"} flex items-center gap-x-3 py-4">
-                    <svg class="${ path.split('/').pop() === "likeSongs" && "active-icon-in-music"} ms-6"><use href="#heart"></use></svg>
-                    <span id="right-navbar-text" class="text-white ${ path.split('/').pop() === "likeSongs" && "navbar-list-active"}">مورد علاقه‌ها</span>
+                    <svg class="${ path.split('/').pop() === "likeSongs" ? "active-icon-in-music" : "no-active-icon-in-music"} ms-6"><use href="#heart"></use></svg>
+                    <span id="right-navbar-text" class="text-white ${ path.split('/').pop() === "likeSongs" ? "navbar-list-active" : "navbar-list-no-active"}">مورد علاقه‌ها</span>
                 </a>
             </div>
 
             <div>
                 <a href="/suggestions" class="text-white ${ path.split('/').pop() === "suggestions" ? "active-list-music" : "navbar-list-no-active"} py-4 flex items-center gap-x-3">
-                    <svg class="${ path.split('/').pop() === "suggestions" && "active-icon-in-music"} ms-6"><use href="#vynil"></use></svg>
-                    <span id="right-navbar-text" class="text-white ${ path.split('/').pop() === "suggestions" && "navbar-list-active"}">پیشنهادها</span>
+                    <svg class="${ path.split('/').pop() === "suggestions" ? "active-icon-in-music" : "no-active-icon-in-music"} ms-6"><use href="#vynil"></use></svg>
+                    <span id="right-navbar-text" class="text-white ${ path.split('/').pop() === "suggestions" ? "navbar-list-active" : "navbar-list-no-active"}">پیشنهادها</span>
                 </a>
             </div>
 
             <div>
                 <a href="/downloads" class="text-white ${ path.split('/').pop() === "downloads"  ? "active-list-music" : "navbar-list-no-active"} py-4 text-white flex items-center gap-x-3">
-                    <svg class="${ path.split('/').pop() === "downloads" && "active-icon-in-music"} ms-6"><use href="#download-01"></use></svg>
-                    <span id="right-navbar-text" class="text-white ${ path.split('/').pop() === "downloads" && "navbar-list-active"}">دانلودشده‌ها</span>
+                    <svg class="${ path.split('/').pop() === "downloads" ? "active-icon-in-music" : "no-active-icon-in-music"} ms-6"><use href="#download-01"></use></svg>
+                    <span id="right-navbar-text" class="text-white ${ path.split('/').pop() === "downloads" ? "navbar-list-active" : "navbar-list-no-active"}">دانلودشده‌ها</span>
                 </a>
             </div>
             `

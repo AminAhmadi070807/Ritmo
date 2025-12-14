@@ -464,9 +464,6 @@
   .mt-50 {
     margin-top: var(--spacing-50);
   }
-  .mt-100 {
-    margin-top: var(--spacing-100);
-  }
   .mt-\[25\.5px\] {
     margin-top: 25.5px;
   }
@@ -1208,6 +1205,10 @@
     border-style: var(--tw-border-style);
     border-width: 2px;
   }
+  .border-t {
+    border-top-style: var(--tw-border-style);
+    border-top-width: 1px;
+  }
   .border-t-2 {
     border-top-style: var(--tw-border-style);
     border-top-width: 2px;
@@ -1244,6 +1245,12 @@
   }
   .border-Neutral-200 {
     border-color: var(--color-Neutral-200);
+  }
+  .border-Neutral-200\/35 {
+    border-color: color-mix(in srgb, #c7cbd8 35%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      border-color: color-mix(in oklab, var(--color-Neutral-200) 35%, transparent);
+    }
   }
   .border-Neutral-300 {
     border-color: var(--color-Neutral-300);
@@ -1310,6 +1317,15 @@
   }
   .bg-Info-200 {
     background-color: var(--color-Info-200);
+  }
+  .bg-Neutral-200 {
+    background-color: var(--color-Neutral-200);
+  }
+  .bg-Neutral-200\/35 {
+    background-color: color-mix(in srgb, #c7cbd8 35%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-Neutral-200) 35%, transparent);
+    }
   }
   .bg-Neutral-300 {
     background-color: var(--color-Neutral-300);
@@ -2935,17 +2951,7 @@
     width: 24px;
     height: 24px;
   }
-  .active-icon-in-podcast {
-    color: #4353ff;
-    width: 24px;
-    height: 24px;
-  }
   .no-active-icon-in-music {
-    color: white;
-    width: 20px;
-    height: 20px;
-  }
-  .no-active-icon-in-podcast {
     color: white;
     width: 20px;
     height: 20px;
@@ -2954,17 +2960,9 @@
     background: linear-gradient(to right, transparent 30%, #ed265e5b);
     border-right: 4px solid #ed265d;
   }
-  .active-list-podcast {
-    background: linear-gradient(to right, transparent 30%, #4252ff59);
-    border-right: 4px solid #4353ff;
-  }
   .active-list-music-small-size {
     background: linear-gradient(to right, transparent 0%, #ed265e5b);
     border-right: 4px solid #ed265d;
-  }
-  .active-list-podcast-small-size {
-    background: linear-gradient(to right, transparent 10%, #4252ff59);
-    border-right: 4px solid #4353ff;
   }
   .navbar-list-active {
     font-family: var(--font-Pelak_Bold);
