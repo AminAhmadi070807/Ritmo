@@ -50,7 +50,7 @@ module.exports.update = async (req, res, next) => {
                 bio,
                 profile: '/uploads/profiles/' + profile.filename
             }, {where: {uuid: user.uuid}})
-            await deleteFile('BackEnd/public', userBackInfo.profile)
+            if (userBackInfo.profile !== "/uploads/profiles/profile.png") await deleteFile('BackEnd/public', userBackInfo.profile)
         }
         else await userModel.update({username, fullName, email, bio}, {where: {uuid: user.uuid}})
 
