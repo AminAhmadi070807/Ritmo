@@ -5,9 +5,11 @@ const path = require("path");
 const express = require('express');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
+const passport = require('passport')
 
 const errorHandler = require('./middlewares/error.middleware')
 const notFoundHandler = require('./middlewares/notFound.middleware')
+const googleStrategy = require('./strategies/google.strategy')
 
 const headers = require('./middlewares/header.middleware')
 const route = require('./router/route')
@@ -37,6 +39,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, '..', 'public')));
 app.set('view engine', 'ejs');
 app.set('views', path.resolve(__dirname, '..', '..', 'FrontEnd', "views"))
+passport.use(googleStrategy)
 
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/users', usersRouter)
