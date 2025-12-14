@@ -1,13 +1,17 @@
 "use strict"
 
 const profileContainer = document.getElementById("profile_container_desktop")
+const profileMobileContainer = document.getElementById('profile_container')
 const rightNavbar = document.getElementById("right-navbar");
 const rightNavbarBtn = document.getElementById("arrow-right-navbar");
 const rightNavbarImage = document.getElementById("right-navbar-image");
 const socialIcon = document.getElementById("social-icon");
 const categoryIconList = document.getElementById('category-list');
 const categoryIconSubList = document.getElementById('music-sublist-desktop');
-const searchInput = document.querySelector('input[type=search]#search-input')
+const searchInput = document.querySelector('input[type=search]#search-input');
+const mobileMenuBtn = document.getElementById('menu-btn');
+const rightNavbarMobile = document.getElementById('right-navbar-mobile');
+const closeMobileMenuBtn = document.getElementById('x-btn-menu')
 
 ;(async () => {
     try {
@@ -31,9 +35,6 @@ const searchInput = document.querySelector('input[type=search]#search-input')
                                 <li class="py-2.5 profile-button-no-active">
                                     <a href="#" class="ps-6">تنظیمات</a>
                                 </li>
-                                <li class="py-2.5 profile-button-no-active">
-                                    <a href="/settings/myAccount" class="ps-6">اکانت پریمویم</a>
-                                </li>
                                 <div class="border-t-2 border-t-Neutral-800 my-2"></div>
                                 <li class="pt-2.5 pb-4 profile-button-no-active">
                                     <a href="/api/v1/users/logout" class="ps-6">خروج از اکانت</a>
@@ -41,6 +42,25 @@ const searchInput = document.querySelector('input[type=search]#search-input')
                             </ul>
                         </div>
                     `
+        profileMobileContainer.innerHTML = `
+            <a href="/settings/profile">
+                <img loading="lazy" src="${data.data.profile}" class="size-8 object-center rounded-full object-cover" alt="${data.data.fullName}"/>
+            </a>
+            <div id="user-profile-dropdown" class="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300 delay-75 absolute top-18 left-0 w-[200px] h-auto rounded-2xl border-t-4 border-t-Secondary-500 bg-Neutral-900 px-2">
+                <ul class="text-[#FCFCFD]">
+                    <li class="py-2.5 profile-button-no-active">
+                        <a href="/settings/profile" class="ps-6">پروفایل</a>
+                    </li>
+                    <li class="py-2.5 profile-button-no-active">
+                        <a href="#" class="ps-6">تنظیمات</a>
+                    </li>
+                    <div class="border-t-2 border-t-Neutral-800 my-2"></div>
+                    <li class="pt-2.5 pb-4 profile-button-no-active">
+                        <a class="ps-6">خروج از اکانت</a>
+                    </li>
+                    </ul>
+                </div>
+        `
     }
     catch (error) {
         console.log(error)
@@ -145,3 +165,7 @@ rightNavbarBtn.addEventListener("click", function () {
     socialIcon.classList.toggle("hidden");
     socialIcon.classList.toggle("flex");
 })
+
+mobileMenuBtn.addEventListener('click', () => rightNavbarMobile.classList.remove('translate-x-64'))
+
+closeMobileMenuBtn.addEventListener('click', () => rightNavbarMobile.classList.add('translate-x-64'))
