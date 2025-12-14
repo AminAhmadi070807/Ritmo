@@ -124,15 +124,6 @@ module.exports.verify = async (req, res, next) => {
     }
 }
 
-module.exports.googleVerify = async (req, res, next) => {
-    try {
-        await token(res, '')
-    }
-    catch (error) {
-        next(error);
-    }
-}
-
 module.exports.refresh = async (req, res, next) => {
     try {
         const { 'refresh-token': refreshToken } = req.cookies
