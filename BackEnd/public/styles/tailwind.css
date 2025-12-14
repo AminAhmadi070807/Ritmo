@@ -281,9 +281,6 @@
   .top-10 {
     top: calc(var(--spacing) * 10);
   }
-  .top-17 {
-    top: var(--spacing-17);
-  }
   .top-18 {
     top: var(--spacing-18);
   }
@@ -466,6 +463,9 @@
   }
   .mt-50 {
     margin-top: var(--spacing-50);
+  }
+  .mt-100 {
+    margin-top: var(--spacing-100);
   }
   .mt-\[25\.5px\] {
     margin-top: 25.5px;
@@ -2331,11 +2331,6 @@
   .md\:text-\[15px\] {
     @media (width >= 48rem) {
       font-size: 15px;
-    }
-  }
-  .lg\:top-27 {
-    @media (width >= 64rem) {
-      top: calc(var(--spacing) * 27);
     }
   }
   .lg\:ms-10 {

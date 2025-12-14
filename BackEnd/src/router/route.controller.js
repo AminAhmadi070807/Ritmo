@@ -186,7 +186,7 @@ module.exports.createPlaylist = async (req, res) => res.render('music/createPlay
 
 module.exports.search = async (req, res, next) => {
     try {
-        const { search } = req.query;
+        const search = req.query.search.trim();
 
         return res.render('music/search.ejs', {
             search,
