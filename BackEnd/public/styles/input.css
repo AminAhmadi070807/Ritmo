@@ -518,17 +518,8 @@
     width: 24px;
     height: 24px;
   }
-  .active-icon-in-podcast {
-    color: #4353ff;
-    width: 24px;
-    height: 24px;
-  }
+
   .no-active-icon-in-music {
-    color: white;
-    width: 20px;
-    height: 20px;
-  }
-  .no-active-icon-in-podcast {
     color: white;
     width: 20px;
     height: 20px;
@@ -537,17 +528,9 @@
     background: linear-gradient(to right, transparent 30%, #ed265e5b);
     border-right: 4px solid #ed265d;
   }
-  .active-list-podcast {
-    background: linear-gradient(to right, transparent 30%, #4252ff59);
-    border-right: 4px solid #4353ff;
-  }
   .active-list-music-small-size {
     background: linear-gradient(to right, transparent 0%, #ed265e5b);
     border-right: 4px solid #ed265d;
-  }
-  .active-list-podcast-small-size {
-    background: linear-gradient(to right, transparent 10%, #4252ff59);
-    border-right: 4px solid #4353ff;
   }
 
   .navbar-list-active {

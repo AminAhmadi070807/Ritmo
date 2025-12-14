@@ -8,6 +8,7 @@ const rightNavbarImage = document.getElementById("right-navbar-image");
 const socialIcon = document.getElementById("social-icon");
 const categoryIconList = document.getElementById('category-list');
 const categoryIconSubList = document.getElementById('music-sublist-desktop');
+const categorYIconSublistMobile = document.getElementById('music-sublist-mobile')
 const searchInput = document.querySelector('input[type=search]#search-input');
 const mobileMenuBtn = document.getElementById('menu-btn');
 const rightNavbarMobile = document.getElementById('right-navbar-mobile');
@@ -82,6 +83,18 @@ const closeMobileMenuBtn = document.getElementById('x-btn-menu')
                 </div>
             `)
         })
+        data.data.categories.forEach((category) => {
+            document.getElementById('music-list-mobile').insertAdjacentHTML('beforeend', `
+                <li>
+                    <a href="${category.href}" class="flex items-center gap-x-3 py-4 ${path.split('/').pop() === category.href.toLowerCase().split('/').pop() && "active-list-music"}">
+                        <svg class="active-icon-in-music ms-6 ${path.split('/').pop() === category.href.toLowerCase().split('/').pop() ? "active-icon-in-music" : "no-active-icon-in-music"}">
+                            <use href="#${category.icon}"></use>
+                        </svg>
+                        <span class="${path.split('/').pop() === category.href.toLowerCase().split('/').pop() ? "navbar-list-active" : "navbar-list-no-active"}">${category.title}</span>
+                    </a>
+                </li>
+            `)
+        })
     }
     catch (error) {
         console.log(error)
@@ -121,6 +134,35 @@ const closeMobileMenuBtn = document.getElementById('x-btn-menu')
                             <span id="right-navbar-text" class="hidden ${ path.split('/').pop() === "downloads" ? "navbar-list-active" : "navbar-list-no-active"}">دانلودشده‌ها</span>
                         </a>
                     </div>
+            `
+        categorYIconSublistMobile.innerHTML = `
+            <div>
+                <a href="/lastHeard" class="py-4 flex items-center gap-x-3 text-white ${ path.split('/').pop() === "lastHeard" ? "active-list-music" : "navbar-list-no-active"}">
+                    <svg class="active-icon-in-music ${ path.split('/').pop() === "lastHeard" ? "active-icon-in-music" : "no-active-icon-in-music"} ms-6"><use href="#headphone"></use></svg>
+                    <span id="right-navbar-text" class="text-white ${ path.split('/').pop() === "lastHeard" ? "navbar-list-active" : "navbar-list-no-active"}">آخرین شنیده‌ها</span>
+                </a>
+            </div>
+
+            <div>
+                <a href="/likeSongs" class="text-white ${ path.split('/').pop() === "likeSongs" ? "active-list-music" : "navbar-list-no-active"} flex items-center gap-x-3 py-4">
+                    <svg class="${ path.split('/').pop() === "likeSongs" && "active-icon-in-music"} ms-6"><use href="#heart"></use></svg>
+                    <span id="right-navbar-text" class="text-white ${ path.split('/').pop() === "likeSongs" && "navbar-list-active"}">مورد علاقه‌ها</span>
+                </a>
+            </div>
+
+            <div>
+                <a href="/suggestions" class="text-white ${ path.split('/').pop() === "suggestions" ? "active-list-music" : "navbar-list-no-active"} py-4 flex items-center gap-x-3">
+                    <svg class="${ path.split('/').pop() === "suggestions" && "active-icon-in-music"} ms-6"><use href="#vynil"></use></svg>
+                    <span id="right-navbar-text" class="text-white ${ path.split('/').pop() === "suggestions" && "navbar-list-active"}">پیشنهادها</span>
+                </a>
+            </div>
+
+            <div>
+                <a href="/downloads" class="text-white ${ path.split('/').pop() === "downloads"  ? "active-list-music" : "navbar-list-no-active"} py-4 text-white flex items-center gap-x-3">
+                    <svg class="${ path.split('/').pop() === "downloads" && "active-icon-in-music"} ms-6"><use href="#download-01"></use></svg>
+                    <span id="right-navbar-text" class="text-white ${ path.split('/').pop() === "downloads" && "navbar-list-active"}">دانلودشده‌ها</span>
+                </a>
+            </div>
             `
     }
     catch (error) {

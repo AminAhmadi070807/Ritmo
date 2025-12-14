@@ -23,7 +23,7 @@
                 <svg class="size-5 text-white"><use href="#bell-alert"></use></svg>
 
                 <!-- for show modal remove class invisible & opacity-0 add class visible and opacity-100 -->
-                <div id="notification-modal-mobile" class="invisible opacity-0 transition-all duration-300 delay-75 absolute top-20 -left-10 w-[330px] h-auto pb-4 rounded-2xl border-t-4  border-t-Primary-500 bg-Neutral-900 px-2">
+                <div id="notification-modal-mobile" class="invisible opacity-0 transition-all hidden duration-300 delay-75 absolute top-20 -left-10 w-[330px] h-auto pb-4 rounded-2xl border-t-4  border-t-Primary-500 bg-Neutral-900 px-2">
                     <ul id="notfication_desktop_Container" class="text-[#FCFCFD] overflow-y-scroll">
                         <li class="py-4 border-b-2 border-b-Neutral-800">
                             <a class="flex items-center gap-x-4 ps-2">
@@ -40,8 +40,7 @@
                 </div>
             </div>
 
-            <div id="profile_container" class="group relative items-center size-8 justify-center rounded-full bg-transparent-2/60">
-            </div>
+            <div id="profile_container" class="group relative items-center size-8 justify-center rounded-full bg-transparent-2/60"></div>
         </div>
     </div>
     <!-- right navbar mobil -->
@@ -54,83 +53,9 @@
         <!-- main -->
         <div class="mt-5 pe-5">
             <ul id="music-list-mobile" class="flex gap-y-2 flex-col">
-                <li>
-                    <a href="/" class="flex items-center gap-x-3 py-4 active-list-music">
-                        <svg class="active-icon-in-music ms-6">
-                            <use href="#home"></use>
-                        </svg>
-                        <span class="navbar-list-active">خانه</span>
-                    </a>
-                </li>
 
-                <li>
-                    <a href="/musics/categories" class="flex items-center gap-x-3 py-4">
-                        <svg class="no-active-icon-in-music ms-6">
-                            <use href="#grid-02"></use>
-                        </svg>
-                        <span class="navbar-list-no-active">دسته‌بندی</span>
-                    </a>
-                </li>
 
-                <li>
-                    <a href="/music/artists" class="py-4 flex items-center gap-x-3">
-                        <svg class="no-active-icon-in-music ms-6">
-                            <use href="#user-circle"></use>
-                        </svg>
-                        <span class="navbar-list-no-active">آرتیست‌ها</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="/music/albums" class="py-4 flex items-center gap-x-3">
-                        <svg class="size-5 ms-6"><use href="#music-05"></use></svg>
-                        <span class="navbar-list-no-active">آلبوم‌ها</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="/music/playlist" class="py-4 flex items-center gap-x-3">
-                        <svg class="no-active-icon-in-music ms-6"><use href="#playlist"></use></svg>
-                        <span class="navbar-list-no-active">پلی لیست</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="/music/videos" class="py-4 flex items-center gap-x-3">
-                        <svg class="no-active-icon-in-music ms-6"><use href="#video-camera"></use></svg>
-                        <span class="navbar-list-no-active">موزیک ویدیو ها</span>
-                    </a>
-                </li>
-
-                <ul id="music-sublist" class="flex-col gap-y-2">
-                    <li>
-                        <a href="/lastHeard" class="py-4 flex items-center gap-x-3">
-                            <svg class="no-active-icon-in-music ms-6"><use href="#headphone"></use></svg>
-                            <span class="navbar-list-no-active">آخرین شنیده‌ها</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="music/likedSongs" class="flex items-center gap-x-3 py-4">
-                            <svg class="no-active-icon-in-music ms-6"><use href="#heart"></use></svg>
-                            <span class="navbar-list-no-active">مورد علاقه‌ها</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="/music/suggestions" class="py-4 flex items-center gap-x-3">
-                            <svg class="no-active-icon-in-music ms-6"><use href="#vynil"></use></svg>
-                            <span class="navbar-list-no-active">پیشنهادها</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="/music/downloads" class="py-4 text-white flex items-center gap-x-3">
-                            <svg class="size-5 ms-6"><use href="#download-01"></use></svg>
-                            <span class="navbar-list-no-active">دانلودشده‌ها</span>
-                        </a>
-                    </li>
-                </ul>
+                <div id="music-sublist-mobile" class="flex-col gap-y-2"></div>
             </ul>
         </div>
         <!-- footer -->
@@ -193,7 +118,7 @@
                 <div class="group relative flex items-center justify-center size-12 rounded-full bg-Neutral-900">
                     <svg class="size-8 text-white"><use href="#bell-alert"></use></svg>
 
-                    <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300 delay-75 absolute top-20 left-0 w-[368px] h-auto pb-4 rounded-2xl border-t-4 border-t-Primary-500 bg-Neutral-900 px-2">
+                    <div class="invisible opacity-0 hidden group-hover:visible group-hover:opacity-100 transition-all duration-300 delay-75 absolute top-20 left-0 w-[368px] h-auto pb-4 rounded-2xl border-t-4 border-t-Primary-500 bg-Neutral-900 px-2">
                         <ul id="notfication_desktop_Container" class="text-[#FCFCFD]">
                             <li class="py-4 border-b-2 border-b-Neutral-800">
                                 <a class="flex items-center gap-x-4 ps-2">
