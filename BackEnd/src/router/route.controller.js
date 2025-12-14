@@ -181,4 +181,18 @@ module.exports.createMusic = async (req, res, next) => {
 }
 
 module.exports.createAlbum = async (req, res) => res.render('music/createAlbum.ejs')
+
 module.exports.createPlaylist = async (req, res) => res.render('music/createPlaylist.ejs')
+
+module.exports.search = async (req, res, next) => {
+    try {
+        const { search } = req.query;
+
+        return res.render('music/search.ejs', {
+            search,
+        })
+    }
+    catch (error) {
+        next(error)
+    }
+}

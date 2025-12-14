@@ -30,5 +30,6 @@ router.get('/music/create',authGuard, controller.createMusic)
 router.get('/playlist/create',authGuard, controller.createPlaylist)
 router.get('/album/create',authGuard, controller.createAlbum)
 router.get('/settings/setting/profile', controller.settingProfile)
+router.get('/search', controller.search)
 
 module.exports = router
