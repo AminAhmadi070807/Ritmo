@@ -6,8 +6,8 @@ const sequelize = new Sequelize(process.env.MYSQL_URI, { dialect: 'mysql', loggi
 
 ;(async () => {
     try {
-        await sequelize.sync({ alter: true, logging: () => {} })
         await sequelize.authenticate()
+        await sequelize.sync({ alter: true, logging: () => {} })
         console.log("Connected to mysql successfully")
     }
     catch (error) {
