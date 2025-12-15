@@ -3,6 +3,7 @@
 const refreshTokenModel = require('../token/token.model')
 const userModel = require('../users/user.model')
 const banModel = require('../ban/ban.model')
+const adminModel = require('../admins/admin.model')
 const redis = require('../../../database/Redis/db')
 const sendEmail = require('../../../config/config.email')
 const crypto = require('crypto')
@@ -113,6 +114,13 @@ module.exports.verify = async (req, res, next) => {
             fullName: redisData.email.split('@')[0],
             username: redisData.email.split('@')[0]
         }, { raw: true })
+
+        const countOfUsers = await userModel.findAll({ raw: true })
+
+        await adminModel.create({
+            user: user.uuid,
+            role: countOfUsers.length ? ["USER"] : ["ADMIN", "CONTENT-MODERATOR", "EDITOR", "INVESTOR", "USER"]
+        })
 
         const tokenResult = await token(res, user.uuid)
 
