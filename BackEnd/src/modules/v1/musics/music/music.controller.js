@@ -71,8 +71,8 @@ module.exports.create = async (req, res, next) => {
 
         const musicResult = await musicModel.create({
             tags: tags.split(",").map(tag => tag.trim()),
-            album: album,
-            artist : req.body?.artist || "",
+            album: album._id,
+            artist,
             genre,
             title,
             time: +metadata.format.duration,
@@ -83,7 +83,7 @@ module.exports.create = async (req, res, next) => {
 
         await albumModel.findByIdAndUpdate(isExistAlbum._id, { $push: { musics: musicResult._id, } })
 
-        return res.redirect(`/albums/details/${musicResult._id}`)
+        return res.redirect(`/albums/details/${musicResult.album}`)
     }
     catch (error) {
         await deleteFiles(['BackEnd/public' + `/uploads/posters/${req.files.poster[0].filename}`, 'BackEnd/public' + `/uploads/musics/${req.files.music[0].filename}`])
