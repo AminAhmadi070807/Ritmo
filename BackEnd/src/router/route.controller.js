@@ -85,7 +85,10 @@ module.exports.musicAlbumDetails = async (req, res, next) => {
         await albumModel.findByIdAndUpdate(id, {$inc: {views: 1}})
 
         return res.render('music/albumsDetail.ejs', {
-            album,
+            album: {
+                ...album,
+                artist: user.fullName
+            },
             musics,
             now,
             music: null
