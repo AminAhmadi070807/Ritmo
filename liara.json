@@ -6,6 +6,6 @@
   },
   "disks": [{
     "name": "uploads",
-    "mountTo": "./BackEnd/src/server.js"
+    "mountTo": "./BackEnd/public/uploads"
   }]
 }
