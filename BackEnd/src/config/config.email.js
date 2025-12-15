@@ -7,13 +7,13 @@ module.exports = async (email, message, type = "AUTH") => {
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: "aminahmdi65@gmail.com",
-                pass: "hnuxmjwpmuuswgdn"
+                user: "", // your email name
+                pass: "" // your email password
             }
         })
 
         const mailOptions = {
-            from: "aminahmdi65@gmail.com",
+            from: "", // your email name
             to: email,
             subject: type === "AUTH" ? `کد ورودی شما به ریتمو` : "پساخ به سوال شما از طرف پشتیبانی ریتمو",
             text: type === "AUTH" ? `این کد را در اختیار دیگران قرار ندهید ${message}` : message
