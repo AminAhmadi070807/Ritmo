@@ -43,7 +43,7 @@ module.exports = mysql.define("User", {
     },
     bio: {
         type: DataTypes.TEXT('tiny'),
-        defaultValue: '',
+        allowNull: true,
         validate: {
             len: [0, 100]
         }
