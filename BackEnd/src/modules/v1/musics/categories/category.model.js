@@ -5,7 +5,7 @@ const database = require('../../../../database/MySql/db')
 
 module.exports = database.define("MusicCategory", {
     id: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
         allowNull: true,
         primaryKey: true,
         autoIncrement: true,
