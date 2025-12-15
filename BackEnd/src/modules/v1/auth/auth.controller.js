@@ -106,6 +106,7 @@ module.exports.verify = async (req, res, next) => {
         if (isExistEmail) user = isExistEmail;
         else user = await userModel.create({
             ...redisData,
+            bio: '',
             password: bcrypt.hashSync(redisData.password, 10),
             otp: undefined,
             uuid: `${Date.now()}${crypto.randomUUID()}`,
