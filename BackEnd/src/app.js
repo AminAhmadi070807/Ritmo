@@ -54,7 +54,6 @@ app.use('/api/v1/FAQ', faqRouter)
 app.use('/api/v1/search', searchRouter)
 
 app.use(route)
-
 app.use(notFoundHandler)
 app.use(errorHandler)
 
