@@ -72,7 +72,7 @@ module.exports.create = async (req, res, next) => {
         const musicResult = await musicModel.create({
             tags: tags.split(",").map(tag => tag.trim()),
             album: album,
-            artist,
+            artist : req.body?.artist || "",
             genre,
             title,
             time: +metadata.format.duration,
