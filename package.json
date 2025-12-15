@@ -32,8 +32,7 @@
   "main": "./BackEnd/src/server.js",
   "scripts": {
     "dev": "dotenv -e BackEnd/src/.env nodemon BackEnd/src/server.js",
-    "start": "dotenv -e BackEnd/src/.env nodemon BackEnd/src/server.js",
-    "build": "npx @tailwindcss/cli -i ./BackEnd/public/styles/input.css -o ./BackEnd/public/styles/tailwind.css --watch"
+    "start": "node BackEnd/src/server.js"
   },
   "devDependencies": {
     "dotenv-cli": "^11.0.0",

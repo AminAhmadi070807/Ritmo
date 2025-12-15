@@ -4,5 +4,8 @@
   "build": {
     "location": "iran"
   },
-  "disks": []
+  "disks": [{
+    "name": "uploads",
+    "mountTo": "./BackEnd/src/server.js"
+  }]
 }
