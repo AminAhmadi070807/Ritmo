@@ -2,12 +2,12 @@
 
 const { Sequelize } = require('sequelize')
 
-const sequelize = new Sequelize(process.env.MYSQL_URI, { dialect: 'mysql', logging: () => {}, dialectOptions: { connectTimeout: 60000 }, })
+const sequelize = new Sequelize('ritmo', 'root', '' , { dialect: 'mysql', logging: () => {}, })
 
 ;(async () => {
     try {
         await sequelize.authenticate()
-        await sequelize.sync({ alter: true, logging: () => {} })
+        await sequelize.sync({ alter: false, logging: () => {} })
         console.log("Connected to mysql successfully")
     }
     catch (error) {
