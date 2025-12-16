@@ -133,9 +133,9 @@ module.exports.musics = async (req, res, next) => {
         if (!isValidObjectId(genre)) return response(res, 400, "genre is not correct.")
 
         let musics
-        if (status === 'trending') musics = await musicModel.find({ genre }).sort({ views: -1, _id : -1 }).select('poster artist title').limit(+page * +limit).lean()
-        else if (status === 'latest') musics = await musicModel.find({ genre }).sort({ _id: -1 }).select('poster artist title').limit(+page * +limit).lean()
-        else if (status === "All") musics = await musicModel.find({ genre }).sort({ _id: -1 }).select('poster artist title').limit(+page * +limit).lean()
+        if (status === 'trending') musics = await musicModel.find({ genre }).sort({ views: -1, _id : -1 }).select('poster artist title album').limit(+page * +limit).lean()
+        else if (status === 'latest') musics = await musicModel.find({ genre }).sort({ _id: -1 }).select('poster artist title album').limit(+page * +limit).lean()
+        else if (status === "All") musics = await musicModel.find({ genre }).sort({ _id: -1 }).select('poster artist title album').limit(+page * +limit).lean()
         else return response(res, 400, "status must be (trending, latest, All).")
 
         return response(res, 200, null, musics)
