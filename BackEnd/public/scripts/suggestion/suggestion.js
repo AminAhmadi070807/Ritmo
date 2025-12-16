@@ -14,7 +14,13 @@ const formatTime = (seconds) => {
     try {
         const refresh = await fetch('/api/v1/auth/refresh')
 
-        if (refresh.status === 401) return location.href = '/auth/send'
+        if (refresh.status === 401) {
+            main.className = `${mainClass} h-screen`;
+            document.getElementById('suggestion-icon').classList.add('flex')
+            document.getElementById('suggestion-icon').classList.remove('hidden')
+            document.getElementById('suggestion-container').classList.add('hidden')
+            return
+        }
 
         const response = await fetch('/api/v1/suggestions')
         const data = await response.json()
@@ -74,7 +80,7 @@ const formatTime = (seconds) => {
             btn.addEventListener("click", async() => {
                 const refresh = await fetch('/api/v1/auth/refresh')
 
-                if (refresh.status === 401) return location.href = '/auth/send'
+                if (refresh.status === 401) return  modal('error', 'برای لایک کردن اهنگ ابتدا لطفا ثبت نام کنید')
 
                 const response = await fetch(`/api/v1/musics/likeSongs/${btn.getAttribute('music-id')}`, { method: 'post' })
 
@@ -96,7 +102,7 @@ const formatTime = (seconds) => {
                 console.log('AMIN')
                 const refresh = await fetch('/api/v1/auth/refresh')
 
-                if (refresh.status === 401) return location.href = '/auth/send'
+                if (refresh.status === 401)  return  modal('error', 'برای دانلود کردن اهنگ ابتدا لطفا ثبت نام کنید')
 
                 let response = await fetch(`/api/v1/musics/downloads/${btn.getAttribute('music-id')}`, { method: 'post' })
                 const data = await response.json()
@@ -117,7 +123,7 @@ const formatTime = (seconds) => {
         musicBtn.forEach(music => {
             music.addEventListener('click', async () => {
                 const refresh = await fetch('/api/v1/auth/refresh')
-                if (refresh.status !== 200) return location.href = '/auth/send'
+                if (refresh.status !== 200)  return  modal('error', 'برای پخش کردن اهنگ ابتدا لطفا ثبت نام کنید')
 
                 const response = await fetch(`/api/v1/musics/${music.getAttribute('music-id')}`)
                 const data = await response.json();
