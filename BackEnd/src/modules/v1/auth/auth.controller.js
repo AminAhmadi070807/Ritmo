@@ -124,8 +124,6 @@ module.exports.verify = async (req, res, next) => {
             })
         }
 
-
-
         const tokenResult = await token(res, user.uuid)
 
         if (tokenResult.status !== 200) return response(res, tokenResult.status, "There was a problem. please try again.")
