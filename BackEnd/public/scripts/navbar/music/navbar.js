@@ -20,12 +20,12 @@ const closeMobileMenuBtn = document.getElementById('x-btn-menu')
 
         if (refresh.status !== 200) {
             profileContainer.innerHTML = `
-                <div id="login_link_Desktop_Container" class="group relative items-center justify-center size-12 rounded-full bg-transparent-2/60">
+                <div id="login_link_Desktop_Container" class="group flex relative items-center justify-center size-12 rounded-full bg-transparent-2/60">
                   <a href="/auth/send"><svg class="size-8"><use href="#lock-closed"></use></svg></a>
                 </div>
                     `
             profileMobileContainer.innerHTML = `
-                <div id="login_link_Desktop_Container" class="group relative items-center justify-center size-8 rounded-full bg-transparent-2/60">
+                <div id="login_link_Desktop_Container" class="group flex relative items-center justify-center size-8 rounded-full bg-transparent-2/60">
                   <a href="/auth/send"><svg class="size-5"><use href="#lock-closed"></use></svg></a>
                 </div>
         `
