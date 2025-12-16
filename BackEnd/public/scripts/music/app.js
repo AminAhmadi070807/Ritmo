@@ -171,7 +171,8 @@ const formatTime = (seconds) => {
     try {
         const refresh = await fetch('/api/v1/auth/refresh')
 
-        if (refresh.status === 200) {
+        if (refresh.status !== 401) return location.href = '/auth/send'
+
         const response = await fetch('/api/v1/musics/lastHeard/?limit=8&?page=1')
         let data = await response.json()
 
@@ -324,9 +325,6 @@ const formatTime = (seconds) => {
                 audio.setAttribute('audio-id', data.data._id)
             })
         })
-        }else {
-            $.getElementById('last-heard').classList.add('hidden')
-        }
     }
     catch (error) {
         console.log(error);
