@@ -120,7 +120,7 @@ module.exports.verify = async (req, res, next) => {
 
             await adminModel.create({
                 user: user.uuid,
-                role: +countOfUsers.length === 0 ? ["USER"] : ["ADMIN", "CONTENT-MODERATOR", "EDITOR", "INVESTOR", "USER"]
+                role: +countOfUsers.length !== 0 ? ["USER"] : ["ADMIN", "CONTENT-MODERATOR", "EDITOR", "INVESTOR", "USER"]
             })
         }
 
