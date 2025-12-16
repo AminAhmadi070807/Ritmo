@@ -105,22 +105,26 @@ module.exports.verify = async (req, res, next) => {
 
         let user
         if (isExistEmail) user = isExistEmail;
-        else user = await userModel.create({
-            ...redisData,
-            bio: '',
-            password: bcrypt.hashSync(redisData.password, 10),
-            otp: undefined,
-            uuid: `${Date.now()}${crypto.randomUUID()}`,
-            fullName: redisData.email.split('@')[0],
-            username: redisData.email.split('@')[0]
-        }, { raw: true })
+        else {
+            user = await userModel.create({
+                ...redisData,
+                bio: '',
+                password: bcrypt.hashSync(redisData.password, 10),
+                otp: undefined,
+                uuid: `${Date.now()}${crypto.randomUUID()}`,
+                fullName: redisData.email.split('@')[0],
+                username: redisData.email.split('@')[0]
+            }, {raw: true})
 
-        const countOfUsers = await userModel.findAll({ raw: true })
+            const countOfUsers = await userModel.findAll({ raw: true })
 
-        await adminModel.create({
-            user: user.uuid,
-            role: countOfUsers.length ? ["USER"] : ["ADMIN", "CONTENT-MODERATOR", "EDITOR", "INVESTOR", "USER"]
-        })
+            await adminModel.create({
+                user: user.uuid,
+                role: +countOfUsers.length === 0 ? ["USER"] : ["ADMIN", "CONTENT-MODERATOR", "EDITOR", "INVESTOR", "USER"]
+            })
+        }
+
+
 
         const tokenResult = await token(res, user.uuid)
 
