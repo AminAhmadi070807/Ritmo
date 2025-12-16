@@ -18,7 +18,18 @@ const closeMobileMenuBtn = document.getElementById('x-btn-menu')
     try {
         const refresh = await fetch('/api/v1/auth/refresh')
 
-        if (refresh.status !== 200) return location.href = '/auth/send'
+        if (refresh.status !== 200) {
+            profileContainer.innerHTML = `
+                <div id="login_link_Desktop_Container" class="group relative items-center justify-center size-12 rounded-full bg-transparent-2/60">
+                  <a href="/auth/send"><svg class="size-8"><use href="#lock-closed"></use></svg></a>
+                </div>
+                    `
+            profileMobileContainer.innerHTML = `
+                <div id="login_link_Desktop_Container" class="group relative items-center justify-center size-8 rounded-full bg-transparent-2/60">
+                  <a href="/auth/send"><svg class="size-5"><use href="#lock-closed"></use></svg></a>
+                </div>
+        `
+        }
 
         const response = await fetch('/api/v1/users/Me')
         const data = await response.json()
@@ -172,13 +183,7 @@ const closeMobileMenuBtn = document.getElementById('x-btn-menu')
 
 searchInput.addEventListener('keyup', async (event) => {
     try {
-        if (event.keyCode === 13) {
-            const refresh = await fetch('/api/v1/auth/refresh')
-
-            if (refresh.status !== 200) return location.href = '/auth/send'
-
-            location.href = `/search?search=${event.target.value}`
-        }
+        if (event.keyCode === 13) return location.href = `/search?search=${event.target.value}`
     }
     catch (error) {
         console.log(error)

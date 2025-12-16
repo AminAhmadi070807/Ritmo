@@ -65,9 +65,6 @@ const formatTime = (seconds) => {
 
         musicBtn.forEach(music => {
             music.addEventListener('click', async () => {
-                const refresh = await fetch('/api/v1/auth/refresh')
-                if (refresh.status === 401) return location.href = '/auth/send'
-
                 const response = await fetch(`/api/v1/musics/${music.getAttribute('music-id')}`)
                 const data = await response.json();
 
@@ -171,7 +168,7 @@ const formatTime = (seconds) => {
     try {
         const refresh = await fetch('/api/v1/auth/refresh')
 
-        if (refresh.status === 401) return location.href = '/auth/send'
+        if (refresh.status === 401) return document.getElementById('last-heard').classList.add('hidden')
 
         const response = await fetch('/api/v1/musics/lastHeard/?limit=8&?page=1')
         let data = await response.json()
