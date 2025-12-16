@@ -12,14 +12,18 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
 
 ;(async () => {
     try {
-        const response = await fetch('/api/v1/musics/likeSongs/?limit=100&?page=1')
-        let data = await response.json()
-        if (response.status === 401) {
-            const refresh = await fetch('/api/v1/auth/refresh')
-            if (refresh.status !== 200) return location.href = '/'
-            const response = await fetch('/api/v1/musics/likeSongs/?limit=100&?page=1')
-            data = await response.json()
+        const refresh = await fetch('/api/v1/auth/refresh')
+        if (refresh.status !== 200) {
+            main.className = `${mainClass} h-screen`;
+            document.getElementById('is-not-like').classList.add('flex')
+            document.getElementById('is-not-like').classList.remove('hidden')
+            document.getElementById('like-song-container').classList.add('hidden')
+            return
         }
+
+
+        const response = await fetch('/api/v1/musics/likeSongs/?limit=100&?page=1')
+        const data = await response.json()
 
         data.data.likeSongs.forEach((likeSong, index) => {
             document.getElementById('like-song-container').insertAdjacentHTML('beforeend', `

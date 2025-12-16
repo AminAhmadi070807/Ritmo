@@ -13,7 +13,13 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
 ;(async () => {
     try {
         const refresh = await fetch('/api/v1/auth/refresh')
-        if (refresh.status !== 200) return location.href = '/auth/send'
+        if (refresh.status !== 200) {
+            main.className = `${mainClass} h-screen`;
+            document.getElementById('download-icon').classList.add('flex')
+            document.getElementById('download-icon').classList.remove('hidden')
+            document.getElementById('download-container').classList.add('hidden')
+            return
+        }
 
         const response = await fetch('/api/v1/musics/downloads/?limit=100&?page=1')
         const data = await response.json()

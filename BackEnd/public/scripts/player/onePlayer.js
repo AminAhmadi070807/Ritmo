@@ -49,7 +49,7 @@ const audioPause = async () => {
 
     const refresh = await fetch('/api/v1/auth/refresh')
 
-    if (refresh.status === 404) return location.href = '/auth/send'
+    if (refresh.status === 404) return modal('error', 'برای پخش اهنگ لطفا ابتدا ثبت نام کنید')
 
     const audioId = audio.getAttribute('audio-id')
 
@@ -71,7 +71,7 @@ const audioPlayer = async () => {
 
         const refresh = await fetch('/api/v1/auth/refresh')
 
-        if (refresh.status === 404) return location.href = '/auth/send'
+        if (refresh.status === 404) return modal('error', 'برای پخش اهنگ لطفا ابتدا ثبت نام کنید')
 
         const audioId = audio.getAttribute('audio-id')
 

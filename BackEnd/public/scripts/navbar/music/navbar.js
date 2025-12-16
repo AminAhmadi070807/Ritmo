@@ -29,6 +29,7 @@ const closeMobileMenuBtn = document.getElementById('x-btn-menu')
                   <a href="/auth/send"><svg class="size-5"><use href="#lock-closed"></use></svg></a>
                 </div>
         `
+            return
         }
 
         const response = await fetch('/api/v1/users/Me')

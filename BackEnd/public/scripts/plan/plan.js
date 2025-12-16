@@ -5,7 +5,9 @@ const paymentPlanButtons = document.querySelectorAll('button.payment-plan-btn')
 
 ;(async () => {
     try {
-        await fetch('/api/v1/auth/refresh')
+        const refresh = await fetch('/api/v1/auth/refresh')
+
+        if (refresh.status === 200) return modal('error', 'برای خرید پلن ابتدا ثبت نام کنید')
     }
     catch (error) {
         console.error(error);
@@ -30,7 +32,9 @@ questionRitmoPlus.forEach((questionContainer) => {
 
 paymentPlanButtons.forEach(btn => {
     btn.addEventListener('click',  async() => {
-        await fetch('/api/v1/auth/refresh')
+        const refresh = await fetch('/api/v1/auth/refresh')
+
+        if (refresh.status === 401) return modal('error', 'برای خرید پلن ابتدا ثبت نام کنید')
 
         const planId = btn.getAttribute('plan-id')
 

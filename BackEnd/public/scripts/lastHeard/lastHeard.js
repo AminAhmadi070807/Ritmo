@@ -14,7 +14,13 @@ let mainClass = "main-site px-5 lg:px-8 ms-auto max-w-[1600px]";
     try {
         const refresh = await fetch('/api/v1/auth/refresh')
 
-        if (refresh.status === 401) return location.href = '/auth/send'
+        if (refresh.status === 401) {
+            main.className = `${mainClass} h-screen`;
+            document.getElementById('last-heard-icon').classList.add('flex')
+            document.getElementById('last-heard-icon').classList.remove('hidden')
+            document.getElementById('last-heard-container').classList.add('hidden')
+            return
+        }
 
         const response = await fetch('/api/v1/musics/lastHeard/?limit=100&?page=1')
         const data = await response.json()
