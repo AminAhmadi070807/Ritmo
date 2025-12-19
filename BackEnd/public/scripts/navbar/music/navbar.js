@@ -9,7 +9,7 @@ const socialIcon = document.getElementById("social-icon");
 const categoryIconList = document.getElementById('category-list');
 const categoryIconSubList = document.getElementById('music-sublist-desktop');
 const categorYIconSublistMobile = document.getElementById('music-sublist-mobile')
-const searchInput = document.querySelectorAll('input[type=search]#search-input');
+const searchInput = document.querySelectorAll('input[type=search].search-input');
 const mobileMenuBtn = document.getElementById('menu-btn');
 const rightNavbarMobile = document.getElementById('right-navbar-mobile');
 const closeMobileMenuBtn = document.getElementById('x-btn-menu')
