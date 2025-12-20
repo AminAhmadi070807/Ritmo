@@ -4,3 +4,5 @@ FrontEnd/src/image
 FrontEnd/src/image-podcast
 FrontEnd/src/fonts
 node_modules
+BackEnd/src/.env
+BackEnd/src/database/MongoDB/db.js
