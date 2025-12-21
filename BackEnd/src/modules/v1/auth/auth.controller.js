@@ -68,11 +68,29 @@ module.exports.send = async (req, res, next) => {
 
         if (resultSetRedisData.status !== 200) return response(res, 500, "There was a problem, please try again.")
 
-        const sendEmailResult = await sendEmail(email, resultSetRedisData.data.random)
+        const isExistEmail = await userModel.findOne({
+            where: { email },
+            raw: true,
+        })
 
-        if (sendEmailResult.status !== 200) return response(res, sendEmailResult.status, sendEmailResult.message)
+        if (!isExistEmail) {
+            const sendEmailResult = await sendEmail(email, resultSetRedisData.data.random)
 
-        return response(res, 200, "send OTP code to email successfully.", { href: `/auth/verify/${resultSetRedisData.data.randomId}` })
+            if (sendEmailResult.status !== 200) return response(res, sendEmailResult.status, sendEmailResult.message)
+
+            return response(res, 200, "send OTP code to email successfully.", { href: `/auth/verify/${resultSetRedisData.data.randomId}` })
+        }else {
+            const isUserPassword = bcrypt.compare(password, isExistEmail.password)
+
+            if (!isUserPassword) return response(res, 400, "user or password doesn't match")
+
+            const tokenResult = await token(res, isExistEmail.uuid)
+
+            if (tokenResult.status !== 200) return response(res, tokenResult.status, "There was a problem. please try again.")
+
+            return response(res, 200, "you have successfully login.")
+        }
+
     }
     catch(error) {
         next(error);
@@ -98,37 +116,28 @@ module.exports.verify = async (req, res, next) => {
             return response(res, 401, "Code is not valid.")
         }
 
-        const isExistEmail = await userModel.findOne({
-            where: { email: redisData.email },
-            raw: true,
+        const user = await userModel.create({
+            ...redisData,
+            bio: '',
+            password: bcrypt.hashSync(redisData.password, 10),
+            otp: undefined,
+            uuid: `${Date.now()}${crypto.randomUUID()}`,
+            fullName: redisData.email.split('@')[0],
+            username: redisData.email.split('@')[0]
+        }, {raw: true})
+
+        const countOfUsers = await userModel.findAll({ raw: true })
+
+        await adminModel.create({
+            user: user.uuid,
+            role: +countOfUsers.length !== 0 ? ["USER"] : ["ADMIN", "CONTENT-MODERATOR", "EDITOR", "INVESTOR", "USER"]
         })
-
-        let user
-        if (isExistEmail) user = isExistEmail;
-        else {
-            user = await userModel.create({
-                ...redisData,
-                bio: '',
-                password: bcrypt.hashSync(redisData.password, 10),
-                otp: undefined,
-                uuid: `${Date.now()}${crypto.randomUUID()}`,
-                fullName: redisData.email.split('@')[0],
-                username: redisData.email.split('@')[0]
-            }, {raw: true})
-
-            const countOfUsers = await userModel.findAll({ raw: true })
-
-            await adminModel.create({
-                user: user.uuid,
-                role: +countOfUsers.length !== 0 ? ["USER"] : ["ADMIN", "CONTENT-MODERATOR", "EDITOR", "INVESTOR", "USER"]
-            })
-        }
 
         const tokenResult = await token(res, user.uuid)
 
         if (tokenResult.status !== 200) return response(res, tokenResult.status, "There was a problem. please try again.")
 
-        return response(res, 200, "you have successfully registered.")
+        return response(res, 201, "you have successfully registered.")
     }
     catch (error) {
         next(error);
